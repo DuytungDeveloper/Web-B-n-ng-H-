@@ -1,380 +1,49 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ECommerce</title>
-
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <style id='shopper-woocommerce-style-inline-css' type='text/css'>
-
-			a.cart-contents,
-			.header-myacc-link a,
-			.site-header-cart .widget_shopping_cart a {
-				color: #666666;
-			}
-
-
-
-			table.cart td.product-remove,
-			table.cart td.actions {
-				border-top-color: #ffffff;
-			}
-
-			.woocommerce-tabs ul.tabs li.active a,
-			ul.products li.product .price,
-			.widget_search form:before,
-			.widget_product_search form:before {
-				color: #43454b;
-			}
-
-			.woocommerce-breadcrumb a,
-			a.woocommerce-review-link,
-			.product_meta a {
-				color: #75777d;
-			}
-
-			.star-rating span:before,
-			.quantity .plus, .quantity .minus,
-			p.stars a:hover:after,
-			p.stars a:after,
-			.star-rating span:before,
-			#payment .payment_methods li input[type=radio]:first-child:checked+label:before {
-				color: #ff6600;
-			}
-
-			.widget_price_filter .ui-slider .ui-slider-range,
-			.widget_price_filter .ui-slider .ui-slider-handle {
-				background-color: #ff6600;
-			}
-
-			.woocommerce-breadcrumb,
-			#reviews .commentlist li .comment_container {
-				background-color: #f8f8f8;
-			}
-
-			.order_details {
-				background-color: #f8f8f8;
-			}
-
-			.order_details > li {
-				border-bottom: 1px dotted #e3e3e3;
-			}
-
-			.order_details:before,
-			.order_details:after {
-				background: -webkit-linear-gradient(transparent 0,transparent 0),-webkit-linear-gradient(135deg,#f8f8f8 33.33%,transparent 33.33%),-webkit-linear-gradient(45deg,#f8f8f8 33.33%,transparent 33.33%)
-			}
-
-			p.stars a:before,
-			p.stars a:hover~a:before,
-			p.stars.selected a.active~a:before {
-				color: #43454b;
-			}
-
-			p.stars.selected a.active:before,
-			p.stars:hover a:before,
-			p.stars.selected a:not(.active):before,
-			p.stars.selected a.active:before {
-				color: #ff6600;
-			}
-
-			.single-product div.product .woocommerce-product-gallery .woocommerce-product-gallery__trigger {
-				background-color: #ff6600;
-				color: #ffffff;
-			}
-
-			.single-product div.product .woocommerce-product-gallery .woocommerce-product-gallery__trigger:hover {
-				background-color: #e64d00;
-				border-color: #e64d00;
-				color: #ffffff;
-			}
-
-
-			.site-main ul.products li.product:hover .woocommerce-loop-category__title,
-			.site-header-cart .cart-contents .count,
-			.added_to_cart, .onsale {
-				background-color: #ff6600;
-				color: #ffffff;
-			}
-			.added_to_cart:hover {
-					background-color: #e64d00;
-			}
-			.widget_price_filter .ui-slider .ui-slider-range, .widget_price_filter .ui-slider .ui-slider-handle,
-			.widget .tagcloud a:hover, .widget_price_filter .ui-slider .ui-slider-range, .widget_price_filter .ui-slider .ui-slider-handle, .hentry.type-post .entry-header:after {
-				background-color: #ff6600;
-			}
-			.widget .tagcloud a:hover {
-				border-color:  #ff6600;
-			}
-
-			.widget_product_categories > ul li.current-cat-parent > a, .widget_product_categories > ul li.current-cat > a {
-				color: #ff6600;
-			}
-
-			@@media screen and ( min-width: 768px ) {
-				.site-header-cart .widget_shopping_cart,
-				.site-header .product_list_widget li .quantity {
-					color: #9aa0a7;
-				}
-			}
-    </style>
-    <style id='shopper-style-inline-css' type='text/css'>
-
-        .main-navigation ul li a,
-        .site-title a,
-        .site-branding h1 a,
-        .site-footer .shopper-handheld-footer-bar a:not(.button) { color: #666666; }
-
-            .main-navigation ul li a:hover,
-            .main-navigation ul li:hover > a,
-            .site-title a:hover,
-            a.cart-contents:hover,
-            .header-myacc-link a:hover,
-            .site-header-cart .widget_shopping_cart a:hover,
-            .site-header-cart:hover > li > a,
-            .site-header ul.menu li.current-menu-item > a,
-            .site-header ul.menu li.current-menu-parent > a { color: #ff6600; }
-
-        table th { background-color: #f8f8f8; }
-
-        table tbody td { background-color: #fdfdfd; }
-
-        table tbody tr:nth-child(2n) td { background-color: #fbfbfb; }
-
-        .site-header,
-        .main-navigation ul.menu > li.menu-item-has-children:after,
-        .shopper-handheld-footer-bar,
-        .shopper-handheld-footer-bar ul li > a,
-        .shopper-handheld-footer-bar ul li.search .site-search { background-color: #ffffff; }
-
-        p.site-description,
-        .site-header,
-        .shopper-handheld-footer-bar { color: #9aa0a7; }
-
-            .shopper-handheld-footer-bar ul li.cart .count { background-color: #666666; }
-
-            .shopper-handheld-footer-bar ul li.cart .count { color: #ffffff; }
-
-            .shopper-handheld-footer-bar ul li.cart .count { border-color: #ffffff; }
-
-        h1, h2, h3, h4, h5, h6 { color: #484c51; }
-        .widget .widget-title, .widget .widgettitle, .shopper-latest-from-blog .recent-post-title, .entry-title a { color: #484c51; }
-
-        .widget h1 { border-bottom-color: #484c51; }
-
-        body,
-        .page-numbers li .page-numbers:not(.current),
-        .page-numbers li .page-numbers:not(.current) { color: #43454b; }
-
-        .widget-area .widget a,
-        .hentry .entry-header .posted-on a,
-        .hentry .entry-header .byline a { color: #75777d; }
-        .site-main nav.navigation .nav-previous a, .widget_nav_menu ul.menu li.current-menu-item > a, .widget ul li.current-cat-ancestor > a, .widget_nav_menu ul.menu li.current-menu-ancestor > a, .site-main nav.navigation .nav-next a, .widget ul li.current-cat > a, .widget ul li.current-cat-parent > a, a { color: #ff6600; }
-        button, input[type="button"], input[type="reset"], input[type="submit"], .button, .widget a.button, .site-header-cart .widget_shopping_cart a.button, .back-to-top, .page-numbers li .page-numbers:hover,
-        .shopper-hero-box .hero-box-wrap.owl-carousel .owl-controls .owl-next,
-        .shopper-hero-box .hero-box-wrap.owl-carousel .owl-controls .owl-prev { background-color: #ff6600; border-color: #ff6600; color: #ffffff; }
-
-
-
-            .button.alt:hover, button.alt:hover, widget a.button.checkout:hover, button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover, .back-to-top:hover, input[type="submit"]:disabled:hover { background-color: #e64d00; border-color: #e64d00; color: #ffffff; }
-
-            button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current, .widget a.button.checkout { background-color: #ff6600; border-color: #ff6600; color: #ffffff; }
-
-                input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover { background-color: #13141a; border-color: #13141a; color: #ffffff; }
-
-        .site-footer { background-color: #333333; color: #cccccc; }
-
-        .footer-widgets { background-color: #666666; }
-
-            .footer-widgets .widget-title { color: #ffffff; }
-
-        .site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 { color: #ffffff; }
-
-
-        .site-info,
-        .footer-widgets .product_list_widget a:hover,
-        .site-footer a:not(.button) { color: #cccccc; }
-
-        #order_review,
-        #payment .payment_methods > li .payment_box { background-color: #ffffff; }
-
-        #payment .payment_methods > li { background-color: #fafafa; }
-
-            #payment .payment_methods > li:hover { background-color: #f5f5f5; }
-
-        .hentry .entry-content .more-link { border-color: #ff6600; color: #ff6600; }
-            .hentry .entry-content .more-link:hover { background-color: #ff6600; }
-
-        @@media screen and ( min-width: 768px ) { /*
-                .secondary-navigation ul.menu a:hover {
-                    color: #b3b9c0;
-                }
-
-                .secondary-navigation ul.menu a {
-                    color: #9aa0a7;
-                }*/ .site-header-cart .widget_shopping_cart,
-            .main-navigation ul.menu ul.sub-menu,
-            .main-navigation ul.nav-menu ul.children { background-color: #f7f7f7; }
-        }
-    </style>
-    <header id="masthead" class="site-header" role="banner" style="background-image: none; ">
-        <div class="col-full">
-            <a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
-            <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
-            <div class="shopper-secondary-navigation"><div class="topbox-left"></div><div class="topbox-right"></div></div><div class="header-middle clear">
-                <div class="site-branding">
-                    <div class="beta site-title"><a href="https://demo.shopperwp.io/shopperpro/" rel="home">Shopper</a></div><p class="site-description">Best Free WooCommerce Theme</p>
-                </div>
-                <div class="custom-product-search">
-                    <form role="search" method="get" class="shopper-product-search" action="https://demo.shopperwp.io/shopperpro/">
-                        <div class="nav-left">
-                            <div class="nav-search-facade" data-value="search-alias=aps"><span class="nav-search-label">All</span> <i class="fa fa-angle-down"></i></div>
-                            <select class="shopper-cat-list" id="product_cat_list" name="product_cat"><option value="">All</option><option value="clothing">Clothing</option><option value="hoodies">&nbsp;&nbsp;Hoodies</option><option value="t-shirts">&nbsp;&nbsp;T-shirts</option><option value="kids">Kids</option><option value="music">Music</option><option value="albums">&nbsp;&nbsp;Albums</option><option value="singles">&nbsp;&nbsp;Singles</option><option value="posters">Posters</option></select>
-                        </div>
-                        <div class="nav-right">
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </div>
-                        <div class="nav-fill">
-                            <input type="hidden" name="post_type" value="product">
-                            <input name="s" type="text" value="" placeholder="Search for products">
-                        </div>
-                    </form>
-                </div>
-                <div class="shopper-myacc-cart">
-                    <button class="cart-toggle"><i class="fa fa-shopping-cart"></i></button><div class="header-myacc-link">
-                        <a href="https://demo.shopperwp.io/shopperpro/my-account/" title="Login / Register"><i class="fa fa-lock"></i></a>
-                    </div>		<ul id="site-header-cart" class="site-header-cart menu">
-                        <li class="">
-                            <a class="cart-contents" href="https://demo.shopperwp.io/shopperpro/cart/" title="View your shopping cart">
-                                <span class="label-cart">Cart / </span>
-                                <span class="amount">$2.00</span>
-                                <span class="count">1</span>
-                            </a>
-
-                        </li>
-                        <li>
-                            <div class="widget woocommerce widget_shopping_cart">
-                                <div class="widget_shopping_cart_content">
-
-                                    <ul class="woocommerce-mini-cart cart_list product_list_widget ">
-                                        <li class="woocommerce-mini-cart-item mini_cart_item">
-                                            <a href="https://demo.shopperwp.io/shopperpro/cart/?remove_item=ac627ab1ccbdb62ec96e702f07f6425b&amp;_wpnonce=101d5e7721" class="remove remove_from_cart_button" aria-label="Remove this item" data-product_id="99" data-cart_item_key="ac627ab1ccbdb62ec96e702f07f6425b" data-product_sku="">×</a>													<a href="https://demo.shopperwp.io/shopperpro/product/woo-single-2/">
-                                                <img width="300" height="300" src="https://demo.shopperwp.io/shopperpro/wp-content/uploads/2013/06/cd_6_angle-300x300.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" srcset="https://demo.shopperwp.io/shopperpro/wp-content/uploads/2013/06/cd_6_angle-300x300.jpg 300w, https://demo.shopperwp.io/shopperpro/wp-content/uploads/2013/06/cd_6_angle-600x600.jpg 600w, https://demo.shopperwp.io/shopperpro/wp-content/uploads/2013/06/cd_6_angle-100x100.jpg 100w, https://demo.shopperwp.io/shopperpro/wp-content/uploads/2013/06/cd_6_angle-150x150.jpg 150w, https://demo.shopperwp.io/shopperpro/wp-content/uploads/2013/06/cd_6_angle-768x768.jpg 768w, https://demo.shopperwp.io/shopperpro/wp-content/uploads/2013/06/cd_6_angle.jpg 1000w" sizes="(max-width: 300px) 100vw, 300px">Woo Single #2
-                                            </a>
-                                            <span class="quantity">1 × <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>2.00</span></span>
-                                        </li>
-                                    </ul>
-
-                                    <p class="woocommerce-mini-cart__total total"><strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>2.00</span></p>
-
-
-                                    <p class="woocommerce-mini-cart__buttons buttons"><a href="https://demo.shopperwp.io/shopperpro/cart/" class="button wc-forward">View cart</a><a href="https://demo.shopperwp.io/shopperpro/checkout/" class="button checkout wc-forward">Checkout</a></p>
-
-
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div><div class="shopper-primary-navigation clear">
-                <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
-
-
-                    <button class="menu-toggle"><i class="fa fa-bars"></i></button>
-
-                    <div class="primary-navigation">
-                        <ul id="menu-main-menu" class="menu">
-                            <li id="menu-item-112" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-108 current_page_item menu-item-112 active"><a href="https://demo.shopperwp.io/shopperpro/">Home</a></li>
-                            <li id="menu-item-114" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-114"><a href="https://demo.shopperwp.io/shopperpro/blog/">Blog</a></li>
-                            <li id="menu-item-1730" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1730">
-                                <a href="http://#">Page</a>
-                                <ul class="sub-menu">
-                                    <li id="menu-item-1731" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1731"><a href="https://demo.shopperwp.io/shopperpro/full-width/">Full Width</a></li>
-                                    <li id="menu-item-1736" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1736"><a href="https://demo.shopperwp.io/shopperpro/sidebar-left/">Sidebar Left</a></li>
-                                </ul>
-                            </li>
-                            <li id="menu-item-113" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-113">
-                                <a href="https://demo.shopperwp.io/shopperpro/shop/">Shop</a>
-                                <ul class="sub-menu">
-                                    <li id="menu-item-115" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-115"><a href="https://demo.shopperwp.io/shopperpro/product-category/clothing/">Clothing</a></li>
-                                    <li id="menu-item-116" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-116"><a href="https://demo.shopperwp.io/shopperpro/product-category/music/">Music</a></li>
-                                </ul>
-                            </li>
-                            <li id="menu-item-117" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-117"><a href="https://demo.shopperwp.io/shopperpro/product-category/posters/">Posters</a></li>
-                            <li id="menu-item-1733" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1733"><a href="https://demo.shopperwp.io/shopperpro/about-us/">About Us</a></li>
-                            <li id="menu-item-1732" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1732"><a href="https://demo.shopperwp.io/shopperpro/privacy/">Privacy</a></li>
-                        </ul>
-                    </div>
-                </nav><!-- #site-navigation -->
-            </div>
-        </div>
-    </header>
-    @*<nav class="navbar navbar-inverse navbar-fixed-top">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">PWATCH</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    </ul>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ECommerce</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </nav>*@
-
-    <partial name="_CookieConsentPartial" />
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2020 - ECommerce</p>
-        </footer>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
     </div>
 
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/lib/angularjs/1.7.9/angular.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
-
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - ECommerce - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

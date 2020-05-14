@@ -1,0 +1,175 @@
+﻿<!--Admin Layout-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" type="image/x-icon" href="/logoheader.png" />
+    <!-- Bootstrap -->
+    <link href="~/Admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/Admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- NProgress -->
+    <link href="~/Admin/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="~/Admin/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="~/Admin/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+
+    <link href="~/Admin/vendors/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet" />
+    <!-- bootstrap-daterangepicker -->
+    <link href="~/Admin/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+
+    <!-- jQuery custom content scroller -->
+    <link href="~/Admin/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+
+    <!-- Custom Theme Style -->
+    <link href="~/Admin/build/css/custom.css" rel="stylesheet" />
+
+    <!--Thong Bao-->
+    <link href="~/Admin/toastr/toastr.min.css" rel="stylesheet" />
+    <!-- dataTables cái này bắt sài cdn chứ sài kia nó mất cái icon sắp xếp ở datatable-->
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <!-- jstree -->
+    <link href="~/Admin/jstree/themes/default/style.min.css" rel="stylesheet" />
+    <!-- confirm334 -->
+    <link href="~/Admin/vendors/confirm334/jquery-confirm.min.css" rel="stylesheet" />
+</head>
+
+<body class="nav-md" style="font-family:-webkit-body; color:black; font-size:13px;">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col menu_fixed">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="/admin/trang-chu" class="site_title"><i class="fa fa-paw"></i> <span>Trang Chủ</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a><i class="fa fa-home"></i>Danh Mục<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="~/admin/home/index" class="site_title"><i class="fa fa-paw"></i> <span>Trang Chủ</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Thoát" href="/logout">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    Trần Nghĩa
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a href="/"> Trang người dùng</a></li>
+                                    <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Thoát</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+
+                <div class="page-title">
+                    <section class="title_left" style="margin:auto;width:100%">
+                        <main role="main" class="pb-3">
+                            @RenderBody()
+                        </main>
+                    </section>
+                </div>
+
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer style="">
+                <div class="pull-right">
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+    <!--jQuery-->
+    <script src="~/Admin/Js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Admin/vendors/fastclick/lib/fastclick.js"></script>
+
+    <script src="~/Admin/vendors/moment/min/moment.min.js"></script>
+
+    <script src="~/Admin/vendors/moment/moment.js"></script>
+    <!-- bootstrap-datetimepicker -->
+    <script src="~/Admin/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- jstree -->
+    <script src="~/Admin/jstree/jstree.min.js"></script>
+
+    <!-- jQuery custom content scroller -->
+    <script src="~/Admin/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!--Thong Bao-->
+    <script src="~/Admin/toastr/toastr.min.js"></script>
+
+    <!-- NProgress -->
+    <script src="~/Admin/vendors/nprogress/nprogress.js"></script>
+    <!-- iCheck -->
+    <script src="~/Admin/vendors/iCheck/icheck.min.js"></script>
+    <!-- custom -->
+    <script src="~/Admin/build/js/custom.min.js"></script>
+
+
+    <!--dataTables-->
+    <script src="~/Admin/Js/bootstrap-table.min.js"></script>
+    <script src="~/Admin/Js/jquery.dataTables.js"></script>
+
+    <!--confirm-->
+    <script src="~/Admin/Js/jquery-confirm.min.js"></script>
+
+    <script src="~/Admin/vendors/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+
+    <!--dùng chung -->
+    <script src="~/admin/common/common.js"></script>
+    <!--bắt buộc các session này phải có trong view con -->
+    @RenderSection("AdminScripts", required: false)
+
+</body>
+</html>
