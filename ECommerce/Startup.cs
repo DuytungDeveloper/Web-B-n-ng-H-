@@ -64,7 +64,7 @@ namespace ECommerce
             app.UseCors("AllowAll"); // NghiaTV5 config
             app.UseAuthentication();
             app.UseAuthorization();
-
+            #region NghiaTV config
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
@@ -72,6 +72,7 @@ namespace ECommerce
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+            #endregion
 
         }
     }
