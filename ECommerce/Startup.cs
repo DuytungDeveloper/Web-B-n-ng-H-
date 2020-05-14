@@ -13,13 +13,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ECommerce.ConfigDI;
+using ECommerce.Model.EFModel;
 
 namespace ECommerce
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
-        {
+        { 
             Configuration = configuration;
         }
 
@@ -32,19 +33,26 @@ namespace ECommerce
             services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             services.RegisterServices();// DI
             
+            services.AddDbContext<EcommerceContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("ECommerceContext")
+                , builder =>
+                 {
+                     builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+                 }
+            ));
+
             #endregion
 
+            #region Cái này tự sinh khi tạo project tạm thời để đó từ tính sau 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("ECommerceContext")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            
-        }
+            #endregion
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

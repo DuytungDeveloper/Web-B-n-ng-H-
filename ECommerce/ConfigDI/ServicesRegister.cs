@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using ECommerce.Services.Implements;
+using ECommerce.Services.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,8 @@ namespace ECommerce.ConfigDI
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
 
-            //services.AddScoped<IRepository, DapperRepository>();
+
+            services.AddTransient<IProductService,ProductService>();
             return services;
         }
 
