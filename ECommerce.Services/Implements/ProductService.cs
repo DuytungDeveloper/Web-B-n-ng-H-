@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ECommerce.Services.Implements
 {
@@ -15,9 +16,9 @@ namespace ECommerce.Services.Implements
         {
             _context = context;
         }
-        public Product Get()
+        public async Task<Product> Get()
         {
-            Product LstP =   _context.Product.SingleOrDefault();
+            Product LstP =  _context.Product.SingleOrDefault();
             return LstP;
         }
     }

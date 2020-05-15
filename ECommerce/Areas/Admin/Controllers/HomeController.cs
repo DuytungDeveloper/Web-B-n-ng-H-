@@ -12,20 +12,21 @@ namespace ECommerce.Areas.Admin.Controllers
     [Area("Admin")]
     public class HomeController : Controller
     {
-        private readonly EcommerceContext _context;
+
         private readonly IProductService _product;
-        public HomeController(IProductService product, EcommerceContext context)
+        public HomeController(IProductService product)
         {
             _product = product;
-            _context = context;
         }
-        // GET: Home
-        public  ActionResult Index()
+        public  async Task<ActionResult> Index()
         {
-            var data =  _product.Get();
             return View();
         }
+        public async Task<ActionResult> Get()
+        {
+            var data = await _product.Get();
+            return Json(data);
+        }
 
-       
     }
 }
