@@ -38,8 +38,12 @@ namespace ECommerce.Model.EFModel
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-9BBIEQA;Database=Ecommerce;Trusted_Connection=True;");
+                //optionsBuilder.UseSqlServer("Server=DESKTOP-9BBIEQA;Database=Ecommerce;User Id=sa;Password=0306141044");
+                #region NghiaTV Edit config
+                EcommerceContext _context = new EcommerceContext();
+                optionsBuilder.UseSqlServer(_context.Database.GetDbConnection().ConnectionString);
+                #endregion
+
             }
         }
 
