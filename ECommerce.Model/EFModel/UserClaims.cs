@@ -9,7 +9,6 @@ namespace ECommerce.Model.EFModel
         public string UserId { get; set; }
         public string ClaimType { get; set; }
         public string ClaimValue { get; set; }
-
-        public virtual Users User { get; set; }
+        public int? Status { get; set; }
     }
 }

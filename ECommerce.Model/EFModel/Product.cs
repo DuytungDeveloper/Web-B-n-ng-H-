@@ -5,23 +5,29 @@ namespace ECommerce.Model.EFModel
 {
     public partial class Product
     {
-        public Product()
-        {
-            OrderItems = new HashSet<OrderItems>();
-        }
-
         public int Id { get; set; }
-        public string ProductCode { get; set; }
+        public int? IdOrigin { get; set; }
+        public int? IdBrandProduct { get; set; }
+        public int? IdHuntingCase { get; set; }
+        public int? IdChatelaine { get; set; }
+        public int? IdColorClockFace { get; set; }
+        public int? IdMadeIn { get; set; }
+        public int? IdHem { get; set; }
+        public int? IdMachine { get; set; }
+        public bool? Sex { get; set; }
+        public string Name { get; set; }
+        public string Video { get; set; }
         public string Url { get; set; }
-        public decimal? DiscountPrice { get; set; }
-        public decimal? SalePrice { get; set; }
-        public string Images { get; set; }
-        public string Videos { get; set; }
-        public string Note { get; set; }
-        public string MetaTags { get; set; }
+        public int? Price { get; set; }
+        public int? PriceDiscount { get; set; }
+        public string Code { get; set; }
+        public int? Diameter { get; set; }
+        public bool? Waterproof { get; set; }
+        public string Guarantee { get; set; }
+        public string Characteristics { get; set; }
+        public string Function { get; set; }
+        public string DescriptionShort { get; set; }
+        public string DescriptionFull { get; set; }
         public int? Status { get; set; }
-        public DateTime? Created { get; set; }
-
-        public virtual ICollection<OrderItems> OrderItems { get; set; }
     }
 }
