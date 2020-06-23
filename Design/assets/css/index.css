@@ -1,0 +1,51 @@
+.logo img {
+    height: 100px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#contenhomeslider img {
+    height: 451px;
+}
+
+.nav-bar {
+    font-size: 12px;
+}
+
+.header-top-right .header-banner {
+    height: 451px;
+}
+
+.header-top-right .header-banner img {
+    height: 50%;
+}
+
+.product-list li .content_price {
+    display: grid;
+    text-align: center;
+}
+
+.product-list li .product-star {
+    float: unset;
+
+}
+
+.product-list li .product-name {
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.product-list li .right-block {
+    text-align: center;
+}
+
+.navbar-brand i {
+    vertical-align: middle;
+    margin-right: 15px;
+    font-size: 25px;
+}
+
+.banner-img img {
+    height: 350px;
+    width: 234px;
+}
