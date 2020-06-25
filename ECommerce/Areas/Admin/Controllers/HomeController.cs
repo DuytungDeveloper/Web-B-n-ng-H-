@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ECommerce.Common.FormatData;
+using ECommerce.Model.EFModel;
 using ECommerce.Services.Interfaces;
+using ECommerce.Services.UnitOfWork;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,12 +24,25 @@ namespace ECommerce.Areas.Admin.Controllers
         {
             return View();
         }
-        public async Task<ActionResult> Get()
+        [HttpPost]
+        public async Task<ActionResult<Product>>Add(Product Item)
         {
-            var data = await _product.Get();
-            return Json(data);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            ResultData<Product> data = await _product.Add(Item);
+            return Ok(data);
            
         }
+        public async Task<ActionResult> Update(Product Item)
+        {
+
+            var data = await _product.Update(Item);
+            return Json(data);
+
+        }
+
 
     }
 }

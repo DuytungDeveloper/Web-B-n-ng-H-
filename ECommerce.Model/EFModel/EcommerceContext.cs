@@ -45,10 +45,10 @@ namespace ECommerce.Model.EFModel
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //optionsBuilder.UseSqlServer("Server=DESKTOP-9BBIEQA;Database=Ecommerce;User Id=sa;Password=0306141044");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-9BBIEQA;Database=Ecommerce;User Id=sa;Password=0306141044");
                 #region NghiaTV Edit config
-                EcommerceContext _context = new EcommerceContext();
-                optionsBuilder.UseSqlServer(_context.Database.GetDbConnection().ConnectionString);
+                //EcommerceContext _context = new EcommerceContext();
+                //optionsBuilder.UseSqlServer(_context.Database.GetDbConnection().ConnectionString);
                 #endregion
 
             }

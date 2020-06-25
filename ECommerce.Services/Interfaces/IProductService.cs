@@ -1,4 +1,5 @@
 ﻿
+using ECommerce.Model.Result;
 using ECommerce.Model.EFModel;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,10 @@ namespace ECommerce.Services.Interfaces
 {
    public interface IProductService
    {
-        Task<List<Product>> Get();
-   }
+        Task<ResultListData<Product>> Get();
+        Task<ResultData<Product>> Add(Product Item);
+        Task<ResultListData<Product>> Add(List<Product> LsI);
+        Task<ResultData<Product>> Update(Product Item);
+        Task<ResultData<Product>> Delete(Product Item);
+    }
 }

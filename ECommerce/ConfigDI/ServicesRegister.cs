@@ -1,5 +1,7 @@
 ﻿using ECommerce.Services.Implements;
 using ECommerce.Services.Interfaces;
+using ECommerce.Services.Repository;
+using ECommerce.Services.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,11 @@ namespace ECommerce.ConfigDI
 
 
             services.AddTransient<IProductService,ProductService>();
+
+            //UnitOfWork 
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            //BaseRepository
+            
             return services;
         }
 
