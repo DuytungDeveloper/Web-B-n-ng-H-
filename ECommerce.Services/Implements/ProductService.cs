@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Services.Implements
 {
@@ -19,12 +20,21 @@ namespace ECommerce.Services.Implements
             _context = context;
             _IUnitOfWork = IUnitOfWork;
         }
-        public async Task<ResultListData<Product>> Get()
+        public DbSet<Product> Product
+        {
+            get
+            {
+                return this._context.Product;
+            }
+        }
+
+        public async Task<ResultListData<Product>> Get(int id = 0)
         {
             ResultListData<Product> result = new ResultListData<Product>();
             try
             {
-                var GetAll = _context.Product.ToList();
+                List<Product> GetAll = _context.Product.ToList();
+                GetAll = id == 0 ? GetAll : GetAll.Where(x => x.Id == id).ToList();
                 result.Amount = GetAll.Count();
                 result.Data = GetAll;
                 result.Message = GetAll.Count() > 0 ? "Thành Công !" : "Thất Bại ! ";
@@ -96,6 +106,7 @@ namespace ECommerce.Services.Implements
             ResultData<Product> result = new ResultData<Product>();
             try
             {
+               
                 _context.Product.Update(Item);
                 await _context.SaveChangesAsync();
                 result.Data = Item;

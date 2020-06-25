@@ -30,7 +30,7 @@ namespace ECommerce
         public void ConfigureServices(IServiceCollection services)
         {
             #region NghiaTV config
-            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+            services.AddCors();
             services.RegisterServices();// DI
             
             services.AddDbContext<EcommerceContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("ECommerceContext")
