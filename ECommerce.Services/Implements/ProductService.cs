@@ -43,7 +43,7 @@ namespace ECommerce.Services.Implements
             ResultData<Product> result = new ResultData<Product>();
             try
             {
-                _context.Product.Add(Item);
+                 _context.Product.Add(Item);
                 _context.SaveChanges();
                 result.Data = Item;
                 result.Message = Item.Id > 0 ? "Thành Công !":"Thất Bại ! ";
