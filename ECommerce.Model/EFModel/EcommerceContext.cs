@@ -7,9 +7,6 @@ namespace ECommerce.Model.EFModel
 {
     public partial class EcommerceContext : IdentityDbContext
     {
-        public EcommerceContext()
-        {
-        }
 
         public EcommerceContext(DbContextOptions<EcommerceContext> options)
             : base(options)
@@ -34,19 +31,6 @@ namespace ECommerce.Model.EFModel
         public virtual DbSet<Origin> Origin { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Ward> Ward { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                //optionsBuilder.UseSqlServer("Server=DESKTOP-9BBIEQA;Database=Ecommerce;User Id=sa;Password=0306141044");
-                #region NghiaTV Edit config
-                EcommerceContext _context = new EcommerceContext();
-                optionsBuilder.UseSqlServer(_context.Database.GetDbConnection().ConnectionString);
-                #endregion
-
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
