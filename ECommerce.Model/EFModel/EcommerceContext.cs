@@ -1,10 +1,11 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ECommerce.Model.EFModel
 {
-    public partial class EcommerceContext : DbContext
+    public partial class EcommerceContext : IdentityDbContext
     {
         public EcommerceContext()
         {
@@ -32,13 +33,6 @@ namespace ECommerce.Model.EFModel
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Origin> Origin { get; set; }
         public virtual DbSet<Product> Product { get; set; }
-        public virtual DbSet<RoleClaims> RoleClaims { get; set; }
-        public virtual DbSet<Roles> Roles { get; set; }
-        public virtual DbSet<UserClaims> UserClaims { get; set; }
-        public virtual DbSet<UserLogins> UserLogins { get; set; }
-        public virtual DbSet<UserRoles> UserRoles { get; set; }
-        public virtual DbSet<UserTokens> UserTokens { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Ward> Ward { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -56,6 +50,8 @@ namespace ECommerce.Model.EFModel
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Address>(entity =>
             {
                 entity.Property(e => e.Created)
@@ -136,61 +132,6 @@ namespace ECommerce.Model.EFModel
                 entity.Property(e => e.IdColorClockFace).HasColumnName("IdColor_Clock_Face");
 
                 entity.Property(e => e.IdHuntingCase).HasColumnName("IdHunting_Case");
-            });
-
-            modelBuilder.Entity<RoleClaims>(entity =>
-            {
-                entity.Property(e => e.RoleId).HasMaxLength(450);
-            });
-
-            modelBuilder.Entity<Roles>(entity =>
-            {
-                entity.Property(e => e.Name).HasMaxLength(256);
-
-                entity.Property(e => e.NormalizedName).HasMaxLength(256);
-            });
-
-            modelBuilder.Entity<UserClaims>(entity =>
-            {
-                entity.Property(e => e.UserId).HasMaxLength(450);
-            });
-
-            modelBuilder.Entity<UserLogins>(entity =>
-            {
-                entity.Property(e => e.LoginProvider).HasMaxLength(128);
-
-                entity.Property(e => e.ProviderKey).HasMaxLength(128);
-
-                entity.Property(e => e.UserId).HasMaxLength(450);
-            });
-
-            modelBuilder.Entity<UserRoles>(entity =>
-            {
-                entity.Property(e => e.RoleId).HasMaxLength(450);
-
-                entity.Property(e => e.UserId).HasMaxLength(450);
-            });
-
-            modelBuilder.Entity<UserTokens>(entity =>
-            {
-                entity.Property(e => e.LoginProvider).HasMaxLength(128);
-
-                entity.Property(e => e.Name).HasMaxLength(128);
-
-                entity.Property(e => e.UserId).HasMaxLength(450);
-            });
-
-            modelBuilder.Entity<Users>(entity =>
-            {
-                entity.Property(e => e.Created).HasColumnType("datetime");
-
-                entity.Property(e => e.Email).HasMaxLength(256);
-
-                entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
-
-                entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
-
-                entity.Property(e => e.UserName).HasMaxLength(256);
             });
 
             modelBuilder.Entity<Ward>(entity =>
