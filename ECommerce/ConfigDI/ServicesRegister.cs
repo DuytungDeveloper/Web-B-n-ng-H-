@@ -1,5 +1,6 @@
 ﻿
 
+using ECommerce.Model.EFModel.Models;
 using ECommerce.Services.Implements;
 using ECommerce.Services.Interfaces;
 using ECommerce.Services.UnitOfWork;
@@ -15,7 +16,7 @@ namespace ECommerce.ConfigDI
 
             services.AddTransient<IProductService, ProductService>();
             //UnitOfWork 
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IUnitOfWork<Product>, UnitOfWork<Product>>();
             //BaseRepository
             
             return services;

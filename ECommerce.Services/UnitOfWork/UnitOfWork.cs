@@ -6,153 +6,151 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Services.UnitOfWork
 {
-    public class UnitOfWork: IUnitOfWork
+    public class UnitOfWork<TEntity> : IUnitOfWork<TEntity> where TEntity : class
     {
-     
-        #region
+        #region trannghiaqn76@gmail.com
         private ApplicationDbContext _dbContext;
-        private IBaseRepository<Product> _Product;
-        private IBaseRepository<Address> _Address;
-        private IBaseRepository<BrandProduct> _BrandProduct;
-        private IBaseRepository<Chatelaine> _Chatelaine;
-        private IBaseRepository<City> _City;
-        private IBaseRepository<ColorClockFace> _ColorClockFace;
-        private IBaseRepository<Customer> _Customer;
-        private IBaseRepository<District> _District;
-        private IBaseRepository<Hem> _Hem;
-        private IBaseRepository<HuntingCase> _HuntingCase;
-        private IBaseRepository<Images> _Images;
-        private IBaseRepository<Machine> _Machine;
-        private IBaseRepository<MadeIn> _MadeIn;
-        private IBaseRepository<OrderItems> _OrderItems;
-        private IBaseRepository<OrderStatus> _OrderStatus;
-        private IBaseRepository<Origin> _Origin;
-        private IBaseRepository<Ward> _Ward;
+        private IBaseRepository<TEntity> _Product;
+        private IBaseRepository<TEntity> _Address;
+        private IBaseRepository<TEntity> _BrandProduct;
+        private IBaseRepository<TEntity> _Chatelaine;
+        private IBaseRepository<TEntity> _City;
+        private IBaseRepository<TEntity> _ColorClockFace;
+        private IBaseRepository<TEntity> _Customer;
+        private IBaseRepository<TEntity> _District;
+        private IBaseRepository<TEntity> _Hem;
+        private IBaseRepository<TEntity> _HuntingCase;
+        private IBaseRepository<TEntity> _Images;
+        private IBaseRepository<TEntity> _Machine;
+        private IBaseRepository<TEntity> _MadeIn;
+        private IBaseRepository<TEntity> _OrderItems;
+        private IBaseRepository<TEntity> _OrderStatus;
+        private IBaseRepository<TEntity> _Origin;
+        private IBaseRepository<TEntity> _Ward;
         #endregion
-
         public UnitOfWork(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
-           
         }
-        public IBaseRepository<Ward> Ward
-        {
-            get
-            {
-                return _Ward ?? (_Ward = new BaseRepository<Ward>(_dbContext));
-            }
-        }
-        public IBaseRepository<Origin> Origin
-        {
-            get
-            {
-                return _Origin ?? (_Origin = new BaseRepository<Origin>(_dbContext));
-            }
-        }
-        public IBaseRepository<OrderStatus> OrderStatus
-        {
-            get
-            {
-                return _OrderStatus ?? (_OrderStatus = new BaseRepository<OrderStatus>(_dbContext));
-            }
-        }
-        public IBaseRepository<OrderItems> OrderItems
-        {
-            get
-            {
-                return _OrderItems ?? (_OrderItems = new BaseRepository<OrderItems>(_dbContext));
-            }
-        }
-        public IBaseRepository<MadeIn> MadeIn
-        {
-            get
-            {
-                return _MadeIn ?? (_MadeIn = new BaseRepository<MadeIn>(_dbContext));
-            }
-        }
-        public IBaseRepository<Machine> Machine
-        {
-            get
-            {
-                return _Machine ?? (_Machine = new BaseRepository<Machine>(_dbContext));
-            }
-        }
-        public IBaseRepository<Images> Images
-        {
-            get
-            {
-                return _Images ?? (_Images = new BaseRepository<Images>(_dbContext));
-            }
-        }
-        public IBaseRepository<HuntingCase> HuntingCase
-        {
-            get
-            {
-                return _HuntingCase ?? (_HuntingCase = new BaseRepository<HuntingCase>(_dbContext));
-            }
-        }
-        public IBaseRepository<Hem> Hem
-        {
-            get
-            {
-                return _Hem ?? (_Hem = new BaseRepository<Hem>(_dbContext));
-            }
-        }
-        public IBaseRepository<District> District
-        {
-            get
-            {
-                return _District ?? (_District = new BaseRepository<District>(_dbContext));
-            }
-        }
-        public IBaseRepository<Customer> Customer
-        {
-            get
-            {
-                return _Customer ?? (_Customer = new BaseRepository<Customer>(_dbContext));
-            }
-        }
-        public IBaseRepository<ColorClockFace> ColorClockFace
-        {
-            get
-            {
-                return _ColorClockFace ?? (_ColorClockFace = new BaseRepository<ColorClockFace>(_dbContext));
-            }
-        }
-        public IBaseRepository<City> City
-        {
-            get
-            {
-                return _City ?? (_City = new BaseRepository<City>(_dbContext));
-            }
-        }
-        public IBaseRepository<Address> Address
-        {
-            get
-            {
-                return _Address ??(_Address = new BaseRepository<Address>(_dbContext));
-            }
-        }
-        public IBaseRepository<BrandProduct> BrandProduct
-        {
-            get
-            {
-                return _BrandProduct ?? (_BrandProduct = new BaseRepository<BrandProduct>(_dbContext));
-            }
-        }
-        public IBaseRepository<Chatelaine> Chatelaine
-        {
-            get
-            {
-                return _Chatelaine ?? (_Chatelaine = new BaseRepository<Chatelaine>(_dbContext));
-            }
-        }
-        public IBaseRepository<Product> Product
+        #region trannghiaqn76@gmail.com
+        public IBaseRepository<TEntity> Product
         {
             get
             {
                 return _Product ??
-                    (_Product = new BaseRepository<Product>(_dbContext));
+                    (_Product = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+        public IBaseRepository<TEntity> Ward
+        {
+            get
+            {
+                return _Ward ?? (_Ward = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+        public IBaseRepository<TEntity> Origin
+        {
+            get
+            {
+                return _Origin ?? (_Origin = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+        public IBaseRepository<TEntity> OrderStatus
+        {
+            get
+            {
+                return _OrderStatus ?? (_OrderStatus = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+        public IBaseRepository<TEntity> OrderItems
+        {
+            get
+            {
+                return _OrderItems ?? (_OrderItems = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+        public IBaseRepository<TEntity> MadeIn
+        {
+            get
+            {
+                return _MadeIn ?? (_MadeIn = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+        public IBaseRepository<TEntity> Machine
+        {
+            get
+            {
+                return _Machine ?? (_Machine = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+        public IBaseRepository<TEntity> Images
+        {
+            get
+            {
+                return _Images ?? (_Images = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+        public IBaseRepository<TEntity> HuntingCase
+        {
+            get
+            {
+                return _HuntingCase ?? (_HuntingCase = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+        public IBaseRepository<TEntity> Hem
+        {
+            get
+            {
+                return _Hem ?? (_Hem = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+        public IBaseRepository<TEntity> District
+        {
+            get
+            {
+                return _District ?? (_District = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+        public IBaseRepository<TEntity> Customer
+        {
+            get
+            {
+                return _Customer ?? (_Customer = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+        public IBaseRepository<TEntity> ColorClockFace
+        {
+            get
+            {
+                return _ColorClockFace ?? (_ColorClockFace = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+        public IBaseRepository<TEntity> City
+        {
+            get
+            {
+                return _City ?? (_City = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+        public IBaseRepository<TEntity> Address
+        {
+            get
+            {
+                return _Address ??(_Address = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+        public IBaseRepository<TEntity> BrandProduct
+        {
+            get
+            {
+                return _BrandProduct ?? (_BrandProduct = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+        public IBaseRepository<TEntity> Chatelaine
+        {
+            get
+            {
+                return _Chatelaine ?? (_Chatelaine = new BaseRepository<TEntity>(_dbContext));
             }
         }
         public async Task<bool> Commit()
@@ -168,6 +166,7 @@ namespace ECommerce.Services.UnitOfWork
             }
             
         }
-       
+        #endregion
+
     }
 }

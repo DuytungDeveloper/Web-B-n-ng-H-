@@ -15,9 +15,9 @@ namespace ECommerce.Areas.Admin.Controllers
     [Route("admin/[controller]/[action]")]
     public class ProductController : Controller
     {
-        private readonly IUnitOfWork _UnitOfWork;
+        private readonly IUnitOfWork<Product> _UnitOfWork;
         private readonly IProductService _ProductService;
-        public ProductController(IUnitOfWork UnitOfWork, IProductService _ProductService)
+        public ProductController(IUnitOfWork<Product> UnitOfWork, IProductService _ProductService)
         {
             _UnitOfWork = UnitOfWork; this._ProductService = _ProductService;
         }

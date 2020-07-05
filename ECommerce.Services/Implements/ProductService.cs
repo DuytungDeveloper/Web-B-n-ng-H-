@@ -13,16 +13,20 @@ namespace ECommerce.Services.Implements
 {
     public class ProductService: BaseRepository<Product> ,IProductService
     {
-        internal new ApplicationDbContext context;
+        public readonly ApplicationDbContext context;
         public ProductService(ApplicationDbContext _context) : base(_context)
         {
-            this.context = _context;
+             context = _context;
         }
         public override async Task<IEnumerable<Product>> GetAll()
         {
             IEnumerable<Product> data = await context.Product.ToListAsync();
             return data;
-        
+        }
+        public async Task<IEnumerable<Product>> Report()
+        {
+            IEnumerable<Product> data = await context.Product.ToListAsync();
+            return data;
         }
     }
 }

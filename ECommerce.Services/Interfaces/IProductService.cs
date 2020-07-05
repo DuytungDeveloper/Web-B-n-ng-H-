@@ -9,5 +9,6 @@ namespace ECommerce.Services.Interfaces
     public interface IProductService
     {
         Task<IEnumerable<Product>> GetAll();
+        Task<IEnumerable<Product>> Report();
     }
 }
