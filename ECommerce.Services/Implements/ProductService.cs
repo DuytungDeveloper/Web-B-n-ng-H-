@@ -18,6 +18,14 @@ namespace ECommerce.Services.Implements
         {
              context = _context;
         }
+        public DbSet<Product> Product
+        {
+            get
+            {
+                return this.context.Product;
+            }
+        }
+        // ham đè lại phương thức cha từ BaseRepository 
         public override async Task<IEnumerable<Product>> GetAll()
         {
             IEnumerable<Product> data = await context.Product.ToListAsync();
