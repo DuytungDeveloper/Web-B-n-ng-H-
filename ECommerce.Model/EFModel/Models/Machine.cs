@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ECommerce.Model.EFModel
+namespace ECommerce.Model.EFModel.Models
 {
-    public partial class ColorClockFace
+    public partial class Machine
     {
         public int Id { get; set; }
         public string Name { get; set; }

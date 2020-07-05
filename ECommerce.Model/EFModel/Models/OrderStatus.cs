@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ECommerce.Model.EFModel
+namespace ECommerce.Model.EFModel.Models
 {
-    public partial class Hem
+    public partial class OrderStatus
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int? Status { get; set; }
+        public string Desription { get; set; }
     }
 }

@@ -1,46 +1,64 @@
 ﻿using ECommerce.Model.EFModel;
+using ECommerce.Services.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace ECommerce.Services.Repository
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
-        internal EcommerceContext context;
+        internal ApplicationDbContext context;
         internal DbSet<TEntity> dbSet;
-        public BaseRepository(EcommerceContext context)
+        public BaseRepository(ApplicationDbContext _context)
         {
-            this.context = context;
-            this.dbSet = context.Set<TEntity>();
+            this.context = _context;
+            this.dbSet = this.context.Set<TEntity>();
         }
-        public virtual TEntity GetByID(object id)
+        public async virtual Task<IEnumerable<TEntity>> GetAll()
         {
-            return dbSet.Find(id);
+             return await dbSet.ToListAsync();
         }
-        public virtual void Insert(TEntity entity)
+        public  async virtual Task<TEntity> GetById(int id)
         {
-            dbSet.Add(entity);
+            return await dbSet.FindAsync(id);
         }
-        public virtual void Update(TEntity entityToUpdate)
+        public async virtual Task<TEntity> Insert(TEntity entityToInsert, bool SaveChangesAsync)
         {
-            dbSet.Attach(entityToUpdate);
-            context.Entry(entityToUpdate).State = EntityState.Modified;
-        }
-        public virtual void Delete(object id)
-        {
-            TEntity entityToDelete = dbSet.Find(id);
-            Delete(entityToDelete);
-        }
-        public virtual void Delete(TEntity entityToDelete)
-        {
-            if (context.Entry(entityToDelete).State == EntityState.Detached)
+            try
             {
-                dbSet.Attach(entityToDelete);
+                await dbSet.AddAsync(entityToInsert);
+                if (SaveChangesAsync)
+                    await context.SaveChangesAsync();
+                return entityToInsert;
             }
-            dbSet.Remove(entityToDelete);
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public async virtual Task<TEntity> Update(TEntity entityToUpdate, bool SaveChangesAsync)
+        {
+            try
+            {
+                this.dbSet.Update(entityToUpdate);
+                if (SaveChangesAsync)
+                    await context.SaveChangesAsync();
+                return entityToUpdate;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async virtual Task<TEntity> Delete(TEntity entityToDelete, bool SaveChangesAsync)
+        {
+            dbSet.Update(entityToDelete);
+            if (SaveChangesAsync)
+                await context.SaveChangesAsync();
+            return entityToDelete;
         }
     }
 } 

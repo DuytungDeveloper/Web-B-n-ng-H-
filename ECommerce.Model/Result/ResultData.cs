@@ -10,9 +10,9 @@ namespace ECommerce.Model.Result
     /// </summary>
     public class ResultData<T>
         {
-            public bool Success { get; set; }
-            public string Message { get; set; }
-            public T Data { get; set; }
+        public bool Success { get; set; } = false;
+        public string Message { get; set; } = "";
+        public T Data { get; set; }
            
     }
     /// <summary>
@@ -23,7 +23,7 @@ namespace ECommerce.Model.Result
         public int Amount  { get; set; }
         public bool Success { get; set; }
         public string Message { get; set; }
-        public List<T> Data { get; set; }
+        public IEnumerable<T> Data { get; set; }
     }
 
     /// <summary>

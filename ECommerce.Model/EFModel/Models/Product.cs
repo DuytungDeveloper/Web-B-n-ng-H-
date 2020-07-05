@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ECommerce.Model.EFModel
+namespace ECommerce.Model.EFModel.Models
 {
     public partial class Product
     {
-       
+
+        [Required]
         public int Id { get; set; }
         [Required]
         public int IdOrigin { get; set; }
@@ -26,6 +27,7 @@ namespace ECommerce.Model.EFModel
         public int IdMachine { get; set; }
         [Required]
         public bool Sex { get; set; }
+        [Required]
         public string Name { get; set; }
         public string Video { get; set; }
         public string Url { get; set; }
@@ -38,6 +40,7 @@ namespace ECommerce.Model.EFModel
         public string Guarantee { get; set; }
         public string Characteristics { get; set; }
         public string Function { get; set; }
+        [Required]
         public string DescriptionShort { get; set; }
         public string DescriptionFull { get; set; }
         public int? Status { get; set; }

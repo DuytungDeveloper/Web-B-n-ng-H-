@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using ECommerce.Common.FormatData;
 using ECommerce.Model.EFModel;
-using ECommerce.Services.Interfaces;
 using ECommerce.Services.UnitOfWork;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,11 +14,11 @@ namespace ECommerce.Areas.Admin.Controllers
     public class HomeController : Controller
     {
 
-        public  async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             return View();
         }
-       
+
 
 
     }

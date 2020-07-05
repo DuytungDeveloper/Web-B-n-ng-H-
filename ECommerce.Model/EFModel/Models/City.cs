@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ECommerce.Model.EFModel
+namespace ECommerce.Model.EFModel.Models
 {
-    public partial class Chatelaine
+    public partial class City
     {
         public int Id { get; set; }
         public string Name { get; set; }

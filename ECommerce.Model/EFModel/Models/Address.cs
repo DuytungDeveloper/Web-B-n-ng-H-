@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ECommerce.Model.EFModel
+namespace ECommerce.Model.EFModel.Models
 {
     public partial class Address
     {
