@@ -14,7 +14,7 @@ namespace ECommerce.ConfigDI
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
 
-            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IProductService<Product>, ProductService<Product>>();
             //UnitOfWork 
             services.AddTransient<IUnitOfWork<Product>, UnitOfWork<Product>>();
             //BaseRepository

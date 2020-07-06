@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Services.Interfaces
 {
-    public interface IProductService
+    public interface IProductService<TEntity> where TEntity : class
     {
-        DbSet<Product> Product { get; }
-        Task<IEnumerable<Product>> GetAll();
-        Task<IEnumerable<Product>> Report();
+        DbSet<TEntity> Product { get; }
+        Task<IEnumerable<TEntity>> GetAll();
+        Task<IEnumerable<TEntity>> Report();
         
     }
 }

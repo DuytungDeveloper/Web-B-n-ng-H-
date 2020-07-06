@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using ECommerce.Services.UnitOfWork;
 using ECommerce.Model.EFModel.Models;
 using ECommerce.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
@@ -16,8 +17,8 @@ namespace ECommerce.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IUnitOfWork<Product> _UnitOfWork;
-        private readonly IProductService _ProductService;
-        public ProductController(IUnitOfWork<Product> UnitOfWork, IProductService _ProductService)
+        private readonly IProductService<Product> _ProductService;
+        public ProductController(IUnitOfWork<Product> UnitOfWork, IProductService<Product> _ProductService)
         {
             _UnitOfWork = UnitOfWork; this._ProductService = _ProductService;
         }
@@ -40,7 +41,7 @@ namespace ECommerce.Areas.Admin.Controllers
         public async Task<ActionResult<ResultListData<Product>>> GetAll()
         {
             ResultListData<Product> data = new ResultListData<Product>();
-            var ListProduct = await _UnitOfWork.Product.GetAll();
+            var ListProduct = await _ProductService.Product.ToListAsync();
             if (data == null) return data;
             data.Data = ListProduct;
             data.Success = true;

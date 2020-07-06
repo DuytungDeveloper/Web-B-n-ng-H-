@@ -11,29 +11,32 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Services.Implements
 {
-    public class ProductService: BaseRepository<Product> ,IProductService
+    public class ProductService<TEntity> : BaseRepository<TEntity> ,IProductService<TEntity> where TEntity : class
     {
         public readonly ApplicationDbContext context;
-        public ProductService(ApplicationDbContext _context) : base(_context)
+        internal DbSet<TEntity> dbSet;
+        public ProductService(ApplicationDbContext _context):base(_context)
         {
-             context = _context;
+            this.context = _context;
+            this.dbSet = this.context.Set<TEntity>();
+
         }
-        public DbSet<Product> Product
+        public DbSet<TEntity> Product
         {
             get
             {
-                return this.context.Product;
+                return this.dbSet;
             }
         }
         // ham đè lại phương thức cha từ BaseRepository 
-        public override async Task<IEnumerable<Product>> GetAll()
+        public override async Task<IEnumerable<TEntity>> GetAll()
         {
-            IEnumerable<Product> data = await context.Product.ToListAsync();
+            IEnumerable<TEntity> data = await this.dbSet.ToListAsync();
             return data;
         }
-        public async Task<IEnumerable<Product>> Report()
+        public async Task<IEnumerable<TEntity>> Report()
         {
-            IEnumerable<Product> data = await context.Product.ToListAsync();
+            IEnumerable<TEntity> data = await this.dbSet.ToListAsync();
             return data;
         }
     }
