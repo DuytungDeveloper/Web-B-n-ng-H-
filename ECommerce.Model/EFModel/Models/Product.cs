@@ -9,46 +9,45 @@ namespace ECommerce.Model.EFModel.Models
 
         [Required]
         public int Id { get; set; }
-        [Required]
+       
         public int IdOrigin { get; set; }
         public virtual Origin Origin { get; set; }
-        [Required]
+       
         public int IdBrandProduct { get; set; }
         public virtual BrandProduct BrandProduct { get; set; }
-        [Required]
+      
         public int IdHuntingCase { get; set; }
         public virtual HuntingCase HuntingCase { get; set; }
-        [Required]
+       
         public int IdChatelaine { get; set; }
         public virtual Chatelaine Chatelaine { get; set; }
-        [Required]
+        
         public int IdColorClockFace { get; set; }
         public virtual ColorClockFace ColorClockFace { get; set; }
-        [Required]
+      
         public int IdMadeIn { get; set; }
         public virtual MadeIn MadeIn { get; set; }
-        [Required]
+       
         public int IdHem { get; set; }
         public virtual Hem Hem { get; set; }
-        [Required]
+       
         public int IdMachine { get; set; }
         public virtual Machine Machine { get; set; }
-        [Required]
+     
         public bool Sex { get; set; }
         [Required]
         public string Name { get; set; }
         public string Video { get; set; }
         public string Url { get; set; }
         [Required]
-        public int? Price { get; set; }
-        public int? PriceDiscount { get; set; }
+        public int Price { get; set; }
+        public int PriceDiscount { get; set; }
         public string Code { get; set; }
         public int? Diameter { get; set; }
         public bool? Waterproof { get; set; }
         public string Guarantee { get; set; }
         public string Characteristics { get; set; }
         public string Function { get; set; }
-        [Required]
         public string DescriptionShort { get; set; }
         public string DescriptionFull { get; set; }
         public int? Status { get; set; }
