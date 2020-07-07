@@ -24,6 +24,7 @@ namespace ECommerce.Services.UnitOfWork
         IBaseRepository<TEntity> MadeIn { get; }
         IBaseRepository<TEntity> OrderItems { get; }
         IBaseRepository<TEntity> OrderStatus { get; }
+        IBaseRepository<TEntity> Orders { get; }
         IBaseRepository<TEntity> Origin { get; }
         IBaseRepository<TEntity> Ward { get; }
         Task<bool> Commit();

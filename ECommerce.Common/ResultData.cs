@@ -16,14 +16,14 @@ namespace ECommerce.Common.FormatData
            
     }
     /// <summary>
-    ///  định dạng trã về khi trã về list
+    ///  định dạng trã về khi trã về IEnumerable
     /// </summary>
     public class ResultListData<T>
     {
         public int Amount  { get; set; }
         public bool Success { get; set; }
         public string Message { get; set; }
-        public List<T> Data { get; set; }
+        public IEnumerable<T> Data { get; set; }
     }
 
     /// <summary>

@@ -48,6 +48,14 @@ namespace ECommerce.Services.UnitOfWork
                 return _Ward ?? (_Ward = new BaseRepository<TEntity>(_dbContext));
             }
         }
+        public IBaseRepository<TEntity> Orders
+        {
+            get
+            {
+                return _Origin ?? (_Origin = new BaseRepository<TEntity>(_dbContext));
+            }
+        }
+
         public IBaseRepository<TEntity> Origin
         {
             get

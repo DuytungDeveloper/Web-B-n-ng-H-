@@ -4,27 +4,35 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ECommerce.Model.EFModel.Models
 {
-    public partial class Product
+    public partial class Product : BaseModel, IBaseModel
     {
 
         [Required]
         public int Id { get; set; }
         [Required]
         public int IdOrigin { get; set; }
+        public virtual Origin Origin { get; set; }
         [Required]
         public int IdBrandProduct { get; set; }
+        public virtual BrandProduct BrandProduct { get; set; }
         [Required]
         public int IdHuntingCase { get; set; }
+        public virtual HuntingCase HuntingCase { get; set; }
         [Required]
         public int IdChatelaine { get; set; }
+        public virtual Chatelaine Chatelaine { get; set; }
         [Required]
         public int IdColorClockFace { get; set; }
+        public virtual ColorClockFace ColorClockFace { get; set; }
         [Required]
         public int IdMadeIn { get; set; }
+        public virtual MadeIn MadeIn { get; set; }
         [Required]
         public int IdHem { get; set; }
+        public virtual Hem Hem { get; set; }
         [Required]
         public int IdMachine { get; set; }
+        public virtual Machine Machine { get; set; }
         [Required]
         public bool Sex { get; set; }
         [Required]
