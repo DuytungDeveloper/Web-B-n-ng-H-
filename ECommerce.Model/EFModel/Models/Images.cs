@@ -8,8 +8,8 @@ namespace ECommerce.Model.EFModel.Models
     {
         [Required]
         public int Id { get; set; }
-        [Required]
-        public int IdProduct { get; set; }
+     
+        public int? IdProduct { get; set; }
         public virtual Product Product { get; set; }
         [Required]
         public string Name { get; set; }

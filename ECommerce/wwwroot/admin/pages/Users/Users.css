@@ -1,0 +1,19 @@
+﻿
+
+#TableCategorys{
+    width:100%;
+    margin:auto
+}
+.caret {
+    float: right !important;
+    margin-top: 10px !important; 
+}
+.open .dropdown-menu{
+    width:100%!important;
+}
+.radio{
+    font-size:15px;
+}
+tbody {
+    font-size: 15px !important;
+}

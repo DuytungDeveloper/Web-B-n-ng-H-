@@ -13,7 +13,7 @@ namespace ECommerce.Areas.Admin.Controllers
     [Area("Admin")]
     public class HomeController : Controller
     {
-
+        [Route("/admin/trang-chu")]
         public ActionResult Index()
         {
             return View();

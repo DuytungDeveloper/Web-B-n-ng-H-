@@ -32,7 +32,7 @@ namespace ECommerce
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.AddSpaStaticFiles();
             #region Cái này tự sinh khi tạo project tạm thời để đó từ tính sau 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
@@ -67,20 +67,9 @@ namespace ECommerce
             #endregion
             
             services.RegisterServices();// DI
+            services.AddMvc();
             services.AddOptions();
-            services.AddRazorPages()
-            .AddMvcOptions(options =>
-            {
-
-                options.ModelMetadataDetailsProviders.Add(
-                    new ExcludeBindingMetadataProvider(typeof(System.Version)));
-                options.ModelMetadataDetailsProviders.Add(
-                    new SuppressChildValidationMetadataProvider(typeof(System.Guid)));
-            });
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-            });
+       
 
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -92,43 +81,24 @@ namespace ECommerce
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
-            #region
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
-
-            #endregion
-
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-           
+            app.UseStaticFiles(); 
             app.UseRouting();
 
             #region
-
             app.UseAuthentication();
             app.UseAuthorization();
-           
-            
-
             #endregion
             #region NghiaTV config
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+                endpoints.MapAreaControllerRoute("admin","admin", "{controller=Home}/{action=Index}/{id?}");
             });
-            app.UseEndpoints(configure =>
-            {
-                configure.MapDefaultControllerRoute();
-            });
+          
             #endregion
 
         }

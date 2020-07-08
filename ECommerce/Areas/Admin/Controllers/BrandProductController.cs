@@ -9,11 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
-    //tổng order từng sản phẩm trong hóa đơn 
-    public class OrdersController : Controller
+    public class BrandProductController : Controller
     {
-        private readonly IUnitOfWork<Orders> _UnitOfWork;
-        public OrdersController(IUnitOfWork<Orders> UnitOfWork)
+        private readonly IUnitOfWork<BrandProduct> _UnitOfWork;
+        public BrandProductController(IUnitOfWork<BrandProduct> UnitOfWork)
         {
             _UnitOfWork = UnitOfWork;
 
@@ -23,26 +22,25 @@ namespace ECommerce.Areas.Admin.Controllers
             return View();
         }
 
-
         #region Action
         [HttpGet]
-        public async Task<ActionResult<ResultListData<Orders>>> GetAll()
+        public async Task<ActionResult<ResultListData<BrandProduct>>> GetAll()
         {
-            ResultListData<Orders> data = new ResultListData<Orders>();
-            var ListOrders = await _UnitOfWork.Orders.GetAll();
+            ResultListData<BrandProduct> data = new ResultListData<BrandProduct>();
+            var ListBrandProduct = await _UnitOfWork.BrandProduct.GetAll();
             if (data == null) return data;
-            data.Data = ListOrders;
+            data.Data = ListBrandProduct;
             data.Success = true;
-            data.Amount = ListOrders.Count();
+            data.Amount = ListBrandProduct.Count();
             data.Message = "Thành công !";
             return Ok(data);
         }
 
         [HttpGet("{Id}")]
-        public async Task<ActionResult<ResultData<Orders>>> GetById([FromRoute] int Id)
+        public async Task<ActionResult<ResultData<BrandProduct>>> GetById([FromRoute] int Id)
         {
-            ResultData<Orders> data = new ResultData<Orders>();
-            Orders Item = await _UnitOfWork.Orders.GetById(Id);
+            ResultData<BrandProduct> data = new ResultData<BrandProduct>();
+            BrandProduct Item = await _UnitOfWork.BrandProduct.GetById(Id);
             if (data == null) return data;
             data.Data = Item;
             data.Success = true;
@@ -50,15 +48,15 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
         [HttpPost]
-        public async Task<ActionResult<Orders>> Add([FromBody] Orders body)
+        public async Task<ActionResult<BrandProduct>> Add([FromBody] BrandProduct body)
         {
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            ResultData<Orders> data = new ResultData<Orders>();
-            await _UnitOfWork.Orders.Insert(body);
+            ResultData<BrandProduct> data = new ResultData<BrandProduct>();
+            await _UnitOfWork.BrandProduct.Insert(body);
             await _UnitOfWork.Commit();
             data.Data = body;
             data.Success = body.Id > 0 ? true : false;
@@ -66,48 +64,40 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
         [HttpPut("{Id}")]
-        public async Task<ActionResult<Orders>> Update([FromBody] Orders body, [FromRoute] int Id = 0)
+        public async Task<ActionResult<BrandProduct>> Update([FromBody] BrandProduct body, [FromRoute] int Id = 0)
         {
             if (!ModelState.IsValid || Id < 1)
             {
                 return BadRequest(ModelState);
             }
 
-            var GetItem = await _UnitOfWork.Orders.GetById(Id);
-            ResultData<Orders> data = new ResultData<Orders>();
+            var GetItem = await _UnitOfWork.BrandProduct.GetById(Id);
+            ResultData<BrandProduct> data = new ResultData<BrandProduct>();
             if (GetItem == null)
                 return Ok(data);
             #region
-            GetItem.IdOrderStatus = body.IdOrderStatus == 0? GetItem.IdOrderStatus: body.IdOrderStatus;
-            GetItem.Note = body.Note;
-            GetItem.Phone = body.Phone;
-            GetItem.Code = body.Code;
-            GetItem.ReceiverInfo = body.ReceiverInfo;
-            GetItem.Status = body.Status == 0 ? GetItem.Status : body.Status;
-            GetItem.CustomerId = body.CustomerId == 0 ? GetItem.CustomerId : body.CustomerId;
-            GetItem.UpdateBy = body.UpdateBy;
-            GetItem.UpdateDate = DateTime.Now;
+            GetItem.Name = body.Name;
             #endregion
-            await _UnitOfWork.Orders.Update(GetItem, true);
+            await _UnitOfWork.BrandProduct.Update(GetItem, true);
             data.Data = body;
             data.Success = true;
             data.Message = "Thành công !";
             return Ok(GetItem);
         }
         [HttpDelete("{Id}")]
-        public async Task<ActionResult<ActionResult<Orders>>> Delete([FromRoute] int Id = 0)
+        public async Task<ActionResult<ActionResult<BrandProduct>>> Delete([FromRoute] int Id = 0)
         {
             if (Id < 1)
             {
                 return BadRequest(ModelState);
             }
-            ResultData<Orders> data = new ResultData<Orders>();
-            Orders GetItem = await _UnitOfWork.Orders.GetById(Id);
+            ResultData<BrandProduct> data = new ResultData<BrandProduct>();
+            BrandProduct GetItem = await _UnitOfWork.BrandProduct.GetById(Id);
             if (GetItem == null)
                 return Ok(data);
 
             GetItem.Status = 1;//delete
-            await _UnitOfWork.Orders.Delete(GetItem, true);
+            await _UnitOfWork.BrandProduct.Delete(GetItem, true);
             data.Data = GetItem;
             data.Success = true;
             data.Message = "Thành công !";
@@ -115,5 +105,6 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
         #endregion
+
     }
 }

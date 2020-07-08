@@ -9,8 +9,8 @@ namespace ECommerce.Services.Repository
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
-        internal ApplicationDbContext context;
-        internal DbSet<TEntity> dbSet;
+        public readonly ApplicationDbContext context;
+        public readonly DbSet<TEntity> dbSet;
         public BaseRepository(ApplicationDbContext _context)
         {
             this.context = _context;

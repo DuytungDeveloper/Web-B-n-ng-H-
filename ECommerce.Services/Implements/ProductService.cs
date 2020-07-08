@@ -13,8 +13,8 @@ namespace ECommerce.Services.Implements
 {
     public class ProductService<TEntity> : BaseRepository<TEntity> ,IProductService<TEntity> where TEntity : class
     {
-        public readonly ApplicationDbContext context;
-        internal DbSet<TEntity> dbSet;
+        public new readonly ApplicationDbContext context;
+        public new readonly DbSet<TEntity> dbSet;
         public ProductService(ApplicationDbContext _context):base(_context)
         {
             this.context = _context;

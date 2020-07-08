@@ -4,6 +4,10 @@
 <head>
     <meta charset="utf-8" />
     <title>@ViewData["Title"]</title>
+
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="icon" type="image/x-icon" href="/logoheader.png" />
@@ -21,7 +25,9 @@
 
     <link href="~/Admin/vendors/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet" />
     <!-- bootstrap-daterangepicker -->
+ 
     <link href="~/Admin/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+
 
     <!-- jQuery custom content scroller -->
     <link href="~/Admin/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
@@ -37,6 +43,8 @@
     <link href="~/Admin/jstree/themes/default/style.min.css" rel="stylesheet" />
     <!-- confirm334 -->
     <link href="~/Admin/vendors/confirm334/jquery-confirm.min.css" rel="stylesheet" />
+
+
 </head>
 
 <body class="nav-md" style="font-family:-webkit-body; color:black; font-size:13px;">
@@ -168,7 +176,7 @@
 
     <!--dùng chung -->
     <script src="~/admin/common/common.js"></script>
-    <!--bắt buộc các session này phải có trong view con -->
+
     @RenderSection("AdminScripts", required: false)
 
 </body>

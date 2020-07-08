@@ -13,8 +13,8 @@ namespace ECommerce.Model.EFModel.Models
         public int? AddressId { get; set; }
         public virtual Address Address { get; set; }
         public string Phone { get; set; }
-        [Required]
-        public int CustomerId { get; set; }
+        
+        public int? CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
         public string ReceiverInfo { get; set; }
         public string Detail { get; set; }
