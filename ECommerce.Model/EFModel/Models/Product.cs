@@ -41,7 +41,7 @@ namespace ECommerce.Model.EFModel.Models
         public string Url { get; set; }
         [Required]
         public int Price { get; set; }
-        public int PriceDiscount { get; set; }
+        public int? PriceDiscount { get; set; }
         public string Code { get; set; }
         public int? Diameter { get; set; }
         public bool? Waterproof { get; set; }
