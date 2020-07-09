@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
+    // sản phẩm 
     [Area("Admin")]
     [Route("admin/[controller]/[action]")]
     public class ProductController : Controller

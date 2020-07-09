@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
+    //-- Niềng -- Niềng bao quanh đồng hồ ( thép,vàng , inox ...)
+    [Area("Admin")]
+    [Route("admin/[controller]/[action]")]
     public class HemController : Controller
     {
         private readonly IUnitOfWork<Hem> _UnitOfWork;

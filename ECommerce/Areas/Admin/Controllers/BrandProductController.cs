@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
+
+    //-- thương hiệu đồng hồ
+    [Area("Admin")]
+    [Route("admin/[controller]/[action]")]
     public class BrandProductController : Controller
     {
         private readonly IUnitOfWork<BrandProduct> _UnitOfWork;

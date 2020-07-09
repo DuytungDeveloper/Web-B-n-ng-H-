@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ECommerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Route("admin/[controller]/[action]")]
     public class HomeController : Controller
     {
         [Route("/admin/trang-chu")]

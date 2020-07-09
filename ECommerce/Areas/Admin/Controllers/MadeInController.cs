@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
+    //-- bản xuất xứ
+    [Area("Admin")]
+    [Route("admin/[controller]/[action]")]
     public class MadeInController : Controller
     {
         private readonly IUnitOfWork<MadeIn> _UnitOfWork;
