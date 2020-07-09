@@ -1,7 +1,8 @@
 
 Scaffold-DbContext "Server=DESKTOP-9BBIEQA;Database=Ecommerce;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir EFModel
 
-
+update-database -Context EcommerceContext
+Add-Migration MyFirstMigration -Context EcommerceContext
 if (!optionsBuilder.IsConfigured)
 {
 	//optionsBuilder.UseSqlServer("Server=DESKTOP-9BBIEQA;Database=Ecommerce;User Id=sa;Password=0306141044");
