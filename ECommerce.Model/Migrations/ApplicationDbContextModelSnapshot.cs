@@ -29,7 +29,10 @@ namespace ECommerce.Model.Migrations
                     b.Property<int?>("CityId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Created")
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("DistrictId")
@@ -40,6 +43,12 @@ namespace ECommerce.Model.Migrations
 
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("WardId")
                         .HasColumnType("int");
@@ -142,11 +151,23 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -160,11 +181,23 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -178,11 +211,23 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -196,11 +241,23 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -217,7 +274,10 @@ namespace ECommerce.Model.Migrations
                     b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Created")
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Hobby")
@@ -225,6 +285,12 @@ namespace ECommerce.Model.Migrations
 
                     b.Property<int?>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -241,11 +307,23 @@ namespace ECommerce.Model.Migrations
                     b.Property<int?>("CityId")
                         .HasColumnType("int");
 
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -259,11 +337,23 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -277,11 +367,24 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("CreateBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Status")
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -295,16 +398,34 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("IdProduct")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Status")
+                    b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Images");
                 });
@@ -316,11 +437,24 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("CreateBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Status")
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -334,11 +468,23 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -352,16 +498,38 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("OrderId")
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OrdersId")
                         .HasColumnType("int");
 
                     b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Quantity")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("OrdersId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderItems");
                 });
@@ -373,11 +541,26 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Desription")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -391,13 +574,16 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("Created")
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("CustomerId")
@@ -412,16 +598,31 @@ namespace ECommerce.Model.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("OrderStatusId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ReceiverInfo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Status")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("OrderStatusId");
 
                     b.ToTable("Orders");
                 });
@@ -433,11 +634,23 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -451,11 +664,26 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("BrandProductId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Characteristics")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ChatelaineId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ColorClockFaceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("DescriptionFull")
                         .HasColumnType("nvarchar(max)");
@@ -472,35 +700,50 @@ namespace ECommerce.Model.Migrations
                     b.Property<string>("Guarantee")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IdBrandProduct")
+                    b.Property<int?>("HemId")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdChatelaine")
+                    b.Property<int?>("HuntingCaseId")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdColorClockFace")
+                    b.Property<int?>("IdBrandProduct")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdHem")
+                    b.Property<int?>("IdChatelaine")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdHuntingCase")
+                    b.Property<int?>("IdColorClockFace")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdMachine")
+                    b.Property<int?>("IdHem")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdMadeIn")
+                    b.Property<int?>("IdHuntingCase")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdOrigin")
+                    b.Property<int?>("IdMachine")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdMadeIn")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdOrigin")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MachineId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MadeInId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Price")
-                        .IsRequired()
+                    b.Property<int?>("OriginId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Price")
                         .HasColumnType("int");
 
                     b.Property<int?>("PriceDiscount")
@@ -511,6 +754,12 @@ namespace ECommerce.Model.Migrations
 
                     b.Property<int?>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
@@ -523,6 +772,22 @@ namespace ECommerce.Model.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BrandProductId");
+
+                    b.HasIndex("ChatelaineId");
+
+                    b.HasIndex("ColorClockFaceId");
+
+                    b.HasIndex("HemId");
+
+                    b.HasIndex("HuntingCaseId");
+
+                    b.HasIndex("MachineId");
+
+                    b.HasIndex("MadeInId");
+
+                    b.HasIndex("OriginId");
+
                     b.ToTable("Product");
                 });
 
@@ -533,6 +798,12 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("DistrictId")
                         .HasColumnType("int");
 
@@ -541,6 +812,12 @@ namespace ECommerce.Model.Migrations
 
                     b.Property<int?>("Status")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -762,6 +1039,74 @@ namespace ECommerce.Model.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("ECommerce.Model.EFModel.Models.Images", b =>
+                {
+                    b.HasOne("ECommerce.Model.EFModel.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+                });
+
+            modelBuilder.Entity("ECommerce.Model.EFModel.Models.OrderItems", b =>
+                {
+                    b.HasOne("ECommerce.Model.EFModel.Models.Orders", "Orders")
+                        .WithMany()
+                        .HasForeignKey("OrdersId");
+
+                    b.HasOne("ECommerce.Model.EFModel.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+                });
+
+            modelBuilder.Entity("ECommerce.Model.EFModel.Models.Orders", b =>
+                {
+                    b.HasOne("ECommerce.Model.EFModel.Models.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId");
+
+                    b.HasOne("ECommerce.Model.EFModel.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+
+                    b.HasOne("ECommerce.Model.EFModel.Models.OrderStatus", "OrderStatus")
+                        .WithMany()
+                        .HasForeignKey("OrderStatusId");
+                });
+
+            modelBuilder.Entity("ECommerce.Model.EFModel.Models.Product", b =>
+                {
+                    b.HasOne("ECommerce.Model.EFModel.Models.BrandProduct", "BrandProduct")
+                        .WithMany()
+                        .HasForeignKey("BrandProductId");
+
+                    b.HasOne("ECommerce.Model.EFModel.Models.Chatelaine", "Chatelaine")
+                        .WithMany()
+                        .HasForeignKey("ChatelaineId");
+
+                    b.HasOne("ECommerce.Model.EFModel.Models.ColorClockFace", "ColorClockFace")
+                        .WithMany()
+                        .HasForeignKey("ColorClockFaceId");
+
+                    b.HasOne("ECommerce.Model.EFModel.Models.Hem", "Hem")
+                        .WithMany()
+                        .HasForeignKey("HemId");
+
+                    b.HasOne("ECommerce.Model.EFModel.Models.HuntingCase", "HuntingCase")
+                        .WithMany()
+                        .HasForeignKey("HuntingCaseId");
+
+                    b.HasOne("ECommerce.Model.EFModel.Models.Machine", "Machine")
+                        .WithMany()
+                        .HasForeignKey("MachineId");
+
+                    b.HasOne("ECommerce.Model.EFModel.Models.MadeIn", "MadeIn")
+                        .WithMany()
+                        .HasForeignKey("MadeInId");
+
+                    b.HasOne("ECommerce.Model.EFModel.Models.Origin", "Origin")
+                        .WithMany()
+                        .HasForeignKey("OriginId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

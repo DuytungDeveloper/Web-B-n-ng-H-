@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ECommerce.Model.Migrations
 {
-    public partial class nghiatv : Migration
+    public partial class tungDd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,11 +13,14 @@ namespace ECommerce.Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
                     Street = table.Column<string>(nullable: true),
                     CityId = table.Column<int>(nullable: true),
                     DistrictId = table.Column<int>(nullable: true),
                     WardId = table.Column<int>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true),
                     Status = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -58,7 +61,13 @@ namespace ECommerce.Model.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    IsRoot = table.Column<bool>(nullable: false)
+                    IsRoot = table.Column<bool>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedAt = table.Column<DateTime>(nullable: true),
+                    UpdateBy = table.Column<string>(nullable: true),
+                    DeletedAt = table.Column<DateTime>(nullable: true),
+                    DeletedBy = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -71,6 +80,10 @@ namespace ECommerce.Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Status = table.Column<int>(nullable: true)
                 },
@@ -85,6 +98,10 @@ namespace ECommerce.Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Status = table.Column<int>(nullable: true)
                 },
@@ -99,6 +116,10 @@ namespace ECommerce.Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Status = table.Column<int>(nullable: true)
                 },
@@ -113,6 +134,10 @@ namespace ECommerce.Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Status = table.Column<int>(nullable: true)
                 },
@@ -127,9 +152,12 @@ namespace ECommerce.Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
                     AddressId = table.Column<int>(nullable: true),
                     Hobby = table.Column<string>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true),
                     Status = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -160,6 +188,10 @@ namespace ECommerce.Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     CityId = table.Column<int>(nullable: true),
                     Status = table.Column<int>(nullable: true)
@@ -175,6 +207,10 @@ namespace ECommerce.Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Status = table.Column<int>(nullable: true)
                 },
@@ -189,27 +225,16 @@ namespace ECommerce.Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Status = table.Column<int>(nullable: true)
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Status = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_HuntingCase", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Images",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdProduct = table.Column<int>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
-                    Status = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Images", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -218,8 +243,12 @@ namespace ECommerce.Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Status = table.Column<int>(nullable: true)
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Status = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -232,6 +261,10 @@ namespace ECommerce.Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Status = table.Column<int>(nullable: true)
                 },
@@ -241,50 +274,18 @@ namespace ECommerce.Model.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderItems",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderId = table.Column<int>(nullable: true),
-                    ProductId = table.Column<int>(nullable: true),
-                    Quantity = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OrderItems", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Code = table.Column<string>(nullable: true),
-                    Note = table.Column<string>(nullable: true),
-                    AddressId = table.Column<int>(nullable: false),
-                    Phone = table.Column<string>(nullable: true),
-                    CustomerId = table.Column<int>(nullable: true),
-                    ReceiverInfo = table.Column<string>(nullable: true),
-                    Detail = table.Column<string>(nullable: true),
-                    IdOrderStatus = table.Column<int>(nullable: true),
-                    Status = table.Column<int>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "OrderStatus",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    Desription = table.Column<string>(nullable: true)
+                    Desription = table.Column<string>(nullable: true),
+                    Status = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -297,6 +298,10 @@ namespace ECommerce.Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Status = table.Column<int>(nullable: true)
                 },
@@ -323,46 +328,15 @@ namespace ECommerce.Model.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Product",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdOrigin = table.Column<int>(nullable: false),
-                    IdBrandProduct = table.Column<int>(nullable: false),
-                    IdHuntingCase = table.Column<int>(nullable: false),
-                    IdChatelaine = table.Column<int>(nullable: false),
-                    IdColorClockFace = table.Column<int>(nullable: false),
-                    IdMadeIn = table.Column<int>(nullable: false),
-                    IdHem = table.Column<int>(nullable: false),
-                    IdMachine = table.Column<int>(nullable: false),
-                    Sex = table.Column<bool>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Video = table.Column<string>(nullable: true),
-                    Url = table.Column<string>(nullable: true),
-                    Price = table.Column<int>(nullable: false),
-                    PriceDiscount = table.Column<int>(nullable: true),
-                    Code = table.Column<string>(nullable: true),
-                    Diameter = table.Column<int>(nullable: true),
-                    Waterproof = table.Column<bool>(nullable: true),
-                    Guarantee = table.Column<string>(nullable: true),
-                    Characteristics = table.Column<string>(nullable: true),
-                    Function = table.Column<string>(nullable: true),
-                    DescriptionShort = table.Column<string>(nullable: true),
-                    DescriptionFull = table.Column<string>(nullable: true),
-                    Status = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Product", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Ward",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     DistrictId = table.Column<int>(nullable: true),
                     Status = table.Column<int>(nullable: true)
@@ -478,6 +452,204 @@ namespace ECommerce.Model.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
+                    Code = table.Column<string>(nullable: true),
+                    Note = table.Column<string>(nullable: true),
+                    AddressId = table.Column<int>(nullable: true),
+                    Phone = table.Column<string>(nullable: true),
+                    CustomerId = table.Column<int>(nullable: true),
+                    ReceiverInfo = table.Column<string>(nullable: true),
+                    Detail = table.Column<string>(nullable: true),
+                    IdOrderStatus = table.Column<int>(nullable: true),
+                    OrderStatusId = table.Column<int>(nullable: true),
+                    Status = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_Address_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Address",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Orders_Customer_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customer",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Orders_OrderStatus_OrderStatusId",
+                        column: x => x.OrderStatusId,
+                        principalTable: "OrderStatus",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Product",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
+                    IdOrigin = table.Column<int>(nullable: true),
+                    OriginId = table.Column<int>(nullable: true),
+                    IdBrandProduct = table.Column<int>(nullable: true),
+                    BrandProductId = table.Column<int>(nullable: true),
+                    IdHuntingCase = table.Column<int>(nullable: true),
+                    HuntingCaseId = table.Column<int>(nullable: true),
+                    IdChatelaine = table.Column<int>(nullable: true),
+                    ChatelaineId = table.Column<int>(nullable: true),
+                    IdColorClockFace = table.Column<int>(nullable: true),
+                    ColorClockFaceId = table.Column<int>(nullable: true),
+                    IdMadeIn = table.Column<int>(nullable: true),
+                    MadeInId = table.Column<int>(nullable: true),
+                    IdHem = table.Column<int>(nullable: true),
+                    HemId = table.Column<int>(nullable: true),
+                    IdMachine = table.Column<int>(nullable: true),
+                    MachineId = table.Column<int>(nullable: true),
+                    Sex = table.Column<bool>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    Video = table.Column<string>(nullable: true),
+                    Url = table.Column<string>(nullable: true),
+                    Price = table.Column<int>(nullable: false),
+                    PriceDiscount = table.Column<int>(nullable: true),
+                    Code = table.Column<string>(nullable: true),
+                    Diameter = table.Column<int>(nullable: true),
+                    Waterproof = table.Column<bool>(nullable: true),
+                    Guarantee = table.Column<string>(nullable: true),
+                    Characteristics = table.Column<string>(nullable: true),
+                    Function = table.Column<string>(nullable: true),
+                    DescriptionShort = table.Column<string>(nullable: true),
+                    DescriptionFull = table.Column<string>(nullable: true),
+                    Status = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Product_BrandProduct_BrandProductId",
+                        column: x => x.BrandProductId,
+                        principalTable: "BrandProduct",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Product_Chatelaine_ChatelaineId",
+                        column: x => x.ChatelaineId,
+                        principalTable: "Chatelaine",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Product_ColorClockFace_ColorClockFaceId",
+                        column: x => x.ColorClockFaceId,
+                        principalTable: "ColorClockFace",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Product_Hem_HemId",
+                        column: x => x.HemId,
+                        principalTable: "Hem",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Product_HuntingCase_HuntingCaseId",
+                        column: x => x.HuntingCaseId,
+                        principalTable: "HuntingCase",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Product_Machine_MachineId",
+                        column: x => x.MachineId,
+                        principalTable: "Machine",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Product_MadeIn_MadeInId",
+                        column: x => x.MadeInId,
+                        principalTable: "MadeIn",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Product_Origin_OriginId",
+                        column: x => x.OriginId,
+                        principalTable: "Origin",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Images",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
+                    IdProduct = table.Column<int>(nullable: true),
+                    ProductId = table.Column<int>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Status = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Images", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Images_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdateBy = table.Column<string>(nullable: true),
+                    OrderId = table.Column<int>(nullable: false),
+                    OrdersId = table.Column<int>(nullable: true),
+                    ProductId = table.Column<int>(nullable: true),
+                    Quantity = table.Column<int>(nullable: false),
+                    Status = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Orders_OrdersId",
+                        column: x => x.OrdersId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -529,6 +701,36 @@ namespace ECommerce.Model.Migrations
                 column: "Expiration");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Images_ProductId",
+                table: "Images",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_OrdersId",
+                table: "OrderItems",
+                column: "OrdersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_ProductId",
+                table: "OrderItems",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_AddressId",
+                table: "Orders",
+                column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_CustomerId",
+                table: "Orders",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_OrderStatusId",
+                table: "Orders",
+                column: "OrderStatusId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_Expiration",
                 table: "PersistedGrants",
                 column: "Expiration");
@@ -537,13 +739,50 @@ namespace ECommerce.Model.Migrations
                 name: "IX_PersistedGrants_SubjectId_ClientId_Type",
                 table: "PersistedGrants",
                 columns: new[] { "SubjectId", "ClientId", "Type" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_BrandProductId",
+                table: "Product",
+                column: "BrandProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_ChatelaineId",
+                table: "Product",
+                column: "ChatelaineId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_ColorClockFaceId",
+                table: "Product",
+                column: "ColorClockFaceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_HemId",
+                table: "Product",
+                column: "HemId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_HuntingCaseId",
+                table: "Product",
+                column: "HuntingCaseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_MachineId",
+                table: "Product",
+                column: "MachineId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_MadeInId",
+                table: "Product",
+                column: "MadeInId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_OriginId",
+                table: "Product",
+                column: "OriginId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Address");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -560,19 +799,7 @@ namespace ECommerce.Model.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "BrandProduct");
-
-            migrationBuilder.DropTable(
-                name: "Chatelaine");
-
-            migrationBuilder.DropTable(
                 name: "City");
-
-            migrationBuilder.DropTable(
-                name: "ColorClockFace");
-
-            migrationBuilder.DropTable(
-                name: "Customer");
 
             migrationBuilder.DropTable(
                 name: "DeviceCodes");
@@ -581,37 +808,13 @@ namespace ECommerce.Model.Migrations
                 name: "District");
 
             migrationBuilder.DropTable(
-                name: "Hem");
-
-            migrationBuilder.DropTable(
-                name: "HuntingCase");
-
-            migrationBuilder.DropTable(
                 name: "Images");
-
-            migrationBuilder.DropTable(
-                name: "Machine");
-
-            migrationBuilder.DropTable(
-                name: "MadeIn");
 
             migrationBuilder.DropTable(
                 name: "OrderItems");
 
             migrationBuilder.DropTable(
-                name: "Orders");
-
-            migrationBuilder.DropTable(
-                name: "OrderStatus");
-
-            migrationBuilder.DropTable(
-                name: "Origin");
-
-            migrationBuilder.DropTable(
                 name: "PersistedGrants");
-
-            migrationBuilder.DropTable(
-                name: "Product");
 
             migrationBuilder.DropTable(
                 name: "Ward");
@@ -621,6 +824,45 @@ namespace ECommerce.Model.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "Product");
+
+            migrationBuilder.DropTable(
+                name: "Address");
+
+            migrationBuilder.DropTable(
+                name: "Customer");
+
+            migrationBuilder.DropTable(
+                name: "OrderStatus");
+
+            migrationBuilder.DropTable(
+                name: "BrandProduct");
+
+            migrationBuilder.DropTable(
+                name: "Chatelaine");
+
+            migrationBuilder.DropTable(
+                name: "ColorClockFace");
+
+            migrationBuilder.DropTable(
+                name: "Hem");
+
+            migrationBuilder.DropTable(
+                name: "HuntingCase");
+
+            migrationBuilder.DropTable(
+                name: "Machine");
+
+            migrationBuilder.DropTable(
+                name: "MadeIn");
+
+            migrationBuilder.DropTable(
+                name: "Origin");
         }
     }
 }
