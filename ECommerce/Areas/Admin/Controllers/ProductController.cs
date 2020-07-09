@@ -41,7 +41,16 @@ namespace ECommerce.Areas.Admin.Controllers
         public async Task<ActionResult<ResultListData<Product>>> GetAll()
         {
             ResultListData<Product> data = new ResultListData<Product>();
-            var ListProduct = await _ProductService.Product.ToListAsync();
+            var ListProduct = await _ProductService.Product
+                .Include(o=>o.BrandProduct)
+                .Include(o=>o.Chatelaine)
+                .Include(o=>o.ColorClockFace)
+                .Include(o => o.Hem)
+                .Include(o => o.HuntingCase)
+                .Include(o => o.Machine)
+                .Include(o => o.Origin)
+                .Include(o => o.MadeIn)
+                .ToListAsync();
             if (data == null) return data;
             data.Data = ListProduct;
             data.Success = true;
