@@ -30,7 +30,7 @@ namespace ECommerce.Areas.Admin.Controllers
         public async Task<ActionResult<ResultListData<HuntingCase>>> GetAll()
         {
             ResultListData<HuntingCase> data = new ResultListData<HuntingCase>();
-            var ListHuntingCase = await _UnitOfWork.HuntingCase.GetAll();
+            var ListHuntingCase = await _UnitOfWork.HuntingCases.GetAll();
             if (data == null) return data;
             data.Data = ListHuntingCase;
             data.Success = true;
@@ -43,7 +43,7 @@ namespace ECommerce.Areas.Admin.Controllers
         public async Task<ActionResult<ResultData<HuntingCase>>> GetById([FromRoute] int Id)
         {
             ResultData<HuntingCase> data = new ResultData<HuntingCase>();
-            HuntingCase Item = await _UnitOfWork.HuntingCase.GetById(Id);
+            HuntingCase Item = await _UnitOfWork.HuntingCases.GetById(Id);
             if (data == null) return data;
             data.Data = Item;
             data.Success = true;
@@ -59,7 +59,7 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
             ResultData<HuntingCase> data = new ResultData<HuntingCase>();
-            await _UnitOfWork.HuntingCase.Insert(body);
+            await _UnitOfWork.HuntingCases.Insert(body);
             await _UnitOfWork.Commit();
             data.Data = body;
             data.Success = body.Id > 0 ? true : false;
@@ -74,14 +74,14 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
 
-            var GetItem = await _UnitOfWork.HuntingCase.GetById(Id);
+            var GetItem = await _UnitOfWork.HuntingCases.GetById(Id);
             ResultData<HuntingCase> data = new ResultData<HuntingCase>();
             if (GetItem == null)
                 return Ok(data);
             #region
             GetItem.Name = body.Name;
             #endregion
-            await _UnitOfWork.HuntingCase.Update(GetItem, true);
+            await _UnitOfWork.HuntingCases.Update(GetItem, true);
             data.Data = body;
             data.Success = true;
             data.Message = "Thành công !";
@@ -95,12 +95,12 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
             ResultData<HuntingCase> data = new ResultData<HuntingCase>();
-            HuntingCase GetItem = await _UnitOfWork.HuntingCase.GetById(Id);
+            HuntingCase GetItem = await _UnitOfWork.HuntingCases.GetById(Id);
             if (GetItem == null)
                 return Ok(data);
 
             GetItem.Status = 1;//delete
-            await _UnitOfWork.HuntingCase.Delete(GetItem, true);
+            await _UnitOfWork.HuntingCases.Delete(GetItem, true);
             data.Data = GetItem;
             data.Success = true;
             data.Message = "Thành công !";

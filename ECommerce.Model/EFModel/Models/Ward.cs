@@ -9,7 +9,7 @@ namespace ECommerce.Model.EFModel.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public int DistrictId { get; set; }
+        public int DistrictId { get; set; } // Quận/ huyện
         public virtual District City { get; set; }
         public int Status { get; set; }
     }

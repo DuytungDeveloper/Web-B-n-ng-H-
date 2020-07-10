@@ -9,24 +9,24 @@ namespace ECommerce.Services.UnitOfWork
     public interface IUnitOfWork<TEntity> where TEntity : class
     {
 
-        IBaseRepository<TEntity> Product { get; }
+        IBaseRepository<TEntity> Products { get; }
         IBaseRepository<TEntity> Address { get; }
-        IBaseRepository<TEntity> BrandProduct { get; }
-        IBaseRepository<TEntity> Chatelaine { get; }
-        IBaseRepository<TEntity> City { get; }
-        IBaseRepository<TEntity> ColorClockFace { get; }
-        IBaseRepository<TEntity> Customer { get; }
-        IBaseRepository<TEntity> District { get; }
-        IBaseRepository<TEntity> Hem { get; }
-        IBaseRepository<TEntity> HuntingCase { get; }
+        IBaseRepository<TEntity> BrandProducts { get; }
+        IBaseRepository<TEntity> Chatelaines { get; }
+        IBaseRepository<TEntity> Citys { get; }
+        IBaseRepository<TEntity> ColorClockFaces { get; }
+        IBaseRepository<TEntity> Customers { get; }
+        IBaseRepository<TEntity> Districts { get; }
+        IBaseRepository<TEntity> Hems { get; }
+        IBaseRepository<TEntity> HuntingCases { get; }
         IBaseRepository<TEntity> Images { get; }
-        IBaseRepository<TEntity> Machine { get; }
-        IBaseRepository<TEntity> MadeIn { get; }
+        IBaseRepository<TEntity> Machines { get; }
+        IBaseRepository<TEntity> MadeIns { get; }
         IBaseRepository<TEntity> OrderItems { get; }
         IBaseRepository<TEntity> OrderStatus { get; }
         IBaseRepository<TEntity> Orders { get; }
-        IBaseRepository<TEntity> Origin { get; }
-        IBaseRepository<TEntity> Ward { get; }
+        IBaseRepository<TEntity> Origins { get; }
+        IBaseRepository<TEntity> Wards { get; }
         Task<bool> Commit();
     }
 }

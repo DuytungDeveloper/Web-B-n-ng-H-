@@ -9,6 +9,8 @@ using ECommerce.Services.UnitOfWork;
 using ECommerce.Model.EFModel.Models;
 using ECommerce.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
+using System;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
@@ -64,7 +66,7 @@ namespace ECommerce.Areas.Admin.Controllers
         public async Task<ActionResult<ResultData<Product>>> GetById([FromRoute] int Id)
         {
             ResultData<Product> data = new ResultData<Product>();
-            Product Item = await _UnitOfWork.Product.GetById(Id);
+            Product Item = await _UnitOfWork.Products.GetById(Id);
             if (data == null) return data;
             data.Data = Item;
             data.Success = true;
@@ -80,7 +82,9 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
             ResultData<Product> data = new ResultData<Product>();
-            await _UnitOfWork.Product.Insert(body);
+            body.CreateDate = DateTime.Now;
+            body.UpdateDate = DateTime.Now;
+            await _UnitOfWork.Products.Insert(body,true);
             await _UnitOfWork.Commit();
             data.Data = body;
             data.Success = body.Id > 0 ? true :false;
@@ -95,7 +99,7 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
 
-            var GetItem = await _UnitOfWork.Product.GetById(Id);
+            var GetItem = await _UnitOfWork.Products.GetById(Id);
             ResultData<Product> data = new ResultData<Product>();
             if (GetItem == null)
              return Ok(data);
@@ -109,16 +113,16 @@ namespace ECommerce.Areas.Admin.Controllers
             GetItem.Price = body.Price;
             GetItem.PriceDiscount = body.PriceDiscount;
             GetItem.Guarantee = body.Guarantee;
-            GetItem.IdHem = body.IdHem == 0 ? GetItem.IdHem : body.IdHem;
-            GetItem.IdHuntingCase = body.IdHuntingCase == 0 ? GetItem.IdHuntingCase : body.IdHuntingCase;
-            GetItem.IdChatelaine = body.IdChatelaine == 0 ? GetItem.IdChatelaine : body.IdChatelaine;
-            GetItem.IdColorClockFace = body.IdColorClockFace == 0 ? GetItem.IdColorClockFace : body.IdColorClockFace;
-            GetItem.IdMachine = body.IdMachine == 0 ? GetItem.IdMachine : body.IdMachine;
-            GetItem.IdMadeIn = body.IdMadeIn == 0 ? GetItem.IdMadeIn : body.IdMadeIn;
-            GetItem.IdOrigin = body.IdOrigin == 0 ? GetItem.IdOrigin : body.IdOrigin;
-            GetItem.IdBrandProduct = body.IdBrandProduct == 0 ? GetItem.IdBrandProduct : body.IdBrandProduct; ;
+            GetItem.HemId = body.HemId == 0 ? GetItem.HemId : body.HemId;
+            GetItem.HuntingCaseId = body.HuntingCaseId == 0 ? GetItem.HuntingCaseId : body.HuntingCaseId;
+            GetItem.ChatelaineId = body.ChatelaineId == 0 ? GetItem.ChatelaineId : body.ChatelaineId;
+            GetItem.ColorClockFaceId = body.ColorClockFaceId == 0 ? GetItem.ColorClockFaceId : body.ColorClockFaceId;
+            GetItem.MachineId = body.MachineId == 0 ? GetItem.MachineId : body.MachineId;
+            GetItem.MadeInId = body.MadeInId == 0 ? GetItem.MadeInId : body.MadeInId;
+            GetItem.OriginId = body.OriginId == 0 ? GetItem.OriginId : body.OriginId;
+            GetItem.BrandProductId = body.BrandProductId == 0 ? GetItem.BrandProductId : body.BrandProductId; ;
             #endregion
-            await _UnitOfWork.Product.Update(GetItem, true);
+            await _UnitOfWork.Products.Update(GetItem, true);
             data.Data = body;
             data.Success = true;
             data.Message = "Thành công !";
@@ -132,12 +136,12 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
             ResultData<Product> data = new ResultData<Product>();
-            Product GetItem = await _UnitOfWork.Product.GetById(Id);
+            Product GetItem = await _UnitOfWork.Products.GetById(Id);
             if (GetItem == null)
                 return Ok(data);
 
             GetItem.Status = 1;//delete
-            await _UnitOfWork.Product.Delete(GetItem, true);
+            await _UnitOfWork.Products.Delete(GetItem, true);
             data.Data = GetItem;
             data.Success = true;
             data.Message = "Thành công !";
