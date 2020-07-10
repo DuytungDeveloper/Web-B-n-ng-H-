@@ -5,12 +5,13 @@
 
 <head>
 
+
     <script type="text/x-template" id="grid-template">
         <table>
             <thead>
                 <tr>
                     <th v-for="key in columns"
-                      
+                         v-on:click="sortBy(key)"
                         :class="{ active: sortKey == key }">
                         {{ key | capitalize }}
                         <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
@@ -28,13 +29,219 @@
         </table>
     </script>
 
-
 </head>
 <body>
 
-   
-    ABC
-    <!-- demo root element -->
+
+    <style>
+        button.page-link {
+            display: inline-block;
+        }
+
+        button.page-link {
+            font-size: 20px;
+            color: #29b3ed;
+            font-weight: 500;
+        }
+
+        .offset {
+            width: 500px !important;
+            margin: 20px auto;
+        }
+    </style>
+    <div id="app" class="col-sm-12">
+        <div class="offset">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>User ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="p in displayedPosts">
+                        <td>{{p.first}}</td>
+                        <td>{{p.last}}</td>
+                        <td>
+                            {{p.suffix}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <button type="button" class="page-link" v-if="page != 1" v-on:click="page--"> Previous </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link" v-for="pageNumber in pages.slice(page-1, page+5)" v-on:click="page = pageNumber"> {{pageNumber}} </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" v-on:click="page++" v-if="page < pages.length" class="page-link"> Next </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <script>
+
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    posts: [''],
+                    page: 1,
+                    perPage: 9,
+                    pages: [],
+                }
+            },
+            methods: {
+                getPosts() {
+                    let data = [];
+                    for (let i = 0; i < 50; i++) {
+                        this.posts.push({
+                            first: 'John',
+                            last: 'Doe',
+                            suffix: '#' + i
+                        });
+                    }
+                },
+                setPages() {
+                    let numberOfPages = Math.ceil(this.posts.length / this.perPage);
+                    for (let index = 1; index <= numberOfPages; index++) {
+                        this.pages.push(index);
+                    }
+                },
+                paginate(posts) {
+                    let page = this.page;
+                    let perPage = this.perPage;
+                    let from = (page * perPage) - perPage;
+                    let to = (page * perPage);
+                    return posts.slice(from, to);
+                }
+            },
+            computed: {
+                displayedPosts() {
+                    return this.paginate(this.posts);
+                },
+
+                filteredHeroes: function () {
+                    var sortKey = this.sortKey;
+                    var filterKey = this.filterKey && this.filterKey.toLowerCase();
+                    var order = this.sortOrders[sortKey] || 1;
+                    var heroes = this.heroes;
+                    if (filterKey) {
+                        heroes = heroes.filter(function (row) {
+                            return Object.keys(row).some(function (key) {
+                                return (
+                                    String(row[key])
+                                        .toLowerCase()
+                                        .indexOf(filterKey) > -1
+                                );
+                            });
+                        });
+                    }
+                    if (sortKey) {
+                        heroes = heroes.slice().sort(function (a, b) {
+                            a = a[sortKey];
+                            b = b[sortKey];
+                            return (a === b ? 0 : a > b ? 1 : -1) * order;
+                        });
+                    }
+                    return heroes;
+                },
+                filters: {
+                    capitalize: function (str) {
+                        return str.charAt(0).toUpperCase() + str.slice(1);
+                    }
+                },
+                methods: {
+                    sortBy: function (key) {
+                        this.sortKey = key;
+                        this.sortOrders[key] = this.sortOrders[key] * -1;
+                    }
+                }
+            },
+            watch: {
+                posts() {
+                    this.setPages();
+                }
+            },
+            created() {
+                this.getPosts();
+            },
+            filters: {
+                trimWords(value) {
+                    return value.split(" ").splice(0, 20).join(" ") + '...';
+                }
+            }
+        })
+
+    </script>
+    <style>
+        body {
+            font-family: Helvetica Neue, Arial, sans-serif;
+            font-size: 14px;
+            color: #444;
+        }
+
+        table {
+            border: 2px solid #42b983;
+            border-radius: 3px;
+            background-color: #fff;
+        }
+
+        th {
+            background-color: #42b983;
+            color: rgba(255, 255, 255, 0.66);
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        th,
+        td {
+            min-width: 120px;
+            padding: 10px 20px;
+        }
+
+            th.active {
+                color: #fff;
+            }
+
+                th.active .arrow {
+                    opacity: 1;
+                }
+
+        .arrow {
+            display: inline-block;
+            vertical-align: middle;
+            width: 0;
+            height: 0;
+            margin-left: 5px;
+            opacity: 0.66;
+        }
+
+            .arrow.asc {
+                border-left: 4px solid transparent;
+                border-right: 4px solid transparent;
+                border-bottom: 4px solid #fff;
+            }
+
+            .arrow.dsc {
+                border-left: 4px solid transparent;
+                border-right: 4px solid transparent;
+                border-top: 4px solid #fff;
+            }
+
+    </style>
     <div id="demo">
         <form id="search">
             Search <input name="query" v-model="searchQuery" />
