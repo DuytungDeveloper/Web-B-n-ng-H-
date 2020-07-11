@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -7,25 +6,25 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ECommerce.ConfigDI;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.OpenApi.Models;
 using ECommerce.Model.EFModel;
 using ECommerce.Model.EFModel.Models;
+using System.Globalization;
+using System.Threading;
+using ECommerce.Middlewares;
 
 namespace ECommerce
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
-        { 
+        {
             Configuration = configuration;
         }
-
+      
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -63,13 +62,30 @@ namespace ECommerce
                     };
                 });
 
-           
+
             #endregion
-            
+
             services.RegisterServices();// DI
             services.AddMvc();
             services.AddOptions();
-       
+
+            #region Cài đặt đa ngữ hỗ trợ (Đa ngữ)
+            var cultureLt = new CultureInfo("vi");
+            var cultureEn = new CultureInfo("en");
+            var supportedCultures = new[] { cultureEn, cultureLt };
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
+            // Cài đặt ngôn ngữ mặc định của hệ thống
+            CultureInfo ci = new CultureInfo("vi");
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+            //Add them to IServiceCollection(Thêm nó vào Service)
+            services.AddLocalization(); // DI
+            #endregion
 
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -85,20 +101,34 @@ namespace ECommerce
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles(); 
+            app.UseStaticFiles();
             app.UseRouting();
-
+            #region Cài đặt đa ngữ
+            // Inject  Service của nó vào
+            //app.UseRequestLocalization();
+            app.UseMiddleware<LanguageMiddleware>();
+            #endregion
             #region
             app.UseAuthentication();
             app.UseAuthorization();
             #endregion
-            #region NghiaTV config
+            #region Cài đặt đường dẫn cho hệ thống
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapAreaControllerRoute("admin","admin", "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute("default", "{language:length(2)}/{controller}/{action}",
+                    defaults: new
+                    {
+                        language = Thread.CurrentThread.CurrentCulture.ToString().ToLower(),
+                        controller = "Home",
+                        action = "Index"
+                    }
+                    );
+
+                endpoints.MapAreaControllerRoute("areaRoute","Admin",
+                 pattern: "admin/{controller}/{action}",
+                 defaults: new { controller = "Home", action = "Index"});
             });
-          
             #endregion
 
         }

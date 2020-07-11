@@ -7,9 +7,8 @@ namespace ECommerce.Model.EFModel.Models
     {
         public int Id { get; set; }
         public string Street { get; set; }
-        public int? CityId { get; set; }
-        public int? DistrictId { get; set; }
-        public int? WardId { get; set; }
-        public int? Status { get; set; }
+        public int WardId { get; set; } // phường xã 
+        public virtual Ward Ward { get; set; }
+        public int Status { get; set; }
     }
 }

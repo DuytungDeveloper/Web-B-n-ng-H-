@@ -20,7 +20,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EFModel\" />
-  </ItemGroup>
 </Project>

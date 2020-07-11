@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ECommerce.Common.FormatData;
 using ECommerce.Model.EFModel.Models;
+using ECommerce.Model.Result;
 using ECommerce.Services.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
     //order từng sản phẩm 
+    [Area("Admin")]
+    // [Route("Admin/[controller]")]
     public class OrderItemsController : Controller
     {
-        private readonly IUnitOfWork<OrderItems> _UnitOfWork;
-        public OrderItemsController(IUnitOfWork<OrderItems> UnitOfWork)
+        private readonly IUnitOfWork<OrderItem> _UnitOfWork;
+        public OrderItemsController(IUnitOfWork<OrderItem> UnitOfWork)
         {
             _UnitOfWork = UnitOfWork;
 
@@ -26,9 +28,9 @@ namespace ECommerce.Areas.Admin.Controllers
 
         #region Action
         [HttpGet]
-        public async Task<ActionResult<ResultListData<OrderItems>>> GetAll()
+        public async Task<ActionResult<ResultListData<OrderItem>>> GetAll()
         {
-            ResultListData<OrderItems> data = new ResultListData<OrderItems>();
+            ResultListData<OrderItem> data = new ResultListData<OrderItem>();
             var ListOrderItems = await _UnitOfWork.OrderItems.GetAll();
             if (data == null) return data;
             data.Data = ListOrderItems;
@@ -38,11 +40,11 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
 
-        [HttpGet("{Id}")]
-        public async Task<ActionResult<ResultData<OrderItems>>> GetById([FromRoute] int Id)
+        
+        public async Task<ActionResult<ResultData<OrderItem>>> GetById([FromRoute] int Id)
         {
-            ResultData<OrderItems> data = new ResultData<OrderItems>();
-            OrderItems Item = await _UnitOfWork.OrderItems.GetById(Id);
+            ResultData<OrderItem> data = new ResultData<OrderItem>();
+            OrderItem Item = await _UnitOfWork.OrderItems.GetById(Id);
             if (data == null) return data;
             data.Data = Item;
             data.Success = true;
@@ -50,14 +52,14 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
         [HttpPost]
-        public async Task<ActionResult<OrderItems>> Add([FromBody] OrderItems body)
+        public async Task<ActionResult<OrderItem>> Add([FromBody] OrderItem body)
         {
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            ResultData<OrderItems> data = new ResultData<OrderItems>();
+            ResultData<OrderItem> data = new ResultData<OrderItem>();
             await _UnitOfWork.OrderItems.Insert(body);
             await _UnitOfWork.Commit();
             data.Data = body;
@@ -66,7 +68,7 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
         [HttpPut("{Id}")]
-        public async Task<ActionResult<OrderItems>> Update([FromBody] OrderItems body, [FromRoute] int Id = 0)
+        public async Task<ActionResult<OrderItem>> Update([FromBody] OrderItem body, [FromRoute] int Id = 0)
         {
             if (!ModelState.IsValid || Id < 1)
             {
@@ -74,7 +76,7 @@ namespace ECommerce.Areas.Admin.Controllers
             }
 
             var GetItem = await _UnitOfWork.OrderItems.GetById(Id);
-            ResultData<OrderItems> data = new ResultData<OrderItems>();
+            ResultData<OrderItem> data = new ResultData<OrderItem>();
             if (GetItem == null)
                 return Ok(data);
             #region
@@ -91,14 +93,14 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(GetItem);
         }
         [HttpDelete("{Id}")]
-        public async Task<ActionResult<ActionResult<OrderItems>>> Delete([FromRoute] int Id = 0)
+        public async Task<ActionResult<ActionResult<OrderItem>>> Delete([FromRoute] int Id = 0)
         {
             if (Id < 1)
             {
                 return BadRequest(ModelState);
             }
-            ResultData<OrderItems> data = new ResultData<OrderItems>();
-            OrderItems GetItem = await _UnitOfWork.OrderItems.GetById(Id);
+            ResultData<OrderItem> data = new ResultData<OrderItem>();
+            OrderItem GetItem = await _UnitOfWork.OrderItems.GetById(Id);
             if (GetItem == null)
                 return Ok(data);
 

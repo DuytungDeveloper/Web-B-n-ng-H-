@@ -16,25 +16,29 @@ namespace ECommerce.Model.EFModel
                IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
-      
 
+        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Address> Address { get; set; }
-        public virtual DbSet<BrandProduct> BrandProduct { get; set; }
-        public virtual DbSet<Chatelaine> Chatelaine { get; set; }
-        public virtual DbSet<City> City { get; set; }
-        public virtual DbSet<ColorClockFace> ColorClockFace { get; set; }
-        public virtual DbSet<Customer> Customer { get; set; }
-        public virtual DbSet<District> District { get; set; }
-        public virtual DbSet<Hem> Hem { get; set; }
-        public virtual DbSet<HuntingCase> HuntingCase { get; set; }
+        public virtual DbSet<BrandProduct> BrandProducts { get; set; }
+        public virtual DbSet<Chatelaine> Chatelaines { get; set; }
+        public virtual DbSet<City> Citys { get; set; }
+        public virtual DbSet<ColorClockFace> ColorClockFaces { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<District> Districts { get; set; }
+        public virtual DbSet<Hem> Hems { get; set; }
+        public virtual DbSet<HuntingCase> HuntingCases { get; set; }
         public virtual DbSet<Images> Images { get; set; }
-        public virtual DbSet<Machine> Machine { get; set; }
-        public virtual DbSet<MadeIn> MadeIn { get; set; }
-        public virtual DbSet<OrderItems> OrderItems { get; set; }
+        public virtual DbSet<Machine> Machines { get; set; }
+        public virtual DbSet<MadeIn> MadeIns { get; set; }
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<OrderStatus> OrderStatus { get; set; }
-        public virtual DbSet<Orders> Orders { get; set; }
-        public virtual DbSet<Origin> Origin { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
-        public virtual DbSet<Ward> Ward { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Origin> Origins { get; set; }
+        public virtual DbSet<Ward> Wards { get; set; }
+		
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

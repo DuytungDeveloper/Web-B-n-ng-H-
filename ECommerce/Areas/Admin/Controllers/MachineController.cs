@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ECommerce.Common.FormatData;
 using ECommerce.Model.EFModel.Models;
+using ECommerce.Model.Result;
 using ECommerce.Services.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
     //Đồng có các dòng máy tự động , không tự dộng ...
+    [Area("Admin")]
+    // [Route("Admin/[controller]")]
     public class MachineController : Controller
     {
 
@@ -29,7 +31,7 @@ namespace ECommerce.Areas.Admin.Controllers
         public async Task<ActionResult<ResultListData<Machine>>> GetAll()
         {
             ResultListData<Machine> data = new ResultListData<Machine>();
-            var ListMachine = await _UnitOfWork.Machine.GetAll();
+            var ListMachine = await _UnitOfWork.Machines.GetAll();
             if (data == null) return data;
             data.Data = ListMachine;
             data.Success = true;
@@ -38,11 +40,11 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
 
-        [HttpGet("{Id}")]
+        
         public async Task<ActionResult<ResultData<Machine>>> GetById([FromRoute] int Id)
         {
             ResultData<Machine> data = new ResultData<Machine>();
-            Machine Item = await _UnitOfWork.Machine.GetById(Id);
+            Machine Item = await _UnitOfWork.Machines.GetById(Id);
             if (data == null) return data;
             data.Data = Item;
             data.Success = true;
@@ -58,7 +60,7 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
             ResultData<Machine> data = new ResultData<Machine>();
-            await _UnitOfWork.Machine.Insert(body);
+            await _UnitOfWork.Machines.Insert(body);
             await _UnitOfWork.Commit();
             data.Data = body;
             data.Success = body.Id > 0 ? true : false;
@@ -73,14 +75,14 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
 
-            var GetItem = await _UnitOfWork.Machine.GetById(Id);
+            var GetItem = await _UnitOfWork.Machines.GetById(Id);
             ResultData<Machine> data = new ResultData<Machine>();
             if (GetItem == null)
                 return Ok(data);
             #region
             GetItem.Name = body.Name;
             #endregion
-            await _UnitOfWork.Machine.Update(GetItem, true);
+            await _UnitOfWork.Machines.Update(GetItem, true);
             data.Data = body;
             data.Success = true;
             data.Message = "Thành công !";
@@ -94,12 +96,12 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
             ResultData<Machine> data = new ResultData<Machine>();
-            Machine GetItem = await _UnitOfWork.Machine.GetById(Id);
+            Machine GetItem = await _UnitOfWork.Machines.GetById(Id);
             if (GetItem == null)
                 return Ok(data);
 
             GetItem.Status = 1;//delete
-            await _UnitOfWork.Machine.Delete(GetItem, true);
+            await _UnitOfWork.Machines.Delete(GetItem, true);
             data.Data = GetItem;
             data.Success = true;
             data.Message = "Thành công !";
