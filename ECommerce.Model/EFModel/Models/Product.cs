@@ -7,33 +7,30 @@ namespace ECommerce.Model.EFModel.Models
     public partial class Product : BaseModel, IBaseModel
     {
 
-        [Required]
         public int Id { get; set; }
-       
-        public int IdOrigin { get; set; }
+        public int? OriginId { get; set; }
         public virtual Origin Origin { get; set; }
-       
-        public int IdBrandProduct { get; set; }
-        public virtual BrandProduct BrandProduct { get; set; }
-      
-        public int? IdHuntingCase { get; set; }
+        public int? HuntingCaseId { get; set; }
         public virtual HuntingCase HuntingCase { get; set; }
        
-        public int IdChatelaine { get; set; }
+        public int? ChatelaineId { get; set; }
         public virtual Chatelaine Chatelaine { get; set; }
         
-        public int IdColorClockFace { get; set; }
+        public int? ColorClockFaceId { get; set; }
         public virtual ColorClockFace ColorClockFace { get; set; }
       
-        public int IdMadeIn { get; set; }
+        public int? MadeInId { get; set; }
         public virtual MadeIn MadeIn { get; set; }
        
-        public int IdHem { get; set; }
+        public int? HemId { get; set; }
         public virtual Hem Hem { get; set; }
        
-        public int IdMachine { get; set; }
+        public int? MachineId { get; set; }
         public virtual Machine Machine { get; set; }
-     
+
+        public int? BrandProductId { get; set; }
+        public virtual BrandProduct BrandProduct { get; set; }
+
         public bool Sex { get; set; }
         [Required]
         public string Name { get; set; }

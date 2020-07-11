@@ -31,7 +31,7 @@ namespace ECommerce.Areas.Admin.Controllers
         public async Task<ActionResult<ResultListData<Hem>>> GetAll()
         {
             ResultListData<Hem> data = new ResultListData<Hem>();
-            var ListHem = await _UnitOfWork.Hem.GetAll();
+            var ListHem = await _UnitOfWork.Hems.GetAll();
             if (data == null) return data;
             data.Data = ListHem;
             data.Success = true;
@@ -44,7 +44,7 @@ namespace ECommerce.Areas.Admin.Controllers
         public async Task<ActionResult<ResultData<Hem>>> GetById([FromRoute] int Id)
         {
             ResultData<Hem> data = new ResultData<Hem>();
-            Hem Item = await _UnitOfWork.Hem.GetById(Id);
+            Hem Item = await _UnitOfWork.Hems.GetById(Id);
             if (data == null) return data;
             data.Data = Item;
             data.Success = true;
@@ -60,7 +60,7 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
             ResultData<Hem> data = new ResultData<Hem>();
-            await _UnitOfWork.Hem.Insert(body);
+            await _UnitOfWork.Hems.Insert(body);
             await _UnitOfWork.Commit();
             data.Data = body;
             data.Success = body.Id > 0 ? true : false;
@@ -75,14 +75,14 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
 
-            var GetItem = await _UnitOfWork.Hem.GetById(Id);
+            var GetItem = await _UnitOfWork.Hems.GetById(Id);
             ResultData<Hem> data = new ResultData<Hem>();
             if (GetItem == null)
                 return Ok(data);
             #region
             GetItem.Name = body.Name;
             #endregion
-            await _UnitOfWork.Hem.Update(GetItem, true);
+            await _UnitOfWork.Hems.Update(GetItem, true);
             data.Data = body;
             data.Success = true;
             data.Message = "Thành công !";
@@ -96,12 +96,12 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
             ResultData<Hem> data = new ResultData<Hem>();
-            Hem GetItem = await _UnitOfWork.Hem.GetById(Id);
+            Hem GetItem = await _UnitOfWork.Hems.GetById(Id);
             if (GetItem == null)
                 return Ok(data);
 
             GetItem.Status = 1;//delete
-            await _UnitOfWork.Hem.Delete(GetItem, true);
+            await _UnitOfWork.Hems.Delete(GetItem, true);
             data.Data = GetItem;
             data.Success = true;
             data.Message = "Thành công !";

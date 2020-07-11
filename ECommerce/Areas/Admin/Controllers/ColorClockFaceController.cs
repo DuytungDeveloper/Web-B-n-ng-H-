@@ -30,7 +30,7 @@ namespace ECommerce.Areas.Admin.Controllers
         public async Task<ActionResult<ResultListData<ColorClockFace>>> GetAll()
         {
             ResultListData<ColorClockFace> data = new ResultListData<ColorClockFace>();
-            var ListColorClockFace = await _UnitOfWork.ColorClockFace.GetAll();
+            var ListColorClockFace = await _UnitOfWork.ColorClockFaces.GetAll();
             if (data == null) return data;
             data.Data = ListColorClockFace;
             data.Success = true;
@@ -43,7 +43,7 @@ namespace ECommerce.Areas.Admin.Controllers
         public async Task<ActionResult<ResultData<ColorClockFace>>> GetById([FromRoute] int Id)
         {
             ResultData<ColorClockFace> data = new ResultData<ColorClockFace>();
-            ColorClockFace Item = await _UnitOfWork.ColorClockFace.GetById(Id);
+            ColorClockFace Item = await _UnitOfWork.ColorClockFaces.GetById(Id);
             if (data == null) return data;
             data.Data = Item;
             data.Success = true;
@@ -59,7 +59,7 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
             ResultData<ColorClockFace> data = new ResultData<ColorClockFace>();
-            await _UnitOfWork.ColorClockFace.Insert(body);
+            await _UnitOfWork.ColorClockFaces.Insert(body);
             await _UnitOfWork.Commit();
             data.Data = body;
             data.Success = body.Id > 0 ? true : false;
@@ -74,14 +74,14 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
 
-            var GetItem = await _UnitOfWork.ColorClockFace.GetById(Id);
+            var GetItem = await _UnitOfWork.ColorClockFaces.GetById(Id);
             ResultData<ColorClockFace> data = new ResultData<ColorClockFace>();
             if (GetItem == null)
                 return Ok(data);
             #region
             GetItem.Name = body.Name;
             #endregion
-            await _UnitOfWork.ColorClockFace.Update(GetItem, true);
+            await _UnitOfWork.ColorClockFaces.Update(GetItem, true);
             data.Data = body;
             data.Success = true;
             data.Message = "Thành công !";
@@ -95,12 +95,12 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
             ResultData<ColorClockFace> data = new ResultData<ColorClockFace>();
-            ColorClockFace GetItem = await _UnitOfWork.ColorClockFace.GetById(Id);
+            ColorClockFace GetItem = await _UnitOfWork.ColorClockFaces.GetById(Id);
             if (GetItem == null)
                 return Ok(data);
 
             GetItem.Status = 1;//delete
-            await _UnitOfWork.ColorClockFace.Delete(GetItem, true);
+            await _UnitOfWork.ColorClockFaces.Delete(GetItem, true);
             data.Data = GetItem;
             data.Success = true;
             data.Message = "Thành công !";

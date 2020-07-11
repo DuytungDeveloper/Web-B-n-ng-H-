@@ -6,7 +6,6 @@ namespace ECommerce.Model.EFModel.Models
 {
     public partial class Machine : BaseModel, IBaseModel
     {
-        [Required]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }

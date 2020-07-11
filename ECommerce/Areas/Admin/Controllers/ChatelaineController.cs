@@ -30,7 +30,7 @@ namespace ECommerce.Areas.Admin.Controllers
         public async Task<ActionResult<ResultListData<Chatelaine>>> GetAll()
         {
             ResultListData<Chatelaine> data = new ResultListData<Chatelaine>();
-            var ListChatelaine = await _UnitOfWork.Chatelaine.GetAll();
+            var ListChatelaine = await _UnitOfWork.Chatelaines.GetAll();
             if (data == null) return data;
             data.Data = ListChatelaine;
             data.Success = true;
@@ -43,7 +43,7 @@ namespace ECommerce.Areas.Admin.Controllers
         public async Task<ActionResult<ResultData<Chatelaine>>> GetById([FromRoute] int Id)
         {
             ResultData<Chatelaine> data = new ResultData<Chatelaine>();
-            Chatelaine Item = await _UnitOfWork.Chatelaine.GetById(Id);
+            Chatelaine Item = await _UnitOfWork.Chatelaines.GetById(Id);
             if (data == null) return data;
             data.Data = Item;
             data.Success = true;
@@ -59,7 +59,7 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
             ResultData<Chatelaine> data = new ResultData<Chatelaine>();
-            await _UnitOfWork.Chatelaine.Insert(body);
+            await _UnitOfWork.Chatelaines.Insert(body);
             await _UnitOfWork.Commit();
             data.Data = body;
             data.Success = body.Id > 0 ? true : false;
@@ -74,14 +74,14 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
 
-            var GetItem = await _UnitOfWork.Chatelaine.GetById(Id);
+            var GetItem = await _UnitOfWork.Chatelaines.GetById(Id);
             ResultData<Chatelaine> data = new ResultData<Chatelaine>();
             if (GetItem == null)
                 return Ok(data);
             #region
             GetItem.Name = body.Name;
             #endregion
-            await _UnitOfWork.Chatelaine.Update(GetItem, true);
+            await _UnitOfWork.Chatelaines.Update(GetItem, true);
             data.Data = body;
             data.Success = true;
             data.Message = "Thành công !";
@@ -95,12 +95,12 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
             ResultData<Chatelaine> data = new ResultData<Chatelaine>();
-            Chatelaine GetItem = await _UnitOfWork.Chatelaine.GetById(Id);
+            Chatelaine GetItem = await _UnitOfWork.Chatelaines.GetById(Id);
             if (GetItem == null)
                 return Ok(data);
 
             GetItem.Status = 1;//delete
-            await _UnitOfWork.Chatelaine.Delete(GetItem, true);
+            await _UnitOfWork.Chatelaines.Delete(GetItem, true);
             data.Data = GetItem;
             data.Success = true;
             data.Message = "Thành công !";

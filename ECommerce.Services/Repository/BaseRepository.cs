@@ -18,7 +18,12 @@ namespace ECommerce.Services.Repository
         }
         public async virtual Task<IEnumerable<TEntity>> GetAll()
         {
-             return await dbSet.ToListAsync();
+            var _type = typeof(TEntity);
+            var _fi = _type.GetFields();
+            var _pi = _type.GetProperties();
+            var _ordinalMap = new Dictionary<string, int>();
+
+            return await dbSet.ToListAsync();
         }
         public  async virtual Task<TEntity> GetById(int id)
         {
