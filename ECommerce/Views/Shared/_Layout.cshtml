@@ -1,49 +1,72 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ECommerce</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <title>PWATCH - Đỉnh cao trang sức - @ViewData["Title"]</title>
+
+
+    <link rel="stylesheet" type="text/css" href="/assets/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/lib/select2/css/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/lib/jquery.bxslider/jquery.bxslider.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/lib/owl.carousel/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/lib/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/reset.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css" /> -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/index.css" />
+
+
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+    @RenderSection("header", required: false)
+
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ECommerce</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <partial name="_HeaderPartial" />
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - ECommerce - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+    @RenderBody()
+
+
+
+    <partial name="_FooterPartial" />
+
+
+
+
+    <a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a>
+    <!-- Script-->
+    <script type="text/javascript" src="/assets/lib/jquery/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assets/lib/select2/js/select2.min.js"></script>
+    <script type="text/javascript" src="/assets/lib/jquery.bxslider/jquery.bxslider.min.js"></script>
+    <script type="text/javascript" src="/assets/lib/owl.carousel/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/assets/lib/jquery.countdown/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.actual.min.js"></script>
+    <script type="text/javascript" src="/assets/js/theme-script.js"></script>
+
+
+    @*<script src="~/js/site.js" asp-append-version="true"></script>*@
+    <script type="text/javascript">
+        $(document).on('click', '.open-cate', function () {
+            $(this).closest('.vertical-menu-content').find('li.cat-link-orther').each(function () {
+                $(this).slideDown();
+            });
+            $(this).addClass('colse-cate').removeClass('open-cate').html('Close');
+        })
+        /* Close category */
+        $(document).on('click', '.colse-cate', function () {
+            $(this).closest('.vertical-menu-content').find('li.cat-link-orther').each(function () {
+                $(this).slideUp();
+            });
+            $(this).addClass('open-cate').removeClass('colse-cate').html('@language.SEE_MORE');
+            return false;
+        })
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

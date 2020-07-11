@@ -1,0 +1,3 @@
+Add Migration vào Model => Quản lý thay đổi DB.
+    -   Add-Migration InitialMigration -Context ECommerceContext
+    -   Update-Database InitialMigration -Context ECommerceContext

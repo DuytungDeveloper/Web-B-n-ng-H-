@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="assets/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lib/select2/css/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lib/jquery.bxslider/jquery.bxslider.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lib/owl.carousel/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lib/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/index.css" />
+    
+    <title>PWATCH - Đỉnh cao trang sức</title>
+
+</head>
+<body class="category-page">
+<!-- HEADER -->
+<div id="header" class="header">
+    <div class="top-header">
+        <div class="container">
+            <div class="nav-top-links">
+                <a class="first-item" href="#"><img alt="phone" src="assets/images/phone.png" />00-62-658-658</a>
+                <a href="#"><img alt="email" src="assets/images/email.png" />Liên hệ với chúng tôi ngay!</a>
+            </div>
+            <div class="currency ">
+                <div class="dropdown">
+                      <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">VNĐ</a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">VNĐ</a></li>
+                        <li><a href="#">Dollar</a></li>
+                      </ul>
+                </div>
+            </div>
+            <div class="language ">
+                <div class="dropdown">
+                      <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                      <img alt="email" src="assets/images/fr.jpg" />Việt Nam
+                      
+                      </a>
+                      <ul class="dropdown-menu" role="menu">
+                          <li><a href="#"><img alt="email" src="assets/images/fr.jpg" />Việt Nam</a></li>
+                        <li><a href="#"><img alt="email" src="assets/images/en.jpg" />English</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="support-link">
+                <a href="#">Dịch vụ</a>
+                <a href="#">Hỗ trợ</a>
+            </div>
+
+            <div id="user-info-top" class="user-info pull-right">
+                <div class="dropdown">
+                    <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><span>Tài khoản</span></a>
+                    <ul class="dropdown-menu mega_dropdown" role="menu">
+                        <li><a href="login.html">Đăng nhập</a></li>
+                        <li><a href="#">So sánh</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.top-header -->
+    <!-- MAIN HEADER -->
+    <div class="container main-header">
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 logo">
+                <a href="index.html"><img alt="Kute shop - themelock.com" src="assets/images/main-logo.png" /></a>
+            </div>
+            <div class="col-xs-7 col-sm-7 header-search-box">
+                <form class="form-inline">
+                      <div class="form-group form-category">
+                        <select class="select-category">
+                            <option value="2">Tất cả danh mục</option>
+                            <option value="1">Nam</option>
+                            <option value="2">Nữ</option>
+                        </select>
+                      </div>
+                      <div class="form-group input-serach">
+                        <input type="text"  placeholder="Keyword here...">
+                      </div>
+                      <button type="submit" class="pull-right btn-search"></button>
+                </form>
+            </div>
+            <div id="cart-block" class="col-xs-5 col-sm-2 shopping-cart-box">
+                <a class="cart-link" href="order.html">
+                    <span class="title">Giỏ hàng</span>
+                    <span class="total">2 sản phẩm</span>
+                    <span class="notify notify-left">2</span>
+                </a>
+                <div class="cart-block">
+                    <div class="cart-block-content">
+                        <h5 class="cart-title">2 sản phẩm trong giỏ hàng</h5>
+                        <div class="cart-block-list">
+                            <ul>
+                                <li class="product-info">
+                                    <div class="p-left">
+                                        <a href="#" class="remove_link"></a>
+                                        <a href="#">
+                                        <img class="img-responsive" src="assets/data/product-100x122.jpg" alt="p10">
+                                        </a>
+                                    </div>
+                                    <div class="p-right">
+                                        <p class="p-name">Donec Ac Tempus</p>
+                                        <p class="p-rice">5.000.000 VNĐ</p>
+                                        <p>Số lượng: 1</p>
+                                    </div>
+                                </li>
+                                <li class="product-info">
+                                    <div class="p-left">
+                                        <a href="#" class="remove_link"></a>
+                                        <a href="#">
+                                        <img class="img-responsive" src="assets/data/product-s5-100x122.jpg" alt="p10">
+                                        </a>
+                                    </div>
+                                    <div class="p-right">
+                                        <p class="p-name">Donec Ac Tempus</p>
+                                        <p class="p-rice">4.000.000 VNĐ</p>
+                                        <p>Số lượng: 1</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="toal-cart">
+                            <span>Tổng cộng</span>
+                            <span class="toal-price pull-right">10.000.000 VNĐ</span>
+                        </div>
+                        <div class="cart-buttons">
+                            <a href="order.html" class="btn-check-out">Thanh toán</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!-- END MANIN HEADER -->
+    <div id="nav-top-menu" class="nav-top-menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3" id="box-vertical-megamenus">
+                    <div class="box-vertical-megamenus">
+                        <h4 class="title">
+                            <span class="title-menu">Danh mục</span>
+                            <span class="btn-open-mobile pull-right home-page"><i class="fa fa-bars"></i></span>
+                        </h4>
+                    <div class="vertical-menu-content is-home">
+                        <ul class="vertical-menu-list">
+                            <li><a href="#"><img class="icon-menu" alt="Funky roots" src="assets/data/1.png">Đồng hồ nam</a></li>
+                            <li>
+                                <a class="parent" href="#"><img class="icon-menu" alt="Funky roots" src="assets/data/2.png">Sports &amp; Outdoors</a>
+                                <div class="vertical-dropdown-menu">
+                                    <div class="vertical-groups col-sm-12">
+                                        <div class="mega-group col-sm-4">
+                                            <h4 class="mega-group-header"><span>Tennis</span></h4>
+                                            <ul class="group-link-default">
+                                                <li><a href="#">Tennis</a></li>
+                                                <li><a href="#">Coats &amp; Jackets</a></li>
+                                                <li><a href="#">Blouses &amp; Shirts</a></li>
+                                                <li><a href="#">Tops &amp; Tees</a></li>
+                                                <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
+                                                <li><a href="#">Intimates</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="mega-group col-sm-4">
+                                            <h4 class="mega-group-header"><span>Swimming</span></h4>
+                                            <ul class="group-link-default">
+                                                <li><a href="#">Dresses</a></li>
+                                                <li><a href="#">Coats &amp; Jackets</a></li>
+                                                <li><a href="#">Blouses &amp; Shirts</a></li>
+                                                <li><a href="#">Tops &amp; Tees</a></li>
+                                                <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
+                                                <li><a href="#">Intimates</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="mega-group col-sm-4">
+                                            <h4 class="mega-group-header"><span>Shoes</span></h4>
+                                            <ul class="group-link-default">
+                                                <li><a href="#">Dresses</a></li>
+                                                <li><a href="#">Coats &amp; Jackets</a></li>
+                                                <li><a href="#">Blouses &amp; Shirts</a></li>
+                                                <li><a href="#">Tops &amp; Tees</a></li>
+                                                <li><a href="#">Hoodies &amp; Sweatshirts</a></li>
+                                                <li><a href="#">Intimates</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="mega-custom-html col-sm-12">
+                                            <a href="#"><img src="assets/data/banner-megamenu.jpg" alt="Banner"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a href="#"><img class="icon-menu" alt="Funky roots" src="assets/data/3.png">Đồng hồ nữ</a></li>
+                            <li><a href="#"><img class="icon-menu" alt="Funky roots" src="assets/data/4.png">Đồng hồ cặp</a></li>
+                            <li>
+                                <a class="parent" href="#">
+                                <img class="icon-menu" alt="Funky roots" src="assets/data/5.png">Đồng hồ trẻ em</a>
+                                <div class="vertical-dropdown-menu">
+                                        <div class="vertical-groups col-sm-12">
+                                            <div class="mega-group col-sm-12">
+                                                <h4 class="mega-group-header"><span>Special products</span></h4>
+                                                <div class="row mega-products">
+                                                    <div class="col-sm-3 mega-product">
+                                                        <div class="product-avatar">
+                                                            <a href="#"><img src="assets/images/product-1.jpg" alt="product1"></a>
+                                                        </div>
+                                                        <div class="product-name">
+                                                            <a href="#">Fashion hand bag</a>
+                                                        </div>
+                                                        <div class="product-price">
+                                                            <div class="new-price">$38</div>
+                                                            <div class="old-price">$45</div>
+                                                        </div>
+                                                        <div class="product-star">
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star-half-o"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3 mega-product">
+                                                        <div class="product-avatar">
+                                                            <a href="#"><img src="assets/images/product-1.jpg" alt="product1"></a>
+                                                        </div>
+                                                        <div class="product-name">
+                                                            <a href="#">Fashion hand bag</a>
+                                                        </div>
+                                                        <div class="product-price">
+                                                            <div class="new-price">$38</div>
+                                                            <div class="old-price">$45</div>
+                                                        </div>
+                                                        <div class="product-star">
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star-half-o"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3 mega-product">
+                                                        <div class="product-avatar">
+                                                            <a href="#"><img src="assets/images/product-1.jpg" alt="product1"></a>
+                                                        </div>
+                                                        <div class="product-name">
+                                                            <a href="#">Fashion hand bag</a>
+                                                        </div>
+                                                        <div class="product-price">
+                                                            <div class="new-price">$38</div>
+                                                            <div class="old-price">$45</div>
+                                                        </div>
+                                                        <div class="product-star">
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star-half-o"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3 mega-product">
+                                                        <div class="product-avatar">
+                                                            <a href="#"><img src="assets/images/product-1.jpg" alt="product1"></a>
+                                                        </div>
+                                                        <div class="product-name">
+                                                            <a href="#">Fashion hand bag</a>
+                                                        </div>
+                                                        <div class="product-price">
+                                                            <div class="new-price">$38</div>
+                                                            <div class="old-price">$45</div>
+                                                        </div>
+                                                        <div class="product-star">
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star-half-o"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </li>
+                            <!-- <li><a href="#"><img class="icon-menu" alt="Funky roots" src="assets/data/6.png">Toys &amp; Hobbies</a></li>
+                            <li><a href="#"><img class="icon-menu" alt="Funky roots" src="assets/data/7.png">Computers &amp; Networking</a></li>
+                            <li><a href="#"><img class="icon-menu" alt="Funky roots" src="assets/data/8.png">Laptops &amp; Accessories</a></li>
+                            <li><a href="#"><img class="icon-menu" alt="Funky roots" src="assets/data/9.png">Jewelry &amp; Watches</a></li>
+                            <li><a href="#"><img class="icon-menu" alt="Funky roots" src="assets/data/10.png">Flashlights &amp; Lamps</a></li> -->
+                            <li>
+                                <a href="#">
+                                    <img class="icon-menu" alt="Funky roots" src="assets/data/11.png">
+                                    Cameras &amp; Photo
+                                </a>
+                            </li>
+                            <li class="cat-link-orther">
+                                <a href="#">
+                                    <img class="icon-menu" alt="Funky roots" src="assets/data/5.png">
+                                    Television
+                                </a>
+                            </li>
+                            <li class="cat-link-orther">
+                                <a href="#">
+                                    <img class="icon-menu" alt="Funky roots" src="assets/data/7.png">Computers &amp; Networking
+                                </a>
+                            </li>
+                            <li class="cat-link-orther">
+                                <a href="#">
+                                    <img class="icon-menu" alt="Funky roots" src="assets/data/6.png">
+                                    Toys &amp; Hobbies
+                                </a>
+                            </li>
+                            <li class="cat-link-orther">
+                            <a href="#"><img class="icon-menu" alt="Funky roots" src="assets/data/9.png">Jewelry &amp; Watches</a></li>
+                        </ul>
+                        <div class="all-category"><span class="open-cate">Hiện thêm</span></div>
+                    </div>
+                </div>
+                </div>
+                <div id="main-menu" class="col-sm-9 main-menu">
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <a class="navbar-brand" href="#">MENU</a>
+                            </div>
+                            <div id="navbar" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="#">Trang chủ</a></li>
+                                    <li class="dropdown">
+                                        <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Đồng hồ nam</a>
+                                        <ul class="dropdown-menu mega_dropdown" role="menu" style="width: 830px;">
+                                            <li class="block-container col-sm-3">
+                                                <ul class="block">
+                                                    <li class="img_container">
+                                                        <a href="#">
+                                                            <img class="img-responsive" src="assets/data/men.png" alt="sport">
+                                                        </a>
+                                                    </li>
+                                                    <li class="link_container group_header">
+                                                        <a href="#">MEN'S</a>
+                                                    </li>
+                                                    <li class="link_container"><a href="#">Skirts</a></li>
+                                                    <li class="link_container"><a href="#">Jackets</a></li>
+                                                    <li class="link_container"><a href="#">Tops</a></li>
+                                                    <li class="link_container"><a href="#">Scarves</a></li>
+                                                    <li class="link_container"><a href="#">Pants</a></li>
+                                                </ul>
+                                            </li>
+                                             <li class="block-container col-sm-3">
+                                                <ul class="block">
+                                                    <li class="img_container">
+                                                        <a href="#">
+                                                            <img class="img-responsive" src="assets/data/women.png" alt="sport">
+                                                        </a>
+                                                    </li>
+                                                    <li class="link_container group_header">
+                                                        <a href="#">WOMEN'S</a>
+                                                    </li>
+                                                    <li class="link_container"><a href="#">Skirts</a></li>
+                                                    <li class="link_container"><a href="#">Jackets</a></li>
+                                                    <li class="link_container"><a href="#">Tops</a></li>
+                                                    <li class="link_container"><a href="#">Scarves</a></li>
+                                                    <li class="link_container"><a href="#">Pants</a></li>
+                                                </ul>
+                                            </li>
+                                             <li class="block-container col-sm-3">
+                                                <ul class="block">
+                                                    <li class="img_container">
+                                                        <a href="#">
+                                                            <img class="img-responsive" src="assets/data/kid.png" alt="sport">
+                                                        </a>
+                                                    </li>
+                                                    <li class="link_container group_header">
+                                                        <a href="#">Kids</a>
+                                                    </li>
+                                                    <li class="link_container"><a href="#">Shoes</a></li>
+                                                    <li class="link_container"><a href="#">Clothing</a></li>
+                                                    <li class="link_container"><a href="#">Tops</a></li>
+                                                    <li class="link_container"><a href="#">Scarves</a></li>
+                                                    <li class="link_container"><a href="#">Accessories</a></li>
+                                                </ul>
+                                            </li>
+                                             <li class="block-container col-sm-3">
+                                                <ul class="block">
+                                                    <li class="img_container">
+                                                        <a href="#">
+                                                            <img class="img-responsive" src="assets/data/trending.png" alt="sport">
+                                                        </a>
+                                                    </li>
+                                                    <li class="link_container group_header">
+                                                        <a href="#">TRENDING</a>
+                                                    </li>
+                                                    <li class="link_container"><a href="#">Men's Clothing</a></li>
+                                                    <li class="link_container"><a href="#">Kid's Clothing</a></li>
+                                                    <li class="link_container"><a href="#">Women's Clothing</a></li>
+                                                    <li class="link_container"><a href="#">Accessories</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Đồng hồ nữ</a></li>
+                                    <li class="dropdown">
+                                        <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Đồng hồ cặp</a>
+                                            <ul class="mega_dropdown dropdown-menu" style="width: 830px;">
+                                            <li class="block-container col-sm-3">
+                                                <ul class="block">
+                                                    <li class="link_container group_header">
+                                                        <a href="#">Asian</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Vietnamese Pho</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Noodles</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Seafood</a>
+                                                    </li>
+                                                    <li class="link_container group_header">
+                                                        <a href="#">Sausages</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Meat Dishes</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Desserts</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Tops</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Tops</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="block-container col-sm-3">
+                                                <ul class="block">
+                                                    <li class="link_container group_header">
+                                                        <a href="#">European</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Greek Potatoes</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Famous Spaghetti</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Famous Spaghetti</a>
+                                                    </li>
+                                                    <li class="link_container group_header">
+                                                        <a href="#">Chicken</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Italian Pizza</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">French Cakes</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Tops</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Tops</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="block-container col-sm-3">
+                                                <ul class="block">
+                                                    <li class="link_container group_header">
+                                                        <a href="#">FAST</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Hamberger</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Pizza</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Noodles</a>
+                                                    </li>
+                                                    <li class="link_container group_header">
+                                                        <a href="#">Sandwich</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Salad</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Paste</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Tops</a>
+                                                    </li>
+                                                    <li class="link_container">
+                                                        <a href="#">Tops</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="block-container col-sm-3">
+                                                <ul class="block">
+                                                    <li class="img_container">
+                                                        <img src="assets/data/banner-topmenu.jpg" alt="Banner">
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                    <!-- <li class="dropdown">
+                                        <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Phụ kiện</a>
+                                        <ul class="dropdown-menu container-fluid">
+                                            <li class="block-container">
+                                                <ul class="block">
+                                                    <li class="link_container"><a href="#">Mobile</a></li>
+                                                    <li class="link_container"><a href="#">Tablets</a></li>
+                                                    <li class="link_container"><a href="#">Laptop</a></li>
+                                                    <li class="link_container"><a href="#">Memory Cards</a></li>
+                                                    <li class="link_container"><a href="#">Accessories</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul> 
+                                    </li> -->
+                                    <li><a href="faq.html">FAQ</a></li>
+                                    <li><a href="policy.html">Điều khoản</a></li>
+                                    <li><a href="contact.html">Liên hệ</a></li>
+                                    <!-- <li><a href="category.html">Blog</a></li> -->
+                                </ul>
+                            </div><!--/.nav-collapse -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- userinfo on top-->
+            <div id="form-search-opntop">
+            </div>
+            <!-- userinfo on top-->
+            <div id="user-info-opntop">
+            </div>
+            <!-- CART ICON ON MMENU -->
+            <div id="shopping-cart-box-ontop">
+                <i class="fa fa-shopping-cart"></i>
+                <div class="shopping-cart-box-ontop-content"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end header -->
+
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Trang chủ</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span> Chính sách bảo hành</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-12" id="center_column">
+                <h1 class="page-heading" style="text-align: center;">
+                    <span class="page-heading-title2">CHÍNH SÁCH BẢO HÀNH CỦA PWATCH</span>
+                </h1>
+                <article class="entry-detail">
+                    <div class="entry-photo">
+                        <img src="/assets/images/slider-1.png" alt="Blog">
+                    </div>
+                    <div class="content-text clearfix">
+                        <div class="page-content sidebar-position-without responsive-sidebar-bottom">
+                            <div class="row-fluid">
+                            <div class="content span12">
+                            <blockquote>
+                            <p style="text-align: center;"><em><span style="font-family: 'times new roman', times; font-size: 11pt;">Trong quá trình sử dụng, tùy từng thương hiệu – chúng tôi khuyến khích Quý khách hàng tham khảo và tìm hiểu hướng dẫn sử dụng được kèm theo khi mua của mỗi hãng đồng hồ để việc sử dụng được diễn ra một cách chính xác.</span></em></p>
+                            </blockquote>
+                            <p style="text-align: center;"><em><strong><span style="font-family: 'times new roman', times; font-size: 11pt;">Chính sách bảo hành được đề cập dưới đây sẽ hỗ trợ quý khách tối đa hóa quyền lợi khi mua hàng tại Đồng Hồ Hải Triều.</span></strong></em></p>
+                            <p><span style="font-family: 'times new roman', times; font-size: 11pt;">&nbsp;</span></p>
+                            <h3><strong><span style="font-family: 'times new roman', times; font-size: 14pt;">Chế Độ Bảo Hành:&nbsp;</span></strong></h3>
+                            <p><span style="text-decoration: underline;"><strong><span style="font-family: 'times new roman', times; font-size: 11pt;">Tất cả các đồng hồ khi bán ra đều kèm theo 2 phiếu bảo hành:</span></strong></span></p>
+                            <p><span style="font-family: 'times new roman', times; font-size: 11pt;"></span></p><div class="list list-arrow"><p></p>
+                            <ul>
+                            <li><span style="font-family: 'times new roman', times; font-size: 11pt;">1 Phiếu Bảo Hành (hoặc Thẻ Bảo Hành/Sổ Bảo Hành) của hãng có giá trị bảo hành Quốc tế (Thời gian bảo hành tùy theo quy định của từng hãng).</span></li>
+                            <li><span style="font-family: 'times new roman', times; font-size: 11pt;">1 Phiếu Bảo Hành của Hải Triều (Sử dụng để được thay pin miễn phí vĩnh viễn &amp; Hưởng chế độ bảo hành tăng thêm từ 1-4 năm của Hải Triều).</span></li>
+                            </ul>
+                            <p><span style="font-family: 'times new roman', times; font-size: 11pt;"></span></p></div><p></p>
+                            <p><span style="font-family: 'times new roman', times; font-size: 11pt;"><strong>&nbsp;Ví dụ:</strong> Đồng Hồ Citizen có chế độ bảo hành chính hãng: máy = 12 tháng, Pin = 12 tháng.</span></p>
+                            <p><span style="font-family: 'times new roman', times; font-size: 11pt;"></span></p><div class="list list-arrow"><p></p>
+                            <ul>
+                            <li><span style="font-family: 'times new roman', times; font-size: 11pt;">Khi mua tại Hải Triều, Khách hàng sẽ được tặng thêm thời gian bảo hành từ 4 năm về máy. Pin = Vĩnh Viễn.</span></li>
+                            <li><span style="font-family: 'times new roman', times; font-size: 11pt;">Tổng cộng: Khi mua tại Hải Triều, đồng hồ Citizen&nbsp;sẽ được bảo hành máy = 05 năm, Pin = Vĩnh Viễn.</span></li>
+                            </ul>
+                            <p><span style="font-family: 'times new roman', times; font-size: 11pt;"></span></p></div><p></p>
+                            <p><span style="color: #d40000;"><strong><span style="font-family: 'times new roman', times; font-size: 12pt;">Lưu ý:</span></strong></span></p>
+                            <p><span style="font-family: 'times new roman', times; font-size: 11pt;"></span></p><div class="list list-star"><p></p>
+                            <ul>
+                            <li><span style="font-family: 'times new roman', times; font-size: 11pt;">Đối với sản phẩm còn trong thời gian bảo hành Quốc Tế: Quý khách có thể đem tới Hải Triều hoặc bất kỳ nhà trung tâm bảo hành nào của hãng được ghi trên phiếu để yêu cầu được kiểm tra đồng hồ.</span></li>
+                            <li><span style="font-family: 'times new roman', times; font-size: 11pt;">Đối với sản phẩm hết thời gian bảo hành Quốc Tế nhưng vẫn trong thời gian bảo hành tại Hải Triều: Quý khách đem đồng hồ kèm Phiếu Bảo Hành của Hải Triều tới bất kỳ chi nhánh nào của Hải Triều để được hướng dẫn và kiểm tra đồng hồ.</span></li>
+                            </ul>
+                            <p><span style="font-family: 'times new roman', times; font-size: 11pt;"></span></p></div><p></p>
+                            <p><span style="font-family: 'times new roman', times; font-size: 11pt;">&nbsp;</span></p>
+                            <h3><span style="font-size: 14pt;"><strong><span style="font-family: 'times new roman', times, serif; color: #990000;">RED Guarantee là gì?</span></strong></span></h3>
+                            <p><span style="font-family: 'times new roman', times, serif; font-size: 11pt;"></span></p><div class="list list-star"><p></p>
+                            <ul>
+                            <li><span style="font-family: 'times new roman', times, serif; font-size: 11pt;">Đây là một chế độ bảo hành đặc biệt tại Hải Triều dành cho dòng sản phẩm&nbsp;đồng hồ cao cấp.</span></li>
+                            <li><span style="font-family: 'times new roman', times, serif; font-size: 11pt;">Hiện tại, RED Guarantee chỉ được áp dụng cho tất cả các đồng hồ Thụy Sỹ (trừ Candino và Adriatica) bán tại tất cả các chi nhánh.</span></li>
+                            </ul>
+                            <p><span style="font-family: 'times new roman', times, serif; font-size: 11pt;"></span></p></div><p></p>
+                            <h3><span style="font-family: 'times new roman', times, serif; color: #990000; font-size: 12pt;">Với một chiếc đồng hồ được áp dụng RED Guarantee Quý khách được hưởng chế độ:</span></h3>
+                            <p><span style="font-family: 'times new roman', times, serif; font-size: 11pt;"></span></p><div class="list list-arrow"><p></p>
+                            <ul>
+                            <li><span style="font-family: 'times new roman', times, serif; font-size: 11pt;">Tăng thêm 1-2 năm bảo hành tại Hải Triều ngoài chế độ bảo hành Quốc Tế của hãng để có tổng thời gian là 4 năm.</span></li>
+                            <li><span style="font-family: 'times new roman', times, serif; font-size: 11pt;">Ưu tiên bảo hành – Đồng hồ sẽ được xếp vào danh sách ưu tiên bảo hành để nhanh chóng quay lại với Quý khách.</span></li>
+                            <li><span style="font-family: 'times new roman', times, serif; font-size: 11pt;">Giao nhận đồng hồ bảo hành ngay tại nhà Quý khách.</span></li>
+                            <li><span style="font-family: 'times new roman', times, serif; font-size: 11pt;">Cập nhật tình trạng đồng hồ qua điện thoại tới Quý khách. Quý khách được tư vấn, cập nhật tình trạng đồng hồ trong quá trình đồng hồ được bảo hành.</span></li>
+                            <li><span style="font-family: 'times new roman', times, serif; font-size: 11pt;">4 năm đánh bóng đồng hồ miễn phí.</span></li>
+                            </ul>
+                            <p><span style="font-family: 'times new roman', times, serif; font-size: 11pt;"></span></p></div><p></p>
+                            <p>&nbsp;</p>
+                            <h3><span style="font-size: 14pt;"><strong><span style="font-family: 'times new roman', times;">Điều Kiện Được Bảo Hành:</span></strong></span></h3>
+                            <p><span style="font-family: 'times new roman', times; font-size: 11pt;"></span></p><div class="list list-arrow"><p></p>
+                            <ul style="list-style-type: disc;">
+                            <li><span style="font-family: 'times new roman', times; font-size: 11pt;">Bảo hành chỉ có giá trị khi đồng hồ có Phiếu bảo hành của hãng &amp; Phiếu bảo hành của Hải Triều đi kèm, điền chính xác, đầy đủ các thông tin.</span></li>
+                            <li><span style="font-family: 'times new roman', times; font-size: 11pt;">Phiếu bảo hành phải còn nguyên vẹn, không rách, chấp vá, hoen ố, mờ nhạt.</span></li>
+                            <li><span style="font-family: 'times new roman', times; font-size: 11pt;">Còn trong thời gian bảo hành. Thời gian bảo hành được tính từ ngày mua có ghi trên Phiếu Bảo Hành.</span></li>
+                            <li><span style="font-family: 'times new roman', times; font-size: 11pt;">Chỉ bảo hành thay thế mới cho những linh kiện, phụ tùng bị hỏng – không thay thế bằng một chiếc đồng hồ khác.</span></li>
+                            </ul>
+                            <p><span style="font-family: 'times new roman', times; font-size: 11pt;"></span></p></div><p></p>
+                            <p><span style="font-family: 'times new roman', times; font-size: 11pt;">&nbsp;</span></p>
+                            <h3><span style="font-size: 14pt;"><strong><span style="font-family: 'times new roman', times;">Điều Kiện Không Được Bảo Hành:</span></strong></span></h3>
+                            <p><span style="font-family: 'times new roman', times; font-size: 11pt;"></span></p><div class="list list-arrow"><p></p>
+                            <ul>
+                            <li><span style="font-family: 'times new roman', times, serif; font-size: 11pt;">Đồng hồ không có Phiếu bảo hành của hãng và Phiếu bảo hành của Hải Triều đi kèm.</span></li>
+                            <li><span style="font-family: 'times new roman', times, serif; font-size: 11pt;">Các loại dây đeo, khoá, vỏ, màu xi, mặt số, mặt kiếng bị hỏng hóc, vỡ do sử dụng không đúng, tai nạn, lão hóa tự nhiên, va đập, … trong quá trình sử dụng.</span></li>
+                            <li><span style="font-family: 'times new roman', times, serif; font-size: 11pt;">Hỏng hóc do hậu quả gián tiếp của việc sử dụng sai hướng dẫn của hãng có kèm theo đồng hồ.</span></li>
+                            <li><span style="font-family: 'times new roman', times, serif; font-size: 11pt;">Trầy xước về dây hoặc mặt kiếng bị trầy xước, vỡ do va chạm trong quá trình sử dụng.&nbsp;</span></li>
+                            <li><span style="font-family: 'times new roman', times, serif; font-size: 11pt;">Tự ý thay đổi máy móc bên trong, mở ra can thiệp sửa chữa trong thời gian còn bảo hành –&nbsp;Tại những nơi không phải là trung tâm của hãng</span></li>
+                            </ul>
+                            <p><span style="font-family: 'times new roman', times; font-size: 11pt;"></span></p></div><p></p>
+                            <div class="like-share-social">
+                            <div class="fb-like" data-href="https://donghohaitrieu.com/chinh-sach-bao-hanh-cua-dong-ho-hai-trieu" data-width="" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+                            </div>
+                            <div class="hatom-extra" style="display:none;visibility:hidden;"> was last modified: <span class="updated"> April 8th, 2019</span> </div>
+                            <div class="post-navigation">
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                    </div>
+                </article>
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+           <!-- introduce-box -->
+           <div id="introduce-box" class="row">
+               <div class="col-md-3">
+                   <div id="address-box">
+                       <a href="#"><img src="assets/images/main-logo.png" alt="logo" style="height: 150px;width: 100%;"/></a>
+                       <div id="address-list">
+                           <div class="tit-name">Địa chỉ:</div>
+                           <div class="tit-contain">ABC, Quận 2, TP.HCM.</div>
+                           <div class="tit-name">SĐT :</div>
+                           <div class="tit-contain">+00 123 456 789</div>
+                           <div class="tit-name">Email:</div>
+                           <div class="tit-contain">support@business.com</div>
+                       </div>
+                   </div> 
+               </div>
+               <div class="col-md-6">
+                   <div class="row">
+                       <div class="col-sm-4">
+                           <div class="introduce-title">Company</div>
+                           <ul id="introduce-company"  class="introduce-list">
+                               <li><a href="#">Về chúng tôi</a></li>
+                               <li><a href="#">Khách hàng nói gì về chúng tôi</a></li>
+                               <li><a href="#">Chương trình cộng tác viên</a></li>
+                               <li><a href="#">Chính sách && hỗ trợ</a></li>
+                               <li><a href="#">Liên hệ với chúng tôi</a></li>
+                           </ul>
+                       </div>
+                       <div class="col-sm-4">
+                           <div class="introduce-title">Tài khoản của tôi</div>
+                           <ul id = "introduce-Account" class="introduce-list">
+                               <li><a href="#">Đơn hàng của tôi</a></li>
+                               <li><a href="#">Sản phẩm yêu thích của tôi</a></li>
+                               <li><a href="#">Số dư của tôi</a></li>
+                               <li><a href="#">Địa chỉ của tôi</a></li>
+                               <li><a href="#">Viết đánh giá</a></li>
+                           </ul>
+                       </div>
+                       <div class="col-sm-4">
+                           <div class="introduce-title">Hỗ trợ</div>
+                           <ul id = "introduce-support"  class="introduce-list">
+                               <li><a href="#">Khách hàng nói gì về chúng tôi</a></li>
+                               <li><a href="#">Chương trình cộng tác viên</a></li>
+                               <li><a href="#">Chính sách && hỗ trợ</a></li>
+                               <li><a href="#">Liên hệ với chúng tôi</a></li>
+                           </ul>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-3">
+                   <div id="contact-box">
+                       <div class="introduce-title">Viết thư cho chúng tôi</div>
+                       <div class="input-group" id="mail-box">
+                         <input type="text" placeholder="Your Email Address"/>
+                         <span class="input-group-btn">
+                           <button class="btn btn-default" type="button">Gửi</button>
+                         </span>
+                       </div><!-- /input-group -->
+                       <div class="introduce-title">Các trang xã hội</div>
+                       <div class="social-link">
+                           <a href="#"><i class="fa fa-facebook"></i></a>
+                           <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                           <a href="#"><i class="fa fa-vk"></i></a>
+                           <a href="#"><i class="fa fa-twitter"></i></a>
+                           <a href="#"><i class="fa fa-google-plus"></i></a>
+                       </div>
+                   </div>
+                   
+               </div>
+           </div><!-- /#introduce-box -->
+       
+           <!-- #trademark-box -->
+           <div id="trademark-box" class="row">
+               <div class="col-sm-12">
+                   <ul id="trademark-list">
+                       <li id="payment-methods">Hỗ trợ các loại thẻ</li>
+                       <li>
+                           <a href="#"><img src="assets/data/trademark-ups.jpg"  alt="ups"/></a>
+                       </li>
+                       <li>
+                           <a href="#"><img src="assets/data/trademark-qiwi.jpg"  alt="ups"/></a>
+                       </li>
+                       <li>
+                           <a href="#"><img src="assets/data/trademark-wu.jpg"  alt="ups"/></a>
+                       </li>
+                       <li>
+                           <a href="#"><img src="assets/data/trademark-cn.jpg"  alt="ups"/></a>
+                       </li>
+                       <li>
+                           <a href="#"><img src="assets/data/trademark-visa.jpg"  alt="ups"/></a>
+                       </li>
+                       <li>
+                           <a href="#"><img src="assets/data/trademark-mc.jpg"  alt="ups"/></a>
+                       </li>
+                       <li>
+                           <a href="#"><img src="assets/data/trademark-ems.jpg"  alt="ups"/></a>
+                       </li>
+                       <li>
+                           <a href="#"><img src="assets/data/trademark-dhl.jpg"  alt="ups"/></a>
+                       </li>
+                       <li>
+                           <a href="#"><img src="assets/data/trademark-fe.jpg"  alt="ups"/></a>
+                       </li>
+                       <li>
+                           <a href="#"><img src="assets/data/trademark-wm.jpg"  alt="ups"/></a>
+                       </li>
+                   </ul> 
+               </div>
+           </div> <!-- /#trademark-box -->
+           
+           <!-- #trademark-text-box -->
+           <div id="trademark-text-box" class="row">
+               <div class="col-sm-12">
+                   <ul id="trademark-search-list" class="trademark-list">
+                       <li class="trademark-text-tit">Sản phẩm được tìm nhiều nhất:</li>
+                       <li><a href="#" >Xiaomo Mi3</a></li>
+                       <li><a href="#" >Digifli Pro XT 712 Tablet</a></li>
+                       <li><a href="#" >Mi 3 Phones</a></li>
+                       <li><a href="#" >Iphoneo 6 Plus</a></li>
+                       <li><a href="#" >Women's Messenger Bags</a></li>
+                       <li><a href="#" >Wallets</a></li>
+                       <li><a href="#" >Women's Clutches</a></li>
+                       <li><a href="#" >Backpacks Totes</a></li>
+                   </ul>
+               </div>
+               <div class="col-sm-12">
+                   <ul id="trademark-tv-list" class="trademark-list">
+                       <li class="trademark-text-tit">Đồng hồ nam:</li>
+                       <li><a href="#" >Sonyo TV</a></li>
+                       <li><a href="#" >Samsing TV</a></li>
+                       <li><a href="#" >LGG TV</a></li>
+                       <li><a href="#" >Onidai TV</a></li>
+                       <li><a href="#" >Toshibao TV</a></li>
+                       <li><a href="#" >Philipsi TV</a></li>
+                       <li><a href="#" >Micromax TV</a></li>
+                       <li><a href="#" >LED TV</a></li>
+                       <li><a href="#" >LCD TV</a></li>
+                       <li><a href="#" >Plasma TV</a></li>
+                       <li><a href="#" >3D TV</a></li>
+                       <li><a href="#" >Smart TV</a></li>
+                   </ul>
+               </div>
+               <div class="col-sm-12">
+                   <ul id="trademark-mobile-list" class="trademark-list">
+                       <li class="trademark-text-tit">Đồng hồ nữ:</li>  
+                       <li><a href="#" >Moto E</a></li>
+                       <li><a href="#" >Samsing Mobile</a></li>
+                       <li><a href="#" >Micromaxi Mobile</a></li>
+                       <li><a href="#" >Nokian Mobile</a></li>
+                       <li><a href="#" >HTCK Mobile</a></li>
+                       <li><a href="#" >Sonyo Mobile</a></li>
+                       <li><a href="#" >Appleo Mobile</a></li>
+                       <li><a href="#" >LGG Mobile</a></li>
+                       <li><a href="#" >Karbonno Mobile</a></li>
+                   </ul>
+               </div>
+               <div class="col-sm-12">
+                   <ul id="trademark-laptop-list" class="trademark-list">
+                       <li class="trademark-text-tit">Đồng hồ cặp::</li> 
+                       <li><a href="#" >Appleo Laptop</a></li>
+                       <li><a href="#" >Acero Laptop</a></li>
+                       <li><a href="#" >Samsing Laptop</a></li>
+                       <li><a href="#" >Lenov Laptop</a></li>
+                       <li><a href="#" >Sonyo Laptop</a></li>
+                       <li><a href="#" >Dello Laptop</a></li>
+                       <li><a href="#" >Asuso Laptop</a></li>
+                       <li><a href="#" >Toshibao Laptop</a></li>
+                       <li><a href="#" >LGG Laptop</a></li>
+                       <li><a href="#" >HPO Laptop</a></li>
+                       <li><a href="#" >Notebook</a></li>
+                   </ul>
+               </div>
+               <div class="col-sm-12">
+                   <ul id="trademark-watches-list" class="trademark-list">
+                       <li class="trademark-text-tit">Đồng hồ trẻ em:</li>  
+                       <li><a href="#" >FCUKJ Watches</a></li>
+                       <li><a href="#" >Titan Watches</a></li>
+                       <li><a href="#" >Casioo Watches</a></li>
+                       <li><a href="#" >Fastracki Watches</a></li>
+                       <li><a href="#" >Timexe Watches</a></li>
+                       <li><a href="#" >Fossill Watches</a></li>
+                       <li><a href="#" >Diesel Watches</a></li>
+                       <li><a href="#" >Toshibao Laptop</a></li>
+                       <li><a href="#" >Luxury Watches</a></li>
+                   </ul>
+               </div>
+               <div class="col-sm-12">
+                   <ul id="trademark-shoes-list" class="trademark-list">
+                       <li class="trademark-text-tit">Mắt kính:</li>  
+                       <li><a href="#" >Shoes</a></li>
+                       <li><a href="#" >Casual Shoes</a></li>
+                       <li><a href="#" >Sports Shoes</a></li>
+                       <li><a href="#" >Adidas Shoes</a></li>
+                       <li><a href="#" >Gas Shoes</a></li>
+                       <li><a href="#" >Puma Shoes</a></li>
+                       <li><a href="#" >Reebok Shoes</a></li>
+                       <li><a href="#" >Woodland Shoes</a></li>
+                       <li><a href="#" >Red tape Shoes</a></li>
+                       <li><a href="#" >Nike Shoes</a></li>
+                   </ul>
+               </div>
+           </div><!-- /#trademark-text-box -->
+           <div id="footer-menu-box">
+               <div class="col-sm-12">
+                   <ul class="footer-menu-list">
+                       <li><a href="#" >Thông tin công ty - Cộng tác viên</a></li>
+                   </ul>
+               </div>
+               <!-- <div class="col-sm-12">
+                   <ul class="footer-menu-list">
+                       <li><a href="#" >Online Shopping</a></li>
+                       <li><a href="#" >Promotions</a></li>
+                       <li><a href="#" >My Orders</a></li>
+                       <li><a href="#" >Help</a></li>
+                       <li><a href="#" >Site Map</a></li>
+                       <li><a href="#" >Customer Service</a></li>
+                       <li><a href="#" >Support</a></li>
+                   </ul>
+               </div>
+               <div class="col-sm-12">
+                   <ul class="footer-menu-list">
+                       <li><a href="#" >Most Populars</a></li>
+                       <li><a href="#" >Best Sellers</a></li>
+                       <li><a href="#" >Mẫu mới</a></li>
+                       <li><a href="#" >Special Products</a></li>
+                       <li><a href="#" >Manufacturers</a></li>
+                       <li><a href="#" >Our Stores</a></li>
+                       <li><a href="#" >Shipping</a></li>
+                       <li><a href="#" >Payments</a></li>
+                       <li><a href="#" >Warantee</a></li>
+                       <li><a href="#" >Refunds</a></li>
+                       <li><a href="#" >Checkout</a></li>
+                       <li><a href="#" >Discount</a></li>
+                   </ul>
+               </div> -->
+               <div class="col-sm-12">
+                   <ul class="footer-menu-list">
+                       <li><a href="#" >Điều khoản và điều kiện</a></li>
+                       <li><a href="#" >Chính sách</a></li>
+                       <li><a href="#" >Giao hàng</a></li>
+                       <li><a href="#" >Thanh toán</a></li>
+                       <li><a href="#" >Trả hàng</a></li>
+                       <li><a href="#" >Hoàn tiền</a></li>
+                       <li><a href="#" >Bảo hành</a></li>
+                       <li><a href="#" >Các câu hỏi thường gặp</a></li>
+                       <li><a href="#" >Liên hệ</a></li>
+                   </ul>
+               </div>
+               <p class="text-center">Copyrights &#169; 2020 PWATCH. All Rights Reserved. Designed by DuyTung.Developer</p>
+           </div><!-- /#footer-menu-box -->
+       </div> 
+</footer>
+
+<a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a>
+<!-- Script-->
+<script type="text/javascript" src="assets/lib/jquery/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/lib/select2/js/select2.min.js"></script>
+<script type="text/javascript" src="assets/lib/jquery.bxslider/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="assets/lib/owl.carousel/owl.carousel.min.js"></script>
+<script type="text/javascript" src="assets/lib/jquery.countdown/jquery.countdown.min.js"></script>
+
+<script type="text/javascript" src="assets/lib/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.actual.min.js"></script>
+
+<script type="text/javascript" src="assets/js/theme-script.js"></script>
+
+</body>
+</html>

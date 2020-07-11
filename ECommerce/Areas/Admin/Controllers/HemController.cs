@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ECommerce.Common.FormatData;
+using ECommerce.Model.EFModel;
 using ECommerce.Model.EFModel.Models;
 using ECommerce.Services.UnitOfWork;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
 namespace ECommerce.Areas.Admin.Controllers
 {
+    //-- Niềng -- Niềng bao quanh đồng hồ ( thép,vàng , inox ...)
+    [Area("Admin")]
+    // [Route("Admin/[controller]")]
     public class HemController : Controller
     {
         private readonly IUnitOfWork<Hem> _UnitOfWork;
@@ -36,7 +40,7 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
 
-        [HttpGet("{Id}")]
+        
         public async Task<ActionResult<ResultData<Hem>>> GetById([FromRoute] int Id)
         {
             ResultData<Hem> data = new ResultData<Hem>();

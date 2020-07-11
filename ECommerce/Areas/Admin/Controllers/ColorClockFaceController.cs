@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ECommerce.Common.FormatData;
 using ECommerce.Model.EFModel.Models;
+using ECommerce.Model.Result;
 using ECommerce.Services.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
+    //-- mặt đồng hồ
+    [Area("Admin")]
+    // [Route("Admin/[controller]")]
     public class ColorClockFaceController : Controller
     {
         private readonly IUnitOfWork<ColorClockFace> _UnitOfWork;
@@ -36,7 +39,7 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
 
-        [HttpGet("{Id}")]
+        
         public async Task<ActionResult<ResultData<ColorClockFace>>> GetById([FromRoute] int Id)
         {
             ResultData<ColorClockFace> data = new ResultData<ColorClockFace>();
