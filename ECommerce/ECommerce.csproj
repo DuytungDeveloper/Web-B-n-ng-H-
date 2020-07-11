@@ -7,13 +7,19 @@
 
   <ItemGroup>
     <Compile Remove="Data\**" />
+    <Compile Remove="NewFolder\**" />
     <Content Remove="Data\**" />
+    <Content Remove="NewFolder\**" />
     <EmbeddedResource Remove="Data\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
     <None Remove="Data\**" />
+    <None Remove="NewFolder\**" />
   </ItemGroup>
 
 
   <ItemGroup>
+   
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
    
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.5" />
@@ -41,6 +47,29 @@
   <ItemGroup>
     <Folder Include="wwwroot\admin\pages\" />
     <Folder Include="wwwroot\images\product\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Update="Resources\Languages\language.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>language.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Languages\language.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>language.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Languages\language.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Languages\language.vi.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

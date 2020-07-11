@@ -11,7 +11,7 @@ namespace ECommerce.Areas.Admin.Controllers
 {
     //-- Dây đeo đồng hồ
     [Area("Admin")]
-    [Route("admin/[controller]/[action]")]
+    // [Route("Admin/[controller]")]
     public class ChatelaineController : Controller
     {
         private readonly IUnitOfWork<Chatelaine> _UnitOfWork;
@@ -39,7 +39,7 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
 
-        [HttpGet("{Id}")]
+        
         public async Task<ActionResult<ResultData<Chatelaine>>> GetById([FromRoute] int Id)
         {
             ResultData<Chatelaine> data = new ResultData<Chatelaine>();

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ECommerce.Common.FormatData;
 using ECommerce.Model.EFModel.Models;
+using ECommerce.Model.Result;
 using ECommerce.Services.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +11,7 @@ namespace ECommerce.Areas.Admin.Controllers
 {
     //-- bản xuất xứ
     [Area("Admin")]
-    [Route("admin/[controller]/[action]")]
+    // [Route("Admin/[controller]")]
     public class MadeInController : Controller
     {
         private readonly IUnitOfWork<MadeIn> _UnitOfWork;
@@ -39,7 +39,7 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
 
-        [HttpGet("{Id}")]
+        
         public async Task<ActionResult<ResultData<MadeIn>>> GetById([FromRoute] int Id)
         {
             ResultData<MadeIn> data = new ResultData<MadeIn>();

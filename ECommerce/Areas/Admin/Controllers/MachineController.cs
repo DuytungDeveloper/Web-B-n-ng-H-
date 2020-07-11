@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ECommerce.Common.FormatData;
 using ECommerce.Model.EFModel.Models;
+using ECommerce.Model.Result;
 using ECommerce.Services.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +11,7 @@ namespace ECommerce.Areas.Admin.Controllers
 {
     //Đồng có các dòng máy tự động , không tự dộng ...
     [Area("Admin")]
-    [Route("admin/[controller]/[action]")]
+    // [Route("Admin/[controller]")]
     public class MachineController : Controller
     {
 
@@ -40,7 +40,7 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
 
-        [HttpGet("{Id}")]
+        
         public async Task<ActionResult<ResultData<Machine>>> GetById([FromRoute] int Id)
         {
             ResultData<Machine> data = new ResultData<Machine>();

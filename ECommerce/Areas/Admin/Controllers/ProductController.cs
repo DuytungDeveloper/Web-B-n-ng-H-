@@ -14,7 +14,7 @@ namespace ECommerce.Areas.Admin.Controllers
 {
     // sản phẩm 
     [Area("Admin")]
-    [Route("admin/[controller]/[action]")]
+    // [Route("Admin/[controller]")]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork<Product> _UnitOfWork;
@@ -60,7 +60,7 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
 
-        [HttpGet("{Id}")]
+        
         public async Task<ActionResult<ResultData<Product>>> GetById([FromRoute] int Id)
         {
             ResultData<Product> data = new ResultData<Product>();
