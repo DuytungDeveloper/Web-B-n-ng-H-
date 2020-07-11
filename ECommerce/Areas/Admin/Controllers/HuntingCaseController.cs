@@ -7,11 +7,12 @@ using ECommerce.Model.EFModel.Models;
 using ECommerce.Services.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace ECommerce.Areas.Admin.Controllers
 {
     //-- mặt kính đồng hồ
     [Area("Admin")]
-    [Route("admin/[controller]/[action]")]
+    // [Route("Admin/[controller]")]
     public class HuntingCaseController : Controller
     {
         private readonly IUnitOfWork<HuntingCase> _UnitOfWork;
@@ -39,7 +40,7 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
 
-        [HttpGet("{Id}")]
+        
         public async Task<ActionResult<ResultData<HuntingCase>>> GetById([FromRoute] int Id)
         {
             ResultData<HuntingCase> data = new ResultData<HuntingCase>();
