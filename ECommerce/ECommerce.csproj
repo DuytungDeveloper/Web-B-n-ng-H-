@@ -51,6 +51,11 @@
 
 
   <ItemGroup>
+    <Compile Update="Resources\Languages\Home\home.Designer.cs">
+      <DependentUpon>home.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Resources\Languages\language.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -60,14 +65,18 @@
 
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\Languages\Home\home.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Languages\Home\home.resx">
+      <LastGenOutput>home.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Languages\language.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>language.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Languages\language.en.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Languages\language.vi.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -70,6 +70,24 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thêm vào giỏ hàng.
+        /// </summary>
+        public static string ADD_TO_CART {
+            get {
+                return ResourceManager.GetString("ADD_TO_CART", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Địa chỉ.
+        /// </summary>
+        public static string ADDRESS {
+            get {
+                return ResourceManager.GetString("ADDRESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bán Chạy Nhất.
         /// </summary>
         public static string BESTSELLER {
@@ -223,6 +241,15 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Giao Hàng Miễn Phí.
+        /// </summary>
+        public static string HOME_FREE_DELIVERY_1 {
+            get {
+                return ResourceManager.GetString("HOME_FREE_DELIVERY_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sản phẩm chất lượng và chính hãng.
         /// </summary>
         public static string HOME_QUALITY_PRODUCTS {
@@ -241,6 +268,15 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cam Kết Hoàn Tiền.
+        /// </summary>
+        public static string HOME_RETURN_PAYMENT_WEEK_1 {
+            get {
+                return ResourceManager.GetString("HOME_RETURN_PAYMENT_WEEK_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Giao Dịch An Toàn.
         /// </summary>
         public static string HOME_SECURITY_TRANSACTION {
@@ -250,11 +286,29 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sản phẩm chất lượng và chính hãng.
+        /// </summary>
+        public static string HOME_SECURITY_TRANSACTION_1 {
+            get {
+                return ResourceManager.GetString("HOME_SECURITY_TRANSACTION_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hỗ Trợ 24/7.
         /// </summary>
         public static string HOME_SUPPORT_247 {
             get {
                 return ResourceManager.GetString("HOME_SUPPORT_247", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hỗ trợ liên tục cho khách hàng.
+        /// </summary>
+        public static string HOME_SUPPORT_247_1 {
+            get {
+                return ResourceManager.GetString("HOME_SUPPORT_247_1", resourceCulture);
             }
         }
         
@@ -367,6 +421,15 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SĐT.
+        /// </summary>
+        public static string PHONE {
+            get {
+                return ResourceManager.GetString("PHONE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chính Sách.
         /// </summary>
         public static string POLICY {
@@ -412,11 +475,38 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Xem Thêm.
+        /// </summary>
+        public static string SEE_MORE {
+            get {
+                return ResourceManager.GetString("SEE_MORE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gửi.
+        /// </summary>
+        public static string SEND {
+            get {
+                return ResourceManager.GetString("SEND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dịch Vụ.
         /// </summary>
         public static string SERVICE {
             get {
                 return ResourceManager.GetString("SERVICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Các trang xã hội.
+        /// </summary>
+        public static string SOCIAL_PAGE {
+            get {
+                return ResourceManager.GetString("SOCIAL_PAGE", resourceCulture);
             }
         }
         

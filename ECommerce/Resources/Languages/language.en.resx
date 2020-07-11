@@ -120,6 +120,12 @@
   <data name="ABOUT_US" xml:space="preserve">
     <value>About Us</value>
   </data>
+  <data name="ADDRESS" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="ADD_TO_CART" xml:space="preserve">
+    <value>Add to cart</value>
+  </data>
   <data name="BESTSELLER" xml:space="preserve">
     <value>Bestseller</value>
   </data>
@@ -171,17 +177,29 @@
   <data name="HOME_FREE_DELIVERY" xml:space="preserve">
     <value>Ho Chi Minh City and orders over 2,000,000 VND</value>
   </data>
+  <data name="HOME_FREE_DELIVERY_1" xml:space="preserve">
+    <value>Free Ship</value>
+  </data>
   <data name="HOME_QUALITY_PRODUCTS" xml:space="preserve">
     <value>Quality and genuine products</value>
   </data>
   <data name="HOME_RETURN_PAYMENT_WEEK" xml:space="preserve">
     <value>Exchange Returns In 1 Week</value>
   </data>
+  <data name="HOME_RETURN_PAYMENT_WEEK_1" xml:space="preserve">
+    <value>Money Back Guarantee</value>
+  </data>
   <data name="HOME_SECURITY_TRANSACTION" xml:space="preserve">
     <value>Secure Transactions</value>
   </data>
+  <data name="HOME_SECURITY_TRANSACTION_1" xml:space="preserve">
+    <value>Quality and genuine products</value>
+  </data>
   <data name="HOME_SUPPORT_247" xml:space="preserve">
     <value>24/7 Support</value>
+  </data>
+  <data name="HOME_SUPPORT_247_1" xml:space="preserve">
+    <value>Continuous support for customers</value>
   </data>
   <data name="LIMITED_EDITION" xml:space="preserve">
     <value>Limited edition</value>
@@ -219,8 +237,11 @@
   <data name="PAYMENT" xml:space="preserve">
     <value>Pay</value>
   </data>
+  <data name="PHONE" xml:space="preserve">
+    <value>Phone</value>
+  </data>
   <data name="POLICY" xml:space="preserve">
-    <value>Chính Sách</value>
+    <value>Policy</value>
   </data>
   <data name="PRODUCTS_ARE_LOOKED_MOST" xml:space="preserve">
     <value>Most Searched Products</value>
@@ -234,8 +255,17 @@
   <data name="SALE" xml:space="preserve">
     <value>Discount</value>
   </data>
+  <data name="SEE_MORE" xml:space="preserve">
+    <value>See More</value>
+  </data>
+  <data name="SEND" xml:space="preserve">
+    <value>Send</value>
+  </data>
   <data name="SERVICE" xml:space="preserve">
     <value>Service</value>
+  </data>
+  <data name="SOCIAL_PAGE" xml:space="preserve">
+    <value>Social pages</value>
   </data>
   <data name="SOCIAL_PAGES" xml:space="preserve">
     <value>Social Networks</value>
