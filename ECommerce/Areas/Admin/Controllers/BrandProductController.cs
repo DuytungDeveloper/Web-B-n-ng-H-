@@ -9,8 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
-
-    //-- thương hiệu đồng hồ
     [Area("Admin")]
     // [Route("Admin/[controller]")]
     public class BrandProductController : Controller
@@ -31,11 +29,11 @@ namespace ECommerce.Areas.Admin.Controllers
         public async Task<ActionResult<ResultListData<BrandProduct>>> GetAll()
         {
             ResultListData<BrandProduct> data = new ResultListData<BrandProduct>();
-            var ListBrandProduct = await _UnitOfWork.BrandProduct.GetAll();
+            var ListChatelaine = await _UnitOfWork.BrandProducts.GetAll();
             if (data == null) return data;
-            data.Data = ListBrandProduct;
+            data.Data = ListChatelaine;
             data.Success = true;
-            data.Amount = ListBrandProduct.Count();
+            data.Amount = ListChatelaine.Count();
             data.Message = "Thành công !";
             return Ok(data);
         }
@@ -43,7 +41,7 @@ namespace ECommerce.Areas.Admin.Controllers
         public async Task<ActionResult<ResultData<BrandProduct>>> GetById([FromRoute] int Id)
         {
             ResultData<BrandProduct> data = new ResultData<BrandProduct>();
-            BrandProduct Item = await _UnitOfWork.BrandProduct.GetById(Id);
+            BrandProduct Item = await _UnitOfWork.BrandProducts.GetById(Id);
             if (data == null) return data;
             data.Data = Item;
             data.Success = true;
@@ -59,7 +57,7 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
             ResultData<BrandProduct> data = new ResultData<BrandProduct>();
-            await _UnitOfWork.BrandProduct.Insert(body);
+            await _UnitOfWork.BrandProducts.Insert(body);
             await _UnitOfWork.Commit();
             data.Data = body;
             data.Success = body.Id > 0 ? true : false;
@@ -74,14 +72,14 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
 
-            var GetItem = await _UnitOfWork.BrandProduct.GetById(Id);
+            var GetItem = await _UnitOfWork.BrandProducts.GetById(Id);
             ResultData<BrandProduct> data = new ResultData<BrandProduct>();
             if (GetItem == null)
                 return Ok(data);
             #region
             GetItem.Name = body.Name;
             #endregion
-            await _UnitOfWork.BrandProduct.Update(GetItem, true);
+            await _UnitOfWork.BrandProducts.Update(GetItem, true);
             data.Data = body;
             data.Success = true;
             data.Message = "Thành công !";
@@ -95,12 +93,12 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
             ResultData<BrandProduct> data = new ResultData<BrandProduct>();
-            BrandProduct GetItem = await _UnitOfWork.BrandProduct.GetById(Id);
+            BrandProduct GetItem = await _UnitOfWork.BrandProducts.GetById(Id);
             if (GetItem == null)
                 return Ok(data);
 
-            GetItem.Status = 1;//delete
-            await _UnitOfWork.BrandProduct.Delete(GetItem, true);
+            GetItem.Status = 3;//delete
+            await _UnitOfWork.BrandProducts.Delete(GetItem, true);
             data.Data = GetItem;
             data.Success = true;
             data.Message = "Thành công !";
@@ -108,6 +106,5 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
         #endregion
-
     }
 }

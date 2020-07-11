@@ -8,7 +8,7 @@ namespace ECommerce.Model.EFModel.Models
 {
      public class ApplicationUser:IdentityUser
     {
-        public bool IsRoot { get; set; }
+        public bool? IsRoot { get; set; }
         public DateTime? CreatedAt { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? UpdatedAt { get; set; }

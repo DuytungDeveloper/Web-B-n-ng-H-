@@ -14,8 +14,8 @@ namespace ECommerce.Areas.Admin.Controllers
     // [Route("Admin/[controller]")]
     public class OrdersController : Controller
     {
-        private readonly IUnitOfWork<Orders> _UnitOfWork;
-        public OrdersController(IUnitOfWork<Orders> UnitOfWork)
+        private readonly IUnitOfWork<Order> _UnitOfWork;
+        public OrdersController(IUnitOfWork<Order> UnitOfWork)
         {
             _UnitOfWork = UnitOfWork;
 
@@ -28,9 +28,9 @@ namespace ECommerce.Areas.Admin.Controllers
 
         #region Action
         [HttpGet]
-        public async Task<ActionResult<ResultListData<Orders>>> GetAll()
+        public async Task<ActionResult<ResultListData<Order>>> GetAll()
         {
-            ResultListData<Orders> data = new ResultListData<Orders>();
+            ResultListData<Order> data = new ResultListData<Order>();
             var ListOrders = await _UnitOfWork.Orders.GetAll();
             if (data == null) return data;
             data.Data = ListOrders;
@@ -41,10 +41,10 @@ namespace ECommerce.Areas.Admin.Controllers
         }
 
         
-        public async Task<ActionResult<ResultData<Orders>>> GetById([FromRoute] int Id)
+        public async Task<ActionResult<ResultData<Order>>> GetById([FromRoute] int Id)
         {
-            ResultData<Orders> data = new ResultData<Orders>();
-            Orders Item = await _UnitOfWork.Orders.GetById(Id);
+            ResultData<Order> data = new ResultData<Order>();
+            Order Item = await _UnitOfWork.Orders.GetById(Id);
             if (data == null) return data;
             data.Data = Item;
             data.Success = true;
@@ -52,14 +52,14 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
         [HttpPost]
-        public async Task<ActionResult<Orders>> Add([FromBody] Orders body)
+        public async Task<ActionResult<Order>> Add([FromBody] Order body)
         {
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            ResultData<Orders> data = new ResultData<Orders>();
+            ResultData<Order> data = new ResultData<Order>();
             await _UnitOfWork.Orders.Insert(body);
             await _UnitOfWork.Commit();
             data.Data = body;
@@ -68,7 +68,7 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
         [HttpPut("{Id}")]
-        public async Task<ActionResult<Orders>> Update([FromBody] Orders body, [FromRoute] int Id = 0)
+        public async Task<ActionResult<Order>> Update([FromBody] Order body, [FromRoute] int Id = 0)
         {
             if (!ModelState.IsValid || Id < 1)
             {
@@ -76,11 +76,11 @@ namespace ECommerce.Areas.Admin.Controllers
             }
 
             var GetItem = await _UnitOfWork.Orders.GetById(Id);
-            ResultData<Orders> data = new ResultData<Orders>();
+            ResultData<Order> data = new ResultData<Order>();
             if (GetItem == null)
                 return Ok(data);
             #region
-            GetItem.IdOrderStatus = body.IdOrderStatus == 0? GetItem.IdOrderStatus: body.IdOrderStatus;
+            GetItem.OrderStatusId = body.OrderStatusId == 0? GetItem.OrderStatusId : body.OrderStatusId;
             GetItem.Note = body.Note;
             GetItem.Phone = body.Phone;
             GetItem.Code = body.Code;
@@ -97,14 +97,14 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(GetItem);
         }
         [HttpDelete("{Id}")]
-        public async Task<ActionResult<ActionResult<Orders>>> Delete([FromRoute] int Id = 0)
+        public async Task<ActionResult<ActionResult<Order>>> Delete([FromRoute] int Id = 0)
         {
             if (Id < 1)
             {
                 return BadRequest(ModelState);
             }
-            ResultData<Orders> data = new ResultData<Orders>();
-            Orders GetItem = await _UnitOfWork.Orders.GetById(Id);
+            ResultData<Order> data = new ResultData<Order>();
+            Order GetItem = await _UnitOfWork.Orders.GetById(Id);
             if (GetItem == null)
                 return Ok(data);
 

@@ -30,7 +30,7 @@ namespace ECommerce.Areas.Admin.Controllers
         public async Task<ActionResult<ResultListData<MadeIn>>> GetAll()
         {
             ResultListData<MadeIn> data = new ResultListData<MadeIn>();
-            var ListMadeIn = await _UnitOfWork.MadeIn.GetAll();
+            var ListMadeIn = await _UnitOfWork.MadeIns.GetAll();
             if (data == null) return data;
             data.Data = ListMadeIn;
             data.Success = true;
@@ -43,7 +43,7 @@ namespace ECommerce.Areas.Admin.Controllers
         public async Task<ActionResult<ResultData<MadeIn>>> GetById([FromRoute] int Id)
         {
             ResultData<MadeIn> data = new ResultData<MadeIn>();
-            MadeIn Item = await _UnitOfWork.MadeIn.GetById(Id);
+            MadeIn Item = await _UnitOfWork.MadeIns.GetById(Id);
             if (data == null) return data;
             data.Data = Item;
             data.Success = true;
@@ -59,7 +59,7 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
             ResultData<MadeIn> data = new ResultData<MadeIn>();
-            await _UnitOfWork.MadeIn.Insert(body);
+            await _UnitOfWork.MadeIns.Insert(body);
             await _UnitOfWork.Commit();
             data.Data = body;
             data.Success = body.Id > 0 ? true : false;
@@ -74,14 +74,14 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
 
-            var GetItem = await _UnitOfWork.MadeIn.GetById(Id);
+            var GetItem = await _UnitOfWork.MadeIns.GetById(Id);
             ResultData<MadeIn> data = new ResultData<MadeIn>();
             if (GetItem == null)
                 return Ok(data);
             #region
             GetItem.Name = body.Name;
             #endregion
-            await _UnitOfWork.MadeIn.Update(GetItem, true);
+            await _UnitOfWork.MadeIns.Update(GetItem, true);
             data.Data = body;
             data.Success = true;
             data.Message = "Thành công !";
@@ -95,12 +95,12 @@ namespace ECommerce.Areas.Admin.Controllers
                 return BadRequest(ModelState);
             }
             ResultData<MadeIn> data = new ResultData<MadeIn>();
-            MadeIn GetItem = await _UnitOfWork.MadeIn.GetById(Id);
+            MadeIn GetItem = await _UnitOfWork.MadeIns.GetById(Id);
             if (GetItem == null)
                 return Ok(data);
 
             GetItem.Status = 1;//delete
-            await _UnitOfWork.MadeIn.Delete(GetItem, true);
+            await _UnitOfWork.MadeIns.Delete(GetItem, true);
             data.Data = GetItem;
             data.Success = true;
             data.Message = "Thành công !";
