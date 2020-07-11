@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace ECommerce.Areas.Admin.Controllers
 {
     //order từng sản phẩm 
+    [Area("Admin")]
+    [Route("admin/[controller]/[action]")]
     public class OrderItemsController : Controller
     {
         private readonly IUnitOfWork<OrderItems> _UnitOfWork;

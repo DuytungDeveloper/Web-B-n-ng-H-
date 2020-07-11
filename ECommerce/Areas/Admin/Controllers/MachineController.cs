@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace ECommerce.Areas.Admin.Controllers
 {
     //Đồng có các dòng máy tự động , không tự dộng ...
+    [Area("Admin")]
+    [Route("admin/[controller]/[action]")]
     public class MachineController : Controller
     {
 

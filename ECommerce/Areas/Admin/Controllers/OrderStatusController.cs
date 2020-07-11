@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
+    //-- trạng thái đơn hàng
+    [Area("Admin")]
+    [Route("admin/[controller]/[action]")]
     public class OrderStatusController : Controller
     {
         private readonly IUnitOfWork<OrderStatus> _UnitOfWork;

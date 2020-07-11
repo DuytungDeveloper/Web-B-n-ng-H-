@@ -9,13 +9,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
-    //-- mặt đồng hồ
+    //-- Dây đeo đồng hồ
     [Area("Admin")]
     [Route("admin/[controller]/[action]")]
-    public class ColorClockFaceController : Controller
+    public class ChatelaineController : Controller
     {
-        private readonly IUnitOfWork<ColorClockFace> _UnitOfWork;
-        public ColorClockFaceController(IUnitOfWork<ColorClockFace> UnitOfWork)
+        private readonly IUnitOfWork<Chatelaine> _UnitOfWork;
+        public ChatelaineController(IUnitOfWork<Chatelaine> UnitOfWork)
         {
             _UnitOfWork = UnitOfWork;
 
@@ -27,23 +27,23 @@ namespace ECommerce.Areas.Admin.Controllers
 
         #region Action
         [HttpGet]
-        public async Task<ActionResult<ResultListData<ColorClockFace>>> GetAll()
+        public async Task<ActionResult<ResultListData<Chatelaine>>> GetAll()
         {
-            ResultListData<ColorClockFace> data = new ResultListData<ColorClockFace>();
-            var ListColorClockFace = await _UnitOfWork.ColorClockFace.GetAll();
+            ResultListData<Chatelaine> data = new ResultListData<Chatelaine>();
+            var ListChatelaine = await _UnitOfWork.Chatelaine.GetAll();
             if (data == null) return data;
-            data.Data = ListColorClockFace;
+            data.Data = ListChatelaine;
             data.Success = true;
-            data.Amount = ListColorClockFace.Count();
+            data.Amount = ListChatelaine.Count();
             data.Message = "Thành công !";
             return Ok(data);
         }
 
         [HttpGet("{Id}")]
-        public async Task<ActionResult<ResultData<ColorClockFace>>> GetById([FromRoute] int Id)
+        public async Task<ActionResult<ResultData<Chatelaine>>> GetById([FromRoute] int Id)
         {
-            ResultData<ColorClockFace> data = new ResultData<ColorClockFace>();
-            ColorClockFace Item = await _UnitOfWork.ColorClockFace.GetById(Id);
+            ResultData<Chatelaine> data = new ResultData<Chatelaine>();
+            Chatelaine Item = await _UnitOfWork.Chatelaine.GetById(Id);
             if (data == null) return data;
             data.Data = Item;
             data.Success = true;
@@ -51,15 +51,15 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
         [HttpPost]
-        public async Task<ActionResult<ColorClockFace>> Add([FromBody] ColorClockFace body)
+        public async Task<ActionResult<Chatelaine>> Add([FromBody] Chatelaine body)
         {
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            ResultData<ColorClockFace> data = new ResultData<ColorClockFace>();
-            await _UnitOfWork.ColorClockFace.Insert(body);
+            ResultData<Chatelaine> data = new ResultData<Chatelaine>();
+            await _UnitOfWork.Chatelaine.Insert(body);
             await _UnitOfWork.Commit();
             data.Data = body;
             data.Success = body.Id > 0 ? true : false;
@@ -67,40 +67,40 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
         [HttpPut("{Id}")]
-        public async Task<ActionResult<ColorClockFace>> Update([FromBody] ColorClockFace body, [FromRoute] int Id = 0)
+        public async Task<ActionResult<Chatelaine>> Update([FromBody] Chatelaine body, [FromRoute] int Id = 0)
         {
             if (!ModelState.IsValid || Id < 1)
             {
                 return BadRequest(ModelState);
             }
 
-            var GetItem = await _UnitOfWork.ColorClockFace.GetById(Id);
-            ResultData<ColorClockFace> data = new ResultData<ColorClockFace>();
+            var GetItem = await _UnitOfWork.Chatelaine.GetById(Id);
+            ResultData<Chatelaine> data = new ResultData<Chatelaine>();
             if (GetItem == null)
                 return Ok(data);
             #region
             GetItem.Name = body.Name;
             #endregion
-            await _UnitOfWork.ColorClockFace.Update(GetItem, true);
+            await _UnitOfWork.Chatelaine.Update(GetItem, true);
             data.Data = body;
             data.Success = true;
             data.Message = "Thành công !";
             return Ok(GetItem);
         }
         [HttpDelete("{Id}")]
-        public async Task<ActionResult<ActionResult<ColorClockFace>>> Delete([FromRoute] int Id = 0)
+        public async Task<ActionResult<ActionResult<Chatelaine>>> Delete([FromRoute] int Id = 0)
         {
             if (Id < 1)
             {
                 return BadRequest(ModelState);
             }
-            ResultData<ColorClockFace> data = new ResultData<ColorClockFace>();
-            ColorClockFace GetItem = await _UnitOfWork.ColorClockFace.GetById(Id);
+            ResultData<Chatelaine> data = new ResultData<Chatelaine>();
+            Chatelaine GetItem = await _UnitOfWork.Chatelaine.GetById(Id);
             if (GetItem == null)
                 return Ok(data);
 
             GetItem.Status = 1;//delete
-            await _UnitOfWork.ColorClockFace.Delete(GetItem, true);
+            await _UnitOfWork.Chatelaine.Delete(GetItem, true);
             data.Data = GetItem;
             data.Success = true;
             data.Message = "Thành công !";
@@ -108,6 +108,5 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
         #endregion
-
     }
 }

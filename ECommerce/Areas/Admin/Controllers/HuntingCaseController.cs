@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
+    //-- mặt kính đồng hồ
+    [Area("Admin")]
+    [Route("admin/[controller]/[action]")]
     public class HuntingCaseController : Controller
     {
         private readonly IUnitOfWork<HuntingCase> _UnitOfWork;
