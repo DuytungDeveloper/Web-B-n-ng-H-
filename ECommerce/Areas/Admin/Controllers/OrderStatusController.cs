@@ -11,7 +11,7 @@ namespace ECommerce.Areas.Admin.Controllers
 {
     //-- trạng thái đơn hàng
     [Area("Admin")]
-    [Route("admin/[controller]/[action]")]
+    // [Route("Admin/[controller]")]
     public class OrderStatusController : Controller
     {
         private readonly IUnitOfWork<OrderStatus> _UnitOfWork;
@@ -39,7 +39,7 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
 
-        [HttpGet("{Id}")]
+        
         public async Task<ActionResult<ResultData<OrderStatus>>> GetById([FromRoute] int Id)
         {
             ResultData<OrderStatus> data = new ResultData<OrderStatus>();

@@ -11,7 +11,7 @@ namespace ECommerce.Areas.Admin.Controllers
 {
     //tổng order từng sản phẩm trong hóa đơn
     [Area("Admin")]
-    [Route("admin/[controller]/[action]")]
+    // [Route("Admin/[controller]")]
     public class OrdersController : Controller
     {
         private readonly IUnitOfWork<Order> _UnitOfWork;
@@ -40,7 +40,7 @@ namespace ECommerce.Areas.Admin.Controllers
             return Ok(data);
         }
 
-        [HttpGet("{Id}")]
+        
         public async Task<ActionResult<ResultData<Order>>> GetById([FromRoute] int Id)
         {
             ResultData<Order> data = new ResultData<Order>();
@@ -108,7 +108,7 @@ namespace ECommerce.Areas.Admin.Controllers
             if (GetItem == null)
                 return Ok(data);
 
-            GetItem.Status = 2;//delete
+            GetItem.Status = 1;//delete
             await _UnitOfWork.Orders.Delete(GetItem, true);
             data.Data = GetItem;
             data.Success = true;
