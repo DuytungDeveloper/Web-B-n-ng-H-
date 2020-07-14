@@ -30,7 +30,7 @@ namespace ECommerce
         {
             services.AddControllersWithViews();
             services.AddSpaStaticFiles();
-            #region Cái này tự sinh khi tạo project tạm thời để đó từ tính sau 
+            #region NghiaTV config
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("ECommerceContext")));
@@ -62,7 +62,6 @@ namespace ECommerce
 
            
             #endregion
-            
             services.RegisterServices();// DI
             services.AddMvc();
             services.AddOptions();
@@ -80,12 +79,10 @@ namespace ECommerce
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles(); 
             app.UseRouting();
-
-            #region
+            #region NghiaTV config
             app.UseAuthentication();
             app.UseAuthorization();
             #endregion
@@ -94,8 +91,7 @@ namespace ECommerce
             {
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapAreaControllerRoute("admin","admin", "{controller=Home}/{action=Index}/{id?}");
-            });
-          
+            });         
             #endregion
 
         }

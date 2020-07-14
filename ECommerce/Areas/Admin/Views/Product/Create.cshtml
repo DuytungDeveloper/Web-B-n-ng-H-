@@ -1,329 +1,193 @@
-﻿
-@{ ViewData["Title"] = "Create"; }
-@{ Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml"; }
-<h2>Create</h2>
+﻿<script type="text/javascript" src="https://unpkg.com/v-data-table/dist/v-data-table.js"></script>
+<style>
+    #Table {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-<head>
-
-
-    <script type="text/x-template" id="grid-template">
-        <table>
-            <thead>
-                <tr>
-                    <th v-for="key in columns"
-                         v-on:click="sortBy(key)"
-                        :class="{ active: sortKey == key }">
-                        {{ key | capitalize }}
-                        <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
-                        </span>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="entry in filteredHeroes">
-                    <td v-for="key in columns">
-                        {{entry[key]}}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </script>
-
-</head>
-<body>
-
-
-    <style>
-        button.page-link {
-            display: inline-block;
+        #Table td, #Table th {
+            border: 1px solid #ddd;
+            padding: 8px;
         }
 
-        button.page-link {
-            font-size: 20px;
-            color: #29b3ed;
-            font-weight: 500;
+        #Table tr:nth-child(even) {
+            background-color: #f2f2f2;
         }
 
-        .offset {
-            width: 500px !important;
-            margin: 20px auto;
+        #Table tr:hover {
+            background-color: #ddd;
         }
-    </style>
-    <div id="app" class="col-sm-12">
-        <div class="offset">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>User ID</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="p in displayedPosts">
-                        <td>{{p.first}}</td>
-                        <td>{{p.last}}</td>
-                        <td>
-                            {{p.suffix}}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <button type="button" class="page-link" v-if="page != 1" v-on:click="page--"> Previous </button>
-                    </li>
-                    <li class="page-item">
-                        <button type="button" class="page-link" v-for="pageNumber in pages.slice(page-1, page+5)" v-on:click="page = pageNumber"> {{pageNumber}} </button>
-                    </li>
-                    <li class="page-item">
-                        <button type="button" v-on:click="page++" v-if="page < pages.length" class="page-link"> Next </button>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-    <script>
 
-        new Vue({
-            el: "#app",
-            data() {
-                return {
-                    posts: [''],
-                    page: 1,
-                    perPage: 9,
-                    pages: [],
-                }
-            },
-            methods: {
-                getPosts() {
-                    let data = [];
-                    for (let i = 0; i < 50; i++) {
-                        this.posts.push({
-                            first: 'John',
-                            last: 'Doe',
-                            suffix: '#' + i
-                        });
-                    }
-                },
-                setPages() {
-                    let numberOfPages = Math.ceil(this.posts.length / this.perPage);
-                    for (let index = 1; index <= numberOfPages; index++) {
-                        this.pages.push(index);
-                    }
-                },
-                paginate(posts) {
-                    let page = this.page;
-                    let perPage = this.perPage;
-                    let from = (page * perPage) - perPage;
-                    let to = (page * perPage);
-                    return posts.slice(from, to);
-                }
-            },
-            computed: {
-                displayedPosts() {
-                    return this.paginate(this.posts);
-                },
+        #Table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+    #Table {
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-                filteredHeroes: function () {
-                    var sortKey = this.sortKey;
-                    var filterKey = this.filterKey && this.filterKey.toLowerCase();
-                    var order = this.sortOrders[sortKey] || 1;
-                    var heroes = this.heroes;
-                    if (filterKey) {
-                        heroes = heroes.filter(function (row) {
-                            return Object.keys(row).some(function (key) {
-                                return (
-                                    String(row[key])
-                                        .toLowerCase()
-                                        .indexOf(filterKey) > -1
-                                );
-                            });
-                        });
-                    }
-                    if (sortKey) {
-                        heroes = heroes.slice().sort(function (a, b) {
-                            a = a[sortKey];
-                            b = b[sortKey];
-                            return (a === b ? 0 : a > b ? 1 : -1) * order;
-                        });
-                    }
-                    return heroes;
-                },
-                filters: {
-                    capitalize: function (str) {
-                        return str.charAt(0).toUpperCase() + str.slice(1);
-                    }
-                },
-                methods: {
-                    sortBy: function (key) {
-                        this.sortKey = key;
-                        this.sortOrders[key] = this.sortOrders[key] * -1;
-                    }
-                }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+<!-- demo root element -->
+<div id="demo">
+
+    <form id="search">
+        Name
+        <input name="query" v-model="searchQuery">
+
+    </form>
+    <data-table id="Table" :data="gridData" :columns-to-display="gridColumns" 
+                :filter-key="searchQuery" 
+                :display-names="displayNames" 
+                :child-hideable="true" 
+                :child-init-hide="true" 
+                :columns-to-not-sort="['action']">
+
+        <template slot="name" scope="props">
+            <b>{{props.entry.name}}</b>
+            <br />
+        </template>
+        <template slot="action" scope="props">
+            <button v-on:click="showName(props.entry.name)">
+                Get Name
+            </button>
+            <button v-on:click="showId(props.entry.id)">
+                Get Id
+            </button>
+        </template>
+    </data-table>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+<script>
+
+
+    Vue.use(DataTable)// bootstrap DataTable
+
+    var demo = new Vue({
+        el: '#demo',
+        data: {
+            searchQuery: '',
+            gridColumns: ['id', 'name','action'],
+            displayNames: {
+                'id': "ma",
+                'name': 'Ten'
+                ,"action":"Chuc Nang"
+                
             },
-            watch: {
-                posts() {
-                    this.setPages();
-                }
+            gridData: []
+        },
+        watch: {
+            searchQuery: _.debounce(function (query) {
+                this.searchUser(query);
+            }, 1000)
+        },
+        methods: {
+            showName: function(Name){
+                alert(Name);
             },
-            created() {
-                this.getPosts();
+            showId: function (id) {
+                alert(id);
             },
-            filters: {
-                trimWords(value) {
-                    return value.split(" ").splice(0, 20).join(" ") + '...';
-                }
+            searchUser: function (searchQuery) {
+                axios.get('/admin/Product/GetAll')
+                    .then(function (response) {
+                        this.gridData = response.data.data;
+                    }.bind(this))
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .then(function () {
+                        
+                    });
+
             }
-        })
-
-    </script>
-    <style>
-        body {
-            font-family: Helvetica Neue, Arial, sans-serif;
-            font-size: 14px;
-            color: #444;
+        }, created: function () {
+            this.searchUser();
         }
+    })
 
-        table {
-            border: 2px solid #42b983;
-            border-radius: 3px;
-            background-color: #fff;
-        }
 
-        th {
-            background-color: #42b983;
-            color: rgba(255, 255, 255, 0.66);
-            cursor: pointer;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
 
-        td {
-            background-color: #f9f9f9;
-        }
 
-        th,
-        td {
-            min-width: 120px;
-            padding: 10px 20px;
-        }
+</script>
+<script>
 
-            th.active {
-                color: #fff;
-            }
 
-                th.active .arrow {
-                    opacity: 1;
-                }
+    //function debounce(func, wait) {
+    //    var timeout;
+    //    return function () {
+    //        var context = this,
+    //            args = arguments;
+    //        var executeFunction = function () {
+    //            func.apply(context, args);
+    //        };
+    //        clearTimeout(timeout);
+    //        timeout = setTimeout(executeFunction, wait);
+    //    };
+    //};
+    //Vue.use(DataTable)// bootstrap DataTable
 
-        .arrow {
-            display: inline-block;
-            vertical-align: middle;
-            width: 0;
-            height: 0;
-            margin-left: 5px;
-            opacity: 0.66;
-        }
+    //var demo = new Vue({
+    //    el: '#demo',
+    //    data: {
+    //        searchQuery: '',
+    //        gridColumns: ['name', 'power', 'action'],
+    //        displayNames: {
+    //            'power': 'Super Powers'
+    //        },
+    //        gridData: [{
+    //            name: 'Chuck Norris',
+    //            power: Infinity
+    //        }, {
+    //            name: 'Bruce Lee',
+    //            power: 9000
+    //        }, {
+    //            name: 'Jackie Chan',
+    //            power: 7000
+    //        }, {
+    //            name: 'Jet Li',
+    //            power: 8000
+    //        }]
+    //    },
+    //    watch: {
+    //        searchQuery: debounce(function () {
+    //            this.isTyping = false;
+    //        }, 1000),
+    //        isTyping: function (value) {
+    //            if (!value) {
+    //                this.searchUser(this.searchQuery);
+    //            }
+    //        }
+    //    },
+    //    methods: {
+    //        showPower(power) {
+    //            alert(power);
+    //        },
+    //        searchUser: function (searchQuery) {
+    //            this.isLoading = true;
+    //            alert(+ searchQuery);
+    //            axios.get('admin/Product/GetAll')
+    //                .then(response => {
+    //                    this.isLoading = false;
+    //                    this.searchResult = response.data.items;
+    //                });
+    //        }
+    //    }
+    //})
 
-            .arrow.asc {
-                border-left: 4px solid transparent;
-                border-right: 4px solid transparent;
-                border-bottom: 4px solid #fff;
-            }
-
-            .arrow.dsc {
-                border-left: 4px solid transparent;
-                border-right: 4px solid transparent;
-                border-top: 4px solid #fff;
-            }
-
-    </style>
-    <div id="demo">
-        <form id="search">
-            Search <input name="query" v-model="searchQuery" />
-        </form>
-        <demo-grid :heroes="gridData"
-                   :columns="gridColumns"
-                   :filter-key="searchQuery">
-        </demo-grid>
-    </div>
-
-    <script>
-        // register the grid component
-        Vue.component("demo-grid", {
-            template: "#grid-template",
-            props: {
-                heroes: Array,
-                columns: Array,
-                filterKey: String
-            },
-            data: function () {
-                var sortOrders = {};
-                this.columns.forEach(function (key) {
-                    sortOrders[key] = 1;
-                });
-                return {
-                    sortKey: "",
-                    sortOrders: sortOrders
-                };
-            },
-            computed: {
-                filteredHeroes: function () {
-                    var sortKey = this.sortKey;
-                    var filterKey = this.filterKey && this.filterKey.toLowerCase();
-                    var order = this.sortOrders[sortKey] || 1;
-                    var heroes = this.heroes;
-                    if (filterKey) {
-                        heroes = heroes.filter(function (row) {
-                            return Object.keys(row).some(function (key) {
-                                return (
-                                    String(row[key])
-                                        .toLowerCase()
-                                        .indexOf(filterKey) > -1
-                                );
-                            });
-                        });
-                    }
-                    if (sortKey) {
-                        heroes = heroes.slice().sort(function (a, b) {
-                            a = a[sortKey];
-                            b = b[sortKey];
-                            return (a === b ? 0 : a > b ? 1 : -1) * order;
-                        });
-                    }
-                    return heroes;
-                }
-            },
-            filters: {
-                capitalize: function (str) {
-                    return str.charAt(0).toUpperCase() + str.slice(1);
-                }
-            },
-            methods: {
-                sortBy: function (key) {
-                    this.sortKey = key;
-                    this.sortOrders[key] = this.sortOrders[key] * -1;
-                }
-            }
-        });
-
-        // bootstrap the demo
-        var demo = new Vue({
-            el: "#demo",
-            data: {
-                searchQuery: "",
-                gridColumns: ["name", "power"],
-                gridData: [
-                    { name: "Chuck Norris", power: Infinity },
-                    { name: "Bruce Lee", power: 9000 },
-                    { name: "Jackie Chan", power: 7000 },
-                    { name: "Jet Li", power: 8000 }
-                ]
-            }
-        });
-    </script>
-</body>
+</script>
