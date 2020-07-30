@@ -6,9 +6,10 @@ namespace ECommerce.Model.EFModel.Models
 {
     public partial class Images : BaseModel, IBaseModel
     {
+        [Key]
         public int Id { get; set; }
      
-        public int ProductId { get; set; }
+        //public int ProductId { get; set; }
         public virtual Product Product { get; set; }
         [Required]
         public string Name { get; set; }

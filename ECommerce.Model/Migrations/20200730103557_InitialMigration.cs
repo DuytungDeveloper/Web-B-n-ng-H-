@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ECommerce.Model.Migrations
 {
-    public partial class nghia : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,6 +54,24 @@ namespace ECommerce.Model.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Bands",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: true),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateBy = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Status = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bands", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BrandProducts",
                 columns: table => new
                 {
@@ -69,24 +87,6 @@ namespace ECommerce.Model.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BrandProducts", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Chatelaines",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreateDate = table.Column<DateTime>(nullable: true),
-                    CreateBy = table.Column<string>(nullable: true),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    UpdateBy = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: false),
-                    Status = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Chatelaines", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -143,7 +143,7 @@ namespace ECommerce.Model.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Hems",
+                name: "Functions",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -157,25 +157,7 @@ namespace ECommerce.Model.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Hems", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "HuntingCases",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreateDate = table.Column<DateTime>(nullable: true),
-                    CreateBy = table.Column<string>(nullable: true),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    UpdateBy = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: false),
-                    Status = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HuntingCases", x => x.Id);
+                    table.PrimaryKey("PK_Functions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -234,24 +216,6 @@ namespace ECommerce.Model.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Origins",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreateDate = table.Column<DateTime>(nullable: true),
-                    CreateBy = table.Column<string>(nullable: true),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    UpdateBy = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: false),
-                    Status = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Origins", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PersistedGrants",
                 columns: table => new
                 {
@@ -266,6 +230,79 @@ namespace ECommerce.Model.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PersistedGrants", x => x.Key);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductStatus",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: true),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateBy = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Desription = table.Column<string>(nullable: true),
+                    Status = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductStatus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Styles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: true),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateBy = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Status = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Styles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Straps",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: true),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateBy = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Status = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Straps", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Waterproofs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: true),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateBy = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Status = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Waterproofs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -400,7 +437,7 @@ namespace ECommerce.Model.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "Orders",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -409,33 +446,74 @@ namespace ECommerce.Model.Migrations
                     CreateBy = table.Column<string>(nullable: true),
                     UpdateDate = table.Column<DateTime>(nullable: true),
                     UpdateBy = table.Column<string>(nullable: true),
-                    OriginId = table.Column<int>(nullable: true),
-                    HuntingCaseId = table.Column<int>(nullable: true),
-                    ChatelaineId = table.Column<int>(nullable: true),
-                    ColorClockFaceId = table.Column<int>(nullable: true),
-                    MadeInId = table.Column<int>(nullable: true),
-                    HemId = table.Column<int>(nullable: true),
-                    MachineId = table.Column<int>(nullable: true),
-                    BrandProductId = table.Column<int>(nullable: true),
-                    Sex = table.Column<bool>(nullable: false),
+                    Code = table.Column<string>(nullable: true),
+                    Note = table.Column<string>(nullable: true),
+                    Phone = table.Column<string>(nullable: false),
+                    ApplicationUserId = table.Column<string>(nullable: true),
+                    ReceiverInfo = table.Column<string>(nullable: true),
+                    OrderStatusId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Orders_OrderStatus_OrderStatusId",
+                        column: x => x.OrderStatusId,
+                        principalTable: "OrderStatus",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    CreateDate = table.Column<DateTime>(nullable: true),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateBy = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     Video = table.Column<string>(nullable: true),
                     Url = table.Column<string>(nullable: true),
                     Price = table.Column<int>(nullable: false),
                     PriceDiscount = table.Column<int>(nullable: false),
-                    Code = table.Column<string>(nullable: true),
-                    Diameter = table.Column<int>(nullable: true),
-                    Waterproof = table.Column<bool>(nullable: true),
-                    Guarantee = table.Column<string>(nullable: true),
+                    DiscountDateFrom = table.Column<DateTime>(nullable: false),
+                    DiscountDateTo = table.Column<DateTime>(nullable: false),
                     Characteristics = table.Column<string>(nullable: true),
-                    Function = table.Column<string>(nullable: true),
                     DescriptionShort = table.Column<string>(nullable: true),
                     DescriptionFull = table.Column<string>(nullable: true),
-                    Status = table.Column<int>(nullable: false)
+                    Sku = table.Column<string>(nullable: true),
+                    BrandProductId = table.Column<int>(nullable: true),
+                    OriginNumber = table.Column<int>(nullable: true),
+                    MachineId = table.Column<int>(nullable: true),
+                    InternationalWarrantyTime = table.Column<int>(nullable: true),
+                    StoreWarrantyTime = table.Column<int>(nullable: true),
+                    Diameter = table.Column<int>(nullable: true),
+                    ThicknessOfClass = table.Column<int>(nullable: true),
+                    BandId = table.Column<int>(nullable: true),
+                    StrapId = table.Column<int>(nullable: true),
+                    ColorClockFaceId = table.Column<int>(nullable: true),
+                    MadeInId = table.Column<int>(nullable: true),
+                    StyleId = table.Column<int>(nullable: true),
+                    WaterproofId = table.Column<int>(nullable: true),
+                    ProductStatusId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_Bands_BandId",
+                        column: x => x.BandId,
+                        principalTable: "Bands",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Products_BrandProducts_BrandProductId",
                         column: x => x.BrandProductId,
@@ -443,29 +521,29 @@ namespace ECommerce.Model.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Products_Chatelaines_ChatelaineId",
-                        column: x => x.ChatelaineId,
-                        principalTable: "Chatelaines",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Products_ColorClockFaces_ColorClockFaceId",
-                        column: x => x.ColorClockFaceId,
+                        name: "FK_Products_ColorClockFaces_Id",
+                        column: x => x.Id,
                         principalTable: "ColorClockFaces",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Products_Hems_HemId",
-                        column: x => x.HemId,
-                        principalTable: "Hems",
+                        name: "FK_Products_MadeIns_Id",
+                        column: x => x.Id,
+                        principalTable: "MadeIns",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Products_HuntingCases_HuntingCaseId",
-                        column: x => x.HuntingCaseId,
-                        principalTable: "HuntingCases",
+                        name: "FK_Products_Straps_Id",
+                        column: x => x.Id,
+                        principalTable: "Straps",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_Waterproofs_Id",
+                        column: x => x.Id,
+                        principalTable: "Waterproofs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Products_Machines_MachineId",
                         column: x => x.MachineId,
@@ -473,15 +551,15 @@ namespace ECommerce.Model.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Products_MadeIns_MadeInId",
-                        column: x => x.MadeInId,
-                        principalTable: "MadeIns",
+                        name: "FK_Products_ProductStatus_ProductStatusId",
+                        column: x => x.ProductStatusId,
+                        principalTable: "ProductStatus",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Products_Origins_OriginId",
-                        column: x => x.OriginId,
-                        principalTable: "Origins",
+                        name: "FK_Products_Styles_StyleId",
+                        column: x => x.StyleId,
+                        principalTable: "Styles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -521,7 +599,7 @@ namespace ECommerce.Model.Migrations
                     CreateBy = table.Column<string>(nullable: true),
                     UpdateDate = table.Column<DateTime>(nullable: true),
                     UpdateBy = table.Column<string>(nullable: true),
-                    ProductId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     Status = table.Column<int>(nullable: false)
                 },
@@ -530,6 +608,67 @@ namespace ECommerce.Model.Migrations
                     table.PrimaryKey("PK_Images", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Images_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderItems",
+                columns: table => new
+                {
+                    OrderId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false),
+                    CreateDate = table.Column<DateTime>(nullable: true),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateBy = table.Column<string>(nullable: true),
+                    Id = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
+                    CurrentPrice = table.Column<float>(nullable: false),
+                    Status = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItems", x => new { x.ProductId, x.OrderId });
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Product_Functions",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(nullable: false),
+                    FunctionId = table.Column<int>(nullable: false),
+                    CreateDate = table.Column<DateTime>(nullable: true),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateBy = table.Column<string>(nullable: true),
+                    Id = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product_Functions", x => new { x.ProductId, x.FunctionId });
+                    table.ForeignKey(
+                        name: "FK_Product_Functions_Functions_FunctionId",
+                        column: x => x.FunctionId,
+                        principalTable: "Functions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Product_Functions_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -547,112 +686,43 @@ namespace ECommerce.Model.Migrations
                     UpdateDate = table.Column<DateTime>(nullable: true),
                     UpdateBy = table.Column<string>(nullable: true),
                     Street = table.Column<string>(nullable: true),
-                    WardId = table.Column<int>(nullable: false),
+                    WardId = table.Column<int>(nullable: true),
+                    DistrictId = table.Column<int>(nullable: true),
+                    CityId = table.Column<int>(nullable: true),
                     Status = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Address", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Address_Citys_CityId",
+                        column: x => x.CityId,
+                        principalTable: "Citys",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Address_Districts_DistrictId",
+                        column: x => x.DistrictId,
+                        principalTable: "Districts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Address_Wards_WardId",
                         column: x => x.WardId,
                         principalTable: "Wards",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Customers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreateDate = table.Column<DateTime>(nullable: true),
-                    CreateBy = table.Column<string>(nullable: true),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    UpdateBy = table.Column<string>(nullable: true),
-                    AddressId = table.Column<int>(nullable: false),
-                    Hobby = table.Column<string>(nullable: true),
-                    Status = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Customers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Customers_Address_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Address",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreateDate = table.Column<DateTime>(nullable: true),
-                    CreateBy = table.Column<string>(nullable: true),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    UpdateBy = table.Column<string>(nullable: true),
-                    Code = table.Column<string>(nullable: true),
-                    Note = table.Column<string>(nullable: true),
-                    Phone = table.Column<string>(nullable: false),
-                    CustomerId = table.Column<int>(nullable: true),
-                    ReceiverInfo = table.Column<string>(nullable: true),
-                    Detail = table.Column<string>(nullable: true),
-                    OrderStatusId = table.Column<int>(nullable: true),
-                    Status = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Orders_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Orders_OrderStatus_OrderStatusId",
-                        column: x => x.OrderStatusId,
-                        principalTable: "OrderStatus",
-                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "OrderItems",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreateDate = table.Column<DateTime>(nullable: true),
-                    CreateBy = table.Column<string>(nullable: true),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    UpdateBy = table.Column<string>(nullable: true),
-                    OrderId = table.Column<int>(nullable: false),
-                    ProductId = table.Column<int>(nullable: false),
-                    Quantity = table.Column<int>(nullable: false),
-                    Status = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OrderItems", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_OrderItems_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_OrderItems_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_Address_CityId",
+                table: "Address",
+                column: "CityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Address_DistrictId",
+                table: "Address",
+                column: "DistrictId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Address_WardId",
@@ -699,9 +769,22 @@ namespace ECommerce.Model.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customers_AddressId",
-                table: "Customers",
-                column: "AddressId");
+                name: "IX_Bands_Name",
+                table: "Bands",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BrandProducts_Name",
+                table: "BrandProducts",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ColorClockFaces_Name",
+                table: "ColorClockFaces",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_DeviceCodes_DeviceCode",
@@ -725,19 +808,27 @@ namespace ECommerce.Model.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Machines_Name",
+                table: "Machines",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MadeIns_Name",
+                table: "MadeIns",
+                column: "Name",
+                unique: true,
+                filter: "[Name] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_OrderId",
                 table: "OrderItems",
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderItems_ProductId",
-                table: "OrderItems",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_CustomerId",
+                name: "IX_Orders_ApplicationUserId",
                 table: "Orders",
-                column: "CustomerId");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_OrderStatusId",
@@ -755,29 +846,19 @@ namespace ECommerce.Model.Migrations
                 columns: new[] { "SubjectId", "ClientId", "Type" });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Product_Functions_FunctionId",
+                table: "Product_Functions",
+                column: "FunctionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_BandId",
+                table: "Products",
+                column: "BandId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_BrandProductId",
                 table: "Products",
                 column: "BrandProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_ChatelaineId",
-                table: "Products",
-                column: "ChatelaineId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_ColorClockFaceId",
-                table: "Products",
-                column: "ColorClockFaceId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_HemId",
-                table: "Products",
-                column: "HemId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_HuntingCaseId",
-                table: "Products",
-                column: "HuntingCaseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_MachineId",
@@ -785,23 +866,44 @@ namespace ECommerce.Model.Migrations
                 column: "MachineId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_MadeInId",
+                name: "IX_Products_ProductStatusId",
                 table: "Products",
-                column: "MadeInId");
+                column: "ProductStatusId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_OriginId",
+                name: "IX_Products_StyleId",
                 table: "Products",
-                column: "OriginId");
+                column: "StyleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Styles_Name",
+                table: "Styles",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Straps_Name",
+                table: "Straps",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Wards_DistrictId",
                 table: "Wards",
                 column: "DistrictId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Waterproofs_Name",
+                table: "Waterproofs",
+                column: "Name",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Address");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -830,55 +932,58 @@ namespace ECommerce.Model.Migrations
                 name: "PersistedGrants");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Orders");
-
-            migrationBuilder.DropTable(
-                name: "Products");
-
-            migrationBuilder.DropTable(
-                name: "Customers");
-
-            migrationBuilder.DropTable(
-                name: "OrderStatus");
-
-            migrationBuilder.DropTable(
-                name: "BrandProducts");
-
-            migrationBuilder.DropTable(
-                name: "Chatelaines");
-
-            migrationBuilder.DropTable(
-                name: "ColorClockFaces");
-
-            migrationBuilder.DropTable(
-                name: "Hems");
-
-            migrationBuilder.DropTable(
-                name: "HuntingCases");
-
-            migrationBuilder.DropTable(
-                name: "Machines");
-
-            migrationBuilder.DropTable(
-                name: "MadeIns");
-
-            migrationBuilder.DropTable(
-                name: "Origins");
-
-            migrationBuilder.DropTable(
-                name: "Address");
+                name: "Product_Functions");
 
             migrationBuilder.DropTable(
                 name: "Wards");
 
             migrationBuilder.DropTable(
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "Functions");
+
+            migrationBuilder.DropTable(
+                name: "Products");
+
+            migrationBuilder.DropTable(
                 name: "Districts");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "OrderStatus");
+
+            migrationBuilder.DropTable(
+                name: "Bands");
+
+            migrationBuilder.DropTable(
+                name: "BrandProducts");
+
+            migrationBuilder.DropTable(
+                name: "ColorClockFaces");
+
+            migrationBuilder.DropTable(
+                name: "MadeIns");
+
+            migrationBuilder.DropTable(
+                name: "Straps");
+
+            migrationBuilder.DropTable(
+                name: "Waterproofs");
+
+            migrationBuilder.DropTable(
+                name: "Machines");
+
+            migrationBuilder.DropTable(
+                name: "ProductStatus");
+
+            migrationBuilder.DropTable(
+                name: "Styles");
 
             migrationBuilder.DropTable(
                 name: "Citys");

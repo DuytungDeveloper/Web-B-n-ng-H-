@@ -4,11 +4,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ECommerce.Model.EFModel.Models
 {
-    public partial class Origin : BaseModel, IBaseModel
+    public partial class Function : BaseModel, IBaseModel
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         public int Status { get; set; }
+        public virtual List<Product_Function> Product_Function { get; set; }
+
+
     }
 }

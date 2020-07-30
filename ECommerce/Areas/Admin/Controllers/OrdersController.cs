@@ -85,8 +85,7 @@ namespace ECommerce.Areas.Admin.Controllers
             GetItem.Phone = body.Phone;
             GetItem.Code = body.Code;
             GetItem.ReceiverInfo = body.ReceiverInfo;
-            GetItem.Status = body.Status == 0 ? GetItem.Status : body.Status;
-            GetItem.CustomerId = body.CustomerId == 0 ? GetItem.CustomerId : body.CustomerId;
+            GetItem.OrderStatusId = body.OrderStatusId == 0 ? GetItem.OrderStatusId : body.OrderStatusId;
             GetItem.UpdateBy = body.UpdateBy;
             GetItem.UpdateDate = DateTime.Now;
             #endregion
@@ -108,7 +107,7 @@ namespace ECommerce.Areas.Admin.Controllers
             if (GetItem == null)
                 return Ok(data);
 
-            GetItem.Status = 1;//delete
+            //GetItem.Status = 1;//delete
             await _UnitOfWork.Orders.Delete(GetItem, true);
             data.Data = GetItem;
             data.Success = true;
