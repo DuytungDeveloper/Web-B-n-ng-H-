@@ -5,13 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerce.Model.EFModel.Models
 {
-    public partial class Product_Function : BaseModel, IBaseModel
+    public partial class Product_Function
     {
         [Key]
+        [Column(Order = 0)]
         public int Id { get; set; }
-        [ForeignKey("Product")]
+        [Column(Order = 1)]
         public int ProductId { get; set; }
-        [ForeignKey("Function")]
+        [Column(Order = 2)]
         public int FunctionId { get; set; }
 
         public virtual Product Product { get; set; }

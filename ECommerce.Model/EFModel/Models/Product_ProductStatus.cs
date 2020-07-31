@@ -5,22 +5,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerce.Model.EFModel.Models
 {
-    public partial class OrderItem : BaseModel
+    public class Product_ProductStatus
     {
         [Key]
         [Column(Order = 0)]
         public int Id { get; set; }
-        [Required]
         [Column(Order = 1)]
-        public int OrderId { get; set; }
-        public virtual Order Order { get; set; }
-        [Column(Order = 2)]
         public int ProductId { get; set; }
+        [Column(Order = 2)]
+        public int ProductStatusId { get; set; }
+
+        public virtual ProductStatus ProductStatus { get; set; }
         public virtual Product Product { get; set; }
-        [Required]
-        [Column(Order = 3)]
-        public int Quantity { get; set; }
-        [Column(Order = 4)]
-        public float CurrentPrice { get; set; }
     }
 }
