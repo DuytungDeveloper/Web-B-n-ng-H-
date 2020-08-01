@@ -42,7 +42,7 @@
                     <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                        href="#"><span>@language.MY_ACCOUNT</span></a>
                     <ul class="dropdown-menu mega_dropdown" role="menu">
-                        <li><a href="login.html">@language.LOGIN</a></li>
+                        <li><a asp-controller="tai-khoan" asp-action="dang-nhap">@language.LOGIN</a></li>
                         @*<li><a href="#">So sánh</a></li>*@
 
                     </ul>
@@ -55,10 +55,10 @@
     <div class="container main-header">
         <div class="row">
             <div class="col-xs-12 col-sm-3 logo">
-                <a href="index.html"><img alt="Kute shop - themelock.com" src="/assets/images/main-logo.png" /></a>
+                <a asp-controller="home" asp-action="index"><img alt="Kute shop - themelock.com" src="/assets/images/main-logo.png" /></a>
             </div>
             <div class="col-xs-7 col-sm-7 header-search-box">
-                <form class="form-inline">
+                <form class="form-inline" asp-controller="search-result" asp-action="index" method="get">
                     <div class="form-group form-category">
                         <select class="select-category">
                             <option value="2">Tất cả danh mục</option>
@@ -118,7 +118,7 @@
                             <span class="toal-price pull-right">10.000.000 VNĐ</span>
                         </div>
                         <div class="cart-buttons">
-                            <a href="order.html" class="btn-check-out">Thanh toán</a>
+                            <a asp-controller="don-hang" class="btn-check-out">Thanh toán</a>
                         </div>
                     </div>
                 </div>
@@ -359,7 +359,7 @@
                                         </div>
                                         <div id="navbar" class="navbar-collapse collapse">
                                             <ul class="nav navbar-nav">
-                                                <li class="active"><a href="#">@language.HOME</a></li>
+                                                <li class="active"><a asp-controller="home" asp-action="index">@language.HOME</a></li>
                                                 <li class="dropdown">
                                                     <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">
                                                         @language.MENS_WATCH
