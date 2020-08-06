@@ -8,10 +8,15 @@ namespace ECommerce.Model
 {
     public interface IBaseModel
     {
+        [Column(Order = 90)]
         public DateTime? CreateDate { get; set; }
+        [Column(Order = 91)]
         public string CreateBy { get; set; }
+        [Column(Order = 92)]
         public DateTime? UpdateDate { get; set; }
+        [Column(Order = 93)]
         public string UpdateBy { get; set; }
+        [Column(Order = 94)]
         public int Status { get; set; }
     }
     public class BaseModel : IBaseModel

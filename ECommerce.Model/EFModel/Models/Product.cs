@@ -172,9 +172,11 @@ namespace ECommerce.Model.EFModel.Models
         public int? WaterproofId { get; set; }
         public virtual Waterproof Waterproof { get; set; }
         /// <summary>
-        /// chức năng hiện có của sản phẩm
+        /// Phân loại theo danh mục
         /// </summary>
-        //public int? FunctionId { get; set; }
+        [Column(Order = 25)]
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
         public virtual List<Product_Function> Product_Function { get; set; }
         #endregion
 

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.Model.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200731055444_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20200806032022_Add-Category")]
+    partial class AddCategory
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -234,6 +234,42 @@ namespace ECommerce.Model.Migrations
                     b.ToTable("BrandProducts");
                 });
 
+            modelBuilder.Entity("ECommerce.Model.EFModel.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Category");
+                });
+
             modelBuilder.Entity("ECommerce.Model.EFModel.Models.City", b =>
                 {
                     b.Property<int>("Id")
@@ -333,7 +369,7 @@ namespace ECommerce.Model.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Sort")
                         .HasColumnType("int");
@@ -352,9 +388,6 @@ namespace ECommerce.Model.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
 
                     b.ToTable("Districts");
                 });
@@ -654,12 +687,17 @@ namespace ECommerce.Model.Migrations
             modelBuilder.Entity("ECommerce.Model.EFModel.Models.Product", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("BandId")
                         .HasColumnType("int");
 
                     b.Property<int?>("BrandProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Characteristics")
@@ -754,12 +792,20 @@ namespace ECommerce.Model.Migrations
 
                     b.HasIndex("BrandProductId");
 
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("ColorClockFaceId");
+
                     b.HasIndex("MachineId");
 
                     b.HasIndex("Name")
                         .IsUnique();
 
+                    b.HasIndex("StrapId");
+
                     b.HasIndex("StyleId");
+
+                    b.HasIndex("WaterproofId");
 
                     b.ToTable("Products");
                 });
@@ -776,7 +822,8 @@ namespace ECommerce.Model.Migrations
 
                     b.Property<DateTime?>("CreateDate")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("Desription")
                         .HasColumnType("nvarchar(max)");
@@ -787,7 +834,8 @@ namespace ECommerce.Model.Migrations
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("1");
 
                     b.Property<string>("UpdateBy")
                         .HasColumnType("nvarchar(max)");
@@ -935,7 +983,7 @@ namespace ECommerce.Model.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Sort")
                         .HasColumnType("int");
@@ -954,9 +1002,6 @@ namespace ECommerce.Model.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DistrictId");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
 
                     b.ToTable("Wards");
                 });
@@ -1292,37 +1337,35 @@ namespace ECommerce.Model.Migrations
                         .WithMany("Products")
                         .HasForeignKey("BrandProductId");
 
+                    b.HasOne("ECommerce.Model.EFModel.Models.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ECommerce.Model.EFModel.Models.ColorClockFace", "ColorClockFace")
                         .WithMany("Products")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ECommerce.Model.EFModel.Models.MadeIn", "MadeIn")
-                        .WithMany("Products")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ECommerce.Model.EFModel.Models.Strap", "Strap")
-                        .WithMany("Products")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ECommerce.Model.EFModel.Models.Waterproof", "Waterproof")
-                        .WithMany("Products")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ColorClockFaceId");
 
                     b.HasOne("ECommerce.Model.EFModel.Models.Machine", "Machine")
                         .WithMany("Products")
                         .HasForeignKey("MachineId");
 
+                    b.HasOne("ECommerce.Model.EFModel.Models.MadeIn", "MadeIn")
+                        .WithMany("Products")
+                        .HasForeignKey("MachineId");
+
+                    b.HasOne("ECommerce.Model.EFModel.Models.Strap", "Strap")
+                        .WithMany("Products")
+                        .HasForeignKey("StrapId");
+
                     b.HasOne("ECommerce.Model.EFModel.Models.Style", "Style")
                         .WithMany("Products")
                         .HasForeignKey("StyleId");
+
+                    b.HasOne("ECommerce.Model.EFModel.Models.Waterproof", "Waterproof")
+                        .WithMany("Products")
+                        .HasForeignKey("WaterproofId");
                 });
 
             modelBuilder.Entity("ECommerce.Model.EFModel.Models.Product_Function", b =>

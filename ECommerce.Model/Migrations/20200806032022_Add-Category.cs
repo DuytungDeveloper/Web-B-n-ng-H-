@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ECommerce.Model.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class AddCategory : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,14 +26,13 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "1"),
                     CreateDate = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
                     CreateBy = table.Column<string>(nullable: true),
                     UpdateDate = table.Column<DateTime>(nullable: true),
                     UpdateBy = table.Column<string>(nullable: true),
-
                 },
                 constraints: table =>
                 {
@@ -45,7 +44,7 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "1"),
                     CreateDate = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
@@ -59,11 +58,29 @@ namespace ECommerce.Model.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Category",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: false),
+                    CreateDate = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
+                    CreateBy = table.Column<string>(nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateBy = table.Column<string>(nullable: true),
+                    Status = table.Column<int>(nullable: false, defaultValueSql: "1"),
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Category", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Citys",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Sort = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "1"),
@@ -82,7 +99,7 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "1"),
                     CreateDate = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
@@ -117,7 +134,7 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "1"),
                     CreateDate = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
@@ -135,7 +152,7 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "1"),
                     CreateDate = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
@@ -153,7 +170,7 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "1"),
                     CreateDate = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
@@ -171,7 +188,7 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Desription = table.Column<string>(nullable: true),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "1"),
@@ -179,7 +196,6 @@ namespace ECommerce.Model.Migrations
                     CreateBy = table.Column<string>(nullable: true),
                     UpdateDate = table.Column<DateTime>(nullable: true),
                     UpdateBy = table.Column<string>(nullable: true),
-
                 },
                 constraints: table =>
                 {
@@ -208,7 +224,7 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Desription = table.Column<string>(nullable: true),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "1"),
@@ -216,7 +232,6 @@ namespace ECommerce.Model.Migrations
                     CreateBy = table.Column<string>(nullable: true),
                     UpdateDate = table.Column<DateTime>(nullable: true),
                     UpdateBy = table.Column<string>(nullable: true),
-
                 },
                 constraints: table =>
                 {
@@ -228,14 +243,13 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "1"),
                     CreateDate = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
                     CreateBy = table.Column<string>(nullable: true),
                     UpdateDate = table.Column<DateTime>(nullable: true),
                     UpdateBy = table.Column<string>(nullable: true),
-
                 },
                 constraints: table =>
                 {
@@ -247,14 +261,13 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "1"),
                     CreateDate = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
                     CreateBy = table.Column<string>(nullable: true),
                     UpdateDate = table.Column<DateTime>(nullable: true),
                     UpdateBy = table.Column<string>(nullable: true),
-
                 },
                 constraints: table =>
                 {
@@ -266,14 +279,13 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "1"),
                     CreateDate = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
                     CreateBy = table.Column<string>(nullable: true),
                     UpdateDate = table.Column<DateTime>(nullable: true),
                     UpdateBy = table.Column<string>(nullable: true),
-
                 },
                 constraints: table =>
                 {
@@ -285,7 +297,7 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -306,7 +318,7 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     CityId = table.Column<int>(nullable: false),
                     Sort = table.Column<int>(nullable: false),
@@ -315,7 +327,6 @@ namespace ECommerce.Model.Migrations
                     CreateBy = table.Column<string>(nullable: true),
                     UpdateDate = table.Column<DateTime>(nullable: true),
                     UpdateBy = table.Column<string>(nullable: true),
-
                 },
                 constraints: table =>
                 {
@@ -332,9 +343,9 @@ namespace ECommerce.Model.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
-
-                    Status = table.Column<int>(nullable: false, defaultValueSql: "1"),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    
                     Name = table.Column<string>(nullable: false),
                     Video = table.Column<string>(nullable: true),
                     Url = table.Column<string>(nullable: true),
@@ -359,10 +370,12 @@ namespace ECommerce.Model.Migrations
                     MadeInId = table.Column<int>(nullable: true),
                     StyleId = table.Column<int>(nullable: true),
                     WaterproofId = table.Column<int>(nullable: true),
+                    CategoryId = table.Column<int>(nullable: false),
                     CreateDate = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
                     CreateBy = table.Column<string>(nullable: true),
                     UpdateDate = table.Column<DateTime>(nullable: true),
                     UpdateBy = table.Column<string>(nullable: true),
+                    Status = table.Column<int>(nullable: false, defaultValueSql: "1"),
                 },
                 constraints: table =>
                 {
@@ -380,29 +393,17 @@ namespace ECommerce.Model.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Products_ColorClockFaces_Id",
-                        column: x => x.Id,
+                        name: "FK_Products_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_ColorClockFaces_ColorClockFaceId",
+                        column: x => x.ColorClockFaceId,
                         principalTable: "ColorClockFaces",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Products_MadeIns_Id",
-                        column: x => x.Id,
-                        principalTable: "MadeIns",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Products_Straps_Id",
-                        column: x => x.Id,
-                        principalTable: "Straps",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Products_Waterproofs_Id",
-                        column: x => x.Id,
-                        principalTable: "Waterproofs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Products_Machines_MachineId",
                         column: x => x.MachineId,
@@ -410,9 +411,27 @@ namespace ECommerce.Model.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
+                        name: "FK_Products_MadeIns_MachineId",
+                        column: x => x.MachineId,
+                        principalTable: "MadeIns",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Products_Straps_StrapId",
+                        column: x => x.StrapId,
+                        principalTable: "Straps",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Products_Styles_StyleId",
                         column: x => x.StyleId,
                         principalTable: "Styles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Products_Waterproofs_WaterproofId",
+                        column: x => x.WaterproofId,
+                        principalTable: "Waterproofs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -422,7 +441,7 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Sort = table.Column<int>(nullable: false),
                     DistrictId = table.Column<int>(nullable: false),
@@ -448,7 +467,7 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     ProductId = table.Column<int>(nullable: true),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "1"),
@@ -456,7 +475,6 @@ namespace ECommerce.Model.Migrations
                     CreateBy = table.Column<string>(nullable: true),
                     UpdateDate = table.Column<DateTime>(nullable: true),
                     UpdateBy = table.Column<string>(nullable: true),
-
                 },
                 constraints: table =>
                 {
@@ -524,7 +542,7 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Street = table.Column<string>(nullable: true),
                     WardId = table.Column<int>(nullable: true),
                     DistrictId = table.Column<int>(nullable: true),
@@ -601,7 +619,7 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -686,8 +704,7 @@ namespace ECommerce.Model.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                       .Annotation("SqlServer:Identity", "1, 1"),
-
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<string>(nullable: true),
                     Note = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: false),
@@ -821,6 +838,12 @@ namespace ECommerce.Model.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Category_Name",
+                table: "Category",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Citys_Name",
                 table: "Citys",
                 column: "Name",
@@ -847,12 +870,6 @@ namespace ECommerce.Model.Migrations
                 name: "IX_Districts_CityId",
                 table: "Districts",
                 column: "CityId");
-
-            //migrationBuilder.CreateIndex (
-            //    name: "IX_Districts_Name",
-            //    table: "Districts",
-            //    column: "Name",
-            //    unique : true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Functions_Name",
@@ -930,6 +947,16 @@ namespace ECommerce.Model.Migrations
                 column: "BrandProductId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Products_CategoryId",
+                table: "Products",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_ColorClockFaceId",
+                table: "Products",
+                column: "ColorClockFaceId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_MachineId",
                 table: "Products",
                 column: "MachineId");
@@ -941,9 +968,19 @@ namespace ECommerce.Model.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Products_StrapId",
+                table: "Products",
+                column: "StrapId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_StyleId",
                 table: "Products",
                 column: "StyleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_WaterproofId",
+                table: "Products",
+                column: "WaterproofId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductStatus_Name",
@@ -967,12 +1004,6 @@ namespace ECommerce.Model.Migrations
                 name: "IX_Wards_DistrictId",
                 table: "Wards",
                 column: "DistrictId");
-
-            //migrationBuilder.CreateIndex (
-            //    name: "IX_Wards_Name",
-            //    table: "Wards",
-            //    column: "Name",
-            //    unique : true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Waterproofs_Name",
@@ -1034,7 +1065,286 @@ namespace ECommerce.Model.Migrations
             migrationBuilder.InsertData(
                 table: "BrandProducts",
                 columns: new[] { "Name" },
-                values: new object[,] { { "Patek Philippe" }, { "Tag Heuer" }, { "Rolex Swiss Made" }, { "Omega" }, { "Longines" }, { "Tissot" }, { "Timex" }, { "Calvin Klein" }, { "Movado" }, { "SEIKO" }, { "Citizen" }, { "Orient" }, { "Casio" }, { "Fossil" }, { "Michael Kors" }, { "Ogival" }, { "OP: Olympia Star, Olym Pianus" }, { "DW (Daniel Wellington)" }, { "Anne Klein" }, { "Guess" }, { "Breitling" }, { "Piaget" }, { "Breguet" }, { "Zenith" }, { "Vacheron Constantin" }, { "Audemars Piguet" }, { "Hublot" }, { "Jaguar" }, { "Mido" }, { "Candino" }, { "Rado Switzerland" }, { "Swatch" }, { "Century" }, { "Certina" }, { "Roamer" }, { "Perrelet" }, { "Chronoswiss" }, { "Frederique Constant (FC)" }, { "IWC" },
+                values: new object[,] {
+                    {"Patek Philippe"},
+                    {"Tag Heuer"},
+                    {"Rolex Swiss Made"},
+                    {"Omega"},
+                    {"Longines"},
+                    {"Tissot"},
+                    {"Timex"},
+                    {"Calvin Klein"},
+                    {"Movado"},
+                    {"SEIKO"},
+                    {"Citizen"},
+                    {"Orient"},
+                    {"Casio"},
+                    {"Fossil"},
+                    {"Michael Kors"},
+                    {"Ogival"},
+                    {"OP: Olympia Star, Olym Pianus"},
+                    {"DW (Daniel Wellington)"},
+                    {"Anne Klein"},
+                    {"Guess"},
+                    {"Breitling"},
+                    {"Piaget"},
+                    {"Breguet"},
+                    {"Zenith"},
+                    {"Vacheron Constantin"},
+                    {"Audemars Piguet"},
+                    {"Hublot"},
+                    {"Jaguar"},
+                    {"Mido"},
+                    {"Candino"},
+                    {"Rado Switzerland"},
+                    {"Swatch"},
+                    {"Century"},
+                    {"Certina"},
+                    {"Roamer"},
+                    {"Perrelet"},
+                    {"Chronoswiss"},
+                    {"Frederique Constant (FC)"},
+                    {"IWC"},
+                    {"BulovaBulova"},
+                    {"DavenaDavena"},
+                    {"Royal CrownRoyal Crown"},
+                    {"SunriseSunrise"},
+                    {"EarnshawEarnshaw"},
+                    {"AlpinaAlpina"},
+                    {"TissotTissot"},
+                    {"SeikoSeiko"},
+                    {"AkribosAkribos"},
+                    {"Anne KleinAnne Klein"},
+                    {"AolixAolix"},
+                    {"ADEE KAYEADEE KAYE"},
+                    {"Armani ExchangeArmani Exchange"},
+                    {"ArbutusArbutus"},
+                    {"B SwissB Swiss"},
+                    {"Badgley MischkaBadgley Mischka"},
+                    {"Armand NicoletArmand Nicolet"},
+                    {"Brooklyn Watch CoBrooklyn Watch Co"},
+                    {"BombergBomberg"},
+                    {"BallBall"},
+                    {"BalmainBalmain"},
+                    {"BentleyBentley"},
+                    {"BugriBugri"},
+                    {"BurgiBurgi"},
+                    {"Bruno MagliBruno Magli"},
+                    {"BurberryBurberry"},
+                    {"Caravelle New YorkCaravelle New York"},
+                    {"CasioCasio"},
+                    {"CarnivalCarnival"},
+                    {"CaravelleCaravelle"},
+                    {"Calvin KleinCalvin Klein"},
+                    {"CCCPCCCP"},
+                    {"CharmexCharmex"},
+                    {"Christian Van SantChristian Van Sant"},
+                    {"CharriolCharriol"},
+                    {"Claude BernardClaude Bernard"},
+                    {"CoachCoach"},
+                    {"CertinaCertina"},
+                    {"Daniel WellingtonDaniel Wellington"},
+                    {"CorumCorum"},
+                    {"CitizenCitizen"},
+                    {"DKNYDKNY"},
+                    {"edoxedox"},
+                    {"DiorDior"},
+                    {"Emporio ArmaniEmporio Armani"},
+                    {"FerrariFerrari"},
+                    {"EternaEterna"},
+                    {"FendiFendi"},
+                    {"Elini BarokasElini Barokas"},
+                    {"Ferre MilanoFerre Milano"},
+                    {"Frederique ConstantFrederique Constant"},
+                    {"FUJIFUJI"},
+                    {"FossilFossil"},
+                    {"FurlaFurla"},
+                    {"GCGC"},
+                    {"GrovanaGrovana"},
+                    {"GemaxGemax"},
+                    {"GosttaGostta"},
+                    {"GucciGucci"},
+                    {"GevrilGevril"},
+                    {"Guess CollectionGuess Collection"},
+                    {"GuessGuess"},
+                    {"Guess WaferGuess Wafer"},
+                    {"GV2GV2"},
+                    {"HamiltonHamilton"},
+                    {"HermesHermes"},
+                    {"HubolerHuboler"},
+                    {"HublotHublot"},
+                    {"GV2 VittoriaGV2 Vittoria"},
+                    {"HanboroHanboro"},
+                    {"InvictaInvicta"},
+                    {"Jacques LemansJacques Lemans"},
+                    {"JBWJBW"},
+                    {"Juicy CoutureJuicy Couture"},
+                    {"LonginesLongines"},
+                    {"LUCIEN PICCARDLUCIEN PICCARD"},
+                    {"Just CavalliJust Cavalli"},
+                    {"Kate SpadeKate Spade"},
+                    {"Marc JacobsMarc Jacobs"},
+                    {"MATHEY-TISSOTMATHEY-TISSOT"},
+                    {"MASERATIMASERATI"},
+                    {"Mark & JonesMark & Jones"},
+                    {"Maurice LacroixMaurice Lacroix"},
+                    {"Mazzucato EgoMazzucato Ego"},
+                    {"MONTBLANCMONTBLANC"},
+                    {"MelissaMelissa"},
+                    {"MidoMido"},
+                    {"MovadoMovado"},
+                    {"Michael KorsMichael Kors"},
+                    {"OmegaOmega"},
+                    {"OgivalOgival"},
+                    {"OnissOniss"},
+                    {"Olym PianusOlym Pianus"},
+                    {"Olympia StarOlympia Star"},
+                    {"OrisOris"},
+                    {"PolicePolice"},
+                    {"PeugeotPeugeot"},
+                    {"PerreletPerrelet"},
+                    {"OrientOrient"},
+                    {"Raymond WeilRaymond Weil"},
+                    {"Reef TigerReef Tiger"},
+                    {"RadoRado"},
+                    {"Revue ThommenRevue Thommen"},
+                    {"PulsarPulsar"},
+                    {"Roberto CavalliRoberto Cavalli"},
+                    {"S CoifmanS Coifman"},
+                    {"RotaryRotary"},
+                    {"Salvatore FerragamoSalvatore Ferragamo"},
+                    {"SevenFridaySevenFriday"},
+                    {"SkagenSkagen"},
+                    {"Serene Marceau DiamondSerene Marceau Diamond"},
+                    {"SeahSeah"},
+                    {"StuhrlingStuhrling"},
+                    {"StarkeStarke"},
+                    {"SwarovskiSwarovski"},
+                    {"Speake MarinSpeake Marin"},
+                    {"TED BAKERTED BAKER"},
+                    {"Tory BurchTory Burch"},
+                    {"TechnomarineTechnomarine"},
+                    {"Tommy BahamaTommy Bahama"},
+                    {"Vince CamutoVince Camuto"},
+                    {"VictorinoxVictorinox"},
+                    {"WengerWenger"},
+                    {"versusversus"},
+                    {"VersaceVersace"},
+                    {"WittnauerWittnauer"},
+                    {"X-cerX-cer"},
+                    {"Bulova"},
+                    {"Davena"},
+                    {"Royal Crown"},
+                    {"Sunrise"},
+                    {"Earnshaw"},
+                    {"Alpina"},
+                    {"Akribos"},
+                    {"Aolix"},
+                    {"ADEE KAYE"},
+                    {"thương hiệu orient"},
+                    {"Armani Exchange"},
+                    {"Arbutus"},
+                    {"B Swiss"},
+                    {"Badgley Mischka"},
+                    {"Armand Nicolet"},
+                    {"Brooklyn Watch Co"},
+                    {"Bomberg"},
+                    {"Ball"},
+                    {"Balmain"},
+                    {"Bentley"},
+                    {"Bugri"},
+                    {"Burgi"},
+                    {"Bruno Magli"},
+                    {"Burberry"},
+                    {"thương hiệu fouetté (phiên bản giới hạn 99 chiếc trên toàn thế giới)"},
+                    {"Caravelle New York"},
+                    {"Carnival"},
+                    {"Caravelle"},
+                    {"CCCP"},
+                    {"Charmex"},
+                    {"Christian Van Sant"},
+                    {"Charriol"},
+                    {"Claude Bernard"},
+                    {"Coach"},
+                    {"Daniel Wellington"},
+                    {"Corum"},
+                    {"DKNY"},
+                    {"edox"},
+                    {"Dior"},
+                    {"Emporio Armani"},
+                    {"Ferrari"},
+                    {"Eterna"},
+                    {"Fendi"},
+                    {"Elini Barokas"},
+                    {"Ferre Milano"},
+                    {"Frederique Constant"},
+                    {"FUJI"},
+                    {"Furla"},
+                    {"GC"},
+                    {"Grovana"},
+                    {"Gemax"},
+                    {"Gostta"},
+                    {"Gucci"},
+                    {"Gevril"},
+                    {"Guess Collection"},
+                    {"Guess Wafer"},
+                    {"GV2"},
+                    {"Hamilton"},
+                    {"Hermes"},
+                    {"Huboler"},
+                    {"GV2 Vittoria"},
+                    {"Hanboro"},
+                    {"Invicta"},
+                    {"Jacques Lemans"},
+                    {"JBW"},
+                    {"Juicy Couture"},
+                    {"LUCIEN PICCARD"},
+                    {"Just Cavalli"},
+                    {"Kate Spade"},
+                    {"Marc Jacobs"},
+                    {"MATHEYTISSOT"},
+                    {"MASERATI"},
+                    {"Mark & Jones"},
+                    {"Maurice Lacroix"},
+                    {"Mazzucato Ego"},
+                    {"MONTBLANC"},
+                    {"Melissa"},
+                    {"Oniss"},
+                    {"Olym Pianus"},
+                    {"Olympia Star"},
+                    {"Oris"},
+                    {"Police"},
+                    {"Peugeot"},
+                    {"Raymond Weil"},
+                    {"Reef Tiger"},
+                    {"Rado"},
+                    {"Revue Thommen"},
+                    {"Pulsar"},
+                    {"Roberto Cavalli"},
+                    {"S Coifman"},
+                    {"Rotary"},
+                    {"Salvatore Ferragamo"},
+                    {"SevenFriday"},
+                    {"Skagen"},
+                    {"Serene Marceau Diamond"},
+                    {"Seah"},
+                    {"Stuhrling"},
+                    {"Starke"},
+                    {"Swarovski"},
+                    {"Speake Marin"},
+                    {"TED BAKER"},
+                    {"Tory Burch"},
+                    {"Technomarine"},
+                    {"Tommy Bahama"},
+                    {"Vince Camuto"},
+                    {"Victorinox"},
+                    {"Wenger"},
+                    {"versus"},
+                    {"Versace"},
+                    {"Wittnauer"},
+                    {"Xcer"},
+                    {"Doxa"},
+                    {"Saga"},
                 });
             #endregion
 
@@ -1042,7 +1352,13 @@ namespace ECommerce.Model.Migrations
             migrationBuilder.InsertData(
                 table: "ColorClockFaces",
                 columns: new[] { "Name" },
-                values: new object[,] { { "Sapphire (Kính Chống Trầy)" },
+                values: new object[,] {
+                    {"Kính cứng"},
+                    {"Kính Sapphire"},
+                    {""},
+                    {"Kính đặc biệt"},
+                    {"Kính Hardlex"},
+                    {"Kính đặc biệt, Kính Hardlex"}
                 });
             #endregion
 
@@ -1058,7 +1374,15 @@ namespace ECommerce.Model.Migrations
             migrationBuilder.InsertData(
               table: "Machines",
               columns: new[] { "Name" },
-              values: new object[,] { { "Automatic (Tự động)" }, { "Máy cơ" },
+              values: new object[,] {
+                    {"Pin (Quartz)"},
+                    {""},
+                    {"Cơ (Automatic)"},
+                    {"Năng Lượng Ánh Sáng"},
+                    {"Năng Lượng Ánh Sáng, Pin (Quartz)"},
+                    {"Kinetic (Vừa Pin – Vừa Tự Động)"},
+                    {"Automatic (Tự Động)"},
+                    {"Quartz (Pin)"},
             });
             //modelBuilder.Entity<Machine>().HasData(new Machine { Name = "Automatic (Tự động)" });
             //modelBuilder.Entity<Machine>().HasData(new Machine { Name = "Máy cơ" });
@@ -1068,7 +1392,25 @@ namespace ECommerce.Model.Migrations
             migrationBuilder.InsertData(
               table: "MadeIns",
               columns: new[] { "Name" },
-              values: new object[,] { { "Thụy sỹ" }, { "Việt nam" },
+              values: new object[,] {
+                    {"Mỹ"},
+                    {"Hong Kong"},
+                    {"Thụy Sĩ"},
+                    {"Anh"},
+                    {"Nhật Bản"},
+                    {"xuất xứ nhật bản"},
+                    {"Italia"},
+                    {"Pháp"},
+                    {"Đức"},
+                    {"xuất xứ hồng kông"},
+                    {""},
+                    {"Nga"},
+                    {"Bỉ"},
+                    {"Đan Mạch"},
+                    {"Áo"},
+                    {"Hàn Quốc"},
+                    {"Thụy Sỹ"},
+                    {"Thụy Điển"},
             });
             //modelBuilder.Entity<MadeIn>().HasData(new MadeIn { Name = "Thụy sỹ" });
             //modelBuilder.Entity<MadeIn>().HasData(new MadeIn { Name = "Việt nam" });
@@ -1078,7 +1420,58 @@ namespace ECommerce.Model.Migrations
             migrationBuilder.InsertData(
               table: "Straps",
               columns: new[] { "Name" },
-              values: new object[,] { { "Thép không rỉ (Inox)" }, { "Titanium" }, { "Xi" }, { "Da" }, { "Da vân nguyên bản" }, { "Dây da giả da cá sấu" }, { "Dây da giả vân" }, { "Dây da giả da" }, { "Nato" }, { "Vải" }, { "Nhựa" }, { "Cao su" }, { "Đá" }, { "gốm" }, { "ceramic" }, { "OYSTER" }, { "JUBILEE" }, { "PRESIDENT" }, { "MILANESE" }, { "BEADS OF RICE" }, { "ROYAL OAK" }, { "BONKLIP" }, { "Twist-O-Flex" }, { "H-link" }, { "Shark Mesh" }, { "Engineer" }, { "Ladder" },
+              values: new object[,] {
+                  {"Dây kim loại"},
+                    {"Dây da"},
+                    {"Dây da, Dây kim loại"},
+                    {"Dây nhựa / Cao su"},
+                    {"Dây đá cerramic"},
+                    {"Thép Không Gỉ"},
+                    {""},
+                    {"Dây đá cerramic, Thép Không Gỉ"},
+                    {"Dây Nhựa, Dây nhựa / Cao su"},
+                    {"Dây Nhựa"},
+                    {"Dây vải"},
+                    {"Dây kim loại, Thép Không Gỉ"},
+                    {"Dây TiTanium"},
+                    {"Dây kim loại, Dây Nhựa, Dây nhựa / Cao su"},
+                    {"Dây da, Dây vải"},
+                    {"Dây nhựa / Cao su, Navy Silicone"},
+                    {"Dây đá cerramic, Dây kim loại"},
+                    {"Dây da, Dây nhựa / Cao su"},
+                    {"Dây da, Dây kim loại, Dây nhựa / Cao su"},
+                    {"Navy Silicone"},
+                    {"Dây đá / Khoáng, Dây kim loại"},
+                    {"Dây Nhựa, Thép Không Gỉ"},
+                    {"Dây da, Thép Không Gỉ"},
+                    {"Dây Nhựa, Dây nhựa / Cao su, Navy Silicone"},
+                    {"Thép không rỉ (Inox)"},
+                    {"Titanium"},
+                    {"Xi"},
+                    {"Da"},
+                    {"Da vân nguyên bản"},
+                    {"Dây da giả da cá sấu"},
+                    {"Dây da giả vân"},
+                    {"Dây da giả da"},
+                    {"Nato"},
+                    {"Vải"},
+                    {"Nhựa"},
+                    {"Cao su"},
+                    {"Đá"},
+                    {"gốm"},
+                    {"ceramic"},
+                    {"OYSTER"},
+                    {"JUBILEE"},
+                    {"PRESIDENT"},
+                    {"MILANESE"},
+                    {"BEADS OF RICE"},
+                    {"ROYAL OAK"},
+                    {"BONKLIP"},
+                    {"Twist-O-Flex"},
+                    {"H-link"},
+                    {"Shark Mesh"},
+                    {"Engineer"},
+                    {"Ladder" }
             });
 
             #endregion
@@ -1090,6 +1483,32 @@ namespace ECommerce.Model.Migrations
               values: new object[,] {
                   { "Lịch lãm" }, { "Trẻ trung" },
                   { "Quý phái" }, { "Năng động" },
+                  {"Sang Trọng, Thời Trang"},
+                {"Cá Tính, Sang Trọng, Thời Trang"},
+                {"Cá Tính"},
+                {"Classic ( Cổ điển ), Sang Trọng"},
+                {"Cá Tính, Sang Trọng"},
+                {""},
+                {"Classic ( Cổ điển ), Sang Trọng, Thời Trang"},
+                {"Sang Trọng"},
+                {"Classic ( Cổ điển )"},
+                {"Thể Thao"},
+                {"Cá Tính, Thể Thao"},
+                {"Beige, Classic ( Cổ điển ), Sang Trọng"},
+                {"Thời Trang"},
+                {"Thể Thao, Thời Trang"},
+                {"Sang Trọng, Thể Thao"},
+                {"Sang Trọng, Thể Thao, Thời Trang"},
+                {"Classic ( Cổ điển ), Thể Thao"},
+                {"Classic ( Cổ điển ), Thời Trang"},
+                {"Cá Tính, Classic ( Cổ điển ), Sang Trọng"},
+                {"Cá Tính, Thể Thao, Thời Trang"},
+                {"Cá Tính, Classic ( Cổ điển )"},
+                {"Cá Tính, Sang Trọng, Thể Thao"},
+                {"Cá Tính, Thời Trang"},
+                {"Parker"},
+                {"Cá Tính, Sang Trọng, Thể Thao, Thời Trang"},
+                {"Parker, Sang Trọng"}
 
             });
             #endregion
@@ -1106,7 +1525,18 @@ namespace ECommerce.Model.Migrations
                     {"770m/77 ATM/77 Bar" },
                     {"1000m/100 ATM/100 Bar" },
                     {"2000m/200 ATM/200 Bar" },
+            });
+            #endregion
 
+            #region Category
+            migrationBuilder.InsertData(
+              table: "Category",
+              columns: new[] { "Name" },
+              values: new object[,] {
+                    {"Đồng hồ nữ"},
+                    {"Đồng hồ nam"},
+                    {"Đồng hồ cặp"},
+                    {"Chưa phân loại"},
             });
             #endregion
 
@@ -1191,7 +1621,13 @@ namespace ECommerce.Model.Migrations
                 name: "BrandProducts");
 
             migrationBuilder.DropTable(
+                name: "Category");
+
+            migrationBuilder.DropTable(
                 name: "ColorClockFaces");
+
+            migrationBuilder.DropTable(
+                name: "Machines");
 
             migrationBuilder.DropTable(
                 name: "MadeIns");
@@ -1200,13 +1636,10 @@ namespace ECommerce.Model.Migrations
                 name: "Straps");
 
             migrationBuilder.DropTable(
-                name: "Waterproofs");
-
-            migrationBuilder.DropTable(
-                name: "Machines");
-
-            migrationBuilder.DropTable(
                 name: "Styles");
+
+            migrationBuilder.DropTable(
+                name: "Waterproofs");
 
             migrationBuilder.DropTable(
                 name: "Address");
