@@ -720,8 +720,8 @@ namespace ECommerce.Model.Migrations
                     b.Property<string>("DescriptionShort")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Diameter")
-                        .HasColumnType("int");
+                    b.Property<string>("Diameter")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("DiscountDateFrom")
                         .HasColumnType("datetime2");

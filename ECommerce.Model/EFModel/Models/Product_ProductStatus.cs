@@ -7,12 +7,9 @@ namespace ECommerce.Model.EFModel.Models
 {
     public class Product_ProductStatus
     {
-        [Key]
         [Column(Order = 0)]
-        public int Id { get; set; }
-        [Column(Order = 1)]
         public int ProductId { get; set; }
-        [Column(Order = 2)]
+        [Column(Order = 1)]
         public int ProductStatusId { get; set; }
 
         public virtual ProductStatus ProductStatus { get; set; }

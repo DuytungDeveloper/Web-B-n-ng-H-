@@ -6,11 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Controllers
 {
-    [Route("{language}/san-pham")]
+    [Route("{language}/san-pham/{link?}")]
     public class ProductController : Controller
     {
-        [Route("{id}")]
-        public IActionResult Index(int id)
+        //[Route("{link?}")]
+        //[Route("{language}/san-pham/{link?}")]
+        public IActionResult Index(string link)
         {
             return View();
         }

@@ -1,4 +1,7 @@
-﻿<div class="page-top">
+﻿@using ECommerce.Models.View;
+@using System.Globalization;
+@model HomeSliderProductPartial
+<div class="page-top">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-9 page-top-left">
@@ -13,385 +16,179 @@
                             <ul class="product-list owl-carousel" data-dots="false" data-loop="true" data-nav="true"
                                 data-margin="30" data-autoplayTimeout="1000" data-autoplayHoverPause="true"
                                 data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":3}}'>
-                                <li>
-                                    <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product"
-                                                 src="/assets/images/product-1.jpg" />
-                                        </a>
-                                        <div class="quick-view">
-                                            <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Add to compare" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
+                                @for (int i = 0; i < Model.sanPhamChayNhat.Count(); i++)
+                                {
+                                    var data = Model.sanPhamChayNhat[i];
+                                    <li>
+
+                                        <div class="left-block">
+                                            <a href="#">
+                                                <img class="img-responsive" alt="product"
+                                                     src="/assets/images/product-1.jpg" />
+                                            </a>
+                                            <div class="quick-view">
+                                                @*<a title="Add to my wishlist" class="heart" href="#"></a>*@
+                                                <a title="Add to compare" class="compare" href="#"></a>
+                                                <a title="Quick view" class="search" href="#"></a>
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                            </div>
+                                            <div class="group-price">
+                                                @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
+                                                {
+                                                    <span class="product-new">@language.NEW</span>
+                                                }
+                                                @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
+                                                {
+                                                    <span class="product-sale">@language.SALE</span>
+                                                }
+                                            </div>
                                         </div>
-                                        <div class="add-to-cart">
-                                            <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                        <div class="right-block">
+                                            <h5 class="product-name"><a href="#">@data.Name</a></h5>
+                                            <div class="content_price">
+                                                @if (data.PriceDiscount.HasValue)
+                                                {
+                                                    <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", CultureInfo.CurrentCulture)</span>
+                                                    <span class="price old-price">@data.Price.ToString("C0", CultureInfo.CurrentCulture)</span>
+
+                                                }
+                                                else
+                                                {
+                                                    <span class="price product-price">@data.Price.ToString("C0", CultureInfo.CurrentCulture)</span>
+                                                }
+                                            </div>
+                                            <div class="product-star">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                            </div>
                                         </div>
-                                        <div class="group-price">
-                                            <span class="product-new">@language.NEW</span>
-                                            <span class="product-sale">@language.SALE</span>
-                                        </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <h5 class="product-name"><a href="#">Sexy Lady</a></h5>
-                                        <div class="content_price">
-                                            <span class="price product-price">2,500,000 VNĐ</span>
-                                            <span class="price old-price">5,500,000 VNĐ</span>
-                                        </div>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product"
-                                                 src="/assets/images/product-1.jpg" />
-                                        </a>
-                                        <div class="quick-view">
-                                            <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Add to compare" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
-                                        </div>
-                                        <div class="add-to-cart">
-                                            <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
-                                        </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <h5 class="product-name"><a href="#">Perfect Dress</a></h5>
-                                        <div class="content_price">
-                                            <span class="price product-price">2,500,000 VNĐ</span>
-                                            <span class="price old-price">5,500,000 VNĐ</span>
-                                        </div>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product"
-                                                 src="/assets/images/product-1.jpg" />
-                                        </a>
-                                        <div class="quick-view">
-                                            <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Add to compare" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
-                                        </div>
-                                        <div class="add-to-cart">
-                                            <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
-                                        </div>
-                                    </div>
-                                    <div class="group-price">
-                                        <span class="product-new">@language.NEW</span>
-                                    </div>
-                                    <div class="right-block">
-                                        <h5 class="product-name"><a href="#">Fresh Summer</a></h5>
-                                        <div class="content_price">
-                                            <span class="price product-price">2,500,000 VNĐ</span>
-                                            <span class="price old-price">5,500,000 VNĐ</span>
-                                        </div>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product"
-                                                 src="/assets/images/product-1.jpg" />
-                                        </a>
-                                        <div class="quick-view">
-                                            <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Add to compare" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
-                                        </div>
-                                        <div class="add-to-cart">
-                                            <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
-                                        </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <h5 class="product-name"><a href="#">Flowers Dress</a></h5>
-                                        <div class="content_price">
-                                            <span class="price product-price">2,500,000 VNĐ</span>
-                                            <span class="price old-price">5,500,000 VNĐ</span>
-                                        </div>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                }
                             </ul>
                         </div>
                         <div id="tab-2" class="tab-panel">
                             <ul class="product-list owl-carousel" data-dots="false" data-loop="true" data-nav="true"
                                 data-margin="30" data-autoplayTimeout="1000" data-autoplayHoverPause="true"
                                 data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":3}}'>
-                                <li>
-                                    <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product"
-                                                 src="/assets/images/product-1.jpg" />
-                                        </a>
-                                        <div class="quick-view">
-                                            <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Add to compare" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
+                                @for (int i = 0; i < Model.sanPhamGiamGia.Count(); i++)
+                                {
+                                    var data = Model.sanPhamGiamGia[i];
+                                    <li>
+
+                                        <div class="left-block">
+                                            <a href="#">
+                                                <img class="img-responsive" alt="product"
+                                                     src="/assets/images/product-1.jpg" />
+                                            </a>
+                                            <div class="quick-view">
+                                                @*<a title="Add to my wishlist" class="heart" href="#"></a>*@
+                                                <a title="Add to compare" class="compare" href="#"></a>
+                                                <a title="Quick view" class="search" href="#"></a>
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                            </div>
+                                            <div class="group-price">
+                                                @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
+                                                {
+                                                    <span class="product-new">@language.NEW</span>
+                                                }
+                                                @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
+                                                {
+                                                    <span class="product-sale">@language.SALE</span>
+                                                }
+
+                                            </div>
                                         </div>
-                                        <div class="add-to-cart">
-                                            <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                        <div class="right-block">
+                                            <h5 class="product-name"><a href="#">@data.Name</a></h5>
+                                            <div class="content_price">
+                                                @if (data.PriceDiscount.HasValue)
+                                                {
+                                                    <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", CultureInfo.CurrentCulture)</span>
+                                                    <span class="price old-price">@data.Price.ToString("C0", CultureInfo.CurrentCulture)</span>
+
+                                                }
+                                                else
+                                                {
+                                                    <span class="price product-price">@data.Price.ToString("C0", CultureInfo.CurrentCulture)</span>
+                                                }
+                                            </div>
+                                            <div class="product-star">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                        <div class="content_price">
-                                            <span class="price product-price">2,500,000 VNĐ</span>
-                                            <span class="price old-price">5,500,000 VNĐ</span>
-                                        </div>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product"
-                                                 src="/assets/images/product-1.jpg" />
-                                        </a>
-                                        <div class="quick-view">
-                                            <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Add to compare" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
-                                        </div>
-                                        <div class="add-to-cart">
-                                            <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
-                                        </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                        <div class="content_price">
-                                            <span class="price product-price">2,500,000 VNĐ</span>
-                                            <span class="price old-price">5,500,000 VNĐ</span>
-                                        </div>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product"
-                                                 src="/assets/images/product-1.jpg" />
-                                        </a>
-                                        <div class="quick-view">
-                                            <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Add to compare" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
-                                        </div>
-                                        <div class="add-to-cart">
-                                            <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
-                                        </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                        <div class="content_price">
-                                            <span class="price product-price">2,500,000 VNĐ</span>
-                                            <span class="price old-price">5,500,000 VNĐ</span>
-                                        </div>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product"
-                                                 src="/assets/images/product-1.jpg" />
-                                        </a>
-                                        <div class="quick-view">
-                                            <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Add to compare" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
-                                        </div>
-                                        <div class="add-to-cart">
-                                            <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
-                                        </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                        <div class="content_price">
-                                            <span class="price product-price">2,500,000 VNĐ</span>
-                                            <span class="price old-price">5,500,000 VNĐ</span>
-                                        </div>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                }
                             </ul>
                         </div>
                         <div id="tab-3" class="tab-panel">
                             <ul class="product-list owl-carousel" data-dots="false" data-loop="true" data-nav="true"
                                 data-margin="30" data-autoplayTimeout="1000" data-autoplayHoverPause="true"
                                 data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":3}}'>
-                                <li>
-                                    <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product"
-                                                 src="/assets/images/product-1.jpg" />
-                                        </a>
-                                        <div class="quick-view">
-                                            <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Add to compare" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
+                                @for (int i = 0; i < Model.sanPhamMoiNhat.Count(); i++)
+                                {
+                                    var data = Model.sanPhamMoiNhat[i];
+                                    <li>
+
+                                        <div class="left-block">
+                                            <a href="#">
+                                                <img class="img-responsive" alt="product"
+                                                     src="/assets/images/product-1.jpg" />
+                                            </a>
+                                            <div class="quick-view">
+                                                @*<a title="Add to my wishlist" class="heart" href="#"></a>*@
+                                                <a title="Add to compare" class="compare" href="#"></a>
+                                                <a title="Quick view" class="search" href="#"></a>
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                            </div>
+                                            <div class="group-price">
+                                                @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
+                                                {
+                                                    <span class="product-new">@language.NEW</span>
+                                                }
+                                                @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
+                                                {
+                                                    <span class="product-sale">@language.SALE</span>
+                                                }
+
+                                            </div>
                                         </div>
-                                        <div class="add-to-cart">
-                                            <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                        <div class="right-block">
+                                            <h5 class="product-name"><a href="#">@data.Name</a></h5>
+                                            <div class="content_price">
+                                                @if (data.PriceDiscount.HasValue)
+                                                {
+                                                    <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", CultureInfo.CurrentCulture)</span>
+                                                    <span class="price old-price">@data.Price.ToString("C0", CultureInfo.CurrentCulture)</span>
+
+                                                }
+                                                else
+                                                {
+                                                    <span class="price product-price">@data.Price.ToString("C0", CultureInfo.CurrentCulture)</span>
+                                                }
+                                            </div>
+                                            <div class="product-star">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half-o"></i>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                        <div class="content_price">
-                                            <span class="price product-price">2,500,000 VNĐ</span>
-                                            <span class="price old-price">5,500,000 VNĐ</span>
-                                        </div>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product"
-                                                 src="/assets/images/product-1.jpg" />
-                                        </a>
-                                        <div class="quick-view">
-                                            <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Add to compare" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
-                                        </div>
-                                        <div class="add-to-cart">
-                                            <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
-                                        </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                        <div class="content_price">
-                                            <span class="price product-price">2,500,000 VNĐ</span>
-                                            <span class="price old-price">5,500,000 VNĐ</span>
-                                        </div>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product"
-                                                 src="/assets/images/product-1.jpg" />
-                                        </a>
-                                        <div class="quick-view">
-                                            <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Add to compare" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
-                                        </div>
-                                        <div class="add-to-cart">
-                                            <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
-                                        </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                        <div class="content_price">
-                                            <span class="price product-price">2,500,000 VNĐ</span>
-                                            <span class="price old-price">5,500,000 VNĐ</span>
-                                        </div>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product"
-                                                 src="/assets/images/product-1.jpg" />
-                                        </a>
-                                        <div class="quick-view">
-                                            <a title="Add to my wishlist" class="heart" href="#"></a>
-                                            <a title="Add to compare" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
-                                        </div>
-                                        <div class="add-to-cart">
-                                            <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
-                                        </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                        <div class="content_price">
-                                            <span class="price product-price">2,500,000 VNĐ</span>
-                                            <span class="price old-price">5,500,000 VNĐ</span>
-                                        </div>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                }
                             </ul>
                         </div>
                     </div>
@@ -404,81 +201,34 @@
                         <ul class="product-list owl-carousel" data-dots="false" data-loop="true" data-nav="true"
                             data-autoplayTimeout="1000" data-autoplayHoverPause="true"
                             data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":1}}'>
-                            <li>
-                                <div class="count-down-time" data-countdown="2015/06/27"></div>
-                                <div class="left-block">
-                                    <a href="#">
-                                        <img class="img-responsive" alt="product"
-                                             src="/assets/images/product-1.jpg" />
-                                    </a>
-                                    <div class="quick-view">
-                                        <a title="Add to my wishlist" class="heart" href="#"></a>
-                                        <a title="Add to compare" class="compare" href="#"></a>
-                                        <a title="Quick view" class="search" href="#"></a>
+                            @for (int i = 0; i < Model.sanPhamGiamGia.Count(); i++)
+                            {
+                                var data = Model.sanPhamGiamGia[i];
+                                <li>
+                                    <div class="count-down-time" data-countdown="@data.DiscountDateTo.Value.ToString("yyyy-MM-dd HH:mm")"></div>
+                                    <div class="left-block">
+                                        <a href="#">
+                                            <img class="img-responsive" alt="product"
+                                                 src="/assets/images/product-1.jpg" />
+                                        </a>
+                                        <div class="quick-view">
+                                            <a title="Add to compare" class="compare" href="#"></a>
+                                            <a title="Quick view" class="search" href="#"></a>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                        </div>
                                     </div>
-                                    <div class="add-to-cart">
-                                        <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                    <div class="right-block">
+                                        <h5 class="product-name"><a href="#">@data.Name</a></h5>
+                                        <div class="content_price">
+                                            <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", CultureInfo.CurrentCulture)</span>
+                                            <span class="price old-price">@data.Price.ToString("C0", CultureInfo.CurrentCulture)</span>
+                                            @*<span class="colreduce-percentage">(-10%)</span>*@
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="right-block">
-                                    <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                    <div class="content_price">
-                                        <span class="price product-price">2,500,000 VNĐ</span>
-                                        <span class="price old-price">5,500,000 VNĐ</span>
-                                        <span class="colreduce-percentage">(-10%)</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="count-down-time" data-countdown="2015/06/27 9:20:00"></div>
-                                <div class="left-block">
-                                    <a href="#">
-                                        <img class="img-responsive" alt="product"
-                                             src="/assets/images/product-1.jpg" />
-                                    </a>
-                                    <div class="quick-view">
-                                        <a title="Add to my wishlist" class="heart" href="#"></a>
-                                        <a title="Add to compare" class="compare" href="#"></a>
-                                        <a title="Quick view" class="search" href="#"></a>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
-                                    </div>
-                                </div>
-                                <div class="right-block">
-                                    <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                    <div class="content_price">
-                                        <span class="price product-price">2,500,000 VNĐ</span>
-                                        <span class="price old-price">5,500,000 VNĐ</span>
-                                        <span class="colreduce-percentage">(-90%)</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="count-down-time" data-countdown="2015/06/27 9:20:00"></div>
-                                <div class="left-block">
-                                    <a href="#">
-                                        <img class="img-responsive" alt="product"
-                                             src="/assets/images/product-1.jpg" />
-                                    </a>
-                                    <div class="quick-view">
-                                        <a title="Add to my wishlist" class="heart" href="#"></a>
-                                        <a title="Add to compare" class="compare" href="#"></a>
-                                        <a title="Quick view" class="search" href="#"></a>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
-                                    </div>
-                                </div>
-                                <div class="right-block">
-                                    <h5 class="product-name"><a href="#">Maecenas consequat mauris</a></h5>
-                                    <div class="content_price">
-                                        <span class="price product-price">2,500,000 VNĐ</span>
-                                        <span class="price old-price">5,500,000 VNĐ</span>
-                                        <span class="colreduce-percentage">(-20%)</span>
-                                    </div>
-                                </div>
-                            </li>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>

@@ -443,6 +443,10 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -718,8 +722,8 @@ namespace ECommerce.Model.Migrations
                     b.Property<string>("DescriptionShort")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Diameter")
-                        .HasColumnType("int");
+                    b.Property<string>("Diameter")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DiscountDateFrom")
                         .HasColumnType("datetime2");
@@ -727,8 +731,8 @@ namespace ECommerce.Model.Migrations
                     b.Property<DateTime?>("DiscountDateTo")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("InternationalWarrantyTime")
-                        .HasColumnType("int");
+                    b.Property<float?>("InternationalWarrantyTime")
+                        .HasColumnType("real");
 
                     b.Property<int?>("MachineId")
                         .HasColumnType("int");
@@ -757,8 +761,8 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasDefaultValueSql("1");
 
-                    b.Property<int?>("StoreWarrantyTime")
-                        .HasColumnType("int");
+                    b.Property<float?>("StoreWarrantyTime")
+                        .HasColumnType("real");
 
                     b.Property<int?>("StrapId")
                         .HasColumnType("int");
@@ -766,8 +770,8 @@ namespace ECommerce.Model.Migrations
                     b.Property<int?>("StyleId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ThicknessOfClass")
-                        .HasColumnType("int");
+                    b.Property<float?>("ThicknessOfClass")
+                        .HasColumnType("real");
 
                     b.Property<string>("UpdateBy")
                         .HasColumnType("nvarchar(max)");
@@ -857,9 +861,6 @@ namespace ECommerce.Model.Migrations
                     b.Property<int>("FunctionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.HasKey("ProductId", "FunctionId");
 
                     b.HasIndex("FunctionId");
@@ -873,9 +874,6 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("ProductStatusId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.HasKey("ProductId", "ProductStatusId");
@@ -1293,7 +1291,7 @@ namespace ECommerce.Model.Migrations
             modelBuilder.Entity("ECommerce.Model.EFModel.Models.Images", b =>
                 {
                     b.HasOne("ECommerce.Model.EFModel.Models.Product", "Product")
-                        .WithMany()
+                        .WithMany("Images")
                         .HasForeignKey("ProductId");
                 });
 

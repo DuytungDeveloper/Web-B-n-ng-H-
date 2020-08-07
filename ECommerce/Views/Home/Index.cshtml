@@ -1,7 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Thế giới đồng hồ";
 }
-
+@using ECommerce.Models.View;
+@model HomeDataView
 <!-- Home slideder-->
 <div id="home-slider">
     <div class="container">
@@ -77,10 +78,11 @@
     </div>
 </div>
 <!-- end services -->
-
-<partial name="_HomeSliderProductPartial" />
-
-<partial name="_HomeSliderProductByCategoryPartial" />
+@*<partial name="_HomeSliderProductPartial" />*@
+@*@Html.Partial("_HomeSliderProductPartial", Model.HomeSliderProductPartial)*@
+@await Html.PartialAsync("_HomeSliderProductPartial", Model.HomeSliderProductPartial)
+@await Html.PartialAsync("_HomeSliderProductByCategoryPartial", Model)
+@*<partial name="_HomeSliderProductByCategoryPartial" data="" />*@
 
 <partial name="_HomeTradeMarkPartial" />
 
@@ -298,8 +300,9 @@
             display: grid;
             text-align: center;
         }
+
         .product-list li .product-name {
-            text-align:center;
+            text-align: center;
         }
     </style>
 }

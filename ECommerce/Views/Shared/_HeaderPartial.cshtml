@@ -361,7 +361,7 @@
                                             <ul class="nav navbar-nav">
                                                 <li class="active"><a asp-controller="home" asp-action="index">@language.HOME</a></li>
                                                 <li class="dropdown">
-                                                    <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <a asp-controller="search-result" asp-action="index" class="dropdown-toggle" data-toggle="dropdown">
                                                         @language.MENS_WATCH
                                                     </a>
                                                     <ul class="dropdown-menu mega_dropdown" role="menu" style="width: 830px;">
@@ -369,12 +369,12 @@
                                                             <ul class="block">
                                                                 <li class="img_container">
                                                                     <a href="#">
-                                                                        <img class="img-responsive" src="/assets/data/men.png"
+                                                                        <img class="img-responsive" src="/assets/images/product-1.jpg"
                                                                              alt="sport">
                                                                     </a>
                                                                 </li>
                                                                 <li class="link_container group_header">
-                                                                    <a href="#">MEN'S</a>
+                                                                    <a href="#">Lịch lãm </a>
                                                                 </li>
                                                                 <li class="link_container"><a href="#">Skirts</a></li>
                                                                 <li class="link_container"><a href="#">Jackets</a></li>
@@ -387,12 +387,12 @@
                                                             <ul class="block">
                                                                 <li class="img_container">
                                                                     <a href="#">
-                                                                        <img class="img-responsive" src="/assets/data/women.png"
+                                                                        <img class="img-responsive" src="/assets/images/product-2.jpg"
                                                                              alt="sport">
                                                                     </a>
                                                                 </li>
                                                                 <li class="link_container group_header">
-                                                                    <a href="#">WOMEN'S</a>
+                                                                    <a href="#">Trẻ trung</a>
                                                                 </li>
                                                                 <li class="link_container"><a href="#">Skirts</a></li>
                                                                 <li class="link_container"><a href="#">Jackets</a></li>
@@ -405,12 +405,12 @@
                                                             <ul class="block">
                                                                 <li class="img_container">
                                                                     <a href="#">
-                                                                        <img class="img-responsive" src="/assets/data/kid.png"
+                                                                        <img class="img-responsive" src="/assets/images/product-3.jpg"
                                                                              alt="sport">
                                                                     </a>
                                                                 </li>
                                                                 <li class="link_container group_header">
-                                                                    <a href="#">Kids</a>
+                                                                    <a href="#">Quý phái</a>
                                                                 </li>
                                                                 <li class="link_container"><a href="#">Shoes</a></li>
                                                                 <li class="link_container"><a href="#">Clothing</a></li>
@@ -424,11 +424,11 @@
                                                                 <li class="img_container">
                                                                     <a href="#">
                                                                         <img class="img-responsive"
-                                                                             src="/assets/data/trending.png" alt="sport">
+                                                                             src="/assets/images/product-4.jpg" alt="sport">
                                                                     </a>
                                                                 </li>
                                                                 <li class="link_container group_header">
-                                                                    <a href="#">TRENDING</a>
+                                                                    <a href="#">Năng động</a>
                                                                 </li>
                                                                 <li class="link_container"><a href="#">Men's Clothing</a></li>
                                                                 <li class="link_container"><a href="#">Kid's Clothing</a></li>
@@ -439,12 +439,12 @@
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <a asp-controller="search-result" asp-action="index" class="dropdown-toggle" data-toggle="dropdown">
                                                         @language.WOMENS_WATCH
                                                     </a>
                                                 </li>
                                                 <li class="dropdown">
-                                                    <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <a asp-controller="search-result" asp-action="index" class="dropdown-toggle" data-toggle="dropdown">
                                                         @language.COUPLE_WATCH
                                                     </a>
                                                     <ul class="mega_dropdown dropdown-menu" style="width: 830px;">
@@ -552,7 +552,7 @@
                                                     </ul>
                                                 </li>
                                                 <!-- <li class="dropdown">
-        <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Phụ kiện</a>
+        <a asp-controller="search-result" asp-action="index" class="dropdown-toggle" data-toggle="dropdown">Phụ kiện</a>
         <ul class="dropdown-menu container-fluid">
             <li class="block-container">
                 <ul class="block">
@@ -565,11 +565,11 @@
             </li>
         </ul>
     </li> -->
-                                                <li><a asp-controller="Faq">FAQ</a></li>
-                                                <li><a asp-controller="chinh-sach">@language.POLICY</a></li>
+                                                <li><a asp-controller="Faq" asp-action="index">FAQ</a></li>
+                                                <li><a asp-controller="chinh-sach" asp-action="index">@language.POLICY</a></li>
                                                 @*<li><a asp-controller="Policy">@language.POLICY</a></li>*@
-                                                <li><a asp-controller="lien-he">@language.CONTACT</a></li>
-                                                <!-- <li><a href="category.html">Blog</a></li> -->
+                                                <li><a asp-controller="lien-he" asp-action="index">@language.CONTACT</a></li>
+                                                <!-- <li><a asp-controller="search-result" asp-action="index">Blog</a></li> -->
                                             </ul>
                                         </div>
                                         <!--/.nav-collapse -->

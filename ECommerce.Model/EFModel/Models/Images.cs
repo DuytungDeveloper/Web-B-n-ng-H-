@@ -16,5 +16,8 @@ namespace ECommerce.Model.EFModel.Models
         [Required]
         [Column(Order = 1)]
         public string Name { get; set; }
+        [Required]
+        [Column(Order = 2)]
+        public string Link { get; set; }
     }
 }

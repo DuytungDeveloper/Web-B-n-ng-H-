@@ -345,7 +345,7 @@ namespace ECommerce.Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    
+
                     Name = table.Column<string>(nullable: false),
                     Video = table.Column<string>(nullable: true),
                     Url = table.Column<string>(nullable: true),
@@ -360,10 +360,10 @@ namespace ECommerce.Model.Migrations
                     BrandProductId = table.Column<int>(nullable: true),
                     OriginNumber = table.Column<int>(nullable: true),
                     MachineId = table.Column<int>(nullable: true),
-                    InternationalWarrantyTime = table.Column<int>(nullable: true),
-                    StoreWarrantyTime = table.Column<int>(nullable: true),
-                    Diameter = table.Column<int>(nullable: true),
-                    ThicknessOfClass = table.Column<int>(nullable: true),
+                    InternationalWarrantyTime = table.Column<float>(nullable: true),
+                    StoreWarrantyTime = table.Column<float>(nullable: true),
+                    Diameter = table.Column<string>(nullable: true),
+                    ThicknessOfClass = table.Column<float>(nullable: true),
                     BandId = table.Column<int>(nullable: true),
                     StrapId = table.Column<int>(nullable: true),
                     ColorClockFaceId = table.Column<int>(nullable: true),
@@ -1049,7 +1049,7 @@ namespace ECommerce.Model.Migrations
             migrationBuilder.InsertData(
                 table: "ProductStatus",
                 columns: new[] { "Name", "Desription" },
-                values: new object[,] { { "Bình thường", "Hàng đã ở cửa hàng lâu năm và ổn định!" }, { "Mới", "Hàng mới nhập!" }, { "Bán chạy", "Hàng đang bán chạy!" }, { "Giảm giá", "Hàng đang giảm giá!" }, { "Seccond Hand", "Hàng đã qua sử dụng!" }, { "Phiên bản đặc biệt", "Phiên bản đặc biệt!" }, { "Phiên bản giới hạn", "Phiên bản giới hạn!" },
+                values: new object[,] { { "Bình thường", "Hàng đã ở cửa hàng lâu năm và ổn định!" }, { "Mới", "Hàng mới nhập!" }, { "Bán chạy", "Hàng đang bán chạy!" }, { "Giảm giá", "Hàng đang giảm giá!" }, { "Seccond Hand", "Hàng đã qua sử dụng!" }, { "Phiên bản đặc biệt", "Phiên bản đặc biệt!" }, { "Phiên bản giới hạn", "Phiên bản giới hạn!" }, { "Nhiều người xem", "Nhiều người xem!" }
                 });
             #endregion
 
@@ -1536,6 +1536,7 @@ namespace ECommerce.Model.Migrations
                     {"Đồng hồ nữ"},
                     {"Đồng hồ nam"},
                     {"Đồng hồ cặp"},
+                    {"Đồng hồ trẻ em"},
                     {"Chưa phân loại"},
             });
             #endregion

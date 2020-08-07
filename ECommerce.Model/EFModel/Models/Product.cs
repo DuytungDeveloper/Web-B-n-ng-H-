@@ -118,22 +118,22 @@ namespace ECommerce.Model.EFModel.Models
         /// Thời gian bảo hành quốc tế (tính bằng năm)
         /// </summary>
         [Column(Order = 15)]
-        public int? InternationalWarrantyTime { get; set; }
+        public float? InternationalWarrantyTime { get; set; }
         /// <summary>
         /// Thời gian bảo hành tại cửa hàng (tính bằng năm)
         /// </summary>
         [Column(Order = 16)]
-        public int? StoreWarrantyTime { get; set; }
+        public float? StoreWarrantyTime { get; set; }
         /// <summary>
         /// đường kính mặt đồng hồ
         /// </summary>
         [Column(Order = 17)]
-        public int? Diameter { get; set; }
+        public string Diameter { get; set; }
         /// <summary>
         /// đường kính mặt đồng hồ
         /// </summary>
         [Column(Order = 18)]
-        public int? ThicknessOfClass { get; set; }
+        public float? ThicknessOfClass { get; set; }
         /// <summary>
         /// Loại niềng
         /// </summary>
@@ -182,8 +182,6 @@ namespace ECommerce.Model.EFModel.Models
 
         public virtual List<OrderItem> OrderItems { get; set; }
         public virtual List<Product_ProductStatus> Product_ProductStatus { get; set; }
-
-
-
+        public virtual List<Product_Media> Product_Media { get; set; }
     }
 }

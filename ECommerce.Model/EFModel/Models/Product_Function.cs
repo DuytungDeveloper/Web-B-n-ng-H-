@@ -7,12 +7,9 @@ namespace ECommerce.Model.EFModel.Models
 {
     public partial class Product_Function
     {
-        [Key]
         [Column(Order = 0)]
-        public int Id { get; set; }
-        [Column(Order = 1)]
         public int ProductId { get; set; }
-        [Column(Order = 2)]
+        [Column(Order = 1)]
         public int FunctionId { get; set; }
 
         public virtual Product Product { get; set; }
