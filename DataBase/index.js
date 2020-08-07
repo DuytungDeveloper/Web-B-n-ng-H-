@@ -642,16 +642,16 @@ function findCategoryId(brandName) {
     }
     return getRndInteger(1, brandProduct.length);
 }
-function preparePrice(price){
-    if(isNullOrUndefined(price) || price == ""){
-        return getRndInteger(1500000,100000000);
+function preparePrice(price) {
+    if (isNullOrUndefined(price) || price == "") {
+        return getRndInteger(1500000, 100000000);
     }
-    if(price.includes("₫")){
+    if (price.includes("₫")) {
         // price = (price.split("₫")[0]).toLowerCase().trim().replace(".","").replace(",","");
-        price = (price.split("₫")[0]).toLowerCase().trim().replace(/\./gi,"").replace(/,/gi,"");
+        price = (price.split("₫")[0]).toLowerCase().trim().replace(/\./gi, "").replace(/,/gi, "");
     }
     // price = price.toLowerCase().trim().replace(".","").replace(",","");
-    price = price.toLowerCase().trim().replace(/\./gi,"").replace(/,/gi,"");
+    price = price.toLowerCase().trim().replace(/\./gi, "").replace(/,/gi, "");
     return parseFloat(price);
 }
 let main = async () => {
@@ -682,6 +682,8 @@ let main = async () => {
     //     // console.log(`${preparePrice(product.price)} == ${product.price}`)
     // };
     // fs.writeFileSync("./queryInsert.txt",allInsertData.join("\n"));
+
+
     let allProductStatus = [];
     for (let i = 1; i < 4707; i++) {
         // let abc = `INSERT INTO Product_ProductStatus(ProductId,ProductStatusId) VALUES(${getRndInteger(1,4707)},${getRndInteger(2,4)});`;
@@ -689,6 +691,29 @@ let main = async () => {
         allProductStatus.push(abc);
     }
     fs.writeFileSync("./productStatus.txt",allProductStatus.join("\n"));
+
+    // let allImage = [];
+    // for (let i = 0; i < products.length; i++) {
+    //     let product = products[i];
+    //     let allImgs = product.images;
+    //     for (let j = 0; j < allImgs.length; j++) {
+    //         const imgLink = allImgs[j];
+    //         if(!imgLink.includes("data:image")){
+    //             let abc = `INSERT INTO Medias(Name,Link,Path) VALUES(N'${`Hình ảnh ${i}${j}`}',N'${imgLink}',N'${imgLink}');`;
+    //             allImage.push(abc);
+    //         }
+    //     }
+    // }
+    // fs.writeFileSync("./images.txt", allImage.join("\n"));
+
+
+    // let productMedia = [];
+    // for (let i = 1; i < 4707; i++) {
+    //     // let abc = `INSERT INTO Product_ProductStatus(ProductId,ProductStatusId) VALUES(${getRndInteger(1,4707)},${getRndInteger(2,4)});`;
+    //     let abc = `INSERT INTO Product_Media(ProductId,MediaId) VALUES(${i},${getRndInteger(1,22733)});`;
+    //     productMedia.push(abc);
+    // }
+    // fs.writeFileSync("./productMedia.txt",productMedia.join("\n"));
 
 }
 main();

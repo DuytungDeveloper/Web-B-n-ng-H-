@@ -15,8 +15,14 @@ namespace ECommerce.Model.EFModel.Models
         public string Name { get; set; }
         [Required]
         [Column(Order = 2)]
+        // https://localhost:44327/assets/data/p35.jpg
         public string Link { get; set; }
+        [Required]
+        [Column(Order = 3)]
+        // /assets/data/p35.jpg
+        public string Path { get; set; }
         public int MediaTypeId { get; set; }
         public MediaType MediaType { get; set; }
+        public List<Product_Media> Product_Media { get; set; }
     }
 }

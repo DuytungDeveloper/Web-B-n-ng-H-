@@ -42,10 +42,10 @@ namespace ECommerce.Model.EFModel
         /// Các chức năng
         /// </summary>
         public virtual DbSet<Function> Functions { get; set; }
-        /// <summary>
-        /// Ảnh
-        /// </summary>
-        public virtual DbSet<Images> Images { get; set; }
+        ///// <summary>
+        ///// Ảnh
+        ///// </summary>
+        //public virtual DbSet<Images> Images { get; set; }
         //public virtual DbSet<Log> Logs { get; set; }
         /// <summary>
         /// Loại máy
@@ -102,6 +102,15 @@ namespace ECommerce.Model.EFModel
         /// </summary>
         public virtual DbSet<Waterproof> Waterproofs { get; set; }
 
+        /// <summary>
+        /// Các file như Image, Clip, ....
+        /// </summary>
+        public virtual DbSet<Media> Medias { get; set; }
+        /// <summary>
+        /// Kiểu media
+        /// </summary>
+        public virtual DbSet<MediaType> MediaTypes { get; set; }
+        public virtual DbSet<Product_Media> Product_Media { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -161,6 +170,22 @@ namespace ECommerce.Model.EFModel
             .HasIndex(u => u.Name)
             .IsUnique();
 
+            modelBuilder.Entity<Media>()
+            .HasIndex(u => u.Name)
+            .IsUnique();
+
+            modelBuilder.Entity<Media>()
+            .HasIndex(u => u.Link)
+            .IsUnique();
+
+            modelBuilder.Entity<Media>()
+           .HasIndex(u => u.Path)
+           .IsUnique();
+
+            modelBuilder.Entity<MediaType>()
+            .HasIndex(u => u.Name)
+            .IsUnique();
+
             modelBuilder.Entity<Address>().Property(s => s.Status).HasDefaultValueSql("1");
             modelBuilder.Entity<Address>().Property(s => s.CreateDate).HasDefaultValueSql("GETDATE()");
 
@@ -217,6 +242,12 @@ namespace ECommerce.Model.EFModel
 
             modelBuilder.Entity<ProductStatus>().Property(s => s.Status).HasDefaultValueSql("1");
             modelBuilder.Entity<ProductStatus>().Property(s => s.CreateDate).HasDefaultValueSql("GETDATE()");
+
+            modelBuilder.Entity<Media>().Property(s => s.Status).HasDefaultValueSql("1");
+            modelBuilder.Entity<Media>().Property(s => s.CreateDate).HasDefaultValueSql("GETDATE()");
+
+            modelBuilder.Entity<MediaType>().Property(s => s.Status).HasDefaultValueSql("1");
+            modelBuilder.Entity<MediaType>().Property(s => s.CreateDate).HasDefaultValueSql("GETDATE()");
 
             #endregion
 
@@ -278,6 +309,13 @@ namespace ECommerce.Model.EFModel
                 .HasOne<Function>(sc => sc.Function)
                 .WithMany(s => s.Product_Function)
                 .HasForeignKey(sc => sc.FunctionId);
+
+
+
+            modelBuilder.Entity<Media>()
+              .HasOne<MediaType>(s => s.MediaType)
+              .WithMany(mac => mac.Medias)
+              .HasForeignKey(s => s.MediaTypeId);
             #endregion
 
             #region Address
@@ -337,6 +375,18 @@ namespace ECommerce.Model.EFModel
                 .HasOne<ProductStatus>(sc => sc.ProductStatus)
                 .WithMany(s => s.Product_ProductStatus)
                 .HasForeignKey(sc => sc.ProductStatusId);
+            #endregion
+
+            #region product media
+            modelBuilder.Entity<Product_Media>().HasKey(sc => new { sc.ProductId, sc.MediaId });
+            modelBuilder.Entity<Product_Media>()
+                .HasOne<Product>(sc => sc.Product)
+                .WithMany(s => s.Product_Media)
+                .HasForeignKey(sc => sc.ProductId);
+            modelBuilder.Entity<Product_Media>()
+                .HasOne<Media>(sc => sc.Media)
+                .WithMany(s => s.Product_Media)
+                .HasForeignKey(sc => sc.MediaId);
             #endregion
 
             #endregion

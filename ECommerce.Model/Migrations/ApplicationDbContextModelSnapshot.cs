@@ -551,6 +551,101 @@ namespace ECommerce.Model.Migrations
                     b.ToTable("MadeIns");
                 });
 
+            modelBuilder.Entity("ECommerce.Model.EFModel.Models.Media", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("MediaTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("1");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Link")
+                        .IsUnique();
+
+                    b.HasIndex("MediaTypeId");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.HasIndex("Path")
+                        .IsUnique();
+
+                    b.ToTable("Medias");
+                });
+
+            modelBuilder.Entity("ECommerce.Model.EFModel.Models.MediaType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("1");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("MediaTypes");
+                });
+
             modelBuilder.Entity("ECommerce.Model.EFModel.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -866,6 +961,21 @@ namespace ECommerce.Model.Migrations
                     b.HasIndex("FunctionId");
 
                     b.ToTable("Product_Functions");
+                });
+
+            modelBuilder.Entity("ECommerce.Model.EFModel.Models.Product_Media", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MediaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "MediaId");
+
+                    b.HasIndex("MediaId");
+
+                    b.ToTable("Product_Media");
                 });
 
             modelBuilder.Entity("ECommerce.Model.EFModel.Models.Product_ProductStatus", b =>
@@ -1291,8 +1401,17 @@ namespace ECommerce.Model.Migrations
             modelBuilder.Entity("ECommerce.Model.EFModel.Models.Images", b =>
                 {
                     b.HasOne("ECommerce.Model.EFModel.Models.Product", "Product")
-                        .WithMany("Images")
+                        .WithMany()
                         .HasForeignKey("ProductId");
+                });
+
+            modelBuilder.Entity("ECommerce.Model.EFModel.Models.Media", b =>
+                {
+                    b.HasOne("ECommerce.Model.EFModel.Models.MediaType", "MediaType")
+                        .WithMany("Medias")
+                        .HasForeignKey("MediaTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ECommerce.Model.EFModel.Models.Order", b =>
@@ -1374,6 +1493,21 @@ namespace ECommerce.Model.Migrations
 
                     b.HasOne("ECommerce.Model.EFModel.Models.Product", "Product")
                         .WithMany("Product_Function")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ECommerce.Model.EFModel.Models.Product_Media", b =>
+                {
+                    b.HasOne("ECommerce.Model.EFModel.Models.Media", "Media")
+                        .WithMany("Product_Media")
+                        .HasForeignKey("MediaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ECommerce.Model.EFModel.Models.Product", "Product")
+                        .WithMany("Product_Media")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
