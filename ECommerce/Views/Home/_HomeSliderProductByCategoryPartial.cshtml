@@ -1,6 +1,9 @@
 ﻿@using ECommerce.Models.View;
 @using System.Globalization;
 @model HomeDataView
+@{
+    Random rnd = new Random();
+}
 <div class="content-page">
     <div class="container">
         <!-- featured category fashion -->
@@ -8,7 +11,7 @@
             <nav class="navbar nav-menu nav-menu-red show-brand">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-brand"><a href="#"><i class="fa fa-mars"></i>@language.MENS_WATCH</a></div>
+                    <div class="navbar-brand"><a ><i class="fa fa-mars"></i>@language.MENS_WATCH</a></div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
@@ -35,7 +38,7 @@
                 <div class="banner-featured">
                     <div class="featured-text"><span>featured</span></div>
                     <div class="banner-img">
-                        <a href="#"><img alt="Featurered 1" src="/assets/images/product-2.jpg" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoNam.ToList()[rnd.Next(0,Model.DongHoNam.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoNam.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoNam.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -47,22 +50,29 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoNam.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 3).Count() >= 1).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoNam.Count(); i++)
                                     {
-                                        var data = Model.DongHoNam.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 3).Count() >= 1).ToList()[i];
+                                        var data = Model.DongHoNam.ToList()[i];
                                         <li>
                                             <div class="left-block">
                                                 <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
-                                                    @*<img class="img-responsive" alt="product" src="/assets/images/product-1.jpg" />*@
-                                                    <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    @*<img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />*@
+                                                    @if (data.Product_Media.Count() > 0)
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                                                    }
                                                 </a>
                                                 <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" href="#"></a>
-                                                        <a title="Add to compare" class="compare" href="#"></a>*@
-                                                    <a title="Quick view" class="search" href="#"></a>
+                                                    @*<a title="Add to my wishlist" class="heart" ></a>
+                                                        <a title="Add to compare" class="compare" ></a>*@
+                                                    <a title="Quick view" class="search" ></a>
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                                    <a title="@language.ADD_TO_CART" >@language.ADD_TO_CART</a>
                                                 </div>
                                                 <div class="group-price">
                                                     @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -107,21 +117,28 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoNam.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 8).Count() >= 1).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoNam.OrderByDescending(v=>v.ViewsCount).Count(); i++)
                                     {
-                                        var data = Model.DongHoNam.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 8).Count() >= 1).ToList()[i];
+                                        var data = Model.DongHoNam.OrderByDescending(v=>v.ViewsCount).ToList()[i];
                                         <li>
                                             <div class="left-block">
                                                 <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
-                                                    <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    @if (data.Product_Media.Count() > 0)
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                                                    }
                                                 </a>
                                                 <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" href="#"></a>
-                                                        <a title="Add to compare" class="compare" href="#"></a>*@
-                                                    <a title="Quick view" class="search" href="#"></a>
+                                                    @*<a title="Add to my wishlist" class="heart" ></a>
+                                                        <a title="Add to compare" class="compare" ></a>*@
+                                                    <a title="Quick view" class="search" ></a>
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                                    <a title="@language.ADD_TO_CART" >@language.ADD_TO_CART</a>
                                                 </div>
                                                 <div class="group-price">
                                                     @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -171,7 +188,7 @@
             <nav class="navbar nav-menu nav-menu-green show-brand">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-brand"><a href="#"><i class="fa fa-venus-mars"></i>@language.COUPLE_WATCH</a></div>
+                    <div class="navbar-brand"><a ><i class="fa fa-venus-mars"></i>@language.COUPLE_WATCH</a></div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
@@ -198,7 +215,7 @@
                 <div class="banner-featured">
                     <div class="featured-text"><span>featured</span></div>
                     <div class="banner-img">
-                        <a href="#"><img alt="Featurered 1" src="/assets/images/product-2.jpg" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoCap.ToList()[rnd.Next(0,Model.DongHoCap.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoCap.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoCap.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -210,21 +227,28 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoCap.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 3).Count() >= 1).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoCap.Count(); i++)
                                     {
-                                        var data = Model.DongHoCap.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 3).Count() >= 1).ToList()[i];
+                                        var data = Model.DongHoCap.ToList()[i];
                                         <li>
                                             <div class="left-block">
                                                 <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
-                                                    <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    @if (data.Product_Media.Count() > 0)
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                                                    }
                                                 </a>
                                                 <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" href="#"></a>
-                                                        <a title="Add to compare" class="compare" href="#"></a>*@
-                                                    <a title="Quick view" class="search" href="#"></a>
+                                                    @*<a title="Add to my wishlist" class="heart" ></a>
+                                                        <a title="Add to compare" class="compare" ></a>*@
+                                                    <a title="Quick view" class="search" ></a>
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                                    <a title="@language.ADD_TO_CART" >@language.ADD_TO_CART</a>
                                                 </div>
                                                 <div class="group-price">
                                                     @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -270,21 +294,28 @@
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
 
-                                    @for (int i = 0; i < Model.DongHoCap.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 8).Count() >= 1).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoCap.OrderByDescending(v=>v.ViewsCount).Count(); i++)
                                     {
-                                        var data = Model.DongHoCap.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 8).Count() >= 1).ToList()[i];
+                                        var data = Model.DongHoCap.OrderByDescending(v=>v.ViewsCount).ToList()[i];
                                         <li>
                                             <div class="left-block">
                                                 <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
-                                                    <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    @if (data.Product_Media.Count() > 0)
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                                                    }
                                                 </a>
                                                 <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" href="#"></a>
-                                                        <a title="Add to compare" class="compare" href="#"></a>*@
-                                                    <a title="Quick view" class="search" href="#"></a>
+                                                    @*<a title="Add to my wishlist" class="heart" ></a>
+                                                        <a title="Add to compare" class="compare" ></a>*@
+                                                    <a title="Quick view" class="search" ></a>
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                                    <a title="@language.ADD_TO_CART" >@language.ADD_TO_CART</a>
                                                 </div>
                                                 <div class="group-price">
                                                     @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -334,7 +365,7 @@
             <nav class="navbar nav-menu nav-menu-orange show-brand">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-brand"><a href="#"><i class="fa fa-venus"></i>@language.WOMENS_WATCH</a></div>
+                    <div class="navbar-brand"><a ><i class="fa fa-venus"></i>@language.WOMENS_WATCH</a></div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
@@ -361,7 +392,7 @@
                 <div class="banner-featured">
                     <div class="featured-text"><span>featured</span></div>
                     <div class="banner-img">
-                        <a href="#"><img alt="Featurered 1" src="/assets/images/product-2.jpg" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoNu.ToList()[rnd.Next(0,Model.DongHoNu.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoNu.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoNu.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -373,21 +404,28 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoNu.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 3).Count() >= 1).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoNu.Count(); i++)
                                     {
-                                        var data = Model.DongHoNu.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 3).Count() >= 1).ToList()[i];
+                                        var data = Model.DongHoNu.ToList()[i];
                                         <li>
                                             <div class="left-block">
                                                 <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
-                                                    <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    @if (data.Product_Media.Count() > 0)
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                                                    }
                                                 </a>
                                                 <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" href="#"></a>
-                                                        <a title="Add to compare" class="compare" href="#"></a>*@
-                                                    <a title="Quick view" class="search" href="#"></a>
+                                                    @*<a title="Add to my wishlist" class="heart" ></a>
+                                                        <a title="Add to compare" class="compare" ></a>*@
+                                                    <a title="Quick view" class="search" ></a>
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                                    <a title="@language.ADD_TO_CART" >@language.ADD_TO_CART</a>
                                                 </div>
                                                 <div class="group-price">
                                                     @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -432,21 +470,28 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoNu.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 8).Count() >= 1).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoNu.OrderByDescending(v=>v.ViewsCount).Count(); i++)
                                     {
-                                        var data = Model.DongHoNu.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 8).Count() >= 1).ToList()[i];
+                                        var data = Model.DongHoNu.OrderByDescending(v=>v.ViewsCount).ToList()[i];
                                         <li>
                                             <div class="left-block">
                                                 <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
-                                                    <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    @if (data.Product_Media.Count() > 0)
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                                                    }
                                                 </a>
                                                 <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" href="#"></a>
-                                                        <a title="Add to compare" class="compare" href="#"></a>*@
-                                                    <a title="Quick view" class="search" href="#"></a>
+                                                    @*<a title="Add to my wishlist" class="heart" ></a>
+                                                        <a title="Add to compare" class="compare" ></a>*@
+                                                    <a title="Quick view" class="search" ></a>
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                                    <a title="@language.ADD_TO_CART" >@language.ADD_TO_CART</a>
                                                 </div>
                                                 <div class="group-price">
                                                     @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -497,7 +542,7 @@
             <nav class="navbar nav-menu nav-menu-blue show-brand">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-brand"><a href="#"><i class="fa fa-child"></i>@language.CHILDREN_WATCH</a></div>
+                    <div class="navbar-brand"><a ><i class="fa fa-child"></i>@language.CHILDREN_WATCH</a></div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
@@ -524,7 +569,7 @@
                 <div class="banner-featured">
                     <div class="featured-text"><span>featured</span></div>
                     <div class="banner-img">
-                        <a href="#"><img alt="Featurered 1" src="/assets/images/product-2.jpg" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoTreEm.ToList()[rnd.Next(0,Model.DongHoTreEm.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoTreEm.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoTreEm.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -536,21 +581,28 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoTreEm.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 3).Count() >= 1).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoTreEm.Count(); i++)
                                     {
-                                        var data = Model.DongHoTreEm.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 3).Count() >= 1).ToList()[i];
+                                        var data = Model.DongHoTreEm.ToList()[i];
                                         <li>
                                             <div class="left-block">
                                                 <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
-                                                    <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    @if (data.Product_Media.Count() > 0)
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                                                    }
                                                 </a>
                                                 <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" href="#"></a>
-                                                        <a title="Add to compare" class="compare" href="#"></a>*@
-                                                    <a title="Quick view" class="search" href="#"></a>
+                                                    @*<a title="Add to my wishlist" class="heart" ></a>
+                                                        <a title="Add to compare" class="compare" ></a>*@
+                                                    <a title="Quick view" class="search" ></a>
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                                    <a title="@language.ADD_TO_CART" >@language.ADD_TO_CART</a>
                                                 </div>
                                                 <div class="group-price">
                                                     @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -595,21 +647,28 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoTreEm.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 8).Count() >= 1).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoTreEm.OrderByDescending(v=>v.ViewsCount).Count(); i++)
                                     {
-                                        var data = Model.DongHoTreEm.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 8).Count() >= 1).ToList()[i];
+                                        var data = Model.DongHoTreEm.OrderByDescending(v=>v.ViewsCount).ToList()[i];
                                         <li>
                                             <div class="left-block">
                                                 <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
-                                                    <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    @if (data.Product_Media.Count() > 0)
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                                                    }
                                                 </a>
                                                 <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" href="#"></a>
-                                                        <a title="Add to compare" class="compare" href="#"></a>*@
-                                                    <a title="Quick view" class="search" href="#"></a>
+                                                    @*<a title="Add to my wishlist" class="heart" ></a>
+                                                        <a title="Add to compare" class="compare" ></a>*@
+                                                    <a title="Quick view" class="search" ></a>
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                                    <a title="@language.ADD_TO_CART" >@language.ADD_TO_CART</a>
                                                 </div>
                                                 <div class="group-price">
                                                     @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -660,7 +719,7 @@
             <nav class="navbar nav-menu nav-menu-blue2 show-brand">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-brand"><a href="#"><i class="fa fa-user-tag"></i>@language.SPECIAL_VERSION</a></div>
+                    <div class="navbar-brand"><a ><i class="fa fa-user-tag"></i>@language.SPECIAL_VERSION</a></div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
@@ -687,7 +746,7 @@
                 <div class="banner-featured">
                     <div class="featured-text"><span>featured</span></div>
                     <div class="banner-img">
-                        <a href="#"><img alt="Featurered 1" src="/assets/images/product-2.jpg" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoPhienBanDacBiet.ToList()[rnd.Next(0,Model.DongHoPhienBanDacBiet.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoPhienBanDacBiet.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoPhienBanDacBiet.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -699,21 +758,28 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoPhienBanDacBiet.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 3).Count() >= 1).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoPhienBanDacBiet.Count(); i++)
                                     {
-                                        var data = Model.DongHoPhienBanDacBiet.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 3).Count() >= 1).ToList()[i];
+                                        var data = Model.DongHoPhienBanDacBiet.ToList()[i];
                                         <li>
                                             <div class="left-block">
                                                 <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
-                                                    <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    @if (data.Product_Media.Count() > 0)
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                                                    }
                                                 </a>
                                                 <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" href="#"></a>
-                                                        <a title="Add to compare" class="compare" href="#"></a>*@
-                                                    <a title="Quick view" class="search" href="#"></a>
+                                                    @*<a title="Add to my wishlist" class="heart" ></a>
+                                                        <a title="Add to compare" class="compare" ></a>*@
+                                                    <a title="Quick view" class="search" ></a>
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                                    <a title="@language.ADD_TO_CART" >@language.ADD_TO_CART</a>
                                                 </div>
                                                 <div class="group-price">
                                                     @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -758,21 +824,28 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoPhienBanDacBiet.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 8).Count() >= 1).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoPhienBanDacBiet.OrderByDescending(v=>v.ViewsCount).Count(); i++)
                                     {
-                                        var data = Model.DongHoPhienBanDacBiet.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 8).Count() >= 1).ToList()[i];
+                                        var data = Model.DongHoPhienBanDacBiet.OrderByDescending(v=>v.ViewsCount).ToList()[i];
                                         <li>
                                             <div class="left-block">
                                                 <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
-                                                    <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    @if (data.Product_Media.Count() > 0)
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                                                    }
                                                 </a>
                                                 <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" href="#"></a>
-                                                        <a title="Add to compare" class="compare" href="#"></a>*@
-                                                    <a title="Quick view" class="search" href="#"></a>
+                                                    @*<a title="Add to my wishlist" class="heart" ></a>
+                                                        <a title="Add to compare" class="compare" ></a>*@
+                                                    <a title="Quick view" class="search" ></a>
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                                    <a title="@language.ADD_TO_CART" >@language.ADD_TO_CART</a>
                                                 </div>
                                                 <div class="group-price">
                                                     @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -824,7 +897,7 @@
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-brand">
-                        <a href="#"><i class="fa fa-hourglass"></i>@language.LIMITED_EDITION</a>
+                        <a ><i class="fa fa-hourglass"></i>@language.LIMITED_EDITION</a>
                     </div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -837,7 +910,7 @@
                 </div><!-- /.container-fluid -->
                 <div id="elevator-6" class="floor-elevator">
                     <a href="#elevator-5" class="btn-elevator up fa fa-angle-up"></a>
-                    <a href="#" class="btn-elevator disabled down fa fa-angle-down"></a>
+                    <a  class="btn-elevator disabled down fa fa-angle-down"></a>
                 </div>
             </nav>
             <div class="category-banner">
@@ -852,7 +925,7 @@
                 <div class="banner-featured">
                     <div class="featured-text"><span>featured</span></div>
                     <div class="banner-img">
-                        <a href="#"><img alt="Featurered 1" src="/assets/images/product-2.jpg" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoPhienBanGioiHan.ToList()[rnd.Next(0,Model.DongHoPhienBanGioiHan.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoPhienBanGioiHan.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoPhienBanGioiHan.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -864,21 +937,28 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoPhienBanGioiHan.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 3).Count() >= 1).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoPhienBanGioiHan.Count(); i++)
                                     {
-                                        var data = Model.DongHoPhienBanGioiHan.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 3).Count() >= 1).ToList()[i];
+                                        var data = Model.DongHoPhienBanGioiHan.ToList()[i];
                                         <li>
                                             <div class="left-block">
                                                 <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
-                                                    <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    @if (data.Product_Media.Count() > 0)
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                                                    }
                                                 </a>
                                                 <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" href="#"></a>
-                                                        <a title="Add to compare" class="compare" href="#"></a>*@
-                                                    <a title="Quick view" class="search" href="#"></a>
+                                                    @*<a title="Add to my wishlist" class="heart" ></a>
+                                                        <a title="Add to compare" class="compare" ></a>*@
+                                                    <a title="Quick view" class="search" ></a>
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                                    <a title="@language.ADD_TO_CART" >@language.ADD_TO_CART</a>
                                                 </div>
                                                 <div class="group-price">
                                                     @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -923,21 +1003,28 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoPhienBanGioiHan.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 8).Count() >= 1).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoPhienBanGioiHan.OrderByDescending(v=>v.ViewsCount).Count(); i++)
                                     {
-                                        var data = Model.DongHoPhienBanGioiHan.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 8).Count() >= 1).ToList()[i];
+                                        var data = Model.DongHoPhienBanGioiHan.OrderByDescending(v=>v.ViewsCount).ToList()[i];
                                         <li>
                                             <div class="left-block">
                                                 <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
-                                                    <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    @if (data.Product_Media.Count() > 0)
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                                                    }
                                                 </a>
                                                 <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" href="#"></a>
-                                                        <a title="Add to compare" class="compare" href="#"></a>*@
-                                                    <a title="Quick view" class="search" href="#"></a>
+                                                    @*<a title="Add to my wishlist" class="heart" ></a>
+                                                        <a title="Add to compare" class="compare" ></a>*@
+                                                    <a title="Quick view" class="search" ></a>
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                                    <a title="@language.ADD_TO_CART" >@language.ADD_TO_CART</a>
                                                 </div>
                                                 <div class="group-price">
                                                     @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -987,12 +1074,12 @@
         <div class="row banner-bottom">
             <div class="col-sm-6">
                 <div class="banner-boder-zoom">
-                    <a href="#"><img alt="ads" class="img-responsive" src="/assets/data/ads17.jpg" /></a>
+                    <a ><img alt="ads" class="img-responsive" src="/assets/data/ads17.jpg" /></a>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="banner-boder-zoom">
-                    <a href="#"><img alt="ads" class="img-responsive" src="/assets/data/ads18.jpg" /></a>
+                    <a ><img alt="ads" class="img-responsive" src="/assets/data/ads18.jpg" /></a>
                 </div>
             </div>
         </div>

@@ -186,6 +186,10 @@ namespace ECommerce.Model.EFModel
             .HasIndex(u => u.Name)
             .IsUnique();
 
+            modelBuilder.Entity<Product>()
+            .HasIndex(u => u.Url)
+            .IsUnique();
+
             modelBuilder.Entity<Address>().Property(s => s.Status).HasDefaultValueSql("1");
             modelBuilder.Entity<Address>().Property(s => s.CreateDate).HasDefaultValueSql("GETDATE()");
 
@@ -226,6 +230,7 @@ namespace ECommerce.Model.EFModel
             modelBuilder.Entity<OrderStatus>().Property(s => s.CreateDate).HasDefaultValueSql("GETDATE()");
 
             modelBuilder.Entity<Product>().Property(s => s.Status).HasDefaultValueSql("1");
+            modelBuilder.Entity<Product>().Property(s => s.ViewsCount).HasDefaultValueSql("0");
             modelBuilder.Entity<Product>().Property(s => s.CreateDate).HasDefaultValueSql("GETDATE()");
 
             modelBuilder.Entity<Strap>().Property(s => s.Status).HasDefaultValueSql("1");

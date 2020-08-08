@@ -183,5 +183,6 @@ namespace ECommerce.Model.EFModel.Models
         public virtual List<OrderItem> OrderItems { get; set; }
         public virtual List<Product_ProductStatus> Product_ProductStatus { get; set; }
         public virtual List<Product_Media> Product_Media { get; set; }
+        public int ViewsCount { get; set; }
     }
 }

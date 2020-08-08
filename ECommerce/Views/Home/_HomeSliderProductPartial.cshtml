@@ -22,16 +22,23 @@
                                     <li>
 
                                         <div class="left-block">
-                                            <a href="#">
-                                                <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                            <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
+                                                @if (data.Product_Media.Count() > 0)
+                                                {
+                                                    <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                }
+                                                else
+                                                {
+                                                    <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                                                }
                                             </a>
                                             <div class="quick-view">
-                                                @*<a title="Add to my wishlist" class="heart" href="#"></a>*@
-                                                <a title="Add to compare" class="compare" href="#"></a>
-                                                <a title="Quick view" class="search" href="#"></a>
+                                                @*<a title="Add to my wishlist" class="heart" ></a>*@
+                                                <a title="Add to compare" class="compare"></a>
+                                                <a title="Quick view" class="search"></a>
                                             </div>
                                             <div class="add-to-cart">
-                                                <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                                <a title="@language.ADD_TO_CART">@language.ADD_TO_CART</a>
                                             </div>
                                             <div class="group-price">
                                                 @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -45,7 +52,7 @@
                                             </div>
                                         </div>
                                         <div class="right-block">
-                                            <h5 class="product-name"><a href="#">@data.Name</a></h5>
+                                            <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">@data.Name</a></h5>
                                             <div class="content_price">
                                                 @if (data.PriceDiscount.HasValue)
                                                 {
@@ -80,16 +87,23 @@
                                     <li>
 
                                         <div class="left-block">
-                                            <a href="#">
-                                                <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                            <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
+                                                @if (data.Product_Media.Count() > 0)
+                                                {
+                                                    <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                }
+                                                else
+                                                {
+                                                    <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                                                }
                                             </a>
                                             <div class="quick-view">
-                                                @*<a title="Add to my wishlist" class="heart" href="#"></a>*@
-                                                <a title="Add to compare" class="compare" href="#"></a>
-                                                <a title="Quick view" class="search" href="#"></a>
+                                                @*<a title="Add to my wishlist" class="heart" ></a>*@
+                                                <a title="Add to compare" class="compare"></a>
+                                                <a title="Quick view" class="search"></a>
                                             </div>
                                             <div class="add-to-cart">
-                                                <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                                <a title="@language.ADD_TO_CART">@language.ADD_TO_CART</a>
                                             </div>
                                             <div class="group-price">
                                                 @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -104,7 +118,7 @@
                                             </div>
                                         </div>
                                         <div class="right-block">
-                                            <h5 class="product-name"><a href="#">@data.Name</a></h5>
+                                            <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">@data.Name</a></h5>
                                             <div class="content_price">
                                                 @if (data.PriceDiscount.HasValue)
                                                 {
@@ -139,16 +153,23 @@
                                     <li>
 
                                         <div class="left-block">
-                                            <a href="#">
-                                                <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                            <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
+                                                @if (data.Product_Media.Count() > 0)
+                                                {
+                                                    <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                                }
+                                                else
+                                                {
+                                                    <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                                                }
                                             </a>
                                             <div class="quick-view">
-                                                @*<a title="Add to my wishlist" class="heart" href="#"></a>*@
-                                                <a title="Add to compare" class="compare" href="#"></a>
-                                                <a title="Quick view" class="search" href="#"></a>
+                                                @*<a title="Add to my wishlist" class="heart" ></a>*@
+                                                <a title="Add to compare" class="compare"></a>
+                                                <a title="Quick view" class="search"></a>
                                             </div>
                                             <div class="add-to-cart">
-                                                <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                                <a title="@language.ADD_TO_CART">@language.ADD_TO_CART</a>
                                             </div>
                                             <div class="group-price">
                                                 @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -163,7 +184,7 @@
                                             </div>
                                         </div>
                                         <div class="right-block">
-                                            <h5 class="product-name"><a href="#">@data.Name</a></h5>
+                                            <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">@data.Name</a></h5>
                                             <div class="content_price">
                                                 @if (data.PriceDiscount.HasValue)
                                                 {
@@ -204,19 +225,26 @@
                                 <li>
                                     <div class="count-down-time" data-countdown="@data.DiscountDateTo.Value.ToString("yyyy-MM-dd HH:mm")"></div>
                                     <div class="left-block">
-                                        <a href="#">
-                                            <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
+                                            @if (data.Product_Media.Count() > 0)
+                                            {
+                                                <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                                            }
+                                            else
+                                            {
+                                                <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                                            }
                                         </a>
                                         <div class="quick-view">
-                                            <a title="Add to compare" class="compare" href="#"></a>
-                                            <a title="Quick view" class="search" href="#"></a>
+                                            <a title="Add to compare" class="compare"></a>
+                                            <a title="Quick view" class="search"></a>
                                         </div>
                                         <div class="add-to-cart">
-                                            <a title="@language.ADD_TO_CART" href="#">@language.ADD_TO_CART</a>
+                                            <a title="@language.ADD_TO_CART">@language.ADD_TO_CART</a>
                                         </div>
                                     </div>
                                     <div class="right-block">
-                                        <h5 class="product-name"><a href="#">@data.Name</a></h5>
+                                        <h5 class="product-name"><a>@data.Name</a></h5>
                                         <div class="content_price">
                                             <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", CultureInfo.CurrentCulture)</span>
                                             <span class="price old-price">@data.Price.ToString("C0", CultureInfo.CurrentCulture)</span>
