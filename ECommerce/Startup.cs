@@ -15,6 +15,8 @@ using ECommerce.Model.EFModel.Models;
 using System.Globalization;
 using System.Threading;
 using ECommerce.Middlewares;
+using Microsoft.AspNet.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Http;
 
 namespace ECommerce
 {
@@ -30,6 +32,17 @@ namespace ECommerce
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Cài đặt session
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                //options.IdleTimeout = TimeSpan.FromSeconds(10);
+                //options.Cookie.Name = "lang";
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+            #endregion
             services.AddControllersWithViews();
             services.AddSpaStaticFiles();
             #region NghiaTV config
@@ -86,6 +99,8 @@ namespace ECommerce
             services.AddLocalization(); // DI
             #endregion
 
+
+
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -98,6 +113,9 @@ namespace ECommerce
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+            #region session
+            app.UseSession();
+            #endregion
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
@@ -107,10 +125,13 @@ namespace ECommerce
             //app.UseRequestLocalization();
             app.UseMiddleware<LanguageMiddleware>();
             #endregion
-            #region
+            #region Authen
             app.UseAuthentication();
             app.UseAuthorization();
             #endregion
+
+
+
             #region Cài đặt đường dẫn cho hệ thống
             app.UseEndpoints(endpoints =>
             {

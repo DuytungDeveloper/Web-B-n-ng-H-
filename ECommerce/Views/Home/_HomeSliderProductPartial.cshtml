@@ -22,7 +22,7 @@
                                     <li>
 
                                         <div class="left-block">
-                                            <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
+                                            <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
                                                 @if (data.Product_Media.Count() > 0)
                                                 {
                                                     <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
@@ -34,11 +34,11 @@
                                             </a>
                                             <div class="quick-view">
                                                 @*<a title="Add to my wishlist" class="heart" ></a>*@
-                                                <a title="Add to compare" class="compare"></a>
-                                                <a title="Quick view" class="search"></a>
+                                                @* <a title="Add to compare" class="compare"></a>
+                                                    <a title="Quick view" class="search"></a> *@
                                             </div>
                                             <div class="add-to-cart">
-                                                <a title="@language.ADD_TO_CART">@language.ADD_TO_CART</a>
+                                                <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
                                             </div>
                                             <div class="group-price">
                                                 @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -52,17 +52,17 @@
                                             </div>
                                         </div>
                                         <div class="right-block">
-                                            <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">@data.Name</a></h5>
+                                            <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
                                             <div class="content_price">
                                                 @if (data.PriceDiscount.HasValue)
                                                 {
-                                                    <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", CultureInfo.CurrentCulture)</span>
-                                                    <span class="price old-price">@data.Price.ToString("C0", CultureInfo.CurrentCulture)</span>
+                                                    <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
+                                                    <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
 
                                                 }
                                                 else
                                                 {
-                                                    <span class="price product-price">@data.Price.ToString("C0", CultureInfo.CurrentCulture)</span>
+                                                    <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
                                                 }
                                             </div>
                                             <div class="product-star">
@@ -87,7 +87,7 @@
                                     <li>
 
                                         <div class="left-block">
-                                            <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
+                                            <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
                                                 @if (data.Product_Media.Count() > 0)
                                                 {
                                                     <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
@@ -99,11 +99,11 @@
                                             </a>
                                             <div class="quick-view">
                                                 @*<a title="Add to my wishlist" class="heart" ></a>*@
-                                                <a title="Add to compare" class="compare"></a>
-                                                <a title="Quick view" class="search"></a>
+                                                @* <a title="Add to compare" class="compare"></a>
+                                                    <a title="Quick view" class="search"></a> *@
                                             </div>
                                             <div class="add-to-cart">
-                                                <a title="@language.ADD_TO_CART">@language.ADD_TO_CART</a>
+                                                <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
                                             </div>
                                             <div class="group-price">
                                                 @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -118,17 +118,17 @@
                                             </div>
                                         </div>
                                         <div class="right-block">
-                                            <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">@data.Name</a></h5>
+                                            <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
                                             <div class="content_price">
                                                 @if (data.PriceDiscount.HasValue)
                                                 {
-                                                    <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", CultureInfo.CurrentCulture)</span>
-                                                    <span class="price old-price">@data.Price.ToString("C0", CultureInfo.CurrentCulture)</span>
+                                                    <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
+                                                    <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
 
                                                 }
                                                 else
                                                 {
-                                                    <span class="price product-price">@data.Price.ToString("C0", CultureInfo.CurrentCulture)</span>
+                                                    <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
                                                 }
                                             </div>
                                             <div class="product-star">
@@ -153,7 +153,7 @@
                                     <li>
 
                                         <div class="left-block">
-                                            <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
+                                            <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
                                                 @if (data.Product_Media.Count() > 0)
                                                 {
                                                     <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
@@ -165,11 +165,11 @@
                                             </a>
                                             <div class="quick-view">
                                                 @*<a title="Add to my wishlist" class="heart" ></a>*@
-                                                <a title="Add to compare" class="compare"></a>
-                                                <a title="Quick view" class="search"></a>
+                                                @* <a title="Add to compare" class="compare"></a>
+                                                    <a title="Quick view" class="search"></a> *@
                                             </div>
                                             <div class="add-to-cart">
-                                                <a title="@language.ADD_TO_CART">@language.ADD_TO_CART</a>
+                                                <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
                                             </div>
                                             <div class="group-price">
                                                 @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -184,17 +184,17 @@
                                             </div>
                                         </div>
                                         <div class="right-block">
-                                            <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">@data.Name</a></h5>
+                                            <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
                                             <div class="content_price">
                                                 @if (data.PriceDiscount.HasValue)
                                                 {
-                                                    <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", CultureInfo.CurrentCulture)</span>
-                                                    <span class="price old-price">@data.Price.ToString("C0", CultureInfo.CurrentCulture)</span>
+                                                    <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
+                                                    <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
 
                                                 }
                                                 else
                                                 {
-                                                    <span class="price product-price">@data.Price.ToString("C0", CultureInfo.CurrentCulture)</span>
+                                                    <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
                                                 }
                                             </div>
                                             <div class="product-star">
@@ -225,7 +225,7 @@
                                 <li>
                                     <div class="count-down-time" data-countdown="@data.DiscountDateTo.Value.ToString("yyyy-MM-dd HH:mm")"></div>
                                     <div class="left-block">
-                                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
+                                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
                                             @if (data.Product_Media.Count() > 0)
                                             {
                                                 <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
@@ -235,19 +235,19 @@
                                                 <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
                                             }
                                         </a>
-                                        <div class="quick-view">
+                                        @* <div class="quick-view">
                                             <a title="Add to compare" class="compare"></a>
                                             <a title="Quick view" class="search"></a>
-                                        </div>
+                                        </div> *@
                                         <div class="add-to-cart">
-                                            <a title="@language.ADD_TO_CART">@language.ADD_TO_CART</a>
+                                            <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
                                         </div>
                                     </div>
                                     <div class="right-block">
                                         <h5 class="product-name"><a>@data.Name</a></h5>
                                         <div class="content_price">
-                                            <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", CultureInfo.CurrentCulture)</span>
-                                            <span class="price old-price">@data.Price.ToString("C0", CultureInfo.CurrentCulture)</span>
+                                            <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
+                                            <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
                                             @*<span class="colreduce-percentage">(-10%)</span>*@
                                         </div>
                                     </div>

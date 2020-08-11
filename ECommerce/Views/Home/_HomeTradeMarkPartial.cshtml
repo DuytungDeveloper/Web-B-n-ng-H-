@@ -86,7 +86,7 @@
                                         var data = allBrand[i].Products[j];
                                         <div class="col-xs-12 col-sm-6 product-item">
                                             <div class="image-product hover-zoom">
-                                                <a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">
+                                                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
                                                     @if (data.Product_Media.Count() > 0)
                                                     {
                                                         <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
@@ -98,9 +98,9 @@
                                                 </a>
                                             </div>
                                             <div class="info-product">
-                                                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">@data.Name</a></h5>
+                                                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
                                                 <span class="product-price">
-                                                    @data.Price.ToString("C0", CultureInfo.CurrentCulture)
+                                                    @data.Price.ToString("C0", new CultureInfo("vi"))
                                                 </span>
                                                 <div class="product-star">
                                                     <i class="fa fa-star"></i>
@@ -109,7 +109,7 @@
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                 </div>
-                                                <a class="btn-view-more" title="@language.SEE_MORE" asp-controller="san-pham" asp-action="index" asp-route-link="@data.Url">@language.SEE_MORE</a>
+                                                <a class="btn-view-more" title="@language.SEE_MORE" asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@language.SEE_MORE</a>
                                             </div>
                                         </div>
                                     }

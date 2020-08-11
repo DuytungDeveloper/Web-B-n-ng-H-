@@ -129,8 +129,14 @@
   <data name="BESTSELLER" xml:space="preserve">
     <value>Bestseller</value>
   </data>
+  <data name="CART" xml:space="preserve">
+    <value>Cart</value>
+  </data>
   <data name="CATEGORY" xml:space="preserve">
     <value>Category</value>
+  </data>
+  <data name="CHECK_OUT" xml:space="preserve">
+    <value>Check out</value>
   </data>
   <data name="CHILDREN_WATCH" xml:space="preserve">
     <value>Children's Watches</value>
@@ -159,6 +165,9 @@
   <data name="DELIVERY" xml:space="preserve">
     <value>Delivery</value>
   </data>
+  <data name="DUONG_KINH_MAT_DONG_HO" xml:space="preserve">
+    <value>Diameter of watch face</value>
+  </data>
   <data name="FREE_DELIVERY" xml:space="preserve">
     <value>Free delivery</value>
   </data>
@@ -167,6 +176,9 @@
   </data>
   <data name="GUARANTEE" xml:space="preserve">
     <value>Guarantee</value>
+  </data>
+  <data name="GUI_CHO_BAN" xml:space="preserve">
+    <value>Send it to you</value>
   </data>
   <data name="HOME" xml:space="preserve">
     <value>Home</value>
@@ -204,8 +216,29 @@
   <data name="LIMITED_EDITION" xml:space="preserve">
     <value>Limited edition</value>
   </data>
+  <data name="LOAI_DAY" xml:space="preserve">
+    <value>Wire type</value>
+  </data>
+  <data name="LOAI_NIENG" xml:space="preserve">
+    <value>Braces type</value>
+  </data>
   <data name="LOGIN" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="LUA_CHON" xml:space="preserve">
+    <value>Selection</value>
+  </data>
+  <data name="MACHINE_TYPE" xml:space="preserve">
+    <value>Machine type</value>
+  </data>
+  <data name="MAU" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="MAU_MAT_KINH" xml:space="preserve">
+    <value>Glass color</value>
+  </data>
+  <data name="MA_SAN_PHAM" xml:space="preserve">
+    <value>Product code</value>
   </data>
   <data name="MENS_WATCH" xml:space="preserve">
     <value>Men's watch</value>
@@ -231,6 +264,12 @@
   <data name="NEW_MODEL" xml:space="preserve">
     <value>New model</value>
   </data>
+  <data name="NEW_PRODUCT" xml:space="preserve">
+    <value>New product</value>
+  </data>
+  <data name="NOI_SAN_XUAT" xml:space="preserve">
+    <value>Where production</value>
+  </data>
   <data name="ON_SALE" xml:space="preserve">
     <value>On Sale</value>
   </data>
@@ -240,8 +279,14 @@
   <data name="PHONE" xml:space="preserve">
     <value>Phone</value>
   </data>
+  <data name="PHUONG_CACH" xml:space="preserve">
+    <value>Style</value>
+  </data>
   <data name="POLICY" xml:space="preserve">
     <value>Policy</value>
+  </data>
+  <data name="PRODUCT" xml:space="preserve">
+    <value>product</value>
   </data>
   <data name="PRODUCTS_ARE_LOOKED_MOST" xml:space="preserve">
     <value>Most Searched Products</value>
@@ -251,6 +296,9 @@
   </data>
   <data name="RETURN" xml:space="preserve">
     <value>Returns</value>
+  </data>
+  <data name="REVIEW" xml:space="preserve">
+    <value>Review</value>
   </data>
   <data name="SALE" xml:space="preserve">
     <value>Discount</value>
@@ -270,6 +318,9 @@
   <data name="SOCIAL_PAGES" xml:space="preserve">
     <value>Social Networks</value>
   </data>
+  <data name="SO_LUONG" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
   <data name="SPECIAL_VERSION" xml:space="preserve">
     <value>Special version</value>
   </data>
@@ -288,8 +339,23 @@
   <data name="TERM" xml:space="preserve">
     <value>Policy</value>
   </data>
+  <data name="THOI_GIAN_BAO_HANH_O_CUA_HANG" xml:space="preserve">
+    <value>Warranty period at the store</value>
+  </data>
+  <data name="THOI_GIAN_BAO_HANH_QUOC_TE" xml:space="preserve">
+    <value>International warranty period</value>
+  </data>
+  <data name="THONG_TIN_CHONG_THAM" xml:space="preserve">
+    <value>Waterproof information</value>
+  </data>
+  <data name="TOTAL" xml:space="preserve">
+    <value>Total</value>
+  </data>
   <data name="TRADEMARK" xml:space="preserve">
     <value>Trademark</value>
+  </data>
+  <data name="TRANG_THAI" xml:space="preserve">
+    <value>Status</value>
   </data>
   <data name="WATCH_NOW" xml:space="preserve">
     <value>Watch now</value>

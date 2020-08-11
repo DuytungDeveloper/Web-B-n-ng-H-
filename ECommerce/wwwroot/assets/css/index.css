@@ -189,7 +189,25 @@ table.cart_summary thead tr th {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
+
 [class*='showcase-'] .img-responsive {
     height: 171px;
     width: 141px;
+}
+/*.featured-text {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    background: url(../images/featured-text.png) no-repeat;
+    width: 75px;
+    height: 75px;
+    z-index: 100;
+}*/
+#product-zoom {
+    height: 398px;
+    width: 398px;
+}
+
+.add-to-cart a, a.btn-add-cart {
+    cursor: pointer;
 }

@@ -1,0 +1,10 @@
+﻿@model List<ECommerce.Model.EFModel.Models.Category>
+@for (int i = 0; i < Model.Count(); i++)
+{
+    <li>
+        <a href="#">
+            @*<img class="icon-menu" alt="Funky roots" src="/assets/data/1.png">@Model[i].Name*@
+            @Model[i].Name
+        </a>
+    </li>
+}

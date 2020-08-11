@@ -15,6 +15,8 @@
 
   <ItemGroup>
    
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+   
     <PackageReference Include="Microsoft.AspNet.Mvc.Core" Version="6.0.0-rc1-final" />
    
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
@@ -62,6 +64,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>language.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\Languages\ProductDetail\ProductDetail.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProductDetail.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 
@@ -79,6 +86,13 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Languages\language.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Languages\ProductDetail\ProductDetail.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Languages\ProductDetail\ProductDetail.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProductDetail.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

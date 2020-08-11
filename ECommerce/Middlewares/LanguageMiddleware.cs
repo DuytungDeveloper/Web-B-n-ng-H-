@@ -6,11 +6,25 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace ECommerce.Middlewares
 {
+    public static class SessionExtensions
+    {
+        public static void Set<T>(this ISession session, string key, T value)
+        {
+            session.SetString(key, JsonSerializer.Serialize(value));
+        }
+
+        public static T Get<T>(this ISession session, string key)
+        {
+            var value = session.GetString(key);
+            return value == null ? default : JsonSerializer.Deserialize<T>(value);
+        }
+    }
     public class LanguageMiddleware
     {
         /// <summary>
@@ -72,6 +86,17 @@ namespace ECommerce.Middlewares
             var culture = new CultureInfo(language);
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
+            // Cài session
+            context.Session.Set<string>("lang", language);
+            #region cài cookie lang
+            CookieOptions option = new CookieOptions();
+            //if (expireTime.HasValue)
+            //    option.Expires = DateTime.Now.AddMinutes(expireTime.Value);
+            //else
+            //    option.Expires = DateTime.Now.AddMilliseconds(10);
+            option.Expires = DateTime.Now.AddDays(30);
+            context.Response.Cookies.Append("lang", language, option);
+            #endregion
             await _next(context);
         }
     }

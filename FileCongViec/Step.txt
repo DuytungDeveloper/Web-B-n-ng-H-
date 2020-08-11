@@ -5,3 +5,6 @@ Add Migration vào Model => Quản lý thay đổi DB.
 /san-pham/masanpham
 
 /tim-kiem?paramm.......
+
+
+https://www.davidhayden.me/blog/asp-net-core-bundle-and-minify-css-and-js

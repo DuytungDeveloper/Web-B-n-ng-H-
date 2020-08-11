@@ -129,8 +129,14 @@
   <data name="BESTSELLER" xml:space="preserve">
     <value>Bán Chạy Nhất</value>
   </data>
+  <data name="CART" xml:space="preserve">
+    <value>Giỏ hàng</value>
+  </data>
   <data name="CATEGORY" xml:space="preserve">
     <value>Danh Mục</value>
+  </data>
+  <data name="CHECK_OUT" xml:space="preserve">
+    <value>Thanh toán</value>
   </data>
   <data name="CHILDREN_WATCH" xml:space="preserve">
     <value>Đồng Hồ Trẻ Em</value>
@@ -159,6 +165,9 @@
   <data name="DELIVERY" xml:space="preserve">
     <value>Giao Hàng</value>
   </data>
+  <data name="DUONG_KINH_MAT_DONG_HO" xml:space="preserve">
+    <value>Đường kính mặt đồng hồ</value>
+  </data>
   <data name="FREE_DELIVERY" xml:space="preserve">
     <value>Giao Hàng Miễn Phí</value>
   </data>
@@ -167,6 +176,9 @@
   </data>
   <data name="GUARANTEE" xml:space="preserve">
     <value>Bảo Hành</value>
+  </data>
+  <data name="GUI_CHO_BAN" xml:space="preserve">
+    <value>Gửi cho bạn</value>
   </data>
   <data name="HOME" xml:space="preserve">
     <value>Trang Chủ</value>
@@ -204,8 +216,29 @@
   <data name="LIMITED_EDITION" xml:space="preserve">
     <value>Phiên Bản Giới Hạn</value>
   </data>
+  <data name="LOAI_DAY" xml:space="preserve">
+    <value>Loại dây</value>
+  </data>
+  <data name="LOAI_NIENG" xml:space="preserve">
+    <value>Loại niềng</value>
+  </data>
   <data name="LOGIN" xml:space="preserve">
     <value>Đăng Nhập</value>
+  </data>
+  <data name="LUA_CHON" xml:space="preserve">
+    <value>Lựa chọn</value>
+  </data>
+  <data name="MACHINE_TYPE" xml:space="preserve">
+    <value>Loại máy</value>
+  </data>
+  <data name="MAU" xml:space="preserve">
+    <value>Màu</value>
+  </data>
+  <data name="MAU_MAT_KINH" xml:space="preserve">
+    <value>Màu mặt kính</value>
+  </data>
+  <data name="MA_SAN_PHAM" xml:space="preserve">
+    <value>Mã sản phẩm</value>
   </data>
   <data name="MENS_WATCH" xml:space="preserve">
     <value>Đồng Hồ Nam</value>
@@ -231,6 +264,12 @@
   <data name="NEW_MODEL" xml:space="preserve">
     <value>Mẫu Mới</value>
   </data>
+  <data name="NEW_PRODUCT" xml:space="preserve">
+    <value>Sản phẩm mới</value>
+  </data>
+  <data name="NOI_SAN_XUAT" xml:space="preserve">
+    <value>Nơi sản xuất</value>
+  </data>
   <data name="ON_SALE" xml:space="preserve">
     <value>Đang Giảm Giá</value>
   </data>
@@ -240,8 +279,14 @@
   <data name="PHONE" xml:space="preserve">
     <value>SĐT</value>
   </data>
+  <data name="PHUONG_CACH" xml:space="preserve">
+    <value>Phong cách</value>
+  </data>
   <data name="POLICY" xml:space="preserve">
     <value>Chính Sách</value>
+  </data>
+  <data name="PRODUCT" xml:space="preserve">
+    <value>sản phẩm</value>
   </data>
   <data name="PRODUCTS_ARE_LOOKED_MOST" xml:space="preserve">
     <value>Sản Phẩm Được Tìm Nhiều Nhất</value>
@@ -251,6 +296,9 @@
   </data>
   <data name="RETURN" xml:space="preserve">
     <value>Trả Hàng</value>
+  </data>
+  <data name="REVIEW" xml:space="preserve">
+    <value>Đánh giá</value>
   </data>
   <data name="SALE" xml:space="preserve">
     <value>Giảm Giá</value>
@@ -270,6 +318,9 @@
   <data name="SOCIAL_PAGES" xml:space="preserve">
     <value>Các Trang Mạng Xã Hội</value>
   </data>
+  <data name="SO_LUONG" xml:space="preserve">
+    <value>Số lượng</value>
+  </data>
   <data name="SPECIAL_VERSION" xml:space="preserve">
     <value>Phiên Bản Đặc Biệt</value>
   </data>
@@ -288,8 +339,23 @@
   <data name="TERM" xml:space="preserve">
     <value>Điều Khoản</value>
   </data>
+  <data name="THOI_GIAN_BAO_HANH_O_CUA_HANG" xml:space="preserve">
+    <value>Thời gian bảo hành ở cửa hàng</value>
+  </data>
+  <data name="THOI_GIAN_BAO_HANH_QUOC_TE" xml:space="preserve">
+    <value>Thời gian bảo hành quốc tế</value>
+  </data>
+  <data name="THONG_TIN_CHONG_THAM" xml:space="preserve">
+    <value>Thông tin chống thấm</value>
+  </data>
+  <data name="TOTAL" xml:space="preserve">
+    <value>Tổng cộng</value>
+  </data>
   <data name="TRADEMARK" xml:space="preserve">
     <value>Thương Hiệu</value>
+  </data>
+  <data name="TRANG_THAI" xml:space="preserve">
+    <value>Trạng thái</value>
   </data>
   <data name="WATCH_NOW" xml:space="preserve">
     <value>Xem Ngay</value>
