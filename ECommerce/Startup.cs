@@ -26,7 +26,7 @@ namespace ECommerce
         {
             Configuration = configuration;
         }
-      
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -50,14 +50,27 @@ namespace ECommerce
                 options.UseSqlServer(
                     Configuration.GetConnectionString("ECommerceContext")));
 
-            services.AddDefaultIdentity<ApplicationUser>(options =>
+            //services.AddDefaultIdentity<ApplicationUser>(options =>
+            //{
+            //    options.SignIn.RequireConfirmedAccount = false;
+            //    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+            //    options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier;
+            //})
+            //    .AddRoles<IdentityRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
-                options.SignIn.RequireConfirmedAccount = false;
-                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-                options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier;
+                options.User.RequireUniqueEmail = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.User.RequireUniqueEmail = false;
+                options.User.RequireUniqueEmail = false;
+                options.User.RequireUniqueEmail = false;
             })
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(o =>

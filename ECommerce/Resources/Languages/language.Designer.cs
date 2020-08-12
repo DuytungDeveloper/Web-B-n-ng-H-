@@ -592,6 +592,15 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Đăng ký.
+        /// </summary>
+        public static string REGISTER {
+            get {
+                return ResourceManager.GetString("REGISTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Trả Hàng.
         /// </summary>
         public static string RETURN {

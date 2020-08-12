@@ -294,6 +294,9 @@
   <data name="REFUND" xml:space="preserve">
     <value>Refund</value>
   </data>
+  <data name="REGISTER" xml:space="preserve">
+    <value>Register</value>
+  </data>
   <data name="RETURN" xml:space="preserve">
     <value>Returns</value>
   </data>

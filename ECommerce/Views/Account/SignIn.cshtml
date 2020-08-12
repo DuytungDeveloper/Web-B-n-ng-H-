@@ -21,19 +21,22 @@
                         <p>Nhập Email của bạn để tạo tài khoản mới</p>
                         <label for="emmail_register">Email address</label>
                         <input id="emmail_register" type="text" class="form-control">
-                        <button class="button"><i class="fa fa-user"></i> Tạo tài khoản</button>
+                        <form method="get">
+                            <button class="button" asp-controller="tai-khoan" asp-action="dang-ky"><i class="fa fa-user"></i> Tạo tài khoản</button>
+
+                        </form>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="box-authentication">
+                    <form class="box-authentication" asp-controller="tai-khoan" asp-action="dang-nhap" method="post">
                         <h3>Đã có tài khoản?</h3>
-                        <label for="emmail_login">Email</label>
-                        <input id="emmail_login" type="text" class="form-control">
+                        <label for="emmail_login">UserName</label>
+                        <input id="emmail_login" type="text" name="UserName" class="form-control">
                         <label for="password_login">Password</label>
-                        <input id="password_login" type="password" class="form-control">
+                        <input id="password_login" type="password" name="Password" class="form-control">
                         <p class="forgot-pass"><a href="#">Quên mật khẩu?</a></p>
                         <button class="button"><i class="fa fa-lock"></i> Đăng nhập</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

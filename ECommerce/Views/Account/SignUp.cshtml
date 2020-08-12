@@ -1,4 +1,6 @@
-﻿<!-- page wapper-->
+﻿@using ECommerce.Models.View
+@model RegisterViewModel
+<!-- page wapper-->
 <div class="columns-container">
     <div class="container" id="columns">
         <!-- breadcrumb -->
@@ -16,16 +18,18 @@
         <div class="page-content">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="box-authentication">
+                    <form class="box-authentication" asp-controller="tai-khoan" asp-action="dang-ky" method="post">
                         @*<h3>Tạo tài khoản</h3>*@
                         <label for="emmail_login">Email</label>
-                        <input id="emmail_login" type="text" class="form-control">
+                        <input id="emmail_login" type="email" name="Email" class="form-control">
+                        <label for="name">UserName</label>
+                        <input id="name_login" type="text" name="UserName" class="form-control">
                         <label for="password_login">Password</label>
-                        <input id="password_login" type="password" class="form-control">
+                        <input id="password_login" type="password" name="Password" class="form-control">
                         <label for="password_login_check">Xác nhận Password</label>
-                        <input id="password_login_check" type="password" class="form-control">
-                        <button class="button"><i class="fa fa-lock"></i> Đăng Ký</button>
-                    </div>
+                        <input id="password_login_check" type="password" name="ConfirmPassword" class="form-control">
+                        <button class="button" type="submit"><i class="fa fa-lock"></i> Đăng Ký</button>
+                    </form>
                 </div>
             </div>
         </div>

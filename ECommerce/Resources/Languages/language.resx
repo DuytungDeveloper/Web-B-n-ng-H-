@@ -294,6 +294,9 @@
   <data name="REFUND" xml:space="preserve">
     <value>Hoàn Tiền</value>
   </data>
+  <data name="REGISTER" xml:space="preserve">
+    <value>Đăng ký</value>
+  </data>
   <data name="RETURN" xml:space="preserve">
     <value>Trả Hàng</value>
   </data>

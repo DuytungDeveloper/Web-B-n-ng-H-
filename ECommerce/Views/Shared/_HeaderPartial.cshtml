@@ -39,13 +39,25 @@
 
             <div id="user-info-top" class="user-info pull-right">
                 <div class="dropdown">
-                    <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                       href="#"><span>@language.MY_ACCOUNT</span></a>
-                    <ul class="dropdown-menu mega_dropdown" role="menu">
-                        <li><a asp-controller="tai-khoan" asp-action="dang-nhap">@language.LOGIN</a></li>
-                        @*<li><a href="#">So sánh</a></li>*@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                           href="#"><span>Xin chào, @User.Identity.Name</span></a>
+                        <ul class="dropdown-menu mega_dropdown" role="menu">
+                            <li><a asp-controller="tai-khoan" asp-action="dang-xuat">Đăng xuất</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                           href="#"><span>@language.MY_ACCOUNT</span></a>
+                        <ul class="dropdown-menu mega_dropdown" role="menu">
+                            <li><a asp-controller="tai-khoan" asp-action="dang-nhap">@language.LOGIN</a></li>
+                            <li><a asp-controller="tai-khoan" asp-action="dang-ky">@language.REGISTER</a></li>
+                        </ul>
+                    }
 
-                    </ul>
+
                 </div>
             </div>
         </div>
@@ -365,196 +377,196 @@
                                     <li class=""><a asp-controller="search-result" asp-action="index">@language.WOMENS_WATCH</a></li>
                                     <li class=""><a asp-controller="search-result" asp-action="index">@language.COUPLE_WATCH</a></li>
                                     @*<li class="dropdown">
-                                        <a asp-controller="search-result" asp-action="index" class="dropdown-toggle" data-toggle="dropdown">
-                                            @language.MENS_WATCH
-                                        </a>
-                                        <ul class="dropdown-menu mega_dropdown" role="menu" style="width: 830px;">
-                                            <li class="block-container col-sm-3">
-                                                <ul class="block">
-                                                    <li class="img_container">
-                                                        <a href="#">
-                                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                                 alt="sport">
-                                                        </a>
-                                                    </li>
-                                                    <li class="link_container group_header">
-                                                        <a href="#">Lịch lãm </a>
-                                                    </li>
-                                                    <li class="link_container"><a href="#">Skirts</a></li>
-                                                    <li class="link_container"><a href="#">Jackets</a></li>
-                                                    <li class="link_container"><a href="#">Tops</a></li>
-                                                    <li class="link_container"><a href="#">Scarves</a></li>
-                                                    <li class="link_container"><a href="#">Pants</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="block-container col-sm-3">
-                                                <ul class="block">
-                                                    <li class="img_container">
-                                                        <a href="#">
-                                                            <img class="img-responsive" src="/assets/images/product-2.jpg"
-                                                                 alt="sport">
-                                                        </a>
-                                                    </li>
-                                                    <li class="link_container group_header">
-                                                        <a href="#">Trẻ trung</a>
-                                                    </li>
-                                                    <li class="link_container"><a href="#">Skirts</a></li>
-                                                    <li class="link_container"><a href="#">Jackets</a></li>
-                                                    <li class="link_container"><a href="#">Tops</a></li>
-                                                    <li class="link_container"><a href="#">Scarves</a></li>
-                                                    <li class="link_container"><a href="#">Pants</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="block-container col-sm-3">
-                                                <ul class="block">
-                                                    <li class="img_container">
-                                                        <a href="#">
-                                                            <img class="img-responsive" src="/assets/images/product-3.jpg"
-                                                                 alt="sport">
-                                                        </a>
-                                                    </li>
-                                                    <li class="link_container group_header">
-                                                        <a href="#">Quý phái</a>
-                                                    </li>
-                                                    <li class="link_container"><a href="#">Shoes</a></li>
-                                                    <li class="link_container"><a href="#">Clothing</a></li>
-                                                    <li class="link_container"><a href="#">Tops</a></li>
-                                                    <li class="link_container"><a href="#">Scarves</a></li>
-                                                    <li class="link_container"><a href="#">Accessories</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="block-container col-sm-3">
-                                                <ul class="block">
-                                                    <li class="img_container">
-                                                        <a href="#">
-                                                            <img class="img-responsive"
-                                                                 src="/assets/images/product-4.jpg" alt="sport">
-                                                        </a>
-                                                    </li>
-                                                    <li class="link_container group_header">
-                                                        <a href="#">Năng động</a>
-                                                    </li>
-                                                    <li class="link_container"><a href="#">Men's Clothing</a></li>
-                                                    <li class="link_container"><a href="#">Kid's Clothing</a></li>
-                                                    <li class="link_container"><a href="#">Women's Clothing</a></li>
-                                                    <li class="link_container"><a href="#">Accessories</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>*@
+                                            <a asp-controller="search-result" asp-action="index" class="dropdown-toggle" data-toggle="dropdown">
+                                                @language.MENS_WATCH
+                                            </a>
+                                            <ul class="dropdown-menu mega_dropdown" role="menu" style="width: 830px;">
+                                                <li class="block-container col-sm-3">
+                                                    <ul class="block">
+                                                        <li class="img_container">
+                                                            <a href="#">
+                                                                <img class="img-responsive" src="/assets/images/product-1.jpg"
+                                                                     alt="sport">
+                                                            </a>
+                                                        </li>
+                                                        <li class="link_container group_header">
+                                                            <a href="#">Lịch lãm </a>
+                                                        </li>
+                                                        <li class="link_container"><a href="#">Skirts</a></li>
+                                                        <li class="link_container"><a href="#">Jackets</a></li>
+                                                        <li class="link_container"><a href="#">Tops</a></li>
+                                                        <li class="link_container"><a href="#">Scarves</a></li>
+                                                        <li class="link_container"><a href="#">Pants</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="block-container col-sm-3">
+                                                    <ul class="block">
+                                                        <li class="img_container">
+                                                            <a href="#">
+                                                                <img class="img-responsive" src="/assets/images/product-2.jpg"
+                                                                     alt="sport">
+                                                            </a>
+                                                        </li>
+                                                        <li class="link_container group_header">
+                                                            <a href="#">Trẻ trung</a>
+                                                        </li>
+                                                        <li class="link_container"><a href="#">Skirts</a></li>
+                                                        <li class="link_container"><a href="#">Jackets</a></li>
+                                                        <li class="link_container"><a href="#">Tops</a></li>
+                                                        <li class="link_container"><a href="#">Scarves</a></li>
+                                                        <li class="link_container"><a href="#">Pants</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="block-container col-sm-3">
+                                                    <ul class="block">
+                                                        <li class="img_container">
+                                                            <a href="#">
+                                                                <img class="img-responsive" src="/assets/images/product-3.jpg"
+                                                                     alt="sport">
+                                                            </a>
+                                                        </li>
+                                                        <li class="link_container group_header">
+                                                            <a href="#">Quý phái</a>
+                                                        </li>
+                                                        <li class="link_container"><a href="#">Shoes</a></li>
+                                                        <li class="link_container"><a href="#">Clothing</a></li>
+                                                        <li class="link_container"><a href="#">Tops</a></li>
+                                                        <li class="link_container"><a href="#">Scarves</a></li>
+                                                        <li class="link_container"><a href="#">Accessories</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="block-container col-sm-3">
+                                                    <ul class="block">
+                                                        <li class="img_container">
+                                                            <a href="#">
+                                                                <img class="img-responsive"
+                                                                     src="/assets/images/product-4.jpg" alt="sport">
+                                                            </a>
+                                                        </li>
+                                                        <li class="link_container group_header">
+                                                            <a href="#">Năng động</a>
+                                                        </li>
+                                                        <li class="link_container"><a href="#">Men's Clothing</a></li>
+                                                        <li class="link_container"><a href="#">Kid's Clothing</a></li>
+                                                        <li class="link_container"><a href="#">Women's Clothing</a></li>
+                                                        <li class="link_container"><a href="#">Accessories</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>*@
                                     @*<li>
-                                        <a asp-controller="search-result" asp-action="index" class="dropdown-toggle">
-                                            @language.WOMENS_WATCH
-                                        </a>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a asp-controller="search-result" asp-action="index" class="dropdown-toggle" data-toggle="dropdown">
-                                            @language.COUPLE_WATCH
-                                        </a>
-                                        <ul class="mega_dropdown dropdown-menu" style="width: 830px;">
-                                            <li class="block-container col-sm-3">
-                                                <ul class="block">
-                                                    <li class="link_container group_header">
-                                                        <a href="#">Asian</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Vietnamese Pho</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Noodles</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Seafood</a>
-                                                    </li>
-                                                    <li class="link_container group_header">
-                                                        <a href="#">Sausages</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Meat Dishes</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Desserts</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Tops</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Tops</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="block-container col-sm-3">
-                                                <ul class="block">
-                                                    <li class="link_container group_header">
-                                                        <a href="#">European</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Greek Potatoes</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Famous Spaghetti</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Famous Spaghetti</a>
-                                                    </li>
-                                                    <li class="link_container group_header">
-                                                        <a href="#">Chicken</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Italian Pizza</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">French Cakes</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Tops</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Tops</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="block-container col-sm-3">
-                                                <ul class="block">
-                                                    <li class="link_container group_header">
-                                                        <a href="#">FAST</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Hamberger</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Pizza</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Noodles</a>
-                                                    </li>
-                                                    <li class="link_container group_header">
-                                                        <a href="#">Sandwich</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Salad</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Paste</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Tops</a>
-                                                    </li>
-                                                    <li class="link_container">
-                                                        <a href="#">Tops</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="block-container col-sm-3">
-                                                <ul class="block">
-                                                    <li class="img_container">
-                                                        <img src="/assets/data/banner-topmenu.jpg" alt="Banner">
-                                                    </li>
-                                                </ul>
-                                            </li>
+                                            <a asp-controller="search-result" asp-action="index" class="dropdown-toggle">
+                                                @language.WOMENS_WATCH
+                                            </a>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a asp-controller="search-result" asp-action="index" class="dropdown-toggle" data-toggle="dropdown">
+                                                @language.COUPLE_WATCH
+                                            </a>
+                                            <ul class="mega_dropdown dropdown-menu" style="width: 830px;">
+                                                <li class="block-container col-sm-3">
+                                                    <ul class="block">
+                                                        <li class="link_container group_header">
+                                                            <a href="#">Asian</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Vietnamese Pho</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Noodles</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Seafood</a>
+                                                        </li>
+                                                        <li class="link_container group_header">
+                                                            <a href="#">Sausages</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Meat Dishes</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Desserts</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Tops</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Tops</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="block-container col-sm-3">
+                                                    <ul class="block">
+                                                        <li class="link_container group_header">
+                                                            <a href="#">European</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Greek Potatoes</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Famous Spaghetti</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Famous Spaghetti</a>
+                                                        </li>
+                                                        <li class="link_container group_header">
+                                                            <a href="#">Chicken</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Italian Pizza</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">French Cakes</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Tops</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Tops</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="block-container col-sm-3">
+                                                    <ul class="block">
+                                                        <li class="link_container group_header">
+                                                            <a href="#">FAST</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Hamberger</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Pizza</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Noodles</a>
+                                                        </li>
+                                                        <li class="link_container group_header">
+                                                            <a href="#">Sandwich</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Salad</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Paste</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Tops</a>
+                                                        </li>
+                                                        <li class="link_container">
+                                                            <a href="#">Tops</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="block-container col-sm-3">
+                                                    <ul class="block">
+                                                        <li class="img_container">
+                                                            <img src="/assets/data/banner-topmenu.jpg" alt="Banner">
+                                                        </li>
+                                                    </ul>
+                                                </li>
 
-                                        </ul>
-                                    </li>*@
+                                            </ul>
+                                        </li>*@
                                     <!-- <li class="dropdown">
                                         <a asp-controller="search-result" asp-action="index" class="dropdown-toggle" data-toggle="dropdown">Phụ kiện</a>
                                         <ul class="dropdown-menu container-fluid">
