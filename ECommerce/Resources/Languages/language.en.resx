@@ -159,14 +159,23 @@
   <data name="COUPLE_WATCH" xml:space="preserve">
     <value>Couple watches</value>
   </data>
+  <data name="CreateDate" xml:space="preserve">
+    <value>Create date</value>
+  </data>
   <data name="CUSTOMER_SAY_ABOUT_US" xml:space="preserve">
     <value>What do customers say about us?</value>
+  </data>
+  <data name="DAC_TINH_DONG_HO" xml:space="preserve">
+    <value>Clock characteristics</value>
   </data>
   <data name="DELIVERY" xml:space="preserve">
     <value>Delivery</value>
   </data>
   <data name="DUONG_KINH_MAT_DONG_HO" xml:space="preserve">
     <value>Diameter of watch face</value>
+  </data>
+  <data name="FILTER" xml:space="preserve">
+    <value>FILTER</value>
   </data>
   <data name="FREE_DELIVERY" xml:space="preserve">
     <value>Free delivery</value>
@@ -267,6 +276,9 @@
   <data name="NEW_PRODUCT" xml:space="preserve">
     <value>New product</value>
   </data>
+  <data name="NEXT" xml:space="preserve">
+    <value>Next</value>
+  </data>
   <data name="NOI_SAN_XUAT" xml:space="preserve">
     <value>Where production</value>
   </data>
@@ -285,11 +297,20 @@
   <data name="POLICY" xml:space="preserve">
     <value>Policy</value>
   </data>
+  <data name="PREVIOUS" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="PRICE" xml:space="preserve">
+    <value>Price</value>
+  </data>
   <data name="PRODUCT" xml:space="preserve">
     <value>product</value>
   </data>
   <data name="PRODUCTS_ARE_LOOKED_MOST" xml:space="preserve">
     <value>Most Searched Products</value>
+  </data>
+  <data name="PRODUCT_NAME" xml:space="preserve">
+    <value>Product name</value>
   </data>
   <data name="REFUND" xml:space="preserve">
     <value>Refund</value>
@@ -303,8 +324,14 @@
   <data name="REVIEW" xml:space="preserve">
     <value>Review</value>
   </data>
+  <data name="REVIEW_FROM_USER" xml:space="preserve">
+    <value>CUSTOMER FEEDBACK</value>
+  </data>
   <data name="SALE" xml:space="preserve">
     <value>Discount</value>
+  </data>
+  <data name="SEARCH" xml:space="preserve">
+    <value>Search</value>
   </data>
   <data name="SEE_MORE" xml:space="preserve">
     <value>See More</value>
@@ -314,6 +341,9 @@
   </data>
   <data name="SERVICE" xml:space="preserve">
     <value>Service</value>
+  </data>
+  <data name="SHOW" xml:space="preserve">
+    <value>Show</value>
   </data>
   <data name="SOCIAL_PAGE" xml:space="preserve">
     <value>Social pages</value>

@@ -1,0 +1,68 @@
+﻿@using ECommerce.Models.View
+@model ECommerce.Model.EFModel.Models.Product
+@using System.Globalization;
+<li class="col-sx-12 col-sm-4">
+    <div class="product-container">
+        <div class="left-block">
+            <a asp-controller="san-pham" asp-action="index" asp-route-link="@(Model.Url+"."+Model.Id.ToString())"><img class="img-responsive" alt="product" src="@(Model.Product_Media.Count() > 0 ?  Model.Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+            @*<div class="quick-view">
+                    <a title="Add to my wishlist" class="heart" href="#"></a>
+                    <a title="Add to compare" class="compare" href="#"></a>
+                    <a title="Quick view" class="search" href="#"></a>
+                </div>*@
+            <div class="add-to-cart">
+                <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(Model.Url+"."+Model.Id.ToString())')">@language.ADD_TO_CART</a>
+            </div>
+        </div>
+        <div class="right-block">
+            <h5 class="product-name">
+                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(Model.Url+"."+Model.Id.ToString())">@Model.Name</a>
+            </h5>
+            @if (Model.Reviews.Count > 0)
+            {
+                <div class="rateit" data-rateit-value="@Model.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+            }
+            else
+            {
+                <div class="rateit invisible" data-rateit-value="@Model.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+            }
+            @*<div class="product-star">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div>*@
+            <div class="group-price">
+                @if (Model.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
+                {
+                    <span class="product-new">@language.NEW</span>
+                }
+                @if (Model.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
+                {
+                    <span class="product-sale">@language.SALE</span>
+                }
+            </div>
+            <div class="content_price">
+                @if (Model.PriceDiscount.HasValue)
+                {
+                    <span class="price product-price">@Model.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
+                    <span class="price old-price">@Model.Price.ToString("C0", new CultureInfo("vi"))</span>
+
+                }
+                else
+                {
+                    <span class="price product-price">@Model.Price.ToString("C0", new CultureInfo("vi"))</span>
+                    <span class="price old-price invisible ">None</span>
+                }
+            </div>
+            <div class="info-orther">
+                <p>SKU : @Model.Sku</p>
+                @*<p class="Tình trạng">Tình trạng: <span>Còn hàng</span></p>*@
+                <div class="product-desc">
+                    @Model.DescriptionShort
+                </div>
+            </div>
+        </div>
+    </div>
+</li>

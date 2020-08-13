@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using ECommerce.Model.EFModel;
 using ECommerce.Model.EFModel.Models;
 using ECommerce.Model.Result;
 using ECommerce.Models.View;
+using IdentityServer4.Extensions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -15,11 +18,15 @@ namespace ECommerce.Controllers
 {
     public class ProductController : Controller
     {
+        UserManager<ApplicationUser> userManager;
+        SignInManager<ApplicationUser> signInManager;
         private readonly ILogger<ProductController> _logger;
         private readonly ApplicationDbContext db;
-        public ProductController(ILogger<ProductController> logger, ApplicationDbContext _db)
+        public ProductController(ILogger<ProductController> logger, ApplicationDbContext _db, UserManager<ApplicationUser> _usermana, SignInManager<ApplicationUser> _sign)
         {
             db = _db;
+            userManager = _usermana;
+            signInManager = _sign;
             _logger = logger;
         }
         //[Route("{link?}")]
@@ -36,7 +43,7 @@ namespace ECommerce.Controllers
                 }
                 string linkUrl = lsData[0];
                 int id = int.Parse(lsData[1]);
-                Product pro = db.Products.Where(x => x.Url == linkUrl && x.Id == id).Include(x => x.Category).Include(x => x.BrandProduct).Include(x => x.Product_Media).Include("Product_Media.Media").Include(i => i.Product_ProductStatus).Include("Product_ProductStatus.ProductStatus").Include(x => x.Machine).Include(x => x.Band).Include(x => x.Strap).Include(x => x.ColorClockFace).Include(x => x.MadeIn).Include(x => x.Style).Include(x => x.Waterproof).FirstOrDefault();
+                Product pro = db.Products.Where(x => x.Url == linkUrl && x.Id == id).Include(x => x.Category).Include(x => x.BrandProduct).Include(x => x.Product_Media).Include("Product_Media.Media").Include(i => i.Product_ProductStatus).Include("Product_ProductStatus.ProductStatus").Include(x => x.Machine).Include(x => x.Band).Include(x => x.Strap).Include(x => x.ColorClockFace).Include(x => x.MadeIn).Include(x => x.Style).Include(x => x.Waterproof).Include(i => i.Reviews).Include("Reviews.ApplicationUser").FirstOrDefault();
                 if (pro != null)
                 {
                     List<Product> lsSanPhamMoiCungLoai = db.Products.Where(x => x.CategoryId == pro.CategoryId && x.BrandProductId == pro.BrandProductId).OrderByDescending(x => x.CreateDate.Value).Include(x => x.Product_Media).Include("Product_Media.Media").Take(5).ToList();
@@ -157,6 +164,44 @@ namespace ECommerce.Controllers
             }
 
         }
-
+        [ActionName("danh-gia-san-pham")]
+        [HttpPost]
+        public async Task<IActionResult> AddReviewToProduct(ReviewProductViewModel data)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                string encoded = WebUtility.HtmlEncode(data.Message);
+                Review rev = new Review() { 
+                    ApplicationUserId = userManager.GetUserId(User),
+                    ProductId = data.ProductId,
+                    Message = encoded,
+                    Point = data.Point,
+                    CreateDate = new DateTime()
+                };
+                db.Reviews.Add(rev);
+                db.SaveChanges();
+                var uer = await userManager.GetUserAsync(User);
+                rev.ApplicationUser = new ApplicationUser()
+                {
+                    UserName = uer.UserName
+                };
+                return Json(new ResultData<object>()
+                {
+                    Success = true,
+                    Message = "Thêm thành công review!",
+                    StatusCode = "006",
+                    Data = rev
+                });
+            }
+            else
+            {
+                return Json(new ResultData<object>()
+                {
+                    Success = false,
+                    ErrorMessage = "Sai dữ liệu đầu vào!",
+                    StatusCode = "005"
+                });
+            }
+        }
     }
 }

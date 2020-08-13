@@ -183,6 +183,23 @@ namespace ECommerce.Model.EFModel.Models
         public virtual List<OrderItem> OrderItems { get; set; }
         public virtual List<Product_ProductStatus> Product_ProductStatus { get; set; }
         public virtual List<Product_Media> Product_Media { get; set; }
+        public virtual List<Review> Reviews { get; set; }
+        [NotMapped]
+        public float? Point { 
+            get {
+                float rs = 0;
+                if (Reviews != null && Reviews.Count > 0)
+                {
+                    for (int i = 0; i < Reviews.Count; i++)
+                    {
+                        rs += Reviews[i].Point;
+                    }
+                    rs = rs / Reviews.Count;
+                }
+                return rs;
+            } set {
+                Point = value;
+            } }
         public int ViewsCount { get; set; }
     }
 }

@@ -4,7 +4,18 @@
         async function addToCart(link) {
             addProductToCart(link, parseInt($("#option-product-qty").val()));
         }
+        function toTabReview() {
+            var elmnt = document.getElementById("product-tab");
+            elmnt.scrollIntoView();
+            $('#tab-danh-gia').click();
+        }
     </script>
+
+    <script type="text/javascript" src="/assets/lib/jquery.elevatezoom.js"></script>
+
+    <script type="text/javascript" src="/assets/lib/jquery-ui/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="/assets/lib/fancyBox/jquery.fancybox.js"></script>AETETAJETJAETJEATJAETAETJAETJAETJETAJEATJATEJAETJAETJAETJAETJAETJEATJ
 }
 @using System.Globalization;
 @model ECommerce.Models.View.ProductDetailView
@@ -42,6 +53,7 @@
                                         <a asp-controller="san-pham" asp-action="index" asp-route-link="@(Model.SanPhamCungLoai[i].Url +"."+Model.SanPhamCungLoai[i].Id)">@Model.SanPhamCungLoai[i].Name</a>
                                     </p>
                                     <p class="product-price">@Model.SanPhamCungLoai[0].Price.ToString("C0", new CultureInfo("vi"))</p>
+
                                     <p class="product-star">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -231,17 +243,42 @@
                     </div>
                     <div class="pb-right-column col-xs-12 col-sm-6">
                         <h1 class="product-name">@Model.ProductDetail.Name</h1>
+
                         <div class="product-comments">
-                            <div class="product-star">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                            </div>
+                            @if (Model.ProductDetail.Reviews.Count > 0)
+                            {
+
+                                <div class="product-star">
+                                    @for (int i = 0; i < 5; i++)
+                                    {
+                                        if (Model.ProductDetail.Point - i > 0)
+                                        {
+                                            if (Model.ProductDetail.Point - i > 1)
+                                            {
+                                                <i class="fa fa-star"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-star-half-o"></i>
+
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <i class="fa fa-star-o"></i>
+
+                                        }
+                                    }
+                                </div>
+                            }
+
                             <div class="comments-advices">
-                                <a href="#">3 @language.REVIEW</a>
-                                <a href="#"><i class="fa fa-pencil"></i> @language.WRITE_A_REVIEW</a>
+                                @if (Model.ProductDetail.Reviews.Count > 0)
+                                {
+                                    <a>@Model.ProductDetail.Reviews.Count @language.REVIEW</a>
+                                }
+
+                                <a style="cursor:pointer;" onclick="toTabReview()"><i class="fa fa-pencil"></i> @language.WRITE_A_REVIEW</a>
                             </div>
                         </div>
                         <div class="product-price-group">
@@ -340,7 +377,7 @@
                     </div>
                 </div>
                 <!-- tab product -->
-                <div class="product-tab">
+                <div class="product-tab" id="product-tab">
                     <ul class="nav-tab">
                         <li class="active">
                             <a aria-expanded="false" data-toggle="tab" href="#product-detail">@ECommerce.Resources.Languages.ProductDetail.ProductDetail.CHI_TIET_SAN_PHAM</a>
@@ -349,7 +386,7 @@
                             <a aria-expanded="true" data-toggle="tab" href="#information">@ECommerce.Resources.Languages.ProductDetail.ProductDetail.THONG_SO_SAN_PHAM</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#reviews">@ECommerce.Resources.Languages.ProductDetail.ProductDetail.DANH_GIA</a>
+                            <a data-toggle="tab" href="#reviews" id="tab-danh-gia">@ECommerce.Resources.Languages.ProductDetail.ProductDetail.DANH_GIA</a>
                         </li>
                         <li>
                             <a data-toggle="tab" href="#guarantees">@ECommerce.Resources.Languages.ProductDetail.ProductDetail.CHINH_SACH_VA_QUYEN_LOI</a>
@@ -420,55 +457,84 @@
                             </table>
                         </div>
                         <div id="reviews" class="tab-panel">
-                            <div class="product-comments-block-tab">
-                                <div class="comment row">
-                                    <div class="col-sm-3 author">
-                                        <div class="grade">
-                                            <span>Grade</span>
-                                            <span class="reviewRating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </span>
+                            <div id="ls-reviews">
+                                @if (Model.ProductDetail.Reviews.Count > 0)
+                                {
+                                    for (int i = 0; i < Model.ProductDetail.Reviews.Count; i++)
+                                    {
+                                        <div class="product-comments-block-tab">
+                                            <div class="comment row">
+                                                <div class="col-sm-3 author">
+                                                    <div class="grade">
+                                                        <span>Grade</span>
+                                                        <input type="range" value="@Model.ProductDetail.Reviews[i].Point.ToString("G",CultureInfo.InvariantCulture)" step="0.1" id="rate-@i">
+                                                        <div class="rateit" data-rateit-backingfld="#rate-@i" data-rateit-resetable="false" data-rateit-ispreset="true"
+                                                             data-rateit-min="0" data-rateit-max="5" data-rateit-readonly="true">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="info-author">
+                                                    <span><strong>@Model.ProductDetail.Reviews[i].ApplicationUser.UserName</strong></span>
+                                                    <em>@Model.ProductDetail.Reviews[i].CreateDate.ToString()</em>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9 commnet-dettail">
+                                                @Html.Raw(Model.ProductDetail.Reviews[i].Message)
+                                            </div>
                                         </div>
-                                        <div class="info-author">
-                                            <span><strong>Jame</strong></span>
-                                            <em>04/08/2015</em>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-9 commnet-dettail">
-                                        Phasellus accumsan cursus velit. Pellentesque egestas, neque sit amet convallis pulvinar
-                                    </div>
-                                </div>
-                                <div class="comment row">
-                                    <div class="col-sm-3 author">
-                                        <div class="grade">
-                                            <span>Grade</span>
-                                            <span class="reviewRating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </span>
-                                        </div>
-                                        <div class="info-author">
-                                            <span><strong>Author</strong></span>
-                                            <em>04/08/2015</em>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-9 commnet-dettail">
-                                        Phasellus accumsan cursus velit. Pellentesque egestas, neque sit amet convallis pulvinar
-                                    </div>
-                                </div>
-                                <p>
-                                    <a class="btn-comment" href="#">Write your review !</a>
-                                </p>
+                                        <br />
+                                    }
+
+                                    @*<div class="comment row">
+                                            <div class="col-sm-3 author">
+                                                <div class="grade">
+                                                    <span>Grade</span>
+                                                    <span class="reviewRating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="info-author">
+                                                    <span><strong>Author</strong></span>
+                                                    <em>04/08/2015</em>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9 commnet-dettail">
+                                                Phasellus accumsan cursus velit. Pellentesque egestas, neque sit amet convallis pulvinar
+                                            </div>
+                                        </div>*@
+                                }
                             </div>
 
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <p>
+                                    <a class="btn-comment" href="#">@language.WRITE_A_REVIEW</a>
+                                </p>
+                                <form id="form-danh-gia" asp-controller="tai-khoan" asp-action="danh-gia-san-pham" method="post" onsubmit="addReviewForProduct(event)">
+                                    <input type="hidden" value="5" step="0.1" id="review-point">
+                                    <div id="rate-review-view" class="rateit" data-rateit-backingfld="#review-point" data-rateit-resetable="false" data-rateit-ispreset="true"
+                                         data-rateit-min="0" data-rateit-max="5">
+                                    </div>
+                                    <input id="id-product-review" type="hidden" value="@(Model.ProductDetail.Id)" />
+                                    <textarea class="comment-review-product" id="comment-review-product" required maxlength="255"></textarea>
+                                    <button class="button">Đăng</button>
+                                </form>
+
+                            }
+                            else
+                            {
+                                <p>
+                                    <a asp-controller="tai-khoan" asp-action="dang-nhap">Đăng nhập</a> để đánh giá sản phẩm
+                                </p>
+                            }
+
                         </div>
+
+
                         <div id="guarantees" class="tab-panel">
                             <p>Phasellus accumsan cursus velit. Pellentesque egestas, neque sit amet convallis pulvinar, justo nulla eleifend augue, ac auctor orci leo non est. Sed lectus. Sed a libero. Vestibulum eu odio.</p>
 
@@ -488,21 +554,3 @@
     </div>
     <!-- ./row-->
 </div>
-
-<script type="text/javascript" src="/assets/lib/jquery/jquery-1.11.2.min.js"></script>
-
-<script type="text/javascript" src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/assets/lib/select2/js/select2.min.js"></script>
-<script type="text/javascript" src="/assets/lib/jquery.bxslider/jquery.bxslider.min.js"></script>
-<script type="text/javascript" src="/assets/lib/owl.carousel/owl.carousel.min.js"></script>
-<script type="text/javascript" src="/assets/lib/jquery.countdown/jquery.countdown.min.js"></script>
-<script type="text/javascript" src="/assets/lib/jquery.elevatezoom.js"></script>
-
-<script type="text/javascript" src="/assets/lib/jquery-ui/jquery-ui.min.js"></script>
-
-<script type="text/javascript" src="/assets/lib/fancyBox/jquery.fancybox.js"></script>
-
-<script type="text/javascript" src="/assets/js/jquery.actual.min.js"></script>
-
-
-<script type="text/javascript" src="/assets/js/theme-script.js"></script>

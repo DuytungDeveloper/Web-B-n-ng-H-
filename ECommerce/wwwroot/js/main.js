@@ -184,6 +184,157 @@ function intToPrice(priceNumber) {
     return rs;
 }
 
+//$(function () { $('#rate-review-view').rateit({ max: 5, step: 0.1, backingfld: '#review-point' }); });
+/**
+ * Thêm reivew cho sản phẩm 
+ * @param {any} e Formsubmit
+ */
+async function addReviewForProduct(e) {
+    e.preventDefault();
+    let idProduct = $("#id-product-review").val();
+    let message = $("#comment-review-product").val();
+    let point = parseFloat($("#review-point").val()).toString().replace(".", ",");
+    let data = {
+        ProductId: idProduct,
+        Message: message,
+        Point: point
+    };
+    console.log(data)
+    //let response = await $.post(`/${getLang()}/tai-khoan/danh-gia-san-pham`, data);
+    $.ajax({
+        url: `/${getLang()}/product/danh-gia-san-pham`,
+        type: 'POST',
+        data: data,
+        success: function (rs) {
+            console.log(rs);
+            if (rs.success) {
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "1000",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                toastr["info"](translateFunction("Đăng đánh giá thành công!"));
+                $("#form-danh-gia").trigger("reset");
+                //$('#rate-review-view').rateit('reset')
+                $('#rate-review-view').rateit('value', 5);
+
+
+                let reviewData = `<div class="product-comments-block-tab">
+                                        <div class="comment row">
+                                            <div class="col-sm-3 author">
+                                                <div class="grade">
+                                                    <span>Grade</span>
+                                                    <input type="range" value="${rs.data.point}" step="0.1" id="rate-${rs.data.id}">
+                                                    <div class="rateit" id="append-rate-${rs.data.id}" data-rateit-backingfld="#rate-${rs.data.id}" data-rateit-resetable="false" data-rateit-ispreset="true"
+                                                         data-rateit-min="0" data-rateit-max="5" data-rateit-readonly="true">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="info-author">
+                                                <span><strong>${rs.data.applicationUser.userName}</strong></span>
+                                                <em>${new Date(rs.data.createDate)}</em>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-9 commnet-dettail">
+                                            ${rs.data.message}
+                                        </div>
+                                    </div>
+                                    <br />`;
+                $("#ls-reviews").append(reviewData);
+                $(`#append-rate-${rs.data.id}`).rateit();
+            } else {
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                toastr["error"](translateFunction(`Đăng đánh giá thất bại!`) + " " + rs.errorMessage);
+            }
+        }
+    });
+}
+
+
+function searchProduct(page = 0) {
+    let Limit = $("#limit-search").val();
+    let isDesc = $($("#order-search-desc i")[0]).attr('class').includes("desc");
+    let orderBy = $("#order-search").val();
+
+    let funcGetCheckName = (name) => {
+        let rs = [];
+        let inputMadeIns = $(`input[name=${name}]`);
+        for (let i = 0; i < inputMadeIns.length; i++) {
+            if ($(inputMadeIns[i]).is(":checked")) {
+                rs.push(parseInt($(inputMadeIns[i]).val()))
+            }
+        }
+        return rs;
+    }
+    let listIdMadeIn = funcGetCheckName('MadeIns');
+    let listIdStraps = funcGetCheckName('Straps');
+    let listIdMachines = funcGetCheckName('Machines');
+    let listIdBands = funcGetCheckName('Bands');
+    let listIdColorClockFaces = funcGetCheckName('ColorClockFaces');
+    let listIdStyles = funcGetCheckName('Styles');
+    let listIdWaterproofs = funcGetCheckName('Waterproofs');
+    let listIdBrandProducts = funcGetCheckName('BrandProducts');
+    let listIdCategory = funcGetCheckName('Category');
+
+    let searchData = {
+        BrandNameId: listIdBrandProducts,
+        MachineId: listIdMachines,
+        BandId: listIdBands,
+        StrapId: listIdStraps,
+        ColorClockFaceId: listIdColorClockFaces,
+        MadeInId: listIdMadeIn,
+        StyleId: listIdStyles,
+        WaterproofId: listIdWaterproofs,
+        CategoryId: listIdCategory,
+        Page: page,
+        Limit,
+        isDesc,
+        orderBy,
+    };
+    console.log(searchData)
+    console.log($.param(searchData))
+    console.log(location.pathname + "?" + $.param(searchData).replace(/%5B%5D/gi, ""));
+    location.href = location.pathname +"?"+$.param(searchData).replace(/%5B%5D/gi,"");
+}
+
+function changeSortType() {
+    let isDesc = $($("#order-search-desc i")[0]).attr('class').includes("desc");
+    if (isDesc) {
+        $("#order-search-desc").html(`<i class="fa fa-sort-alpha-asc" onclick="changeSortType()"></i>`);
+    } else {
+        $("#order-search-desc").html(`<i class="fa fa-sort-alpha-desc" onclick="changeSortType()"></i>`);
+    }
+}
+
+
 /**
  * Phiên dịch   
  * @param {any} value từ cần phiên dịch
@@ -195,6 +346,10 @@ function translateFunction(value) {
             "sản phẩm trong giỏ hàng": { en: "products in the cart" },
             "sản phẩm": { en: "product" },
             "Thêm thành công!": { en: "Add to cart success!" },
+            "Đăng đánh giá thất bại!": { en: "Post failed review!" },
+            "Đăng đánh giá thành công!": { en: "Post a successful review!" },
+            // "Thêm": {en : "Add"},
+            // "Thêm": {en : "Add"},
             // "Thêm": {en : "Add"},
             // "Thêm": {en : "Add"},
 

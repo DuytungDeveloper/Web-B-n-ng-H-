@@ -186,7 +186,7 @@ table.cart_summary thead tr th {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 }
 
@@ -204,10 +204,28 @@ table.cart_summary thead tr th {
     z-index: 100;
 }*/
 #product-zoom {
-    height: 398px;
-    width: 398px;
+    max-height: 398px;
+    /*max-width: 398px;*/
 }
 
 .add-to-cart a, a.btn-add-cart {
     cursor: pointer;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.comment-review-product {
+    border: 1px solid #000;
+    width: 100%;
+    padding: 10px;
+}
+
+li.dac-tinh-dong-ho {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }

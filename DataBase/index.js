@@ -684,13 +684,13 @@ let main = async () => {
     // fs.writeFileSync("./queryInsert.txt",allInsertData.join("\n"));
 
 
-    let allProductStatus = [];
-    for (let i = 1; i < 4707; i++) {
-        // let abc = `INSERT INTO Product_ProductStatus(ProductId,ProductStatusId) VALUES(${getRndInteger(1,4707)},${getRndInteger(2,4)});`;
-        let abc = `INSERT INTO Product_ProductStatus(ProductId,ProductStatusId) VALUES(${i},${getRndInteger(1,9)});`;
-        allProductStatus.push(abc);
-    }
-    fs.writeFileSync("./productStatus.txt",allProductStatus.join("\n"));
+    // let allProductStatus = [];
+    // for (let i = 1; i < 4707; i++) {
+    //     // let abc = `INSERT INTO Product_ProductStatus(ProductId,ProductStatusId) VALUES(${getRndInteger(1,4707)},${getRndInteger(2,4)});`;
+    //     let abc = `INSERT INTO Product_ProductStatus(ProductId,ProductStatusId) VALUES(${i},${getRndInteger(1,9)});`;
+    //     allProductStatus.push(abc);
+    // }
+    // fs.writeFileSync("./productStatus.txt",allProductStatus.join("\n"));
 
     // let allImage = [];
     // for (let i = 0; i < products.length; i++) {
@@ -707,13 +707,13 @@ let main = async () => {
     // fs.writeFileSync("./images.txt", allImage.join("\n"));
 
 
-    // let productMedia = [];
-    // for (let i = 1; i < 4707; i++) {
-    //     // let abc = `INSERT INTO Product_ProductStatus(ProductId,ProductStatusId) VALUES(${getRndInteger(1,4707)},${getRndInteger(2,4)});`;
-    //     let abc = `INSERT INTO Product_Media(ProductId,MediaId) VALUES(${i},${getRndInteger(1,22733)});`;
-    //     productMedia.push(abc);
-    // }
-    // fs.writeFileSync("./productMedia.txt",productMedia.join("\n"));
+    let productMedia = [];
+    for (let i = 1; i < 4707; i++) {
+        // let abc = `INSERT INTO Product_ProductStatus(ProductId,ProductStatusId) VALUES(${getRndInteger(1,4707)},${getRndInteger(2,4)});`;
+        let abc = `INSERT INTO Product_Media(ProductId,MediaId) VALUES(${i},${getRndInteger(1,22733)});`;
+        productMedia.push(abc);
+    }
+    fs.writeFileSync("./productMedia.txt",productMedia.join("\n"));
 
 }
 main();

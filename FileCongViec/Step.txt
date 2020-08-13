@@ -8,3 +8,5 @@ Add Migration vào Model => Quản lý thay đổi DB.
 
 
 https://www.davidhayden.me/blog/asp-net-core-bundle-and-minify-css-and-js
+
+Product -> Status -> UpdateData -> images -> productmedia

@@ -79,7 +79,9 @@ namespace ECommerce.Model.EFModel
         /// Trạng thái sản phẩm
         /// </summary>
         public virtual DbSet<Product_Function> Product_Functions { get; set; }
-
+        /// <summary>
+        /// Danh mục sản phẩm
+        /// </summary>
         public virtual DbSet<Category> Category { get; set; }
         //public virtual DbSet<Customer> Customers { get; set; }
         //public virtual DbSet<Hem> Hems { get; set; }
@@ -110,7 +112,14 @@ namespace ECommerce.Model.EFModel
         /// Kiểu media
         /// </summary>
         public virtual DbSet<MediaType> MediaTypes { get; set; }
+        /// <summary>
+        /// Media của sản phẩm
+        /// </summary>
         public virtual DbSet<Product_Media> Product_Media { get; set; }
+        /// <summary>
+        /// Đánh giá sản phẩm
+        /// </summary>
+        public virtual DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -254,6 +263,9 @@ namespace ECommerce.Model.EFModel
             modelBuilder.Entity<MediaType>().Property(s => s.Status).HasDefaultValueSql("1");
             modelBuilder.Entity<MediaType>().Property(s => s.CreateDate).HasDefaultValueSql("GETDATE()");
 
+            modelBuilder.Entity<Review>().Property(s => s.Status).HasDefaultValueSql("1");
+            modelBuilder.Entity<Review>().Property(s => s.CreateDate).HasDefaultValueSql("GETDATE()");
+
             #endregion
 
             #region Kết bảng
@@ -287,7 +299,7 @@ namespace ECommerce.Model.EFModel
             modelBuilder.Entity<Product>()
               .HasOne<MadeIn>(s => s.MadeIn)
               .WithMany(mac => mac.Products)
-              .HasForeignKey(s => s.MachineId);
+              .HasForeignKey(s => s.MadeInId);
 
             modelBuilder.Entity<Product>()
               .HasOne<Style>(s => s.Style)
@@ -321,6 +333,14 @@ namespace ECommerce.Model.EFModel
               .HasOne<MediaType>(s => s.MediaType)
               .WithMany(mac => mac.Medias)
               .HasForeignKey(s => s.MediaTypeId);
+
+
+
+
+            modelBuilder.Entity<Review>()
+                .HasOne<Product>(sc => sc.Product)
+                .WithMany(s => s.Reviews)
+                .HasForeignKey(sc => sc.ProductId);
             #endregion
 
             #region Address
