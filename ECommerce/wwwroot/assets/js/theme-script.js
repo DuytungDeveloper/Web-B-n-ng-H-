@@ -170,9 +170,11 @@
               min: min,
               max: max,
               values: [ value_min, value_max ],
-              slide: function( event, ui ) {
-                var result = label_reasult +" "+ unit + ui.values[ 0 ] +' - '+ unit +ui.values[ 1 ];
-                console.log(t);
+                slide: function (event, ui) {
+                    var result = label_reasult + " " + intToPrice(ui.values[0]) + ' - ' + intToPrice(ui.values[1]);
+                    $("#price-to").val(ui.values[1]);
+                    $("#price-from").val(ui.values[0]);
+                //console.log(t);
                 t.closest('.slider-range').find('.amount-range-price').html(result);
               }
             });

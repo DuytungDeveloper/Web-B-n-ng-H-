@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ECommerce.Model.EFModel;
 using ECommerce.Model.EFModel.Models;
 using ECommerce.Models.View;
+using IdentityServer4.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -53,9 +54,11 @@ namespace ECommerce.Controllers
 
             string sequenceMaxQuery = "select * from Products "
                                     + "where 1 = 1 ";
+
+           
             if (searchData.CategoryId != null && searchData.CategoryId.Count > 0)
             {
-                sequenceMaxQuery += $"and CategoryId = ({String.Join(",", searchData.CategoryId)}) ";
+                sequenceMaxQuery += $"and CategoryId IN ({String.Join(",", searchData.CategoryId)}) ";
             }
             if (searchData.BrandNameId != null && searchData.BrandNameId.Count > 0)
             {
@@ -91,6 +94,8 @@ namespace ECommerce.Controllers
             {
                 sequenceMaxQuery += $"and WaterproofId IN ({String.Join(",", searchData.WaterproofId)}) ";
             }
+            sequenceMaxQuery += $"and Price > {searchData.PriceFrom} ";
+            sequenceMaxQuery += $"and Price < {searchData.PriceTo} ";
             var order = searchData.isDesc ? "DESC" : "ASC";
             sequenceMaxQuery += $"ORDER BY {searchData.orderBy} {order} ";
             sequenceMaxQuery += $"OFFSET {searchData.Limit * searchData.Page} ROWS ";

@@ -278,7 +278,10 @@ async function addReviewForProduct(e) {
     });
 }
 
-
+/**
+ * Search trong trang tìm kiếm
+ * @param {any} page
+ */
 function searchProduct(page = 0) {
     let Limit = $("#limit-search").val();
     let isDesc = $($("#order-search-desc i")[0]).attr('class').includes("desc");
@@ -314,6 +317,8 @@ function searchProduct(page = 0) {
         StyleId: listIdStyles,
         WaterproofId: listIdWaterproofs,
         CategoryId: listIdCategory,
+        PriceFrom: parseFloat($("#price-from").val()),
+        PriceTo: parseFloat($("#price-to").val()),
         Page: page,
         Limit,
         isDesc,
@@ -322,9 +327,11 @@ function searchProduct(page = 0) {
     console.log(searchData)
     console.log($.param(searchData))
     console.log(location.pathname + "?" + $.param(searchData).replace(/%5B%5D/gi, ""));
-    location.href = location.pathname +"?"+$.param(searchData).replace(/%5B%5D/gi,"");
+    location.href = location.pathname + "?" + $.param(searchData).replace(/%5B%5D/gi, "");
 }
 
+/**
+ * Thay đổi kiểu sắp xếp*/
 function changeSortType() {
     let isDesc = $($("#order-search-desc i")[0]).attr('class').includes("desc");
     if (isDesc) {
@@ -334,6 +341,14 @@ function changeSortType() {
     }
 }
 
+function intToPrice(data) {
+    let currency = getLang() == "vi" ? "VND" : "USD";
+    var formatter = new Intl.NumberFormat(getLang(), {
+        style: 'currency',
+        currency: currency,
+    });
+    return formatter.format(data);
+}
 
 /**
  * Phiên dịch   

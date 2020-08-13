@@ -205,7 +205,7 @@ table.cart_summary thead tr th {
 }*/
 #product-zoom {
     max-height: 398px;
-    /*max-width: 398px;*/
+    max-width: 398px;
 }
 
 .add-to-cart a, a.btn-add-cart {

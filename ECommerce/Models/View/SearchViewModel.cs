@@ -15,6 +15,8 @@ namespace ECommerce.Models.View
         public string orderBy { get; set; } = "CreateDate";
         public List<int> CategoryId { get; set; }
         public List<int> StatusId { get; set; } = null;
+        public float PriceFrom { get; set; } = 0;
+        public float PriceTo { get; set; } = 500000000;
 
         public List<int> BrandNameId { get; set; }
         public bool IsDiscount { get; set; } = false;
