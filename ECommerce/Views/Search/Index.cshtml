@@ -18,7 +18,10 @@
                 <!-- block filter -->
                 <div class="block left-module">
                     <p class="title_block">@language.FILTER</p>
-                    <p class="title_block"><button class="btn btn-default" onclick="searchProduct()">@language.SEARCH</button></p>
+                    <p class="title_block">
+                        <input type="text" id="search-text" value="@Model.SearchString"/>
+                        <button class="btn btn-default" onclick="searchProduct()">@language.SEARCH</button>
+                    </p>
                     <div class="block_content">
                         <!-- layered -->
                         <div class="layered layered-filter-price">
@@ -57,8 +60,8 @@
                             <!-- filter price -->
                             <div class="layered_subtitle">@language.PRICE</div>
                             <div class="layered-content slider-range">
-                                <input id="price-from" type="hidden" value="0"/>
-                                <input id="price-to" type="hidden" value="500000000"/>
+                                <input id="price-from" type="hidden" value="0" />
+                                <input id="price-to" type="hidden" value="500000000" />
                                 <div data-label-reasult="Từ:" data-min="0" data-max="500000000" data-unit="VNĐ"
                                      class="slider-range-price" data-value-min="@Model.PriceFrom" data-value-max="@Model.PriceTo"></div>
                                 <div class="amount-range-price">Từ: @(Model.PriceFrom.ToString("C0", new CultureInfo("vi"))) - @(Model.PriceTo.ToString("C0", new CultureInfo("vi")))</div>
@@ -676,27 +679,27 @@
                 <!-- ./category-slider -->
                 <!-- subcategories -->
                 @*<div class="subcategories">
-                    <ul>
-                        <li class="current-categorie">
-                            <a href="#">Đồng hồ nam</a>
-                        </li>
-                        <li>
-                            <a href="#">Bán chạy nhất</a>
-                        </li>
-                        <li>
-                            <a href="#">Dây da</a>
-                        </li>
-                        <li>
-                            <a href="#">Chống nước</a>
-                        </li>
-                        <li>
-                            <a href="#">chịu áp lực cao</a>
-                        </li>
-                        <li>
-                            <a href="#">Chống trầy</a>
-                        </li>
-                    </ul>
-                </div>*@
+                        <ul>
+                            <li class="current-categorie">
+                                <a href="#">Đồng hồ nam</a>
+                            </li>
+                            <li>
+                                <a href="#">Bán chạy nhất</a>
+                            </li>
+                            <li>
+                                <a href="#">Dây da</a>
+                            </li>
+                            <li>
+                                <a href="#">Chống nước</a>
+                            </li>
+                            <li>
+                                <a href="#">chịu áp lực cao</a>
+                            </li>
+                            <li>
+                                <a href="#">Chống trầy</a>
+                            </li>
+                        </ul>
+                    </div>*@
                 <!-- ./subcategories -->
                 <!-- view-product-list-->
                 <div id="view-product-list" class="view-product-list">
@@ -729,21 +732,36 @@
                     <div class="bottom-pagination">
                         <nav>
                             <ul class="pagination">
-                                <li>
-                                    <a href="#" aria-label="@language.PREVIOUS">
-                                        <span aria-hidden="true">@language.PREVIOUS &laquo;</span>
-                                    </a>
-                                </li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li>
-                                    <a href="#" aria-label="Next">
-                                        <span aria-hidden="true">@language.NEXT &raquo;</span>
-                                    </a>
-                                </li>
+                                @if (Model.PageList.Count > 0)
+                                {
+                                    <li>
+                                        <a class="pointer" onclick="searchProduct(@(Model.Page-1 >=0 ? (Model.Page-1):0))" aria-label="@language.PREVIOUS">
+                                            <span aria-hidden="true">&laquo; @language.PREVIOUS </span>
+                                        </a>
+                                    </li>
+                                    @for (int i = 0; i < Model.PageList.Count; i++)
+                                    {
+                                        if (Model.Page == (Model.PageList[i]))
+                                        {
+                                            <li class="active"><a class="pointer" onclick="searchProduct(@Model.PageList[i])">@(Model.PageList[i]+1)</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><a class="pointer" onclick="searchProduct(@Model.PageList[i])">@(Model.PageList[i]+1)</a></li>
+                                        }
+                                    }
+                                    @*<li class="active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>*@
+                                    <li>
+                                        <a class="pointer" onclick="searchProduct(@(Model.Page+1))" aria-label="Next">
+                                            <span aria-hidden="true">@language.NEXT &raquo;</span>
+                                        </a>
+                                    </li>
+                                }
+
                             </ul>
                         </nav>
                     </div>

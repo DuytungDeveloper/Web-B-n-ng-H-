@@ -9,10 +9,54 @@ namespace ECommerce.Models.View
 {
     public class SearchViewModel
     {
-        public int Page { get; set; } = 1;
+        public string SearchString { get; set; }
+        public int Page { get; set; } = 0;
         public int Limit { get; set; } = 9;
         public bool isDesc { get; set; } = true;
         public string orderBy { get; set; } = "CreateDate";
+        public int Total { get; set; }
+        public List<int> PageList
+        {
+            get
+            {
+                var rs = new List<int>();
+                var currentPage = Page + 1; // trang hiện tại
+                var total = Total;
+                var maximumPageList = 5; // số trang hiện cho phép
+                var limitList = int.Parse(Math.Ceiling((decimal)total / Limit).ToString()); // số trang cao nhất được hiện
+                if (limitList < maximumPageList)
+                {
+                    for (int i = 0; i < limitList; i++)
+                    {
+                        rs.Add(i);
+                    }
+                }
+                else
+                {
+                    var from = currentPage == 5 ? Page : currentPage;
+                    var to = currentPage;
+                    while (((decimal)from % 5) != (decimal)0)
+                    {
+                        from = from - 1;
+                    }
+                    while (((decimal)to % 5) != (decimal)0)
+                    {
+                        to = to + 1;
+                        //Console.WriteLine("to " + to.ToString());
+                    }
+                    //Console.WriteLine("from " + from.ToString());
+                    //Console.WriteLine("to " + to.ToString());
+                    for (int i = from; i < to; i++)
+                    {
+                        rs.Add(i);
+                    }
+                }
+                return rs;
+            }
+        }
+
+
+
         public List<int> CategoryId { get; set; }
         public List<int> StatusId { get; set; } = null;
         public float PriceFrom { get; set; } = 0;

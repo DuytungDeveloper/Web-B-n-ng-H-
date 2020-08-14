@@ -136,6 +136,9 @@ function refreshCart() {
     let cart = getCart();
     let lsHtml = [];
     let totalPrice = 0;
+    let data = {
+        Products: []
+    };
     for (var i = 0; i < cart.length; i++) {
         let liProductCart = `<li class="product-info"><div class="p-left"><a onclick="removeProductFromCart(${cart[i].id})" class="remove_link"></a><a href="/${getLang()}/san-pham?link=${cart[i].url}.${cart[i].id}"><img class="img-responsive" src="${cart[i].product_Media[0].media.link}" alt="p10"></a></div><div class="p-right"><p class="p-name">${cart[i].name}</p><p class="p-rice">${intToPrice(cart[i].priceDiscount != null ? cart[i].priceDiscount : cart[i].price)}</p><p>${translateFunction("Số lượng")}: ${cart[i].qty}</p></div></li>`;
         //let liProductCart = `<li class="product-info">
@@ -154,12 +157,25 @@ function refreshCart() {
         //                        </li>`;
         totalPrice += (cart[i].priceDiscount != null ? cart[i].priceDiscount : cart[i].price) * cart[i].qty;
         lsHtml.push(liProductCart);
+        data.Products.push({
+            Qty: cart[i].qty,
+            ProductId: cart[i].id
+        });
     }
     $("#ul-ls-cart-product").html(lsHtml.join(""));
     $("#title-cart-2").text(`${cart.length} ` + translateFunction("sản phẩm trong giỏ hàng"))
     $("#number-product-cart").text(cart.length);
     $("#total-price").text(intToPrice(totalPrice));
     $("#title-cart").text(`${cart.length} ` + translateFunction("sản phẩm"))
+
+    $.ajax({
+        url: `/${getLang()}/don-hang/saveorder`,
+        type: 'POST',
+        data: data,
+        success: function (rs) {
+            console.log(rs);
+        }
+    });
 }
 refreshCart();
 
@@ -306,8 +322,9 @@ function searchProduct(page = 0) {
     let listIdWaterproofs = funcGetCheckName('Waterproofs');
     let listIdBrandProducts = funcGetCheckName('BrandProducts');
     let listIdCategory = funcGetCheckName('Category');
-
+    let text = $("#search-text").val();
     let searchData = {
+        SearchString: text,
         BrandNameId: listIdBrandProducts,
         MachineId: listIdMachines,
         BandId: listIdBands,
@@ -341,14 +358,15 @@ function changeSortType() {
     }
 }
 
-function intToPrice(data) {
-    let currency = getLang() == "vi" ? "VND" : "USD";
-    var formatter = new Intl.NumberFormat(getLang(), {
-        style: 'currency',
-        currency: currency,
-    });
-    return formatter.format(data);
-}
+// /**Format int thành tiền */
+// function intToPrice(data) {
+//     let currency = getLang() == "vi" ? "VND" : "USD";
+//     var formatter = new Intl.NumberFormat(getLang(), {
+//         style: 'currency',
+//         currency: currency,
+//     });
+//     return formatter.format(data);
+// }
 
 /**
  * Phiên dịch   

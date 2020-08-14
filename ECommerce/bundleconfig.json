@@ -16,4 +16,15 @@
     },
     "sourceMap": false
   }
+  {
+    "outputFileName": "wwwroot/js/checkout.min.js",
+    "inputFiles": [
+      "wwwroot/js/checkout.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
 ]

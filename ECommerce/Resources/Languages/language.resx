@@ -126,8 +126,14 @@
   <data name="ADD_TO_CART" xml:space="preserve">
     <value>Thêm vào giỏ hàng</value>
   </data>
+  <data name="BAN_BE" xml:space="preserve">
+    <value>Bạn bè</value>
+  </data>
   <data name="BESTSELLER" xml:space="preserve">
     <value>Bán Chạy Nhất</value>
+  </data>
+  <data name="CAM_ON_QUY_KHACH_DA_DAT_HANG" xml:space="preserve">
+    <value>Cám ơn Quý khách đã đặt hàng, chúng tôi sẽ sớm liên lạc với quý khách.</value>
   </data>
   <data name="CART" xml:space="preserve">
     <value>Giỏ hàng</value>
@@ -171,6 +177,18 @@
   <data name="DELIVERY" xml:space="preserve">
     <value>Giao Hàng</value>
   </data>
+  <data name="DEN_CUA_HANG_LAY" xml:space="preserve">
+    <value>Đến cửa hàng lấy</value>
+  </data>
+  <data name="DIA_CHI" xml:space="preserve">
+    <value>Địa chỉ</value>
+  </data>
+  <data name="DIA_CHI_GIAO_HANG" xml:space="preserve">
+    <value>Địa chỉ giao hàng</value>
+  </data>
+  <data name="DON_GIA" xml:space="preserve">
+    <value>Đơn giá</value>
+  </data>
   <data name="DUONG_KINH_MAT_DONG_HO" xml:space="preserve">
     <value>Đường kính mặt đồng hồ</value>
   </data>
@@ -188,6 +206,9 @@
   </data>
   <data name="GUI_CHO_BAN" xml:space="preserve">
     <value>Gửi cho bạn</value>
+  </data>
+  <data name="HOAN_THANH" xml:space="preserve">
+    <value>Hoàn thành</value>
   </data>
   <data name="HOME" xml:space="preserve">
     <value>Trang Chủ</value>
@@ -222,6 +243,12 @@
   <data name="HOME_SUPPORT_247_1" xml:space="preserve">
     <value>Hỗ trợ liên tục cho khách hàng</value>
   </data>
+  <data name="KHAC" xml:space="preserve">
+    <value>Khác</value>
+  </data>
+  <data name="KIEM_TRA_GIO_HANG" xml:space="preserve">
+    <value>Kiểm tra giỏ hàng</value>
+  </data>
   <data name="LIMITED_EDITION" xml:space="preserve">
     <value>Phiên Bản Giới Hạn</value>
   </data>
@@ -255,6 +282,9 @@
   <data name="MOST_VIEWED" xml:space="preserve">
     <value>Nhiều Người Xem Nhất</value>
   </data>
+  <data name="MO_TA" xml:space="preserve">
+    <value>Mô tả</value>
+  </data>
   <data name="MY_ACCOUNT" xml:space="preserve">
     <value>Tài Khoản Của Tôi</value>
   </data>
@@ -279,6 +309,12 @@
   <data name="NEXT" xml:space="preserve">
     <value>Tiếp</value>
   </data>
+  <data name="NGUOI_DAT_HANG" xml:space="preserve">
+    <value>Người đặt hàng</value>
+  </data>
+  <data name="NGUOI_THAN" xml:space="preserve">
+    <value>Người thân</value>
+  </data>
   <data name="NOI_SAN_XUAT" xml:space="preserve">
     <value>Nơi sản xuất</value>
   </data>
@@ -293,6 +329,12 @@
   </data>
   <data name="PHUONG_CACH" xml:space="preserve">
     <value>Phong cách</value>
+  </data>
+  <data name="PHUONG_THUC_THANH_TOAN" xml:space="preserve">
+    <value>Phương thức thanh toán</value>
+  </data>
+  <data name="PHUONG_XA" xml:space="preserve">
+    <value>Phường/xã</value>
   </data>
   <data name="POLICY" xml:space="preserve">
     <value>Chính Sách</value>
@@ -312,6 +354,15 @@
   <data name="PRODUCT_NAME" xml:space="preserve">
     <value>Tên sản phẩm</value>
   </data>
+  <data name="QUAN_HE" xml:space="preserve">
+    <value>Quan hệ</value>
+  </data>
+  <data name="QUAN_HUYEN" xml:space="preserve">
+    <value>Quận/Huyện</value>
+  </data>
+  <data name="QUY_KHACH_CO_THE_QUA_BUOC_TIEP_THEO" xml:space="preserve">
+    <value>Quý khách có thể qua bước tiếp theo.</value>
+  </data>
   <data name="REFUND" xml:space="preserve">
     <value>Hoàn Tiền</value>
   </data>
@@ -329,6 +380,9 @@
   </data>
   <data name="SALE" xml:space="preserve">
     <value>Giảm Giá</value>
+  </data>
+  <data name="SAN_PHAM" xml:space="preserve">
+    <value>Sản phẩm</value>
   </data>
   <data name="SEARCH" xml:space="preserve">
     <value>Tìm kiếm</value>
@@ -351,6 +405,9 @@
   <data name="SOCIAL_PAGES" xml:space="preserve">
     <value>Các Trang Mạng Xã Hội</value>
   </data>
+  <data name="SO_DIEN_THOAI" xml:space="preserve">
+    <value>Số điện thoại</value>
+  </data>
   <data name="SO_LUONG" xml:space="preserve">
     <value>Số lượng</value>
   </data>
@@ -366,11 +423,26 @@
   <data name="SUPPORT_TYPES_OF_CARDS" xml:space="preserve">
     <value>Hỗ Trợ Các Loại Thẻ</value>
   </data>
+  <data name="TAM_TINH" xml:space="preserve">
+    <value>Tạm tính</value>
+  </data>
   <data name="TEMP_CONDITION" xml:space="preserve">
     <value>Điều khoản và điều kiện</value>
   </data>
+  <data name="TEN_NGUOI_NHAN" xml:space="preserve">
+    <value>Tên người nhận</value>
+  </data>
   <data name="TERM" xml:space="preserve">
     <value>Điều Khoản</value>
+  </data>
+  <data name="THANH_PHO" xml:space="preserve">
+    <value>Thành phố</value>
+  </data>
+  <data name="THANH_TIEN" xml:space="preserve">
+    <value>Thành tiền</value>
+  </data>
+  <data name="THANH_TOAN_KHI_NHAN_HANG" xml:space="preserve">
+    <value>Thanh toán khi nhận hàng</value>
   </data>
   <data name="THOI_GIAN_BAO_HANH_O_CUA_HANG" xml:space="preserve">
     <value>Thời gian bảo hành ở cửa hàng</value>
@@ -381,6 +453,15 @@
   <data name="THONG_TIN_CHONG_THAM" xml:space="preserve">
     <value>Thông tin chống thấm</value>
   </data>
+  <data name="THONG_TIN_DON_HANG" xml:space="preserve">
+    <value>Thông tin đơn hàng</value>
+  </data>
+  <data name="THUE_10" xml:space="preserve">
+    <value>Thuế (10%)</value>
+  </data>
+  <data name="TONG" xml:space="preserve">
+    <value>Tổng</value>
+  </data>
   <data name="TOTAL" xml:space="preserve">
     <value>Tổng cộng</value>
   </data>
@@ -389,6 +470,9 @@
   </data>
   <data name="TRANG_THAI" xml:space="preserve">
     <value>Trạng thái</value>
+  </data>
+  <data name="VAN_CHUYEN" xml:space="preserve">
+    <value>Vận chuyển</value>
   </data>
   <data name="WATCH_NOW" xml:space="preserve">
     <value>Xem Ngay</value>

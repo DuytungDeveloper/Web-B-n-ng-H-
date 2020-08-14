@@ -88,11 +88,29 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bạn bè.
+        /// </summary>
+        public static string BAN_BE {
+            get {
+                return ResourceManager.GetString("BAN_BE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bán Chạy Nhất.
         /// </summary>
         public static string BESTSELLER {
             get {
                 return ResourceManager.GetString("BESTSELLER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cám ơn Quý khách đã đặt hàng, chúng tôi sẽ sớm liên lạc với quý khách..
+        /// </summary>
+        public static string CAM_ON_QUY_KHACH_DA_DAT_HANG {
+            get {
+                return ResourceManager.GetString("CAM_ON_QUY_KHACH_DA_DAT_HANG", resourceCulture);
             }
         }
         
@@ -223,6 +241,42 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Đến cửa hàng lấy.
+        /// </summary>
+        public static string DEN_CUA_HANG_LAY {
+            get {
+                return ResourceManager.GetString("DEN_CUA_HANG_LAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Địa chỉ.
+        /// </summary>
+        public static string DIA_CHI {
+            get {
+                return ResourceManager.GetString("DIA_CHI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Địa chỉ giao hàng.
+        /// </summary>
+        public static string DIA_CHI_GIAO_HANG {
+            get {
+                return ResourceManager.GetString("DIA_CHI_GIAO_HANG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đơn giá.
+        /// </summary>
+        public static string DON_GIA {
+            get {
+                return ResourceManager.GetString("DON_GIA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Đường kính mặt đồng hồ.
         /// </summary>
         public static string DUONG_KINH_MAT_DONG_HO {
@@ -273,6 +327,15 @@ namespace ECommerce.Resources.Languages {
         public static string GUI_CHO_BAN {
             get {
                 return ResourceManager.GetString("GUI_CHO_BAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hoàn thành.
+        /// </summary>
+        public static string HOAN_THANH {
+            get {
+                return ResourceManager.GetString("HOAN_THANH", resourceCulture);
             }
         }
         
@@ -376,6 +439,24 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Khác.
+        /// </summary>
+        public static string KHAC {
+            get {
+                return ResourceManager.GetString("KHAC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kiểm tra giỏ hàng.
+        /// </summary>
+        public static string KIEM_TRA_GIO_HANG {
+            get {
+                return ResourceManager.GetString("KIEM_TRA_GIO_HANG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phiên Bản Giới Hạn.
         /// </summary>
         public static string LIMITED_EDITION {
@@ -466,6 +547,15 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mô tả.
+        /// </summary>
+        public static string MO_TA {
+            get {
+                return ResourceManager.GetString("MO_TA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nhiều Người Xem Nhất.
         /// </summary>
         public static string MOST_VIEWED {
@@ -547,6 +637,24 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Người đặt hàng.
+        /// </summary>
+        public static string NGUOI_DAT_HANG {
+            get {
+                return ResourceManager.GetString("NGUOI_DAT_HANG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Người thân.
+        /// </summary>
+        public static string NGUOI_THAN {
+            get {
+                return ResourceManager.GetString("NGUOI_THAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nơi sản xuất.
         /// </summary>
         public static string NOI_SAN_XUAT {
@@ -588,6 +696,24 @@ namespace ECommerce.Resources.Languages {
         public static string PHUONG_CACH {
             get {
                 return ResourceManager.GetString("PHUONG_CACH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phương thức thanh toán.
+        /// </summary>
+        public static string PHUONG_THUC_THANH_TOAN {
+            get {
+                return ResourceManager.GetString("PHUONG_THUC_THANH_TOAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phường/xã.
+        /// </summary>
+        public static string PHUONG_XA {
+            get {
+                return ResourceManager.GetString("PHUONG_XA", resourceCulture);
             }
         }
         
@@ -646,6 +772,33 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quan hệ.
+        /// </summary>
+        public static string QUAN_HE {
+            get {
+                return ResourceManager.GetString("QUAN_HE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quận/Huyện.
+        /// </summary>
+        public static string QUAN_HUYEN {
+            get {
+                return ResourceManager.GetString("QUAN_HUYEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quý khách có thể qua bước tiếp theo..
+        /// </summary>
+        public static string QUY_KHACH_CO_THE_QUA_BUOC_TIEP_THEO {
+            get {
+                return ResourceManager.GetString("QUY_KHACH_CO_THE_QUA_BUOC_TIEP_THEO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hoàn Tiền.
         /// </summary>
         public static string REFUND {
@@ -700,6 +853,15 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sản phẩm.
+        /// </summary>
+        public static string SAN_PHAM {
+            get {
+                return ResourceManager.GetString("SAN_PHAM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tìm kiếm.
         /// </summary>
         public static string SEARCH {
@@ -741,6 +903,15 @@ namespace ECommerce.Resources.Languages {
         public static string SHOW {
             get {
                 return ResourceManager.GetString("SHOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Số điện thoại.
+        /// </summary>
+        public static string SO_DIEN_THOAI {
+            get {
+                return ResourceManager.GetString("SO_DIEN_THOAI", resourceCulture);
             }
         }
         
@@ -808,6 +979,15 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tạm tính.
+        /// </summary>
+        public static string TAM_TINH {
+            get {
+                return ResourceManager.GetString("TAM_TINH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Điều khoản và điều kiện.
         /// </summary>
         public static string TEMP_CONDITION {
@@ -817,11 +997,47 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tên người nhận.
+        /// </summary>
+        public static string TEN_NGUOI_NHAN {
+            get {
+                return ResourceManager.GetString("TEN_NGUOI_NHAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Điều Khoản.
         /// </summary>
         public static string TERM {
             get {
                 return ResourceManager.GetString("TERM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thành phố.
+        /// </summary>
+        public static string THANH_PHO {
+            get {
+                return ResourceManager.GetString("THANH_PHO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thành tiền.
+        /// </summary>
+        public static string THANH_TIEN {
+            get {
+                return ResourceManager.GetString("THANH_TIEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thanh toán khi nhận hàng.
+        /// </summary>
+        public static string THANH_TOAN_KHI_NHAN_HANG {
+            get {
+                return ResourceManager.GetString("THANH_TOAN_KHI_NHAN_HANG", resourceCulture);
             }
         }
         
@@ -853,6 +1069,33 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thông tin đơn hàng.
+        /// </summary>
+        public static string THONG_TIN_DON_HANG {
+            get {
+                return ResourceManager.GetString("THONG_TIN_DON_HANG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thuế (10%).
+        /// </summary>
+        public static string THUE_10 {
+            get {
+                return ResourceManager.GetString("THUE_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tổng.
+        /// </summary>
+        public static string TONG {
+            get {
+                return ResourceManager.GetString("TONG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tổng cộng.
         /// </summary>
         public static string TOTAL {
@@ -876,6 +1119,15 @@ namespace ECommerce.Resources.Languages {
         public static string TRANG_THAI {
             get {
                 return ResourceManager.GetString("TRANG_THAI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vận chuyển.
+        /// </summary>
+        public static string VAN_CHUYEN {
+            get {
+                return ResourceManager.GetString("VAN_CHUYEN", resourceCulture);
             }
         }
         

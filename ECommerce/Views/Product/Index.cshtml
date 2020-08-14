@@ -15,7 +15,7 @@
 
     <script type="text/javascript" src="/assets/lib/jquery-ui/jquery-ui.min.js"></script>
 
-    <script type="text/javascript" src="/assets/lib/fancyBox/jquery.fancybox.js"></script>AETETAJETJAETJEATJAETAETJAETJAETJETAJEATJATEJAETJAETJAETJAETJAETJEATJ
+    <script type="text/javascript" src="/assets/lib/fancyBox/jquery.fancybox.js"></script>
 }
 @using System.Globalization;
 @model ECommerce.Models.View.ProductDetailView
@@ -40,28 +40,11 @@
                 <p class="title_block">@ECommerce.Resources.Languages.ProductDetail.ProductDetail.SAN_PHAM_MOI_CUNG_LOAI</p>
                 <div class="block_content">
                     <ul class="products-block best-sell">
-                        @for (int i = 0; i < Model.SanPhamCungLoai.Count(); i++)
+                        @for (int i = 0; i < Model.SanPhamCungLoai.Count; i++)
                         {
+                            var data = Model.SanPhamCungLoai[i];
                             <li>
-                                <div class="products-block-left">
-                                    <a asp-controller="san-pham" asp-action="index" asp-route-link="@(Model.SanPhamCungLoai[i].Url +"."+Model.SanPhamCungLoai[i].Id)">
-                                        <img src="@(Model.SanPhamCungLoai[i].Product_Media.Count() > 0 ?  Model.SanPhamCungLoai[i].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" alt="SPECIAL PRODUCTS">
-                                    </a>
-                                </div>
-                                <div class="products-block-right">
-                                    <p class="product-name">
-                                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@(Model.SanPhamCungLoai[i].Url +"."+Model.SanPhamCungLoai[i].Id)">@Model.SanPhamCungLoai[i].Name</a>
-                                    </p>
-                                    <p class="product-price">@Model.SanPhamCungLoai[0].Price.ToString("C0", new CultureInfo("vi"))</p>
-
-                                    <p class="product-star">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                    </p>
-                                </div>
+                                @await Component.InvokeAsync("ProductViewPartial", new { type = 5, data = data })
                             </li>
                         }
                     </ul>
@@ -131,45 +114,7 @@
                             var data = Model.SanPhamGiamGia[i];
                             <li>
                                 <div class="product-container">
-                                    <div class="left-block">
-                                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id)">
-                                            @if (data.Product_Media.Count() > 0)
-                                            {
-                                                <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
-                                            }
-                                            else
-                                            {
-                                                <img class="img-responsive" alt="product" src="/assets/data/p40.jpg" />
-                                            }
-                                        </a>
-                                        <div class="price-percent-reduction2">-@(100 - Math.Ceiling((decimal)data.PriceDiscount.Value * 100 / data.Price) < 10 ? "0"+(100 - Math.Ceiling((decimal)data.PriceDiscount.Value * 100 / data.Price)).ToString() : (100 - Math.Ceiling((decimal)data.PriceDiscount.Value * 100 / data.Price)).ToString())% OFF</div>
-                                        @*<div class="price-percent-reduction2">-30% OFF</div>*@
-                                    </div>
-                                    <div class="right-block">
-                                        <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id)">@data.Name</a></h5>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-half-o"></i>
-                                        </div>
-                                        <div class="content_price">
-                                            @if (data.PriceDiscount.HasValue)
-                                            {
-                                                <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
-                                                <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-
-                                            }
-                                            else
-                                            {
-                                                <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-                                            }
-                                        </div>
-                                    </div>
-                                    <div class="product-bottom">
-                                        <a class="btn-add-cart" title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
-                                    </div>
+                                    @await Component.InvokeAsync("ProductViewPartial", new { type = 4, data = data })
                                 </div>
                             </li>
                         }
@@ -180,7 +125,6 @@
             <!-- left silide -->
             <div class="col-left-slide left-module">
                 <div class="banner-opacity">
-
                     <a asp-controller="san-pham" asp-action="index" asp-route-link="@(Model.SanPhamTuongTu[0].Url+"."+Model.SanPhamTuongTu[0].Id)">
                         @if (Model.SanPhamTuongTu[0].Product_Media.Count() > 0)
                         {
@@ -222,7 +166,7 @@
                                         for (int i = 0; i < Model.ProductDetail.Product_Media.Count(); i++)
                                         {
                                             <li>
-                                                <a class="ljlkjlkj" href="#" data-image="@Model.ProductDetail.Product_Media[i].Media.Link" data-zoom-image="@Model.ProductDetail.Product_Media[i].Media.Link">
+                                                <a class="" href="#" data-image="@Model.ProductDetail.Product_Media[i].Media.Link" data-zoom-image="@Model.ProductDetail.Product_Media[i].Media.Link">
                                                     @*<img id="product-zoom" src="@Model.ProductDetail.Product_Media[i].Media.Link" />*@
                                                     <img src="@Model.ProductDetail.Product_Media[i].Media.Link" />
                                                 </a>
@@ -249,25 +193,13 @@
                             {
 
                                 <div class="product-star">
-                                    @for (int i = 0; i < 5; i++)
+                                    @if (Model.ProductDetail.Reviews.Count > 0)
                                     {
-                                        if (Model.ProductDetail.Point - i > 0)
-                                        {
-                                            if (Model.ProductDetail.Point - i > 1)
-                                            {
-                                                <i class="fa fa-star"></i>
-                                            }
-                                            else
-                                            {
-                                                <i class="fa fa-star-half-o"></i>
-
-                                            }
-                                        }
-                                        else
-                                        {
-                                            <i class="fa fa-star-o"></i>
-
-                                        }
+                                        <div class="rateit" data-rateit-value="@Model.ProductDetail.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="rateit invisible" data-rateit-value="@Model.ProductDetail.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
                                     }
                                 </div>
                             }

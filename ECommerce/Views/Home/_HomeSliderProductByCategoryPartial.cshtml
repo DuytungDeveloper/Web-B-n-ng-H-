@@ -11,7 +11,7 @@
             <nav class="navbar nav-menu nav-menu-red show-brand">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-brand"><a ><i class="fa fa-mars"></i>@language.MENS_WATCH</a></div>
+                    <div class="navbar-brand"><a><i class="fa fa-mars"></i>@language.MENS_WATCH</a></div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
@@ -54,60 +54,7 @@
                                     {
                                         var data = Model.DongHoNam.ToList()[i];
                                         <li>
-                                            <div class="left-block">
-                                                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
-                                                    @*<img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />*@
-                                                    @if (data.Product_Media.Count() > 0)
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
-                                                    }
-                                                </a>
-                                                <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" ></a>
-                                                        <a title="Add to compare" class="compare" ></a>*@
-                                                    @* <a title="Quick view" class="search" ></a> *@
-                                                </div>
-                                                <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
-                                                </div>
-                                                <div class="group-price">
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-new">@language.NEW</span>
-                                                    }
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-sale">@language.SALE</span>
-                                                    }
-                                                </div>
-                                            </div>
-                                            <div class="right-block">
-                                                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
-                                                <div class="content_price">
-                                                    @if (data.PriceDiscount.HasValue)
-                                                    {
-                                                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
-                                                        <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-                                                        
-                                                    }
-                                                </div>
-                                                <div class="product-star">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-o"></i>
-                                                </div>
-                                            </div>
+                                            @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
                                     }
                                 </ul>
@@ -118,62 +65,11 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoNam.OrderByDescending(v=>v.ViewsCount).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoNam.OrderByDescending(v => v.ViewsCount).Count(); i++)
                                     {
-                                        var data = Model.DongHoNam.OrderByDescending(v=>v.ViewsCount).ToList()[i];
+                                        var data = Model.DongHoNam.OrderByDescending(v => v.ViewsCount).ToList()[i];
                                         <li>
-                                            <div class="left-block">
-                                                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
-                                                    @if (data.Product_Media.Count() > 0)
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
-                                                    }
-                                                </a>
-                                                <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" ></a>
-                                                        <a title="Add to compare" class="compare" ></a>*@
-                                                    @* <a title="Quick view" class="search" ></a> *@
-                                                </div>
-                                                <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
-                                                </div>
-                                                <div class="group-price">
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-new">@language.NEW</span>
-                                                    }
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-sale">@language.SALE</span>
-                                                    }
-                                                </div>
-                                            </div>
-                                            <div class="right-block">
-                                                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
-                                                <div class="content_price">
-                                                    @if (data.PriceDiscount.HasValue)
-                                                    {
-                                                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
-                                                        <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-                                                    }
-                                                </div>
-                                                <div class="product-star">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-o"></i>
-                                                </div>
-                                            </div>
+                                            @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
                                     }
                                 </ul>
@@ -189,7 +85,7 @@
             <nav class="navbar nav-menu nav-menu-green show-brand">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-brand"><a ><i class="fa fa-venus-mars"></i>@language.COUPLE_WATCH</a></div>
+                    <div class="navbar-brand"><a><i class="fa fa-venus-mars"></i>@language.COUPLE_WATCH</a></div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
@@ -232,58 +128,7 @@
                                     {
                                         var data = Model.DongHoCap.ToList()[i];
                                         <li>
-                                            <div class="left-block">
-                                                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
-                                                    @if (data.Product_Media.Count() > 0)
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
-                                                    }
-                                                </a>
-                                                <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" ></a>
-                                                        <a title="Add to compare" class="compare" ></a>*@
-                                                    @* <a title="Quick view" class="search" ></a> *@
-                                                </div>
-                                                <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
-                                                </div>
-                                                <div class="group-price">
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-new">@language.NEW</span>
-                                                    }
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-sale">@language.SALE</span>
-                                                    }
-                                                </div>
-                                            </div>
-                                            <div class="right-block">
-                                                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
-                                                <div class="content_price">
-                                                    @if (data.PriceDiscount.HasValue)
-                                                    {
-                                                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
-                                                        <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-                                                    }
-                                                </div>
-                                                <div class="product-star">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-o"></i>
-                                                </div>
-                                            </div>
+                                            @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
                                     }
                                 </ul>
@@ -295,62 +140,11 @@
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
 
-                                    @for (int i = 0; i < Model.DongHoCap.OrderByDescending(v=>v.ViewsCount).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoCap.OrderByDescending(v => v.ViewsCount).Count(); i++)
                                     {
-                                        var data = Model.DongHoCap.OrderByDescending(v=>v.ViewsCount).ToList()[i];
+                                        var data = Model.DongHoCap.OrderByDescending(v => v.ViewsCount).ToList()[i];
                                         <li>
-                                            <div class="left-block">
-                                                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
-                                                    @if (data.Product_Media.Count() > 0)
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
-                                                    }
-                                                </a>
-                                                <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" ></a>
-                                                        <a title="Add to compare" class="compare" ></a>*@
-                                                    @* <a title="Quick view" class="search" ></a> *@
-                                                </div>
-                                                <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
-                                                </div>
-                                                <div class="group-price">
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-new">@language.NEW</span>
-                                                    }
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-sale">@language.SALE</span>
-                                                    }
-                                                </div>
-                                            </div>
-                                            <div class="right-block">
-                                                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
-                                                <div class="content_price">
-                                                    @if (data.PriceDiscount.HasValue)
-                                                    {
-                                                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
-                                                        <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-                                                    }
-                                                </div>
-                                                <div class="product-star">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-o"></i>
-                                                </div>
-                                            </div>
+                                            @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
                                     }
                                 </ul>
@@ -366,7 +160,7 @@
             <nav class="navbar nav-menu nav-menu-orange show-brand">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-brand"><a ><i class="fa fa-venus"></i>@language.WOMENS_WATCH</a></div>
+                    <div class="navbar-brand"><a><i class="fa fa-venus"></i>@language.WOMENS_WATCH</a></div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
@@ -409,58 +203,7 @@
                                     {
                                         var data = Model.DongHoNu.ToList()[i];
                                         <li>
-                                            <div class="left-block">
-                                                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
-                                                    @if (data.Product_Media.Count() > 0)
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
-                                                    }
-                                                </a>
-                                                <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" ></a>
-                                                        <a title="Add to compare" class="compare" ></a>*@
-                                                    @* <a title="Quick view" class="search" ></a> *@
-                                                </div>
-                                                <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
-                                                </div>
-                                                <div class="group-price">
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-new">@language.NEW</span>
-                                                    }
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-sale">@language.SALE</span>
-                                                    }
-                                                </div>
-                                            </div>
-                                            <div class="right-block">
-                                                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
-                                                <div class="content_price">
-                                                    @if (data.PriceDiscount.HasValue)
-                                                    {
-                                                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
-                                                        <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-                                                    }
-                                                </div>
-                                                <div class="product-star">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-o"></i>
-                                                </div>
-                                            </div>
+                                            @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
                                     }
                                 </ul>
@@ -471,62 +214,11 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoNu.OrderByDescending(v=>v.ViewsCount).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoNu.OrderByDescending(v => v.ViewsCount).Count(); i++)
                                     {
-                                        var data = Model.DongHoNu.OrderByDescending(v=>v.ViewsCount).ToList()[i];
+                                        var data = Model.DongHoNu.OrderByDescending(v => v.ViewsCount).ToList()[i];
                                         <li>
-                                            <div class="left-block">
-                                                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
-                                                    @if (data.Product_Media.Count() > 0)
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
-                                                    }
-                                                </a>
-                                                <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" ></a>
-                                                        <a title="Add to compare" class="compare" ></a>*@
-                                                    @* <a title="Quick view" class="search" ></a> *@
-                                                </div>
-                                                <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
-                                                </div>
-                                                <div class="group-price">
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-new">@language.NEW</span>
-                                                    }
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-sale">@language.SALE</span>
-                                                    }
-                                                </div>
-                                            </div>
-                                            <div class="right-block">
-                                                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
-                                                <div class="content_price">
-                                                    @if (data.PriceDiscount.HasValue)
-                                                    {
-                                                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
-                                                        <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-                                                    }
-                                                </div>
-                                                <div class="product-star">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-o"></i>
-                                                </div>
-                                            </div>
+                                            @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
                                     }
                                 </ul>
@@ -543,7 +235,7 @@
             <nav class="navbar nav-menu nav-menu-blue show-brand">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-brand"><a ><i class="fa fa-child"></i>@language.CHILDREN_WATCH</a></div>
+                    <div class="navbar-brand"><a><i class="fa fa-child"></i>@language.CHILDREN_WATCH</a></div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
@@ -586,58 +278,7 @@
                                     {
                                         var data = Model.DongHoTreEm.ToList()[i];
                                         <li>
-                                            <div class="left-block">
-                                                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
-                                                    @if (data.Product_Media.Count() > 0)
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
-                                                    }
-                                                </a>
-                                                <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" ></a>
-                                                        <a title="Add to compare" class="compare" ></a>*@
-                                                    @* <a title="Quick view" class="search" ></a> *@
-                                                </div>
-                                                <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
-                                                </div>
-                                                <div class="group-price">
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-new">@language.NEW</span>
-                                                    }
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-sale">@language.SALE</span>
-                                                    }
-                                                </div>
-                                            </div>
-                                            <div class="right-block">
-                                                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
-                                                <div class="content_price">
-                                                    @if (data.PriceDiscount.HasValue)
-                                                    {
-                                                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
-                                                        <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-                                                    }
-                                                </div>
-                                                <div class="product-star">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-o"></i>
-                                                </div>
-                                            </div>
+                                            @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
                                     }
                                 </ul>
@@ -648,62 +289,11 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoTreEm.OrderByDescending(v=>v.ViewsCount).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoTreEm.OrderByDescending(v => v.ViewsCount).Count(); i++)
                                     {
-                                        var data = Model.DongHoTreEm.OrderByDescending(v=>v.ViewsCount).ToList()[i];
+                                        var data = Model.DongHoTreEm.OrderByDescending(v => v.ViewsCount).ToList()[i];
                                         <li>
-                                            <div class="left-block">
-                                                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
-                                                    @if (data.Product_Media.Count() > 0)
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
-                                                    }
-                                                </a>
-                                                <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" ></a>
-                                                        <a title="Add to compare" class="compare" ></a>*@
-                                                    @* <a title="Quick view" class="search" ></a> *@
-                                                </div>
-                                                <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
-                                                </div>
-                                                <div class="group-price">
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-new">@language.NEW</span>
-                                                    }
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-sale">@language.SALE</span>
-                                                    }
-                                                </div>
-                                            </div>
-                                            <div class="right-block">
-                                                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
-                                                <div class="content_price">
-                                                    @if (data.PriceDiscount.HasValue)
-                                                    {
-                                                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
-                                                        <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-                                                    }
-                                                </div>
-                                                <div class="product-star">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-o"></i>
-                                                </div>
-                                            </div>
+                                            @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
                                     }
                                 </ul>
@@ -720,7 +310,7 @@
             <nav class="navbar nav-menu nav-menu-blue2 show-brand">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-brand"><a ><i class="fa fa-user-tag"></i>@language.SPECIAL_VERSION</a></div>
+                    <div class="navbar-brand"><a><i class="fa fa-user-tag"></i>@language.SPECIAL_VERSION</a></div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
@@ -763,58 +353,7 @@
                                     {
                                         var data = Model.DongHoPhienBanDacBiet.ToList()[i];
                                         <li>
-                                            <div class="left-block">
-                                                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
-                                                    @if (data.Product_Media.Count() > 0)
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
-                                                    }
-                                                </a>
-                                                <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" ></a>
-                                                        <a title="Add to compare" class="compare" ></a>*@
-                                                    @* <a title="Quick view" class="search" ></a> *@
-                                                </div>
-                                                <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
-                                                </div>
-                                                <div class="group-price">
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-new">@language.NEW</span>
-                                                    }
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-sale">@language.SALE</span>
-                                                    }
-                                                </div>
-                                            </div>
-                                            <div class="right-block">
-                                                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
-                                                <div class="content_price">
-                                                    @if (data.PriceDiscount.HasValue)
-                                                    {
-                                                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
-                                                        <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-                                                    }
-                                                </div>
-                                                <div class="product-star">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-o"></i>
-                                                </div>
-                                            </div>
+                                            @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
                                     }
                                 </ul>
@@ -825,62 +364,11 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoPhienBanDacBiet.OrderByDescending(v=>v.ViewsCount).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoPhienBanDacBiet.OrderByDescending(v => v.ViewsCount).Count(); i++)
                                     {
-                                        var data = Model.DongHoPhienBanDacBiet.OrderByDescending(v=>v.ViewsCount).ToList()[i];
+                                        var data = Model.DongHoPhienBanDacBiet.OrderByDescending(v => v.ViewsCount).ToList()[i];
                                         <li>
-                                            <div class="left-block">
-                                                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
-                                                    @if (data.Product_Media.Count() > 0)
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
-                                                    }
-                                                </a>
-                                                <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" ></a>
-                                                        <a title="Add to compare" class="compare" ></a>*@
-                                                    @* <a title="Quick view" class="search" ></a> *@
-                                                </div>
-                                                <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
-                                                </div>
-                                                <div class="group-price">
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-new">@language.NEW</span>
-                                                    }
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-sale">@language.SALE</span>
-                                                    }
-                                                </div>
-                                            </div>
-                                            <div class="right-block">
-                                                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
-                                                <div class="content_price">
-                                                    @if (data.PriceDiscount.HasValue)
-                                                    {
-                                                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
-                                                        <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-                                                    }
-                                                </div>
-                                                <div class="product-star">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-o"></i>
-                                                </div>
-                                            </div>
+                                            @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
                                     }
                                 </ul>
@@ -898,7 +386,7 @@
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-brand">
-                        <a ><i class="fa fa-hourglass"></i>@language.LIMITED_EDITION</a>
+                        <a><i class="fa fa-hourglass"></i>@language.LIMITED_EDITION</a>
                     </div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -911,7 +399,7 @@
                 </div><!-- /.container-fluid -->
                 <div id="elevator-6" class="floor-elevator">
                     <a href="#elevator-5" class="btn-elevator up fa fa-angle-up"></a>
-                    <a  class="btn-elevator disabled down fa fa-angle-down"></a>
+                    <a class="btn-elevator disabled down fa fa-angle-down"></a>
                 </div>
             </nav>
             <div class="category-banner">
@@ -942,58 +430,7 @@
                                     {
                                         var data = Model.DongHoPhienBanGioiHan.ToList()[i];
                                         <li>
-                                            <div class="left-block">
-                                                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
-                                                    @if (data.Product_Media.Count() > 0)
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
-                                                    }
-                                                </a>
-                                                <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" ></a>
-                                                        <a title="Add to compare" class="compare" ></a>*@
-                                                    @* <a title="Quick view" class="search" ></a> *@
-                                                </div>
-                                                <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
-                                                </div>
-                                                <div class="group-price">
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-new">@language.NEW</span>
-                                                    }
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-sale">@language.SALE</span>
-                                                    }
-                                                </div>
-                                            </div>
-                                            <div class="right-block">
-                                                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
-                                                <div class="content_price">
-                                                    @if (data.PriceDiscount.HasValue)
-                                                    {
-                                                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
-                                                        <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-                                                    }
-                                                </div>
-                                                <div class="product-star">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-o"></i>
-                                                </div>
-                                            </div>
+                                            @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
                                     }
                                 </ul>
@@ -1004,62 +441,11 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoPhienBanGioiHan.OrderByDescending(v=>v.ViewsCount).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoPhienBanGioiHan.OrderByDescending(v => v.ViewsCount).Count(); i++)
                                     {
-                                        var data = Model.DongHoPhienBanGioiHan.OrderByDescending(v=>v.ViewsCount).ToList()[i];
+                                        var data = Model.DongHoPhienBanGioiHan.OrderByDescending(v => v.ViewsCount).ToList()[i];
                                         <li>
-                                            <div class="left-block">
-                                                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
-                                                    @if (data.Product_Media.Count() > 0)
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
-                                                    }
-                                                </a>
-                                                <div class="quick-view">
-                                                    @*<a title="Add to my wishlist" class="heart" ></a>
-                                                        <a title="Add to compare" class="compare" ></a>*@
-                                                    @* <a title="Quick view" class="search" ></a> *@
-                                                </div>
-                                                <div class="add-to-cart">
-                                                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
-                                                </div>
-                                                <div class="group-price">
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-new">@language.NEW</span>
-                                                    }
-                                                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
-                                                    {
-                                                        <span class="product-sale">@language.SALE</span>
-                                                    }
-                                                </div>
-                                            </div>
-                                            <div class="right-block">
-                                                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
-                                                <div class="content_price">
-                                                    @if (data.PriceDiscount.HasValue)
-                                                    {
-                                                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
-                                                        <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
-                                                    }
-                                                </div>
-                                                <div class="product-star">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-o"></i>
-                                                </div>
-                                            </div>
+                                            @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
                                     }
                                 </ul>
@@ -1075,12 +461,12 @@
         <div class="row banner-bottom">
             <div class="col-sm-6">
                 <div class="banner-boder-zoom">
-                    <a ><img alt="ads" class="img-responsive" src="/assets/data/ads17.jpg" /></a>
+                    <a><img alt="ads" class="img-responsive" src="/assets/data/ads17.jpg" /></a>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="banner-boder-zoom">
-                    <a ><img alt="ads" class="img-responsive" src="/assets/data/ads18.jpg" /></a>
+                    <a><img alt="ads" class="img-responsive" src="/assets/data/ads18.jpg" /></a>
                 </div>
             </div>
         </div>

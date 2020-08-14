@@ -3,14 +3,14 @@
     <div class="container" id="columns">
         <!-- breadcrumb -->
         <div class="breadcrumb clearfix">
-            <a class="home" href="#" title="Return to Home">Trang chủ</a>
+            <a class="home" href="#" title="Return to Home">@language.HOME</a>
             <span class="navigation-pipe">&nbsp;</span>
-            <span class="navigation_page">Kiểm tra giỏ hàng</span>
+            <span class="navigation_page">@language.KIEM_TRA_GIO_HANG</span>
         </div>
         <!-- ./breadcrumb -->
         <!-- page heading-->
         <h2 class="page-heading no-line">
-            <span class="page-heading-title2">Thông tin đơn hàng</span>
+            <span class="page-heading-title2">@language.THONG_TIN_DON_HANG</span>
         </h2>
         <!-- ../page heading-->
         <div class="page-content page-order">
@@ -19,22 +19,22 @@
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="nav-link" href="#check-order">
-                            01. Kiểm tra giỏ hàng
+                            01. @language.KIEM_TRA_GIO_HANG
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#address">
-                            02. Địa chỉ giao hàng
+                            02. @language.DIA_CHI_GIAO_HANG
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#payment">
-                            03. Phương thức thanh toán
+                            03. @language.PHUONG_THUC_THANH_TOAN
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#finish">
-                            04. Hoàn thành
+                            04. @language.HOAN_THANH
                         </a>
                     </li>
                 </ul>
@@ -45,11 +45,11 @@
                             <table class="table table-condense table-responsive cart_summary">
                                 <thead>
                                     <tr>
-                                        <th class="cart_product">Sản phẩm</th>
+                                        <th class="cart_product">@language.SAN_PHAM</th>
                                         <th>Mô tả</th>
-                                        <th class="text-right">Đơn giá</th>
-                                        <th>Số lượng</th>
-                                        <th class="text-right">Thành tiền</th>
+                                        <th class="text-right">@language.DON_GIA</th>
+                                        <th>@language.SO_LUONG</th>
+                                        <th class="text-right">@language.THANH_TIEN</th>
                                         <th class="action"><i class="fa fa-trash-o"></i></th>
                                     </tr>
                                 </thead>
@@ -103,22 +103,22 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="3">Tạm tính</td>
+                                        <td colspan="3">@language.TAM_TINH</td>
                                         <td colspan="2">14,444,234 VNĐ</td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3">Thuế (10%)</td>
+                                        <td colspan="3">@language.THUE_10</td>
                                         <td colspan="2">2,000 VNĐ</td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3">Vận chuyển</td>
+                                        <td colspan="3">@language.VAN_CHUYEN</td>
                                         <td colspan="2">0 VNĐ</td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3"><strong>Tổng</strong></td>
+                                        <td colspan="3"><strong>@language.TONG</strong></td>
                                         <td colspan="2"><strong>14,444,234 VNĐ</strong></td>
                                         <td></td>
                                     </tr>
@@ -132,24 +132,24 @@
                                 <form id="deliveryForm">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Tên người nhận *</label>
+                                            <label for="inputEmail4">@language.TEN_NGUOI_NHAN *</label>
                                             <input type="text" class="form-control" id="customerName"
                                                    name="customerName" required>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="inputPassword4">Quan hệ</label>
+                                            <label for="inputPassword4">@language.QUAN_HE</label>
                                             <select class="form-control" id="customerPosition"
                                                     name="customerPosition">
-                                                <option>Người đặt hàng</option>
-                                                <option>Người thân</option>
-                                                <option>Bạn bè</option>
-                                                <option>khác</option>
+                                                <option>@language.NGUOI_DAT_HANG</option>
+                                                <option>@language.NGUOI_THAN</option>
+                                                <option>@language.BAN_BE</option>
+                                                <option>@language.KHAC</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="inputCity">Số điện thoại *</label>
+                                            <label for="inputCity">@language.SO_DIEN_THOAI *</label>
                                             <input type="text" class="form-control" id="customerPhone"
                                                    name="customerPhone" required>
                                         </div>
@@ -161,12 +161,12 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-3">
-                                            <label for="inputAddress2">Địa chỉ *</label>
+                                            <label for="inputAddress2">@language.DIA_CHI *</label>
                                             <input type="text" class="form-control" id="deliveryAddress"
                                                    name="deliveryAddress" required>
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <label for="inputAddress2">Phường/xã</label>
+                                            <label for="inputAddress2">@language.PHUONG_XA</label>
                                             <select class="form-control" id="deliveryWard" name="deliveryWard">
                                                 <option>Xã bùi</option>
                                                 <option>Người thân</option>
@@ -175,7 +175,7 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <label for="inputAddress2">Quận/Huyện</label>
+                                            <label for="inputAddress2">@language.QUAN_HUYEN</label>
                                             <select class="form-control" id="deliveryDistrict"
                                                     name="deliveryDistrict">
                                                 <option>Quận 1</option>
@@ -185,7 +185,7 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <label for="inputAddress2">Thành phố</label>
+                                            <label for="inputAddress2">@language.THANH_PHO</label>
                                             <select class="form-control" id="deliveryCity" name="deliveryCity">
                                                 <option>TP.HCM</option>
                                                 <option>Người thân</option>
@@ -214,25 +214,23 @@
                                         <li role="presentation" class="active">
                                             <a href="#codPayment"
                                                aria-controls="codPayment" role="tab" data-toggle="tab">
-                                                Thanh toán
-                                                khi nhận hàng
+                                                @language.THANH_TOAN_KHI_NHAN_HANG
                                             </a>
                                         </li>
                                         <li role="presentation">
                                             <a href="#storePayment" aria-controls="storePayment"
-                                               role="tab" data-toggle="tab">Đến cửa hàng lấy</a>
+                                               role="tab" data-toggle="tab">@language.DEN_CUA_HANG_LAY</a>
                                         </li>
-                                        <li role="presentation">
+                                        @*<li role="presentation">
                                             <a href="#viettelPayPayment"
                                                aria-controls="viettelPayPayment" role="tab" data-toggle="tab">
-                                                Thanh
-                                                toán bằng ViettelPay
+                                                Thanh toán bằng ViettelPay
                                             </a>
                                         </li>
                                         <li role="presentation">
                                             <a href="#visaPayment" aria-controls="visaPayment"
                                                role="tab" data-toggle="tab">Thanh toán bằng Visa</a>
-                                        </li>
+                                        </li>*@
 
                                     </ul>
 
@@ -242,7 +240,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <h3>
-                                                        Quý khách có thể qua bước tiếp theo
+                                                        @language.QUY_KHACH_CO_THE_QUA_BUOC_TIEP_THEO
                                                     </h3>
                                                 </div>
                                             </div>
@@ -251,12 +249,12 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <h3>
-                                                        Quý khách có thể qua bước tiếp theo
+                                                        @language.QUY_KHACH_CO_THE_QUA_BUOC_TIEP_THEO
                                                     </h3>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div role="tabpanel" class="tab-pane" id="viettelPayPayment">
+                                        @*<div role="tabpanel" class="tab-pane" id="viettelPayPayment">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <h3>
@@ -273,7 +271,7 @@
                                                     </h3>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>*@
                                     </div>
 
                                 </div>
@@ -281,7 +279,7 @@
                         </div>
                     </div>
                     <div id="finish" class="tab-pane" role="tabpanel" aria-labelledby="finish">
-                        Cám ơn Quý khách đã đặt hàng, chúng tôi sẽ sớm liên lạc với quý khách
+                        @language.CAM_ON_QUY_KHACH_DA_DAT_HANG
                     </div>
                 </div>
             </div>
