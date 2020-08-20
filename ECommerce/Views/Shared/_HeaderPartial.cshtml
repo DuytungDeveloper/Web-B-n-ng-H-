@@ -1,5 +1,5 @@
 ﻿@using ECommerce.Resources.Languages
-
+@using ECommerce.Models.View
 <!-- HEADER -->
 <div id="header" class="header">
     <div class="top-header">
@@ -373,9 +373,45 @@
                             <div id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
                                     <li class="active"><a asp-controller="home" asp-action="index">@language.HOME</a></li>
-                                    <li class=""><a asp-controller="search-result" asp-action="index">@language.MENS_WATCH</a></li>
-                                    <li class=""><a asp-controller="search-result" asp-action="index">@language.WOMENS_WATCH</a></li>
-                                    <li class=""><a asp-controller="search-result" asp-action="index">@language.COUPLE_WATCH</a></li>
+                                    <li class="">
+                                        @Html.ActionLink(
+                                                               linkText: language.MENS_WATCH,
+                                                               actionName: "Index",
+                                                               controllerName: "Search-Result",
+                                                               routeValues: new SearchViewModel
+                                                               {
+                                                                   CategoryId = new List<int>() { 2 }
+                                                               },
+                                                               htmlAttributes: null
+                                                           )
+                                    </li>
+                                    <li class="">
+                                        @Html.ActionLink(
+                                            linkText: language.WOMENS_WATCH,
+                                            actionName: "Index",
+                                            controllerName: "Search-Result",
+                                            routeValues: new SearchViewModel
+                                            {
+                                                CategoryId = new List<int>() { 1 }
+                                            },
+                                            htmlAttributes: null
+                                        )
+                                    </li>
+                                    <li class="">
+                                        @Html.ActionLink(
+                                            linkText: language.COUPLE_WATCH,
+                                            actionName: "Index",
+                                            controllerName: "Search-Result",
+                                            routeValues: new SearchViewModel
+                                            {
+                                                CategoryId = new List<int>() { 3 }
+                                            },
+                                            htmlAttributes: null
+                                        )
+                                    </li>
+                                    @*<li class=""><a asp-controller="search-result" asp-action="index" asp-CategoryId="2">@language.MENS_WATCH</a></li>
+                                        <li class=""><a asp-controller="search-result" asp-action="index" asp-CategoryId="1">@language.WOMENS_WATCH</a></li>
+                                        <li class=""><a asp-controller="search-result" asp-action="index" asp-CategoryId="3">@language.COUPLE_WATCH</a></li>*@
                                     @*<li class="dropdown">
                                             <a asp-controller="search-result" asp-action="index" class="dropdown-toggle" data-toggle="dropdown">
                                                 @language.MENS_WATCH

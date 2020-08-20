@@ -1,4 +1,6 @@
-﻿    <!-- page wapper-->
+﻿@model ECommerce.Models.View.OrderViewModel
+@using System.Globalization;
+<!-- page wapper-->
 <div class="columns-container">
     <div class="container" id="columns">
         <!-- breadcrumb -->
@@ -54,72 +56,75 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="cart_product">
-                                            <a href="#"><imgsrc ="/assets/images/product-1.jpg" alt="Product"></a>
-                                        </td>
-                                        <td class="cart_description">
-                                            <p class="product-name"><a href="#">Frederique Constant </a></p>
-                                            <small class="cart_ref">Mã sản phẩm : #123654999</small><br>
-                                            <small><a href="#">Màu : Beige</a></small><br>
-                                            <small><a href="#">Size : S</a></small>
-                                        </td>
-                                        <td class="price dongia"><span>4,666,333 VNĐ</span></td>
-                                        <td class="qty">
-                                            <input class="form-control input-sm" type="text" value="1">
-                                            <a href="#"><i class="fa fa-caret-up"></i></a>
-                                            <a href="#"><i class="fa fa-caret-down"></i></a>
-                                        </td>
-                                        <td class="price">
-                                            <span>4,666,333 VNĐ</span>
-                                        </td>
-                                        <td class="action">
-                                            <a href="#">Delete item</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cart_product">
-                                            <a href="#"><imgsrc ="/assets/images/product-2.jpg" alt="Product"></a>
-                                        </td>
-                                        <td class="cart_description">
-                                            <p class="product-name"><a href="#">Frederique Constant </a></p>
-                                            <small class="cart_ref">Mã sản phẩm : #123654999</small><br>
-                                            <small><a href="#">Màu : Beige</a></small><br>
-                                            <small><a href="#">Size : S</a></small>
-                                        </td>
-                                        <td class="price dongia"><span>4,666,333 VNĐ</span></td>
-                                        <td class="qty">
-                                            <input class="form-control input-sm" type="text" value="1">
-                                            <a href="#"><i class="fa fa-caret-up"></i></a>
-                                            <a href="#"><i class="fa fa-caret-down"></i></a>
-                                        </td>
-                                        <td class="price">
-                                            <span>4,666,333 VNĐ</span>
-                                        </td>
-                                        <td class="action">
-                                            <a href="#">Delete item</a>
-                                        </td>
-                                    </tr>
+                                    @if (Model.Products != null) for (int i = 0; i < Model.Products.Count; i++)
+                                        {
+                                            var data = Model.Products[i];
+                                            <tr>
+                                                <td class="cart_product">
+                                                    <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url +"."+data.Id)">
+                                                        <img src="@(data.Product_Media.Count() > 0 ?  data.Product_Media[0].Media.Link : "/assets/data/p35.jpg")" alt="SPECIAL PRODUCTS">
+                                                    </a>
+                                                </td>
+                                                <td class="cart_description">
+                                                    <p class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url +"."+data.Id)">@data.Name </a></p>
+                                                    @*<small class="cart_ref">Mã sản phẩm : #123654999</small><br>
+                                                        <small><a href="#">Màu : Beige</a></small><br>
+                                                        <small><a href="#">Size : S</a></small>*@
+                                                </td>
+                                                @if (data.PriceDiscount.HasValue)
+                                                {
+
+                                                    <td class="price dongia">
+                                                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="price dongia">
+                                                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
+                                                    </td>
+                                                }
+                                                <td class="qty">
+                                                    <input class="form-control input-sm" type="number" min="1" value="@data.Qty">
+                                                    <a href="#"><i class="fa fa-caret-up"></i></a>
+                                                    <a href="#"><i class="fa fa-caret-down"></i></a>
+                                                </td>
+                                                <td class="price">
+                                                    @if (data.DiscountDateTo.HasValue && data.DiscountDateTo > new DateTime() && data.PriceDiscount.HasValue)
+                                                    {
+
+                                                        <span class="price product-price">@(((System.Numerics.BigInteger)data.PriceDiscount.Value*data.Qty).ToString("C0", new CultureInfo("vi")))</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="price product-price">@(((System.Numerics.BigInteger)data.Price*data.Qty).ToString("C0", new CultureInfo("vi")))</span>
+                                                    }
+                                                </td>
+                                                <td class="action">
+                                                    <a class="pointer" onclick="removeProductFromCart_2(@data.Id)">Delete item</a>
+                                                </td>
+                                            </tr>
+                                        }
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <td colspan="3">@language.TAM_TINH</td>
-                                        <td colspan="2">14,444,234 VNĐ</td>
+                                        <td colspan="2">@Model.TamTinh.ToString("C0", new CultureInfo("vi"))</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td colspan="3">@language.THUE_10</td>
-                                        <td colspan="2">2,000 VNĐ</td>
+                                        <td colspan="2">@Model.Thue.ToString("C0", new CultureInfo("vi"))</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td colspan="3">@language.VAN_CHUYEN</td>
-                                        <td colspan="2">0 VNĐ</td>
+                                        <td colspan="2">@(0.ToString("C0", new CultureInfo("vi")))</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td colspan="3"><strong>@language.TONG</strong></td>
-                                        <td colspan="2"><strong>14,444,234 VNĐ</strong></td>
+                                        <td colspan="2"><strong>@Model.Total.ToString("C0", new CultureInfo("vi"))</strong></td>
                                         <td></td>
                                     </tr>
                                 </tfoot>
@@ -222,15 +227,15 @@
                                                role="tab" data-toggle="tab">@language.DEN_CUA_HANG_LAY</a>
                                         </li>
                                         @*<li role="presentation">
-                                            <a href="#viettelPayPayment"
-                                               aria-controls="viettelPayPayment" role="tab" data-toggle="tab">
-                                                Thanh toán bằng ViettelPay
-                                            </a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a href="#visaPayment" aria-controls="visaPayment"
-                                               role="tab" data-toggle="tab">Thanh toán bằng Visa</a>
-                                        </li>*@
+                                                <a href="#viettelPayPayment"
+                                                   aria-controls="viettelPayPayment" role="tab" data-toggle="tab">
+                                                    Thanh toán bằng ViettelPay
+                                                </a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a href="#visaPayment" aria-controls="visaPayment"
+                                                   role="tab" data-toggle="tab">Thanh toán bằng Visa</a>
+                                            </li>*@
 
                                     </ul>
 
@@ -255,23 +260,23 @@
                                             </div>
                                         </div>
                                         @*<div role="tabpanel" class="tab-pane" id="viettelPayPayment">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <h3>
-                                                        viettelPayPayment
-                                                    </h3>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h3>
+                                                            viettelPayPayment
+                                                        </h3>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div role="tabpanel" class="tab-pane" id="visaPayment">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <h3>
-                                                        visaPayment
-                                                    </h3>
+                                            <div role="tabpanel" class="tab-pane" id="visaPayment">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h3>
+                                                            visaPayment
+                                                        </h3>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>*@
+                                            </div>*@
                                     </div>
 
                                 </div>

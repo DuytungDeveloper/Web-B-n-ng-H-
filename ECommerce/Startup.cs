@@ -17,6 +17,8 @@ using System.Threading;
 using ECommerce.Middlewares;
 using Microsoft.AspNet.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Http;
+using System;
+using ECommerce.Controllers;
 
 namespace ECommerce
 {
@@ -37,8 +39,8 @@ namespace ECommerce
 
             services.AddSession(options =>
             {
-                //options.IdleTimeout = TimeSpan.FromSeconds(10);
-                //options.Cookie.Name = "lang";
+                options.IdleTimeout = TimeSpan.FromDays(10);
+                options.Cookie.Name = OrderController.OrderSessionName;
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });

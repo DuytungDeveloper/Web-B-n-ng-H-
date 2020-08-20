@@ -131,13 +131,17 @@ function removeProductFromCart(id) {
     setCart(cart);
     refreshCart();
 }
+function removeProductFromCart_2(id){
+    removeProductFromCart(id);
+    location.href = location.pathname;
+}
 /**Hiển thị lại đơn hàng */
 function refreshCart() {
     let cart = getCart();
     let lsHtml = [];
     let totalPrice = 0;
     let data = {
-        Products: []
+        AllProduct: []
     };
     for (var i = 0; i < cart.length; i++) {
         let liProductCart = `<li class="product-info"><div class="p-left"><a onclick="removeProductFromCart(${cart[i].id})" class="remove_link"></a><a href="/${getLang()}/san-pham?link=${cart[i].url}.${cart[i].id}"><img class="img-responsive" src="${cart[i].product_Media[0].media.link}" alt="p10"></a></div><div class="p-right"><p class="p-name">${cart[i].name}</p><p class="p-rice">${intToPrice(cart[i].priceDiscount != null ? cart[i].priceDiscount : cart[i].price)}</p><p>${translateFunction("Số lượng")}: ${cart[i].qty}</p></div></li>`;
@@ -157,7 +161,7 @@ function refreshCart() {
         //                        </li>`;
         totalPrice += (cart[i].priceDiscount != null ? cart[i].priceDiscount : cart[i].price) * cart[i].qty;
         lsHtml.push(liProductCart);
-        data.Products.push({
+        data.AllProduct.push({
             Qty: cart[i].qty,
             ProductId: cart[i].id
         });

@@ -15,7 +15,7 @@
       "renameLocals": true
     },
     "sourceMap": false
-  }
+  },
   {
     "outputFileName": "wwwroot/js/checkout.min.js",
     "inputFiles": [

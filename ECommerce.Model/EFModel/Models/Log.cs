@@ -57,7 +57,6 @@ namespace ECommerce.Model.EFModel.Models
                         };
 
                         return Newtonsoft.Json.JsonConvert.SerializeObject(data);
-                        return string.Empty;
                     }
                     else
                     {

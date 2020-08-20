@@ -25,7 +25,7 @@ namespace ECommerce.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime? CreateDate { get; set; }
         [Column(Order = 91)]
-        public string? CreateBy { get; set; }
+        public string CreateBy { get; set; }
         [Column(Order = 92)]
 
         public DateTime? UpdateDate { get; set; }

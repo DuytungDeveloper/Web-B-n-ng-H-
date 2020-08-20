@@ -10,6 +10,7 @@ using ECommerce.Models.View;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Controllers
 {
@@ -19,6 +20,7 @@ namespace ECommerce.Controllers
         SignInManager<ApplicationUser> signInManager;
         private readonly ILogger<ProductController> _logger;
         private readonly ApplicationDbContext db;
+        public static string OrderSessionName = "Order";
         public OrderController(ILogger<ProductController> logger, ApplicationDbContext _db, UserManager<ApplicationUser> _usermana, SignInManager<ApplicationUser> _sign)
         {
             db = _db;
@@ -29,7 +31,23 @@ namespace ECommerce.Controllers
         [Route("{language}/don-hang/{action=index}")]
         public IActionResult Index()
         {
-            return View();
+            OrderViewModel rs = new OrderViewModel() { Products = new List<Product>()};
+            SaveOrderViewModel cart = HttpContext.Session.Get<SaveOrderViewModel>(OrderSessionName);
+            if (cart != null)
+            {
+                for (int i = 0; i < cart.AllProduct.Count; i++)
+                {
+                    var item = cart.AllProduct[i];
+                    var pro = db.Products.Where(x => x.Id == item.ProductId).Include(x => x.Product_Media).Include("Product_Media.Media").FirstOrDefault();
+                    if(pro != null)
+                    {
+                        pro.Qty = item.Qty;
+                        rs.Products.Add(pro);
+                    }
+                }
+            }
+            var total = rs.Total;
+            return View(rs);
         }
 
         [HttpPost]
@@ -39,7 +57,7 @@ namespace ECommerce.Controllers
             //HttpContext
             try
             {
-                HttpContext.Session.Set("Order", products);
+                HttpContext.Session.Set(OrderSessionName, products);
                 return Json(new ResultData<object>());
             }
             catch (Exception e)

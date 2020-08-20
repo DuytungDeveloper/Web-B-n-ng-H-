@@ -200,6 +200,8 @@ namespace ECommerce.Model.EFModel.Models
             } set {
                 Point = value;
             } }
+        [NotMapped]
+        public int Qty { get; set; }
         public int ViewsCount { get; set; }
     }
 }

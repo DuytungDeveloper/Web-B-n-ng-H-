@@ -14,6 +14,6 @@ namespace ECommerce.Models.View
     public class SaveOrderViewModel
     {
         [Required]
-        public List<ProductOrder> Products { get; set; }
+        public List<ProductOrder> AllProduct { get; set; }
     }
 }
