@@ -9,7 +9,7 @@ Add Migration vào Model => Quản lý thay đổi DB.
 
 https://www.davidhayden.me/blog/asp-net-core-bundle-and-minify-css-and-js
 
-Product -> Status -> UpdateData -> images -> productmedia
+Product -> Status -> UpdateData -> images -> productmedia -> ward.sql
 
 site map đánh giá
 https://search.google.com/search-console/welcome?utm_source=about-page

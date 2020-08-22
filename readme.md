@@ -1,5 +1,3 @@
 # Website bán đồng hồ
 
-Project Models chứa toàn bộ Model
-
-Web bắt buộc phải chạy Migration => Để tự config Project Models chỉ mang tính chất Models
+Project Models chứa toàn bộ Model và cũng là nơi quản lý Migration. Web chỉ việc gọi Model ra xài 

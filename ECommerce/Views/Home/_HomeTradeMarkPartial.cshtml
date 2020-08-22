@@ -70,14 +70,40 @@
                             <div class="col-xs-12 col-sm-4 trademark-info">
                                 <div class="trademark-logo">
                                     @*<a href="#"><img src="/assets/data/trademark.jpg" alt="trademark"></a>*@
-                                    <a href="#">
-                                        @allBrand[i].Name
-                                    </a>
+                                    @Html.ActionLink(
+                                           linkText: allBrand[i].Name,
+                                           actionName: "Index",
+                                           controllerName: "Search-Result",
+                                           routeValues: new SearchViewModel
+                                           {
+                                               BrandNameId = new List<int>() { allBrand[i].Id }
+                                           },
+                                           htmlAttributes: null
+                                       )
                                 </div>
                                 <div class="trademark-desc">
-                                    @ECommerce.Resources.Languages.Home.home.TRADE_1
+                                    @if (!string.IsNullOrEmpty(allBrand[i].Description))
+                                    {
+                                        @allBrand[i].Description
+                                    }
+                                    else
+                                    {
+                                        @ECommerce.Resources.Languages.Home.home.TRADE_1
+                                    }
                                 </div>
-                                <a href="#" class="trademark-link">shop this brand</a>
+                                @Html.ActionLink(
+                                    linkText: language.SEE_MORE,
+                                    actionName: "Index",
+                                    controllerName: "Search-Result",
+                                    routeValues: new SearchViewModel
+                                    {
+                                        BrandNameId = new List<int>() { allBrand[i].Id }
+                                    },
+                                    htmlAttributes: new
+                                    {
+                                        @class = "trademark-link"
+                                    }
+                                )
                             </div>
                             <div class="col-xs-12 col-sm-8 trademark-product">
                                 <div class="row">

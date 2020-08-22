@@ -18,15 +18,34 @@
     <script type="text/javascript" src="/assets/lib/fancyBox/jquery.fancybox.js"></script>
 }
 @using System.Globalization;
+@using ECommerce.Models.View;
 @model ECommerce.Models.View.ProductDetailView
 <div class="container" id="columns">
     <!-- breadcrumb -->
     <div class="breadcrumb clearfix">
         <a class="home" asp-controller="home" asp-action="index" title="Return to Home">@language.HOME</a>
         <span class="navigation-pipe">&nbsp;</span>
-        <a href="#" title="Return to Home">@Model.ProductDetail.Category.Name</a>
+        @Html.ActionLink(
+            linkText: Model.ProductDetail.Category.Name,
+            actionName: "Index",
+            controllerName: "Search-Result",
+            routeValues: new SearchViewModel
+            {
+                CategoryId = new List<int>() { Model.ProductDetail.Category.Id }
+            },
+            htmlAttributes: null
+        )
         <span class="navigation-pipe">&nbsp;</span>
-        <a href="#" title="Return to Home">@Model.ProductDetail.BrandProduct.Name</a>
+        @Html.ActionLink(
+            linkText: Model.ProductDetail.BrandProduct.Name,
+            actionName: "Index",
+            controllerName: "Search-Result",
+            routeValues: new SearchViewModel
+            {
+                BrandNameId = new List<int>() { Model.ProductDetail.BrandProduct.Id }
+            },
+            htmlAttributes: null
+        )
         <span class="navigation-pipe">&nbsp;</span>
         <span class="navigation_page">@Model.ProductDetail.Name</span>
     </div>
@@ -73,7 +92,19 @@
                                     </li>*@
                                 @for (int i = 0; i < Model.DanhMucKhac.Count(); i++)
                                 {
-                                    <li><span></span><a href="@Model.DanhMucKhac[i].Id">@Model.DanhMucKhac[i].Name</a></li>
+                                    <li>
+                                        <span></span>
+                                        @Html.ActionLink(
+                                            linkText: Model.DanhMucKhac[i].Name,
+                                            actionName: "Index",
+                                            controllerName: "Search-Result",
+                                            routeValues: new SearchViewModel
+                                            {
+                                                CategoryId = new List<int>() { Model.DanhMucKhac[i].Id }
+                                            },
+                                            htmlAttributes: null
+                                        )
+                                    </li>
                                 }
                             </ul>
                         </div>

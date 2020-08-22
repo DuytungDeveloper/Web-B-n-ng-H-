@@ -33,7 +33,7 @@ namespace ECommerce.Controllers
         {
             OrderViewModel rs = new OrderViewModel() { Products = new List<Product>()};
             SaveOrderViewModel cart = HttpContext.Session.Get<SaveOrderViewModel>(OrderSessionName);
-            if (cart != null)
+            if (cart != null && cart.AllProduct != null)
             {
                 for (int i = 0; i < cart.AllProduct.Count; i++)
                 {

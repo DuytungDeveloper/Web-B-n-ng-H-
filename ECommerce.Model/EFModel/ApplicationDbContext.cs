@@ -207,6 +207,7 @@ namespace ECommerce.Model.EFModel
 
             modelBuilder.Entity<BrandProduct>().Property(s => s.Status).HasDefaultValueSql("1");
             modelBuilder.Entity<BrandProduct>().Property(s => s.CreateDate).HasDefaultValueSql("GETDATE()");
+            modelBuilder.Entity<BrandProduct>().Property(s => s.Description).HasDefaultValueSql("N'Thương hiệu có mặt trên thị trường với hơn 30 năm..'");
 
             modelBuilder.Entity<City>().Property(s => s.Status).HasDefaultValueSql("1");
             modelBuilder.Entity<City>().Property(s => s.CreateDate).HasDefaultValueSql("GETDATE()");

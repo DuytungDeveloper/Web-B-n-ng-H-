@@ -14,6 +14,9 @@ namespace ECommerce.Model.EFModel.Models
         [Required]
         [Column(Order = 1)]
         public string Name { get; set; }
+        [Column(Order = 2)]
+        // Mô tả hoặc giới thiệu sơ về nhãn hàng này
+        public string Description { get; set; }
         public List<Product> Products { get; set; }
 
     }
