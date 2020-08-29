@@ -201,6 +201,9 @@
   <data name="FREQUENTLY_QUESTION" xml:space="preserve">
     <value>Frequently asked Questions</value>
   </data>
+  <data name="GHI_CHU" xml:space="preserve">
+    <value>Note</value>
+  </data>
   <data name="GUARANTEE" xml:space="preserve">
     <value>Guarantee</value>
   </data>

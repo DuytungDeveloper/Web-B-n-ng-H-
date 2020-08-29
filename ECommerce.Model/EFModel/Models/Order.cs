@@ -26,26 +26,39 @@ namespace ECommerce.Model.EFModel.Models
         [Required]
         [Column(Order = 3)]
         public string Phone { get; set; }
-
+        /// <summary>
+        /// Email khách
+        /// </summary>
+        [Required]
+        [Column(Order = 4)]
+        public string Email { get; set; }
+        /// <summary>
+        /// Tên khách
+        /// </summary>
+        [Required]
+        [Column(Order = 5)]
+        public string CustomerName { get; set; }
         /// <summary>
         /// Tài khoản khách
         /// </summary>
-        [Column(Order = 4)]
+        [Column(Order = 6)]
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
         /// <summary>
         /// Thông tin người nhận
         /// </summary>
-        [Column(Order = 5)]
+        [Column(Order = 7)]
         public string ReceiverInfo { get; set; }
         /// <summary>
         /// Trạng thái đơn hàng
         /// </summary>
-        [Column(Order = 6)]
+        [Column(Order = 8)]
         public int OrderStatusId { get; set; }
         [ForeignKey("OrderStatusId")]
         public virtual OrderStatus OrderStatus { get; set; }
         public virtual List<OrderItem> OrderItems { get; set; }
-
+        [Column(Order = 9)]
+        public int? AddressId { get; set; }
+        public virtual Address Address { get; set; }
     }
 }

@@ -313,6 +313,15 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ghi chú.
+        /// </summary>
+        public static string GHI_CHU {
+            get {
+                return ResourceManager.GetString("GHI_CHU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bảo Hành.
         /// </summary>
         public static string GUARANTEE {

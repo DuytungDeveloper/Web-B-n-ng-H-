@@ -21,6 +21,6 @@ namespace ECommerce.Model.EFModel.Models
         [Column(Order = 3)]
         public int Quantity { get; set; }
         [Column(Order = 4)]
-        public float CurrentPrice { get; set; }
+        public int CurrentPrice { get; set; }
     }
 }

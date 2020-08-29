@@ -43,62 +43,172 @@ $(document).ready(function () {
     });
     // wizard.smartWizard("reset");
     wizard.on("leaveStep", function (e, anchorObject, stepIndex, stepDirection) {
-        if (stepIndex == 1) {
-            var allData = $('#deliveryForm').serializeArray();
-            var isValid = true;
-            allData.forEach(element => {
-                $(`#${element.name}`).parent().removeClass("has-error");
-                switch (element.name) {
-                    case "customerName":
-                        if (element.value == "") {
-                            $(`#${element.name}`).parent().addClass("has-error");
-                            isValid = false;
-                        }
-                        break;
-                    case "customerPhone":
-                        if (element.value == "") {
-                            $(`#${element.name}`).parent().addClass("has-error");
-                            isValid = false;
-                        }
-                        break;
-                    case "deliveryAddress":
-                        if (element.value == "") {
-                            $(`#${element.name}`).parent().addClass("has-error");
-                            isValid = false;
-                        }
-                        break;
-                    default:
-                        break;
+        console.log(`stepIndex : ${stepIndex}, stepDirection : ${stepDirection}`)
+        if (stepDirection == "backward") {
+            return true;
+        } else {
+            if (stepIndex == 1) {
+                var allData = $('#deliveryForm').serializeArray();
+                var isValid = true;
+                allData.forEach(element => {
+                    $(`#${element.name}`).parent().removeClass("has-error");
+                    switch (element.name) {
+                        case "customerName":
+                            if (element.value == "") {
+                                $(`#${element.name}`).parent().addClass("has-error");
+                                isValid = false;
+                            }
+                            break;
+                        case "customerPhone":
+                            if (element.value == "") {
+                                $(`#${element.name}`).parent().addClass("has-error");
+                                isValid = false;
+                            }
+                            break;
+                        case "deliveryAddress":
+                            if (element.value == "") {
+                                $(`#${element.name}`).parent().addClass("has-error");
+                                isValid = false;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                });
+                if (!isValid) {
+                    Swal.fire(
+                        translateFunction('Vui lòng điền đầy đủ thông tin!'),
+                        translateFunction('Chúng tôi cần đầy đủ thông tin để có thể phục vụ quý khách một cách tốt nhất!'),
+                        'warning'
+                    );
                 }
-            });
-            if (!isValid) {
-                Swal.fire(
-                    'Vui lòng điền đầy đủ thông tin!',
-                    'Chúng tôi cần đầy đủ thông tin để có thể phục vụ quý khách một cách tốt nhất!',
-                    'warning'
-                );
+                return isValid;
+                // Swal.fire({
+                //     title: 'Are you sure?',
+                //     text: "You won't be able to revert this!",
+                //     icon: 'warning',
+                //     showCancelButton: true,
+                //     confirmButtonColor: '#3085d6',
+                //     cancelButtonColor: '#d33',
+                //     confirmButtonText: 'Yes, delete it!'
+                // }).then((result) => {
+                //     if (result.value) {
+                //         Swal.fire(
+                //             'Deleted!',
+                //             'Your file has been deleted.',
+                //             'success'
+                //         )
+                //         return true;
+                //     } else {
+                //         return false;
+                //     }
+                // })
             }
-            return isValid;
-            // Swal.fire({
-            //     title: 'Are you sure?',
-            //     text: "You won't be able to revert this!",
-            //     icon: 'warning',
-            //     showCancelButton: true,
-            //     confirmButtonColor: '#3085d6',
-            //     cancelButtonColor: '#d33',
-            //     confirmButtonText: 'Yes, delete it!'
-            // }).then((result) => {
-            //     if (result.value) {
-            //         Swal.fire(
-            //             'Deleted!',
-            //             'Your file has been deleted.',
-            //             'success'
-            //         )
-            //         return true;
-            //     } else {
-            //         return false;
-            //     }
-            // })
+            if (stepIndex == 2) {
+                var allData = $('#deliveryForm').serializeArray();
+                let orderData = {};
+                var isValid = true;
+                allData.forEach(element => {
+                    $(`#${element.name}`).parent().removeClass("has-error");
+                    switch (element.name) {
+                        case "customerName":
+                            if (element.value == "") {
+                                $(`#${element.name}`).parent().addClass("has-error");
+                                isValid = false;
+                            } else {
+                                orderData.CustomerName = element.value;
+                            }
+                            break;
+                        case "customerPhone":
+                            if (element.value == "") {
+                                $(`#${element.name}`).parent().addClass("has-error");
+                                isValid = false;
+                            } else {
+                                orderData.Phone = element.value;
+                            }
+                            break;
+                        case "deliveryAddress":
+                            if (element.value == "") {
+                                $(`#${element.name}`).parent().addClass("has-error");
+                                isValid = false;
+                            } else {
+                                orderData.Address = {
+                                    Street: element.value,
+                                    WardId: $("#deliveryWard").val(),
+                                    DistrictId: $("#deliveryDistrict").val(),
+                                    CityId: $("#deliveryCity").val(),
+                                };
+                            }
+                            break;
+                        case "Note":
+                            if (element.value != "") {
+                                orderData.Note = element.value;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                });
+                if (!isValid) {
+                    Swal.fire(
+                        translateFunction('Vui lòng điền đầy đủ thông tin người nhận hàng!'),
+                        translateFunction('Chúng tôi cần đầy đủ thông tin để có thể phục vụ quý khách một cách tốt nhất!'),
+                        'warning'
+                    );
+                }
+                else {
+                    let quanHe = $("#customerPosition").val();
+                    orderData.ReceiverInfo = `Tên người nhận hàng ${orderData.CustomerName} là ${quanHe} ở địa chỉ ${orderData.Address.Street} ()`;
+                    Swal.fire({
+                        icon: 'success',
+                        title: translateFunction('Đang lên đơn hàng!'),
+                        html: translateFunction('Vui lòng đợi trong giây lát, tiến trình có thể mất vài giây'),
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        allowOutsideClick: false,
+                        timerProgressBar: true,
+                        onBeforeOpen: () => {
+                            Swal.showLoading()
+                        }
+                    })
+                    console.log(orderData);
+                    $.ajax({
+                        url: '/' + getLang() + '/don-hang/createOrder',
+                        type: 'POST',
+                        data: orderData,
+                        success: function (result) {
+                            // Do something with the result
+                            console.log(result);
+                            if (result.success) {
+                                Swal.fire({
+                                    title: translateFunction('Lên đơn hàng thành công'),
+                                    html: translateFunction('Chúng tôi sẽ sớm liên lạc với quý khách. Cám ơn đã tin dùng sản phẩm của chúng tôi!'),
+                                    icon: 'success',
+                                    onClose: () => {
+                                        setCart([]);
+                                        window.location.href = "/";
+                                    }
+                                })
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: result.message,
+                                    html: `${result.errorMessage}`,
+                                })
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err);
+                            Swal.fire({
+                                icon: 'error',
+                                title: `${err.name}`,
+                                html: `${err.message} <br> ${err.body ? err.body : ''}`,
+                            })
+                        }
+                    });
+                }
+                return isValid;
+            }
         }
 
     });

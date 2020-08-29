@@ -201,6 +201,9 @@
   <data name="FREQUENTLY_QUESTION" xml:space="preserve">
     <value>Các Câu Hỏi Thường Gặp</value>
   </data>
+  <data name="GHI_CHU" xml:space="preserve">
+    <value>Ghi chú</value>
+  </data>
   <data name="GUARANTEE" xml:space="preserve">
     <value>Bảo Hành</value>
   </data>
