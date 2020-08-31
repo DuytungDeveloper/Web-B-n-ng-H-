@@ -19,6 +19,8 @@ using Microsoft.AspNet.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using System;
 using ECommerce.Controllers;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace ECommerce
 {
@@ -71,6 +73,7 @@ namespace ECommerce
                 options.User.RequireUniqueEmail = false;
                 options.User.RequireUniqueEmail = false;
             })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -114,6 +117,36 @@ namespace ECommerce
             services.AddLocalization(); // DI
             #endregion
 
+            #region Viết lại URL của Account
+            services.ConfigureApplicationCookie(options =>
+            {
+
+                ECommerce.Helpers.Common utils = new ECommerce.Helpers.Common();
+                options.LoginPath = $"/tai-khoan/dang-nhap";
+                options.AccessDeniedPath = "/tai-khoan/AccessDenied";
+                //options.Events = new Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents
+                //{
+                //    OnRedirectToLogin = ctx =>
+                //    {
+                //        var requestPath = ctx.Request.Path;
+                //        if (ctx.RedirectUri.ToLower().Contains("account/accessdenied"))
+                //        {
+
+                //            ctx.Response.Redirect("/" + utils.GetCurrentLang() + "/tai-khoan/AccessDenied");
+                //        }
+                //        if (ctx.RedirectUri.ToLower().Contains("account/login"))
+                //        {
+                //            ctx.Response.Redirect($"/{utils.GetCurrentLang()}/tai-khoan/dang-nhap");
+                //        }
+                //        return Task.CompletedTask;
+                //    }
+                //};
+
+            });
+            #endregion
+
+            //services.AddIdentity();
+            services.AddAuthorization();
 
 
         }

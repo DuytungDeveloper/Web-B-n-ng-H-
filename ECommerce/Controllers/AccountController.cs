@@ -9,29 +9,32 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Controllers
 {
-    [Route("{language}/tai-khoan/{action=index}")]
     //[Route("{language}/tai-khoan")]
     public class AccountController : Controller
     {
         UserManager<ApplicationUser> userManager;
         SignInManager<ApplicationUser> signInManager;
+        RoleManager<ApplicationUser> roleManager;
+        //public AccountController(UserManager<ApplicationUser> _usermana, SignInManager<ApplicationUser> _sign, RoleManager<ApplicationUser> _role)
         public AccountController(UserManager<ApplicationUser> _usermana, SignInManager<ApplicationUser> _sign)
         {
             userManager = _usermana;
             signInManager = _sign;
+            //roleManager = _role;
         }
         public IActionResult Index()
         {
             return View();
         }
-        [ActionName("dang-nhap")]
+        [Route("/tai-khoan/dang-nhap")]
+        [Route("{language}/tai-khoan/dang-nhap")]
         public IActionResult SignIn()
         {
             return View("SignIn");
         }
 
-        [ActionName("dang-nhap")]
         [HttpPost]
+        [Route("{language}/tai-khoan/dang-nhap")]
         public async Task<IActionResult> Login(LoginViewModel data)
         {
             var rs = await signInManager.PasswordSignInAsync(data.UserName, data.Password, true, false);
@@ -43,12 +46,12 @@ namespace ECommerce.Controllers
         }
 
 
-        [ActionName("dang-ky")]
+        [Route("{language}/tai-khoan/dang-ky")]
         public IActionResult SignUp()
         {
             return View("SignUp", new RegisterViewModel());
         }
-        [ActionName("dang-ky")]
+        [Route("{language}/tai-khoan/dang-ky")]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel data)
         {
@@ -62,17 +65,23 @@ namespace ECommerce.Controllers
                 UserName = data.UserName
             };
             var result = await userManager.CreateAsync(user, data.Password);
+            var resultRole = await userManager.AddToRoleAsync(user, "Guest");
             if (result.Succeeded)
             {
                 return RedirectToAction("dang-nhap");
             }
             return View("SignUp");
         }
-        [ActionName("dang-xuat")]
+        [Route("{language}/tai-khoan/dang-xuat")]
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("index", "home");
+        }
+        [Route("/tai-khoan/AccessDenied")]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }
