@@ -13,6 +13,8 @@ namespace ECommerce.Areas.Admin.Controllers
     [Area("Admin")]
     //[Authorize(Roles = "Developer")]
     [Authorize]
+    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Developer")]
     // [Route("Admin/[controller]")]
     public class HomeController : Controller
     {
@@ -28,9 +30,9 @@ namespace ECommerce.Areas.Admin.Controllers
         }
 
         //public async Task<IActionResult> Index()
-        [Authorize(Roles = "Admin,Developer")]
+        //[Authorize(Roles = "Admin,Developer")]
         //[Authorize(Roles = "Admin")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             //#region create default user
             //ApplicationUser developer = new ApplicationUser()
@@ -66,7 +68,8 @@ namespace ECommerce.Areas.Admin.Controllers
             //    var resultRoleDeveloper = await userManager.AddToRoleAsync(adminThien, "Admin");
             //}
             //#endregion
-            return View();
+            return RedirectToAction("Index", "Orders");
+            //return View();
         }
 
 

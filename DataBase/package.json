@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "faker": "^5.1.0",
     "mongodb": "^3.6.0",
     "toastr": "^2.1.4"
   }

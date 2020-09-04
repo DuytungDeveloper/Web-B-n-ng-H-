@@ -701,6 +701,12 @@ namespace ECommerce.Model.Migrations
                         .HasColumnType("int")
                         .HasDefaultValueSql("1");
 
+                    b.Property<int>("TotalItemInOrder")
+                        .HasColumnType("int");
+
+                    b.Property<long>("TotalPrice")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("UpdateBy")
                         .HasColumnType("nvarchar(max)");
 

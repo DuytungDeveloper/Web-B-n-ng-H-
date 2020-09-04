@@ -89,6 +89,30 @@ namespace ECommerce.Controllers
                 orderData.Email = string.IsNullOrEmpty(orderData.Email) ? "" : orderData.Email;
                 orderData.CustomerName = string.IsNullOrEmpty(orderData.CustomerName) ? "" : orderData.CustomerName;
                 orderData.AddressId = orderData.Address.Id;
+                orderData.TotalPrice = Helpers.Common.TotalPrice(allProduct.AllProduct.Select(x =>
+                {
+                    var productDetail = db.Products.Where(y => y.Id == x.ProductId).FirstOrDefault();
+                    if (productDetail == null) return new OrderItem();
+                    var price = productDetail.PriceDiscount.HasValue && productDetail.DiscountDateTo.HasValue && (DateTime.Now > productDetail.DiscountDateTo.Value) ? productDetail.PriceDiscount.Value : productDetail.Price;
+                    var orderItem = new OrderItem()
+                    {
+                        Quantity = x.Qty,
+                        CurrentPrice = price,
+                    };
+                    return orderItem;
+                }).ToList());
+                orderData.TotalItemInOrder = Helpers.Common.GetTotalItemInOrder(allProduct.AllProduct.Select(x =>
+                {
+                    var productDetail = db.Products.Where(y => y.Id == x.ProductId).FirstOrDefault();
+                    if (productDetail == null) return new OrderItem();
+                    var price = productDetail.PriceDiscount.HasValue && productDetail.DiscountDateTo.HasValue && (DateTime.Now > productDetail.DiscountDateTo.Value) ? productDetail.PriceDiscount.Value : productDetail.Price;
+                    var orderItem = new OrderItem()
+                    {
+                        Quantity = x.Qty,
+                        CurrentPrice = price,
+                    };
+                    return orderItem;
+                }).ToList());
                 db.Orders.Add(orderData);
                 //db.SaveChanges();
                 //var orderDataSave = new Order() { 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Numerics;
 
 namespace ECommerce.Model.EFModel.Models
 {
@@ -60,5 +61,17 @@ namespace ECommerce.Model.EFModel.Models
         [Column(Order = 9)]
         public int? AddressId { get; set; }
         public virtual Address Address { get; set; }
+
+
+
+
+        [Column(Order = 10)]
+        public int TotalItemInOrder { get; set; }
+        [Column(Order = 11)]
+        public long TotalPrice { get; set; }
+
+        [NotMapped]
+        public string StatusName { get; set; }
+
     }
 }

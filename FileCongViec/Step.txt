@@ -18,10 +18,22 @@ https://my.vultr.com/deploy/
 
 Step 1 :  Mở Package manager console. Chạy Migration cuối cùng.  Update-Database -Context ApplicationDbContext 
 Step 2 : Insert dữ liệu mẫu. Mở thư mục Database.
-            -   Mở File queryInsert.txt. Chạy lệnh ở trong để insert Product.
-            -   Mở File productStatus.txt. Chạy lệnh ở trong để cập nhật status Product.
-            -   Mở File UpdateData.sql. Chạy lệnh ở trong để cập nhật những sản phẩm có status khuyến mãi để cập nhật thời gian khuyến mãi Product.
-            -   Mở File images.txt. Chạy lệnh ở trong để insert Media mẫu. (Trong này chỉ có Image)
-            -   Mở File productmedia.txt. Chạy lệnh ở trong để insert  Media cho Product.(Thêm ảnh cho sản phẩm).
-            -   Tất cả các File trên trừ File queryInsert.txt là không đủ vì k random đủ hết các dữ liệu, nếu cần thêm dữ liệu thì vào file index.js để Random thêm. Trong đó là file tạo mẫu các câu insert mẫu. Ví dụ : let productMedia = []; là dùng để tạo mẫu hình ảnh cho sản phẩm
+            -   Mở File StorePreduce.sql
+
+            -   Mở File InsertProduct.sql. Chạy lệnh ở trong để insert Product.
+
+            -   Mở File UpdateProductStatus.sql. Chạy lệnh ở trong để cập nhật status Product.
+            -   Mở File UpdateProductSaleOff.sql. Chạy lệnh ở trong để cập nhật những sản phẩm có status khuyến mãi để cập nhật thời gian khuyến mãi Product.
+            -   Mở File InsertImages.sql. Chạy lệnh ở trong để insert Media mẫu. (Trong này chỉ có Image)
+            -   Mở File InsertProductmedia.sql. Chạy lệnh ở trong để insert  Media cho Product.(Thêm ảnh cho sản phẩm).
+
+            -   Mở File InsertCity.sql. (SET IDENTITY_INSERT Citys ON)
+            -   Mở File InsertDistricts.sql. (SET IDENTITY_INSERT Districts ON)
+            -   Mở File InsertWards.sql. (SET IDENTITY_INSERT Districts ON)
+
+            -   Mở File InsertOrder.sql
+            -   Mở File InsertOrderItems.sql
+
+
+            -   Tất cả các File trên trừ File InsertProduct.sql là không đủ vì k random đủ hết các dữ liệu, nếu cần thêm dữ liệu thì vào file index.js để Random thêm. Trong đó là file tạo mẫu các câu insert mẫu. Ví dụ : let productMedia = []; là dùng để tạo mẫu hình ảnh cho sản phẩm
 Step 3 : Build lại Project và chạy. Đôi khi Source build bị lỗi Runtime nhưng cứ Build vài lần là nó sẽ chạy.

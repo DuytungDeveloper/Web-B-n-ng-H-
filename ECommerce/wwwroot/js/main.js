@@ -131,7 +131,7 @@ function removeProductFromCart(id) {
     setCart(cart);
     refreshCart();
 }
-function removeProductFromCart_2(id){
+function removeProductFromCart_2(id) {
     removeProductFromCart(id);
     location.href = location.pathname;
 }
@@ -143,28 +143,32 @@ function refreshCart() {
     let data = {
         AllProduct: []
     };
-    for (var i = 0; i < cart.length; i++) {
-        let liProductCart = `<li class="product-info"><div class="p-left"><a onclick="removeProductFromCart(${cart[i].id})" class="remove_link"></a><a href="/${getLang()}/san-pham?link=${cart[i].url}.${cart[i].id}"><img class="img-responsive" src="${cart[i].product_Media[0].media.link}" alt="p10"></a></div><div class="p-right"><p class="p-name">${cart[i].name}</p><p class="p-rice">${intToPrice(cart[i].priceDiscount != null ? cart[i].priceDiscount : cart[i].price)}</p><p>${translateFunction("Số lượng")}: ${cart[i].qty}</p></div></li>`;
-        //let liProductCart = `<li class="product-info">
-        //                            <div class="p-left">
-        //                                <a onclick="removeProductFromCart(${cart[i].id})" class="remove_link"></a>
-        //                                <a href="/${getLang()}/san-pham?link=${cart[i].url}.${cart[i].id}">
-        //                                    <img class="img-responsive" src="${cart[i].product_Media[0].media.link}"
-        //                                         alt="p10">
-        //                                </a>
-        //                            </div>
-        //                            <div class="p-right">
-        //                                <p class="p-name">${cart[i].name}</p>
-        //                                <p class="p-rice">${intToPrice(cart[i].priceDiscount != null ? cart[i].priceDiscount : cart[i].price)}</p>
-        //                                <p>${translateFunction("Số lượng")}: ${cart[i].qty}</p>
-        //                            </div>
-        //                        </li>`;
-        totalPrice += (cart[i].priceDiscount != null ? cart[i].priceDiscount : cart[i].price) * cart[i].qty;
-        lsHtml.push(liProductCart);
-        data.AllProduct.push({
-            Qty: cart[i].qty,
-            ProductId: cart[i].id
-        });
+    if (cart != null)
+        for (var i = 0; i < cart.length; i++) {
+            let liProductCart = `<li class="product-info"><div class="p-left"><a onclick="removeProductFromCart(${cart[i].id})" class="remove_link"></a><a href="/${getLang()}/san-pham?link=${cart[i].url}.${cart[i].id}"><img class="img-responsive" src="${cart[i].product_Media[0].media.link}" alt="p10"></a></div><div class="p-right"><p class="p-name">${cart[i].name}</p><p class="p-rice">${intToPrice(cart[i].priceDiscount != null ? cart[i].priceDiscount : cart[i].price)}</p><p>${translateFunction("Số lượng")}: ${cart[i].qty}</p></div></li>`;
+            //let liProductCart = `<li class="product-info">
+            //                            <div class="p-left">
+            //                                <a onclick="removeProductFromCart(${cart[i].id})" class="remove_link"></a>
+            //                                <a href="/${getLang()}/san-pham?link=${cart[i].url}.${cart[i].id}">
+            //                                    <img class="img-responsive" src="${cart[i].product_Media[0].media.link}"
+            //                                         alt="p10">
+            //                                </a>
+            //                            </div>
+            //                            <div class="p-right">
+            //                                <p class="p-name">${cart[i].name}</p>
+            //                                <p class="p-rice">${intToPrice(cart[i].priceDiscount != null ? cart[i].priceDiscount : cart[i].price)}</p>
+            //                                <p>${translateFunction("Số lượng")}: ${cart[i].qty}</p>
+            //                            </div>
+            //                        </li>`;
+            totalPrice += (cart[i].priceDiscount != null ? cart[i].priceDiscount : cart[i].price) * cart[i].qty;
+            lsHtml.push(liProductCart);
+            data.AllProduct.push({
+                Qty: cart[i].qty,
+                ProductId: cart[i].id
+            });
+        }
+    else {
+        cart = [];
     }
     $("#ul-ls-cart-product").html(lsHtml.join(""));
     $("#title-cart-2").text(`${cart.length} ` + translateFunction("sản phẩm trong giỏ hàng"))
@@ -371,6 +375,39 @@ function changeSortType() {
 //     });
 //     return formatter.format(data);
 // }
+/**
+ * Chuyển ngày thành nội dung ngày tháng dễ hiểu
+ * @param {any} date
+ */
+function DateToString(date) {
+    // var d = new Date(date)
+    // var ye = new Intl.DateTimeFormat('vi-VN', { year: 'numeric' }).format(d)
+    // var mo = new Intl.DateTimeFormat('vi-VN', { month: '2-digit' }).format(d)
+    // var da = new Intl.DateTimeFormat('vi-VN', { day: '2-digit' }).format(d)
+    // var hh = new Intl.DateTimeFormat('vi-VN', { hour: '2-digit' }).format(d)
+    // var mm = new Intl.DateTimeFormat('vi-VN', { minute: '2-digit' }).format(d)
+    // var ss = new Intl.DateTimeFormat('vi-VN', { second: '2-digit' }).format(d)
+    // // console.log(`${da}/${mo}/${ye} ${hh}:${mm}:${ss < 10 ? '0' + ss : ss}`)
+    // return `${da}/${mo}/${ye} ${hh}:${mm}:${ss < 10 ? '0' + ss : ss}`;
+    var hour = date.getHours();
+    hour = (hour < 10 ? "0" : "") + hour;
+
+    var min = date.getMinutes();
+    min = (min < 10 ? "0" : "") + min;
+
+    var sec = date.getSeconds();
+    sec = (sec < 10 ? "0" : "") + sec;
+
+    var year = date.getFullYear();
+
+    var month = date.getMonth() + 1;
+    month = (month < 10 ? "0" : "") + month;
+
+    var day = date.getDate();
+    day = (day < 10 ? "0" : "") + day;
+
+    return day + "/" + month + "/" + year + " " + hour + ":" + min + ":" + sec;
+}
 
 /**
  * Phiên dịch   
@@ -385,13 +422,13 @@ function translateFunction(value) {
             "Thêm thành công!": { en: "Add to cart success!" },
             "Đăng đánh giá thất bại!": { en: "Post failed review!" },
             "Đăng đánh giá thành công!": { en: "Post a successful review!" },
-             "Vui lòng điền đầy đủ thông tin người nhận hàng!": {en : "Please complete the consignee information!"},
-             "Chúng tôi cần đầy đủ thông tin để có thể phục vụ quý khách một cách tốt nhất!": {en : "We need enough information to be able to serve you the best way!"},
-             "Vui lòng điền đầy đủ thông tin!": {en : "Please fill out the form!"},
-             "Đang lên đơn hàng!": {en : "Ordering!"},
-             "Vui lòng đợi trong giây lát, tiến trình có thể mất vài giây": {en : "Please wait a moment, the process may take a few seconds"},
-             "Lên đơn hàng thành công": {en : "Order successfully"},
-             "Chúng tôi sẽ sớm liên lạc với quý khách. Cám ơn đã tin dùng sản phẩm của chúng tôi!": {en : "We will contact you shortly. Thank you for trusting our products!"},
+            "Vui lòng điền đầy đủ thông tin người nhận hàng!": { en: "Please complete the consignee information!" },
+            "Chúng tôi cần đầy đủ thông tin để có thể phục vụ quý khách một cách tốt nhất!": { en: "We need enough information to be able to serve you the best way!" },
+            "Vui lòng điền đầy đủ thông tin!": { en: "Please fill out the form!" },
+            "Đang lên đơn hàng!": { en: "Ordering!" },
+            "Vui lòng đợi trong giây lát, tiến trình có thể mất vài giây": { en: "Please wait a moment, the process may take a few seconds" },
+            "Lên đơn hàng thành công": { en: "Order successfully" },
+            "Chúng tôi sẽ sớm liên lạc với quý khách. Cám ơn đã tin dùng sản phẩm của chúng tôi!": { en: "We will contact you shortly. Thank you for trusting our products!" },
             // "Thêm": {en : "Add"},
             // "Thêm": {en : "Add"},
             // "Thêm": {en : "Add"},

@@ -1,0 +1,115 @@
+﻿@section AdminScripts{
+    <script type="text/javascript" src="~/admin/js/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/admin/js/plugins/sortable/sortable.min.js"></script>
+    <script>
+        function updateModalData(idLog) {
+            $.ajax({
+                method: "GET",
+                url: "/getLogById",
+                data: { id: idLog }
+            })
+                .done(function (result) {
+                    if (result != null) {
+                        $("#dataView").html(result.data.toString());
+                        $("#infoView").html(result.info.toString());
+                        $("#codeView").html(result.code);
+                        $('#default-modal').modal('show')
+                    } else {
+                        console(result)
+                    }
+                });
+        }
+        (function ($) {
+            $('#table-don-hang').DataTable({
+                "processing": true,
+                serverSide: true,
+                ajax: {
+                    url: '/api/order/search',
+                    "dataSrc": "data",
+                    "type": "POST"
+                },
+                "columns": [
+                    { "targets": 0, data: "id", className: "" },
+                    { "targets": 1, data: "customerName", className: "" },
+                    { "targets": 2, data: "phone", className: "" },
+                    { "targets": 3, data: "_TotalItemInOrder", className: "" },
+                    {
+                        "targets": 4, data: "_TotalPrice", className: "",
+                        render: function (data, type, row) {
+                            var formatter = new Intl.NumberFormat("vi", {
+                                style: "currency",
+                                currency: "VND"
+                            });
+                            return formatter.format(data);
+                        }
+                    },
+                    {
+                        "targets": 5, data: "createDate", className: "",
+                        render: function (data, type, row) {
+                            return DateToString(new Date(data));
+                        }
+                    },
+                    { "targets": 6, data: "statusName", className: "" },
+                    {
+                        "targets": 7, data: "data", className: "",
+                        render: function (data, type, row) {
+                            return '<button onclick="updateModalData(' + "'" + row.id + "'" + ')" class="btn btn-sm btn-primary">Chi tiết</button>';
+                        }
+                    },
+                ],
+                // "columns": [
+                //     { "data": "name"},
+                //     { "data": "level"},
+                //     { "data": "message"},
+                //     { "data": "dateCreated"},
+                //     { "data": "data"},
+                // ],
+                responsive: true,
+                "order": [[5, "desc"]]
+            });
+        })(jQuery);
+    </script>
+}
+
+
+<!-- page title -->
+<div class="page-title">
+    <h1>Quản lý đơn hàng</h1>
+    <p>Xét duyệt đơn hàng</p>
+
+    @*<ul class="breadcrumb">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Tables</a></li>
+            <li>Sortable tables</li>
+        </ul>*@
+</div>
+<!-- ./page title -->
+<!-- datatables plugin -->
+<div class="wrapper wrapper-white">
+    @*<div class="page-subtitle">
+            <h3>DataTables</h3>
+            <p>DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, and will add advanced interaction controls to any HTML table.</p>
+            <p>Add class <code>.table-sortable</code> to table to get zero configuration.</p>
+        </div>*@
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="table-don-hang">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Tên khách</th>
+                    <th>SĐT</th>
+                    <th>Số lượng</th>
+                    <th>Tổng tiền</th>
+                    <th>Ngày đặt</th>
+                    <th>Trạng thái</th>
+                    <th>Thao Tác</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<!-- ./datatables plugin -->
