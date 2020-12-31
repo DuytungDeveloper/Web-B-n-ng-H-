@@ -16,7 +16,7 @@ namespace ECommerce.Areas.Admin.Controllers
     [Area("Admin")]
     [Route("/admin/order/{action=index}")]
     [Authorize(Roles = "Admin")]
-    [Authorize(Roles = "Developer")]
+    //[Authorize(Roles = "Developer")]
     public class OrdersController : Controller
     {
         UserManager<ApplicationUser> userManager;

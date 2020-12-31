@@ -56,9 +56,17 @@ namespace ECommerce
 
             //services.AddDefaultIdentity<ApplicationUser>(options =>
             //{
-            //    options.SignIn.RequireConfirmedAccount = false;
-            //    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-            //    options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier;
+            //    //options.SignIn.RequireConfirmedAccount = false;
+            //    //options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+            //    //options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier;
+
+            //    options.User.RequireUniqueEmail = false;
+            //    options.Password.RequireLowercase = false;
+            //    options.Password.RequireNonAlphanumeric = false;
+            //    options.Password.RequireUppercase = false;
+            //    options.User.RequireUniqueEmail = false;
+            //    options.User.RequireUniqueEmail = false;
+            //    options.User.RequireUniqueEmail = false;
             //})
             //    .AddRoles<IdentityRole>()
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -73,9 +81,22 @@ namespace ECommerce
                 options.User.RequireUniqueEmail = false;
                 options.User.RequireUniqueEmail = false;
             })
+                .AddDefaultTokenProviders()
+                .AddRoleManager<RoleManager<IdentityRole>>()
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //services.AddDefaultIdentity<ApplicationUser>(options => {
+            //    options.User.RequireUniqueEmail = false;
+            //    options.Password.RequireLowercase = false;
+            //    options.Password.RequireNonAlphanumeric = false;
+            //    options.Password.RequireUppercase = false;
+            //    options.User.RequireUniqueEmail = false;
+            //    options.User.RequireUniqueEmail = false;
+            //    options.User.RequireUniqueEmail = false;
+            //})
+            //    .AddRoles<IdentityRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(o =>
@@ -96,8 +117,8 @@ namespace ECommerce
 
             #endregion
             services.RegisterServices();// DI
-            services.AddMvc();
             services.AddOptions();
+            services.AddMvc();
 
             #region Cài đặt đa ngữ hỗ trợ (Đa ngữ)
             var cultureLt = new CultureInfo("vi");
@@ -146,7 +167,23 @@ namespace ECommerce
             #endregion
 
             //services.AddIdentity();
-            services.AddAuthorization();
+
+            //services.AddAuthorization();
+            services.AddAuthorizationCore();
+
+            //services.AddAuthorizationCore(options =>
+            //{
+            //    options.AddPolicy("AdminAccess", policy => policy.RequireRole("Admin"));
+            //});
+
+            //services.AddAuthorization(options =>
+            //  options.AddPolicy("RequiredAdminRole",
+            //  policy => policy.RequireRole("Admin")));
+            
+
+            //services.AddAuthorization(options =>
+            //options.AddPolicy("AdminApp",
+            //    policy => policy.RequireClaim("Manager")));
 
 
         }
@@ -167,12 +204,14 @@ namespace ECommerce
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+       
 
             #region Cài đặt đa ngữ
             // Inject  Service của nó vào
             //app.UseRequestLocalization();
             app.UseMiddleware<LanguageMiddleware>();
             #endregion
+
             #region Authen
             app.UseAuthentication();
             app.UseAuthorization();
@@ -183,6 +222,8 @@ namespace ECommerce
             #region Cài đặt đường dẫn cho hệ thống
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages(); //Routes for pages
+                endpoints.MapControllers(); //Routes for my API controllers
                 endpoints.MapControllerRoute("default", "{language:length(2)}/{controller}/{action}",
                     defaults: new
                     {

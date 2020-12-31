@@ -14,7 +14,7 @@ namespace ECommerce.Areas.Admin.Controllers
     //[Authorize(Roles = "Developer")]
     [Authorize]
     [Authorize(Roles = "Admin")]
-    [Authorize(Roles = "Developer")]
+    //[Authorize(Roles = "Developer")]
     // [Route("Admin/[controller]")]
     public class HomeController : Controller
     {

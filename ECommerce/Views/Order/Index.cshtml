@@ -59,7 +59,7 @@
                                     @if (Model.Products != null) for (int i = 0; i < Model.Products.Count; i++)
                                         {
                                             var data = Model.Products[i];
-                                            <tr>
+                                            <tr id="product-cart-@data.Id">
                                                 <td class="cart_product">
                                                     <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url +"."+data.Id)">
                                                         <img src="@(data.Product_Media.Count() > 0 ?  data.Product_Media[0].Media.Link : "/assets/data/p35.jpg")" alt="SPECIAL PRODUCTS">
@@ -85,19 +85,19 @@
                                                     </td>
                                                 }
                                                 <td class="qty">
-                                                    <input class="form-control input-sm" type="number" min="1" value="@data.Qty">
-                                                    <a href="#"><i class="fa fa-caret-up"></i></a>
-                                                    <a href="#"><i class="fa fa-caret-down"></i></a>
+                                                    <input class="form-control input-sm" id="product-qty-@data.Id" type="number" min="1" value="@data.Qty" disabled>
+                                                    <a onclick="tangSoLuongSanPham(@data.Id,@(data.PriceDiscount.HasValue ? data.PriceDiscount.Value : data.Price),true)"><i class="fa fa-caret-up"></i></a>
+                                                    <a onclick="tangSoLuongSanPham(@data.Id,@(data.PriceDiscount.HasValue ? data.PriceDiscount.Value : data.Price),false)"><i class="fa fa-caret-down"></i></a>
                                                 </td>
                                                 <td class="price">
                                                     @if (data.DiscountDateTo.HasValue && data.DiscountDateTo > new DateTime() && data.PriceDiscount.HasValue)
                                                     {
 
-                                                        <span class="price product-price">@(((System.Numerics.BigInteger)data.PriceDiscount.Value*data.Qty).ToString("C0", new CultureInfo("vi")))</span>
+                                                        <span class="price product-price" id="price-total-@data.Id">@(((System.Numerics.BigInteger)data.PriceDiscount.Value*data.Qty).ToString("C0", new CultureInfo("vi")))</span>
                                                     }
                                                     else
                                                     {
-                                                        <span class="price product-price">@(((System.Numerics.BigInteger)data.Price*data.Qty).ToString("C0", new CultureInfo("vi")))</span>
+                                                        <span class="price product-price" id="price-total-@data.Id">@(((System.Numerics.BigInteger)data.Price*data.Qty).ToString("C0", new CultureInfo("vi")))</span>
                                                     }
                                                 </td>
                                                 <td class="action">
@@ -107,26 +107,26 @@
                                         }
                                 </tbody>
                                 <tfoot>
-                                    <tr>
+                                    @*<tr>
                                         <td colspan="3">@language.TAM_TINH</td>
-                                        <td colspan="2">@Model.TamTinh.ToString("C0", new CultureInfo("vi"))</td>
+                                        <td colspan="2" id="tamTinh">@Model.TamTinh.ToString("C0", new CultureInfo("vi"))</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td colspan="3">@language.THUE_10</td>
-                                        <td colspan="2">@Model.Thue.ToString("C0", new CultureInfo("vi"))</td>
+                                        <td colspan="2" id="thue10">@Model.Thue.ToString("C0", new CultureInfo("vi"))</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td colspan="3">@language.VAN_CHUYEN</td>
-                                        <td colspan="2">@(0.ToString("C0", new CultureInfo("vi")))</td>
+                                        <td colspan="2" id="vanChuyen">@(0.ToString("C0", new CultureInfo("vi")))</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td colspan="3"><strong>@language.TONG</strong></td>
-                                        <td colspan="2"><strong>@Model.Total.ToString("C0", new CultureInfo("vi"))</strong></td>
+                                        <td colspan="2" id="tongTien"><strong>@Model.Total.ToString("C0", new CultureInfo("vi"))</strong></td>
                                         <td></td>
-                                    </tr>
+                                    </tr>*@
                                 </tfoot>
                             </table>
                         </div>

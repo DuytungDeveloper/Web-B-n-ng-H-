@@ -746,7 +746,7 @@ let main = async () => {
 
     //#region Tạo Đơn mẫu Chi Tiết
     let allOrderItems = [];
-    for (let i = 1; i <= 10000; i++) {
+    for (let i = 10000; i <= 19998; i++) {
         let abc = `exec SP_RANDOM_ORDERITEM_BY_ORDERID ${i}`;
         allOrderItems.push(abc);
     }

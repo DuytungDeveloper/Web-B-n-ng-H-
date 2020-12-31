@@ -17,7 +17,7 @@ namespace ECommerce.Areas.Admin.Models
 
     public class FilterSearchViewModel
     {
-        public string value { get; set; }
+        public string value { get; set; } = "";
         public bool regex { get; set; }
     }
     public class FilterOrderViewModel

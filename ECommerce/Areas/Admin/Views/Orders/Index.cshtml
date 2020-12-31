@@ -5,17 +5,19 @@
         function updateModalData(idLog) {
             $.ajax({
                 method: "GET",
-                url: "/getLogById",
+                url: '/api/Order',
                 data: { id: idLog }
             })
                 .done(function (result) {
+                    $('#myModal').modal('toggle')
+                    console.log(result)
                     if (result != null) {
-                        $("#dataView").html(result.data.toString());
+                        $("#myModalLabel").html(result.data.customerName);
                         $("#infoView").html(result.info.toString());
                         $("#codeView").html(result.code);
                         $('#default-modal').modal('show')
                     } else {
-                        console(result)
+                        console.log(result)
                     }
                 });
         }
@@ -32,9 +34,9 @@
                     { "targets": 0, data: "id", className: "" },
                     { "targets": 1, data: "customerName", className: "" },
                     { "targets": 2, data: "phone", className: "" },
-                    { "targets": 3, data: "_TotalItemInOrder", className: "" },
+                    { "targets": 3, data: "totalItemInOrder", className: "" },
                     {
-                        "targets": 4, data: "_TotalPrice", className: "",
+                        "targets": 4, data: "totalPrice", className: "",
                         render: function (data, type, row) {
                             var formatter = new Intl.NumberFormat("vi", {
                                 style: "currency",
@@ -92,7 +94,7 @@
             <p>Add class <code>.table-sortable</code> to table to get zero configuration.</p>
         </div>*@
 
-    <div class="table-responsive">
+    <div class="">
         <table class="table table-bordered table-striped" id="table-don-hang">
             <thead>
                 <tr>
@@ -109,6 +111,32 @@
             <tbody>
             </tbody>
         </table>
+    </div>
+
+
+
+    <!-- Button trigger modal -->
+    @*<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        Launch demo modal
+    </button>*@
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

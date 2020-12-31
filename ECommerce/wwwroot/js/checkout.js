@@ -1,3 +1,4 @@
+let editedCart = false;
 function updateWardSelect() {
     $.ajax({
         method: "get",
@@ -26,7 +27,7 @@ function updateWardSelect() {
 }
 $(document).ready(function () {
 
-    var wizard = $('#smartwizard').smartWizard({
+    let wizard = $('#smartwizard').smartWizard({
         // theme : "sw-theme-arrows",
         justified: true,
         lang: { // Language variables for button
@@ -44,12 +45,20 @@ $(document).ready(function () {
     // wizard.smartWizard("reset");
     wizard.on("leaveStep", function (e, anchorObject, stepIndex, stepDirection) {
         console.log(`stepIndex : ${stepIndex}, stepDirection : ${stepDirection}`)
+    let listSanPham = getCart();
+        if (editedCart) {
+            location.reload();
+        }
         if (stepDirection == "backward") {
+            console.log('1')
             return true;
         } else {
-            if (stepIndex == 1) {
-                var allData = $('#deliveryForm').serializeArray();
-                var isValid = true;
+            //if (parseInt(stepIndex) == 1 && stepDirection != "backward" && listSanPham.length > 0) return false;
+            console.log(parseInt(stepIndex) == 1 && stepDirection != "backward");
+            if (parseInt(stepIndex) == 1 && stepDirection != "backward") {
+            console.log('2')
+                let allData = $('#deliveryForm').serializeArray();
+                let isValid = true;
                 allData.forEach(element => {
                     $(`#${element.name}`).parent().removeClass("has-error");
                     switch (element.name) {
@@ -82,7 +91,7 @@ $(document).ready(function () {
                         'warning'
                     );
                 }
-                return isValid;
+                return isValid ? (listSanPham.length > 0 ? true : false) : false;
                 // Swal.fire({
                 //     title: 'Are you sure?',
                 //     text: "You won't be able to revert this!",
@@ -210,7 +219,6 @@ $(document).ready(function () {
                 return isValid;
             }
         }
-
     });
     $.ajax({
         method: "get",
@@ -296,4 +304,27 @@ function deliveryDistrictChange(e) {
             console.log(e)
         }
     })
+}
+
+
+function tangSoLuongSanPham(productId,giaTien, tang) {
+    let listSanPham = getCart();
+    for (var i = 0; i < listSanPham.length; i++) {
+        if (listSanPham[i].id == productId) {
+            listSanPham[i].qty = tang ? listSanPham[i].qty + 1 : listSanPham[i].qty - 1;
+            if (listSanPham[i].qty <= 0) {
+                //$("#product-cart-" + productId).remove();
+                listSanPham[i].qty = 1;
+            }
+            $("#product-qty-" + productId).val(listSanPham[i].qty);
+            $("#price-total-" + productId).html(intToPrice(listSanPham[i].qty * parseInt(giaTien)));
+            //console.log("#price-total-" + productId);
+            //console.log((giaTien));
+            //console.log(parseInt(giaTien));
+        }
+    }
+    listSanPham = listSanPham.filter(x => x.qty > 0);
+    editedCart = true;
+    setCart(listSanPham);
+    refreshCart();
 }

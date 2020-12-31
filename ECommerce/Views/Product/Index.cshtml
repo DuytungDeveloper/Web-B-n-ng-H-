@@ -427,9 +427,9 @@
                                     {
                                         <div class="product-comments-block-tab">
                                             <div class="comment row">
-                                                <div class="col-sm-3 author">
+                                                <div class="col author">
                                                     <div class="grade">
-                                                        <span>Grade</span>
+                                                        @*<span>Grade</span>*@
                                                         <input type="range" value="@Model.ProductDetail.Reviews[i].Point.ToString("G",CultureInfo.InvariantCulture)" step="0.1" id="rate-@i">
                                                         <div class="rateit" data-rateit-backingfld="#rate-@i" data-rateit-resetable="false" data-rateit-ispreset="true"
                                                              data-rateit-min="0" data-rateit-max="5" data-rateit-readonly="true">

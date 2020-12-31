@@ -252,36 +252,37 @@ namespace ECommerce.Controllers
         #region Orders
         [HttpPost]
         [Route("api/Order/search")]
-        public async Task<ActionResult<ResultData<IEnumerable<Order>>>> GetAllOrder([FromForm]FilterViewModel filter)
+        public async Task<ActionResult<ResultData<IEnumerable<Order>>>> GetAllOrder([FromForm] FilterViewModel filter)
         {
             db.Database.SetCommandTimeout(99999999);
             ResultData<IEnumerable<Order>> rs = new ResultData<IEnumerable<Order>>();
-            string stringSearch = filter.search.value;
-            var mainQuery = db.Orders.Where(orders =>
-                            stringSearch.Contains(orders.Id.ToString())
-                         || stringSearch.Contains(orders.Code)
-                         || stringSearch.Contains(orders.CustomerName)
-                         || stringSearch.Contains(orders.Email)
-                         || stringSearch.Contains(orders.Phone)
-                         || stringSearch.Contains(orders.Note)
-                         || stringSearch.Contains(orders.ReceiverInfo)
-                         || stringSearch.Contains(orders.CreateDate.ToString())
-                         || stringSearch.Contains(orders.Address.Street)
-                         || stringSearch.Contains(orders.OrderStatus.Name)
-
-
-                         || orders.Code.Contains(stringSearch)
-                         || orders.CustomerName.Contains(stringSearch)
-                         || orders.Email.Contains(stringSearch)
-                         || orders.Phone.Contains(stringSearch)
-                         || orders.Note.Contains(stringSearch)
-                         || orders.ReceiverInfo.Contains(stringSearch)
-                         || orders.CreateDate.ToString().Contains(stringSearch)
-                         || orders.Address.Street.Contains(stringSearch)
-                         || orders.OrderStatus.Name.Contains(stringSearch)
-
-
-                         ).Include(x => x.Address).Include(x => x.OrderItems).Include(x => x.OrderStatus).AsQueryable();
+            string stringSearch = string.IsNullOrEmpty(filter.search.value) ? "" : filter.search.value;
+            //var mainQuery = db.Orders.Where(data =>
+            //    (data.Id.ToString()
+            //    + " "
+            //    + data.Code.ToString()
+            //    + " "
+            //    + data.CustomerName
+            //    + " "
+            //    + data.Email
+            //    + " "
+            //    + data.Phone
+            //    + " "
+            //    + data.Note
+            //    + " "
+            //    + data.ReceiverInfo
+            //    + " "
+            //    + data.CreateDate.Value.ToString()
+            //    + " "
+            //    + data.Address.Street
+            //    + " "
+            //    + data.OrderStatus.Name
+            //    ).Contains(stringSearch)
+            //).Include(x => x.Address).Include(x => x.OrderItems).Include(x => x.OrderStatus).AsEnumerable();
+            var stringSQL = $"select Orders.* from Orders join Address on Orders.AddressId = Address.Id join OrderStatus on Orders.OrderStatusId = OrderStatus.Id where (CAST(Orders.Id as varchar)+ ' '+ Orders.Code+ ' '+ Orders.CustomerName+ ' '+ Orders.Email+ ' '+ Orders.Phone+ ' '+ Orders.Note+ ' '+ Orders.ReceiverInfo+ ' '+ CONVERT(VARCHAR(10),Orders.CreateDate,1) + ' '+ Address.Street+ ' '+ OrderStatus.Name) LIKE N'%{stringSearch.Replace(" ", "%")}%'";
+            stringSQL = stringSearch == "" ? "select Orders.* from Orders" : stringSQL;
+            var mainQuery = db.Orders.FromSqlRaw(stringSQL).Include(x => x.Address).Include(x => x.OrderItems).Include(x => x.OrderStatus).AsEnumerable();
+            //int count2 = mainQuery2.Count();
             int count = mainQuery.Count();
             var Item = new List<Order>();
             switch (filter.order[0].column)
@@ -338,19 +339,8 @@ namespace ECommerce.Controllers
             };
             return Ok(result);
         }
-        [Route("api/Order/all")]
-        public async Task<ActionResult<ResultData<IEnumerable<Order>>>> GetAllOrder()
-        {
-            ResultData<IEnumerable<Order>> data = new ResultData<IEnumerable<Order>>();
-            var Item = await GetAll<Order>();
-            if (Item == null) return data;
-            data.Data = Item;
-            data.Success = true;
-            data.Message = "Thành công !";
-            return Ok(data);
-        }
-        [Route("api/Order")]
-        public async Task<ActionResult<ResultData<Order>>> GetOrderById([FromRoute] int Id)
+        [HttpGet("api/Order")]
+        public async Task<ActionResult<ResultData<Order>>> GetOrderById(int Id)
         {
             ResultData<Order> data = new ResultData<Order>();
             Order Item = await GetById<Order>(Id);
@@ -360,8 +350,7 @@ namespace ECommerce.Controllers
             data.Message = "Thành công !";
             return Ok(data);
         }
-        [HttpPost]
-        [Route("api/Order")]
+        [HttpPost("api/Order")]
         public async Task<ActionResult<ResultData<Order>>> Add([FromBody] Order body)
         {
             if (!ModelState.IsValid)
@@ -375,8 +364,7 @@ namespace ECommerce.Controllers
             data.Message = rs > 0 ? "Thành công !" : "Thất bại !";
             return Ok(data);
         }
-        [HttpPut("{Id}")]
-        [Route("api/Order")]
+        [HttpPut("api/Order")]
         public async Task<ActionResult<ResultData<Order>>> Update([FromBody] Order body, [FromRoute] int Id = 0)
         {
             if (!ModelState.IsValid || Id < 1)
@@ -404,8 +392,7 @@ namespace ECommerce.Controllers
             data.Message = rs > 0 ? "Thành công !" : "Thất bại !";
             return Ok(data);
         }
-        [HttpDelete("{Id}")]
-        [Route("api/Order")]
+        [HttpDelete("api/Order")]
         public async Task<ActionResult<ResultData<Order>>> Delete([FromRoute] int Id = 0)
         {
             if (Id < 1)

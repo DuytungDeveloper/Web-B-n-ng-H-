@@ -257,9 +257,9 @@ async function addReviewForProduct(e) {
 
                 let reviewData = `<div class="product-comments-block-tab">
                                         <div class="comment row">
-                                            <div class="col-sm-3 author">
+                                            <div class="col author">
                                                 <div class="grade">
-                                                    <span>Grade</span>
+                                                    <span></span>
                                                     <input type="range" value="${rs.data.point}" step="0.1" id="rate-${rs.data.id}">
                                                     <div class="rateit" id="append-rate-${rs.data.id}" data-rateit-backingfld="#rate-${rs.data.id}" data-rateit-resetable="false" data-rateit-ispreset="true"
                                                          data-rateit-min="0" data-rateit-max="5" data-rateit-readonly="true">

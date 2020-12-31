@@ -31,6 +31,7 @@ Step 2 : Insert dữ liệu mẫu. Mở thư mục Database.
             -   Mở File InsertDistricts.sql. (SET IDENTITY_INSERT Districts ON)
             -   Mở File InsertWards.sql. (SET IDENTITY_INSERT Districts ON)
 
+            -   Mở File InsertAddress.sql
             -   Mở File InsertOrder.sql
             -   Mở File InsertOrderItems.sql
 
