@@ -30,7 +30,7 @@ namespace ECommerce.Model.EFModel.Models
         /// <summary>
         /// Email khách
         /// </summary>
-        [Required]
+        //[Required]
         [Column(Order = 4)]
         public string Email { get; set; }
         /// <summary>

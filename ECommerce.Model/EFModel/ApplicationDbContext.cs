@@ -394,7 +394,8 @@ namespace ECommerce.Model.EFModel
 
             #region Order
             modelBuilder.Entity<OrderItem>().HasKey(sc => new { sc.ProductId, sc.OrderId });
-
+            modelBuilder.Entity<Order>()
+                .HasMany(s => s.OrderItems);
             modelBuilder.Entity<OrderItem>()
                 .HasOne<Order>(sc => sc.Order)
                 .WithMany(s => s.OrderItems)

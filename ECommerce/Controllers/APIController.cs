@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Logging;
+using Nancy.Json;
+using Newtonsoft.Json;
 
 namespace ECommerce.Controllers
 {
@@ -340,12 +342,17 @@ namespace ECommerce.Controllers
             return Ok(result);
         }
         [HttpGet("api/Order")]
-        public async Task<ActionResult<ResultData<Order>>> GetOrderById(int Id)
+        public async Task<ActionResult<ResultData<string>>> GetOrderById(int Id)
         {
-            ResultData<Order> data = new ResultData<Order>();
-            Order Item = await GetById<Order>(Id);
+            ResultData<string> data = new ResultData<string>();
+            //Order Item = await GetById<Order>(Id);
+            Order Item = db.Orders.Where(x => x.Id == Id).Include(x => x.OrderItems).FirstOrDefault();
             if (Item == null) return data;
-            data.Data = Item;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
             data.Success = true;
             data.Message = "Thành công !";
             return Ok(data);
@@ -365,25 +372,27 @@ namespace ECommerce.Controllers
             return Ok(data);
         }
         [HttpPut("api/Order")]
-        public async Task<ActionResult<ResultData<Order>>> Update([FromBody] Order body, [FromRoute] int Id = 0)
+        public async Task<ActionResult<ResultData<Order>>> Update([FromBody] Order body)
         {
-            if (!ModelState.IsValid || Id < 1)
+            //if (!ModelState.IsValid || Id < 1)
+            if (body.Id < 1)
             {
                 return BadRequest(ModelState);
             }
 
-            var GetItem = await GetById<Order>(Id);
+            var GetItem = await GetById<Order>(body.Id);
             ResultData<Order> data = new ResultData<Order>();
             if (GetItem == null)
                 return Ok(data);
             #region
             GetItem.OrderStatusId = body.OrderStatusId == 0 ? GetItem.OrderStatusId : body.OrderStatusId;
-            GetItem.Note = body.Note;
-            GetItem.Phone = body.Phone;
-            GetItem.Code = body.Code;
-            GetItem.ReceiverInfo = body.ReceiverInfo;
-            GetItem.OrderStatusId = body.OrderStatusId == 0 ? GetItem.OrderStatusId : body.OrderStatusId;
-            GetItem.UpdateBy = body.UpdateBy;
+            GetItem.Note = string.IsNullOrEmpty(body.Note) ? GetItem.Note : body.Note;
+            GetItem.Phone = string.IsNullOrEmpty(body.Phone) ? GetItem.Phone : body.Phone;
+            GetItem.Email = string.IsNullOrEmpty(body.Email) ? GetItem.Email : body.Email;
+            GetItem.CustomerName = string.IsNullOrEmpty(body.CustomerName) ? GetItem.CustomerName : body.CustomerName;
+            GetItem.Code = string.IsNullOrEmpty(body.Code) ? GetItem.Code : body.Code;
+            GetItem.ReceiverInfo = string.IsNullOrEmpty(body.ReceiverInfo) ? GetItem.ReceiverInfo : body.ReceiverInfo;
+            GetItem.UpdateBy = User.Identity.Name;
             GetItem.UpdateDate = DateTime.Now;
             #endregion
             var rs = await Update<Order>(GetItem);
@@ -404,6 +413,44 @@ namespace ECommerce.Controllers
             var rs = await DeleteById<Order>(Id);
             data.Success = rs > 0 ? true : false;
             data.Message = rs > 0 ? "Thành công !" : "Thất bại !";
+            return Ok(data);
+        }
+        #endregion
+
+        #region Product
+        [HttpGet("api/Product/{id}")]
+        public async Task<ActionResult<ResultData<string>>> GetProductById(int id)
+        {
+            ResultData<string> data = new ResultData<string>();
+            //Order Item = await GetById<Order>(Id);
+            //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
+            var Item = db.Products.Where(x => x.Id == id).OrderByDescending(x => x.CreateDate).Take(10).Include(i => i.Product_ProductStatus).Include(i => i.Product_Media).Include("Product_Media.Media").Include(i => i.BrandProduct).Include(x => x.Reviews).FirstOrDefault();
+            if (Item == null) return data;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            data.Success = true;
+            data.Message = "Thành công !";
+            return Ok(data);
+        }
+        #endregion
+
+        #region OrderStatus
+        [HttpGet("api/OrderStatus")]
+        public async Task<ActionResult<ResultData<string>>> GetAllOrderStatus()
+        {
+            ResultData<string> data = new ResultData<string>();
+            var Item = db.OrderStatus.ToList();
+            if (Item == null) return data;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            data.Success = true;
+            data.Message = "Thành công !";
             return Ok(data);
         }
         #endregion
