@@ -1,7 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Thế giới đồng hồ";
 }
-
+@using ECommerce.Models.View;
+@model HomeDataView
 <!-- Home slideder-->
 <div id="home-slider">
     <div class="container">
@@ -18,8 +19,8 @@
                     </div>
                 </div>
                 <div class="header-banner banner-opacity">
-                    <a href="#"><img alt="Funky roots" src="/assets/images/slider-2.png" /></a>
-                    <a href="#"><img alt="Funky roots" src="/assets/images/slider-2.png" /></a>
+                    <a><img alt="Funky roots" src="/assets/images/slider-2.png" /></a>
+                    <a><img alt="Funky roots" src="/assets/images/slider-2.png" /></a>
                 </div>
             </div>
         </div>
@@ -34,7 +35,7 @@
                 <img alt="services" src="/assets/data/s1.png" />
             </div>
             <div class="info">
-                <a href="#">
+                <a>
                     <h3>@language.HOME_FREE_DELIVERY_1</h3>
                 </a>
                 <span>@language.HOME_FREE_DELIVERY</span>
@@ -45,7 +46,7 @@
                 <img alt="services" src="/assets/data/s2.png" />
             </div>
             <div class="info">
-                <a href="#">
+                <a>
                     <h3>@language.HOME_RETURN_PAYMENT_WEEK</h3>
                 </a>
                 <span>@language.HOME_RETURN_PAYMENT_WEEK_1</span>
@@ -57,7 +58,7 @@
             </div>
 
             <div class="info">
-                <a href="#">
+                <a>
                     <h3>@language.HOME_SUPPORT_247</h3>
                 </a>
                 <span>@language.HOME_SUPPORT_247_1</span>
@@ -68,7 +69,7 @@
                 <img alt="services" src="/assets/data/s4.png" />
             </div>
             <div class="info">
-                <a href="#">
+                <a>
                     <h3>@language.HOME_SECURITY_TRANSACTION</h3>
                 </a>
                 <span>@language.HOME_SECURITY_TRANSACTION_1</span>
@@ -77,12 +78,14 @@
     </div>
 </div>
 <!-- end services -->
+@*<partial name="_HomeSliderProductPartial" />*@
+@*@Html.Partial("_HomeSliderProductPartial", Model.HomeSliderProductPartial)*@
+@await Html.PartialAsync("_HomeSliderProductPartial", Model.HomeSliderProductPartial)
+@await Html.PartialAsync("_HomeSliderProductByCategoryPartial", Model)
+@*<partial name="_HomeSliderProductByCategoryPartial" data="" />*@
 
-<partial name="_HomeSliderProductPartial" />
-
-<partial name="_HomeSliderProductByCategoryPartial" />
-
-<partial name="_HomeTradeMarkPartial" />
+@*<partial name="_HomeTradeMarkPartial" />*@
+@await Html.PartialAsync("_HomeTradeMarkPartial", Model)
 
 @*<div id="content-wrap">
         <div class="container">
@@ -102,7 +105,7 @@
                             <a href="" class="cate-link link-active" data-ac="flipInX"><span>Xem ngay</span></a>
                         </div>
                         <div class="div-2">
-                            <a href="#">
+                            <a >
                                 <img src="/assets/data/cate-product1.png" alt="Electronics" class="hot-cate-img" />
                             </a>
                         </div>
@@ -110,10 +113,10 @@
                     </div>
                     <div class="cate-content">
                         <ul>
-                            <li><a href="#">Batteries & Chargers</a></li>
-                            <li><a href="#">Headphone, Headset</a></li>
-                            <li><a href="#">Home Audio</a></li>
-                            <li><a href="#">Mp3 Player Accessories</a></li>
+                            <li><a >Batteries & Chargers</a></li>
+                            <li><a >Headphone, Headset</a></li>
+                            <li><a >Home Audio</a></li>
+                            <li><a >Mp3 Player Accessories</a></li>
                         </ul>
                     </div>
                 </div> <!-- /.cate-box -->
@@ -127,17 +130,17 @@
                             <a href="" class="cate-link" data-ac="flipInX"><span>Xem ngay</span></a>
                         </div>
                         <div class="div-2">
-                            <a href="#">
+                            <a >
                                 <img src="/assets/data/cate-product2.png" alt="Electronics" class="hot-cate-img" />
                             </a>
                         </div>
                     </div>
                     <div class="cate-content">
                         <ul>
-                            <li><a href="#">Golf Supplies</a></li>
-                            <li><a href="#">Outdoor & Traveling Supplies</a></li>
-                            <li><a href="#">Camping & Hiking</a></li>
-                            <li><a href="#">Fishing</a></li>
+                            <li><a >Golf Supplies</a></li>
+                            <li><a >Outdoor & Traveling Supplies</a></li>
+                            <li><a >Camping & Hiking</a></li>
+                            <li><a >Fishing</a></li>
                         </ul>
                     </div>
                 </div> <!-- /.cate-box -->
@@ -150,7 +153,7 @@
                             <a href="" class="cate-link" data-ac="flipInX"><span>Xem ngay</span></a>
                         </div>
                         <div class="div-2">
-                            <a href="#">
+                            <a >
                                 <img src="/assets/data/cate-product3.png" alt="Electronics" class="hot-cate-img" />
                             </a>
                         </div>
@@ -158,10 +161,10 @@
                     </div>
                     <div class="cate-content">
                         <ul>
-                            <li><a href="#">Batteries & Chargers</a></li>
-                            <li><a href="#">Headphone, Headset</a></li>
-                            <li><a href="#">Home Audio</a></li>
-                            <li><a href="#">Mp3 Player Accessories</a></li>
+                            <li><a >Batteries & Chargers</a></li>
+                            <li><a >Headphone, Headset</a></li>
+                            <li><a >Home Audio</a></li>
+                            <li><a >Mp3 Player Accessories</a></li>
                         </ul>
                     </div>
                 </div> <!-- /.cate-box -->
@@ -174,7 +177,7 @@
                             <a href="" class="cate-link" data-ac="flipInX"><span>Xem ngay</span></a>
                         </div>
                         <div class="div-2">
-                            <a href="#">
+                            <a >
                                 <img src="/assets/data/cate-product4.png" alt="Electronics" class="hot-cate-img" />
                             </a>
                         </div>
@@ -182,10 +185,10 @@
                     </div>
                     <div class="cate-content">
                         <ul>
-                            <li><a href="#">Bath & Body</a></li>
-                            <li><a href="#">Shaving & Hair Removal</a></li>
-                            <li><a href="#">Fragrances</a></li>
-                            <li><a href="#">Salon & Spa Equipment</a></li>
+                            <li><a >Bath & Body</a></li>
+                            <li><a >Shaving & Hair Removal</a></li>
+                            <li><a >Fragrances</a></li>
+                            <li><a >Salon & Spa Equipment</a></li>
                         </ul>
                     </div>
                 </div> <!-- /.cate-box -->
@@ -198,17 +201,17 @@
                             <a href="" class="cate-link" data-ac="flipInX"><span>Xem ngay</span></a>
                         </div>
                         <div class="div-2">
-                            <a href="#">
+                            <a >
                                 <img src="/assets/data/cate-product5.png" alt="Electronics" class="hot-cate-img" />
                             </a>
                         </div>
                     </div>
                     <div class="cate-content">
                         <ul>
-                            <li><a href="#">Men Watches</a></li>
-                            <li><a href="#">Wedding Rings</a></li>
-                            <li><a href="#">Earring</a></li>
-                            <li><a href="#">Necklaces</a></li>
+                            <li><a >Men Watches</a></li>
+                            <li><a >Wedding Rings</a></li>
+                            <li><a >Earring</a></li>
+                            <li><a >Necklaces</a></li>
                         </ul>
                     </div>
                 </div> <!-- /.cate-box -->
@@ -222,17 +225,17 @@
                             <a href="" class="cate-link" data-ac="flipInX"><span>Xem ngay</span></a>
                         </div>
                         <div class="div-2">
-                            <a href="#">
+                            <a >
                                 <img src="/assets/data/cate-product6.png" alt="Electronics" class="hot-cate-img" />
                             </a>
                         </div>
                     </div>
                     <div class="cate-content">
                         <ul>
-                            <li><a href="#">Accessories for iPhone</a></li>
-                            <li><a href="#">Accessories for iPad</a></li>
-                            <li><a href="#">Accessories for Tablet PC</a></li>
-                            <li><a href="#">Tablet PC</a></li>
+                            <li><a >Accessories for iPhone</a></li>
+                            <li><a >Accessories for iPad</a></li>
+                            <li><a >Accessories for Tablet PC</a></li>
+                            <li><a >Tablet PC</a></li>
                         </ul>
                     </div>
                 </div><!-- /.cate-box -->
@@ -245,7 +248,7 @@
                             <a href="" class="cate-link" data-ac="flipInX"><span>Xem ngay</span></a>
                         </div>
                         <div class="div-2">
-                            <a href="#">
+                            <a >
                                 <img src="/assets/data/cate-product7.png" alt="Electronics" class="hot-cate-img" />
                             </a>
                         </div>
@@ -253,10 +256,10 @@
                     </div>
                     <div class="cate-content">
                         <ul>
-                            <li><a href="#">Batteries & Chargers</a></li>
-                            <li><a href="#">Headphone, Headset</a></li>
-                            <li><a href="#">Home Audio</a></li>
-                            <li><a href="#">Mp3 Player Accessories</a></li>
+                            <li><a >Batteries & Chargers</a></li>
+                            <li><a >Headphone, Headset</a></li>
+                            <li><a >Home Audio</a></li>
+                            <li><a >Mp3 Player Accessories</a></li>
                         </ul>
                     </div>
                 </div> <!-- /.cate-box -->
@@ -269,17 +272,17 @@
                             <a href="" class="cate-link" data-ac="flipInX"><span>Xem ngay</span></a>
                         </div>
                         <div class="div-2">
-                            <a href="#">
+                            <a >
                                 <img src="/assets/data/cate-product8.png" alt="Electronics" class="hot-cate-img" />
                             </a>
                         </div>
                     </div>
                     <div class="cate-content">
                         <ul>
-                            <li><a href="#">Walkera</a></li>
-                            <li><a href="#">Fpv System & Parts</a></li>
-                            <li><a href="#">RC Cars & Parts</a></li>
-                            <li><a href="#">Helicopters & Part</a></li>
+                            <li><a >Walkera</a></li>
+                            <li><a >Fpv System & Parts</a></li>
+                            <li><a >RC Cars & Parts</a></li>
+                            <li><a >Helicopters & Part</a></li>
                         </ul>
                     </div>
                 </div><!-- /.cate-box -->
@@ -298,8 +301,9 @@
             display: grid;
             text-align: center;
         }
+
         .product-list li .product-name {
-            text-align:center;
+            text-align: center;
         }
     </style>
 }

@@ -1,0 +1,805 @@
+﻿@using ECommerce.Models.View
+@model SearchViewModel
+@using System.Globalization;
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" asp-controller="home" asp-action="index" title="Return to Home">@language.HOME</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">@language.SEARCH</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+            <div class="column col-xs-12 col-sm-3" id="left_column">
+
+                <!-- block filter -->
+                <div class="block left-module">
+                    <p class="title_block">@language.FILTER</p>
+                    <p class="title_block">
+                        <input type="text" id="search-text" value="@Model.SearchString"/>
+                        <button class="btn btn-default" onclick="searchProduct()">@language.SEARCH</button>
+                    </p>
+                    <div class="block_content">
+                        <!-- layered -->
+                        <div class="layered layered-filter-price">
+                            <!-- filter categgory -->
+                            <div class="layered_subtitle">@language.CATEGORY</div>
+                            <div class="layered-content">
+                                <ul class="check-box-list">
+                                    @for (int i = 0; i < Model.Category.Count; i++)
+                                    {
+                                        <li>
+                                            @if (Model.CategoryId != null && Model.CategoryId.Count > 0)
+                                            {
+                                                if (Model.CategoryId.IndexOf(Model.Category.OrderBy(x => x.Name).ToList()[i].Id) >= 0)
+                                                {
+                                                    <input type="checkbox" id="check-category-@Model.Category.OrderBy(x=>x.Name).ToList()[i].Id" value="@Model.Category.OrderBy(x=>x.Name).ToList()[i].Id" name="Category" checked />
+                                                }
+                                                else
+                                                {
+                                                    <input type="checkbox" id="check-category-@Model.Category.OrderBy(x=>x.Name).ToList()[i].Id" value="@Model.Category.OrderBy(x=>x.Name).ToList()[i].Id" name="Category" />
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <input type="checkbox" id="check-category-@Model.Category.OrderBy(x=>x.Name).ToList()[i].Id" value="@Model.Category.OrderBy(x=>x.Name).ToList()[i].Id" name="Category" />
+                                            }
+                                            @*<input type="checkbox" id="check-category-@Model.Category.OrderBy(x=>x.Name).ToList()[i].Id" value="@Model.Category.OrderBy(x=>x.Name).ToList()[i].Id" name="Category" />*@
+                                            <label for="check-category-@Model.Category.OrderBy(x=>x.Name).ToList()[i].Id">
+                                                <span class="button"></span>
+                                                @Model.Category.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.Category.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                            </label>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                            <!-- ./filter categgory -->
+                            <!-- filter price -->
+                            <div class="layered_subtitle">@language.PRICE</div>
+                            <div class="layered-content slider-range">
+                                <input id="price-from" type="hidden" value="0" />
+                                <input id="price-to" type="hidden" value="500000000" />
+                                <div data-label-reasult="Từ:" data-min="0" data-max="500000000" data-unit="VNĐ"
+                                     class="slider-range-price" data-value-min="@Model.PriceFrom" data-value-max="@Model.PriceTo"></div>
+                                <div class="amount-range-price">Từ: @(Model.PriceFrom.ToString("C0", new CultureInfo("vi"))) - @(Model.PriceTo.ToString("C0", new CultureInfo("vi")))</div>
+                                @*<ul class="check-box-list">
+                                        <li>
+                                            <input type="checkbox" id="p1" name="cc" />
+                                            <label for="p1">
+                                                <span class="button"></span>
+                                                $20 - $50<span class="count">(0)</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="p2" name="cc" />
+                                            <label for="p2">
+                                                <span class="button"></span>
+                                                $50 - $100<span class="count">(0)</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="p3" name="cc" />
+                                            <label for="p3">
+                                                <span class="button"></span>
+                                                $100 - $250<span class="count">(0)</span>
+                                            </label>
+                                        </li>
+                                    </ul>*@
+                            </div>
+                            <!-- ./filter price -->
+                            <!-- layered -->
+
+
+                            <div class="layered_subtitle">@language.DAC_TINH_DONG_HO</div>
+
+                            <div class="layered layered-category">
+                                <div class="layered-content">
+                                    <ul class="tree-menu">
+                                        @*<li class="active">*@
+                                        <li class="">
+                                            <span></span>@language.NOI_SAN_XUAT
+                                            <ul class="check-box-list">
+                                                @for (int i = 0; i < Model.MadeIns.Count; i++)
+                                                {
+                                                    if (!string.IsNullOrEmpty(Model.MadeIns.OrderBy(x => x.Name).ToList()[i].Name))
+                                                    {
+                                                        <li class="dac-tinh-dong-ho">
+                                                            @if (Model.MadeInId != null && Model.MadeInId.Count > 0)
+                                                            {
+                                                                if (Model.MadeInId.IndexOf(Model.MadeIns.OrderBy(x => x.Name).ToList()[i].Id) >= 0)
+                                                                {
+                                                                    <input type="checkbox" id="MadeIns-@Model.MadeIns.OrderBy(x => x.Name).ToList()[i].Id" name="MadeIns" value="@Model.MadeIns.OrderBy(x => x.Name).ToList()[i].Id" checked />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <input type="checkbox" id="MadeIns-@Model.MadeIns.OrderBy(x => x.Name).ToList()[i].Id" name="MadeIns" value="@Model.MadeIns.OrderBy(x => x.Name).ToList()[i].Id" />
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <input type="checkbox" id="MadeIns-@Model.MadeIns.OrderBy(x => x.Name).ToList()[i].Id" name="MadeIns" value="@Model.MadeIns.OrderBy(x => x.Name).ToList()[i].Id" />
+                                                            }
+
+                                                            <label for="MadeIns-@Model.MadeIns.OrderBy(x => x.Name).ToList()[i].Id">
+                                                                <span class="button"></span>
+                                                                @Model.MadeIns.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.MadeIns.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                            </label>
+                                                        </li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <span></span>@language.LOAI_DAY
+                                            <ul class="check-box-list">
+                                                @for (int i = 0; i < Model.Straps.Count; i++)
+                                                {
+                                                    if (!string.IsNullOrEmpty(Model.Straps.OrderBy(x => x.Name).ToList()[i].Name))
+                                                    {
+                                                        <li class="dac-tinh-dong-ho">
+                                                            @if (Model.StrapId != null && Model.StrapId.Count > 0)
+                                                            {
+                                                                if (Model.StrapId.IndexOf(Model.Straps.OrderBy(x => x.Name).ToList()[i].Id) >= 0)
+                                                                {
+                                                                    <input type="checkbox" id="Straps-@Model.Straps.OrderBy(x => x.Name).ToList()[i].Id" name="Straps" value="@Model.Straps.OrderBy(x => x.Name).ToList()[i].Id" checked />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <input type="checkbox" id="Straps-@Model.Straps.OrderBy(x => x.Name).ToList()[i].Id" name="Straps" value="@Model.Straps.OrderBy(x => x.Name).ToList()[i].Id" />
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <input type="checkbox" id="Straps-@Model.Straps.OrderBy(x => x.Name).ToList()[i].Id" name="Straps" value="@Model.Straps.OrderBy(x => x.Name).ToList()[i].Id" />
+                                                            }
+                                                            <label for="Straps-@Model.Straps.OrderBy(x => x.Name).ToList()[i].Id">
+                                                                <span class="button"></span>
+                                                                @Model.Straps.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.Straps.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                            </label>
+                                                        </li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <span></span>@language.MACHINE_TYPE
+                                            <ul class="check-box-list">
+                                                @for (int i = 0; i < Model.Machines.Count; i++)
+                                                {
+                                                    if (!string.IsNullOrEmpty(Model.Machines.OrderBy(x => x.Name).ToList()[i].Name))
+                                                    {
+                                                        <li class="dac-tinh-dong-ho">
+                                                            @if (Model.MachineId != null && Model.MachineId.Count > 0)
+                                                            {
+                                                                if (Model.MachineId.IndexOf(Model.Machines.OrderBy(x => x.Name).ToList()[i].Id) >= 0)
+                                                                {
+                                                                    <input type="checkbox" id="Machines-@Model.Machines.OrderBy(x => x.Name).ToList()[i].Id" name="Machines" value="@Model.Machines.OrderBy(x => x.Name).ToList()[i].Id" checked />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <input type="checkbox" id="Machines-@Model.Machines.OrderBy(x => x.Name).ToList()[i].Id" name="Machines" value="@Model.Machines.OrderBy(x => x.Name).ToList()[i].Id" />
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <input type="checkbox" id="Machines-@Model.Machines.OrderBy(x => x.Name).ToList()[i].Id" name="Machines" value="@Model.Machines.OrderBy(x => x.Name).ToList()[i].Id" />
+                                                            }
+                                                            <label for="Machines-@Model.Machines.OrderBy(x => x.Name).ToList()[i].Id">
+                                                                <span class="button"></span>
+                                                                @Model.Machines.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.Machines.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                            </label>
+                                                        </li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <span></span>@language.LOAI_NIENG
+                                            <ul class="check-box-list">
+                                                @for (int i = 0; i < Model.Bands.Count; i++)
+                                                {
+                                                    if (!string.IsNullOrEmpty(Model.Bands.OrderBy(x => x.Name).ToList()[i].Name))
+                                                    {
+                                                        <li class="dac-tinh-dong-ho">
+                                                            @if (Model.BandId != null && Model.BandId.Count > 0)
+                                                            {
+                                                                if (Model.BandId.IndexOf(Model.Bands.OrderBy(x => x.Name).ToList()[i].Id) >= 0)
+                                                                {
+                                                                    <input type="checkbox" id="Bands-@Model.Bands.OrderBy(x => x.Name).ToList()[i].Id" name="Bands" value="@Model.Bands.OrderBy(x => x.Name).ToList()[i].Id" checked />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <input type="checkbox" id="Bands-@Model.Bands.OrderBy(x => x.Name).ToList()[i].Id" name="Bands" value="@Model.Bands.OrderBy(x => x.Name).ToList()[i].Id" />
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <input type="checkbox" id="Bands-@Model.Bands.OrderBy(x => x.Name).ToList()[i].Id" name="Bands" value="@Model.Bands.OrderBy(x => x.Name).ToList()[i].Id" />
+                                                            }
+                                                            <label for="Bands-@Model.Bands.OrderBy(x => x.Name).ToList()[i].Id">
+                                                                <span class="button"></span>
+                                                                @Model.Bands.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.Bands.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                            </label>
+                                                        </li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <span></span>@language.MAU_MAT_KINH
+                                            <ul class="check-box-list">
+                                                @for (int i = 0; i < Model.ColorClockFaces.Count; i++)
+                                                {
+                                                    if (!string.IsNullOrEmpty(Model.ColorClockFaces.OrderBy(x => x.Name).ToList()[i].Name))
+                                                    {
+                                                        <li class="dac-tinh-dong-ho">
+                                                            @if (Model.ColorClockFaceId != null && Model.ColorClockFaceId.Count > 0)
+                                                            {
+                                                                if (Model.ColorClockFaceId.IndexOf(Model.ColorClockFaces.OrderBy(x => x.Name).ToList()[i].Id) >= 0)
+                                                                {
+                                                                    <input type="checkbox" id="ColorClockFaces-@Model.ColorClockFaces.OrderBy(x => x.Name).ToList()[i].Id" name="ColorClockFaces" value="@Model.ColorClockFaces.OrderBy(x => x.Name).ToList()[i].Id" checked />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <input type="checkbox" id="ColorClockFaces-@Model.ColorClockFaces.OrderBy(x => x.Name).ToList()[i].Id" name="ColorClockFaces" value="@Model.ColorClockFaces.OrderBy(x => x.Name).ToList()[i].Id" />
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <input type="checkbox" id="ColorClockFaces-@Model.ColorClockFaces.OrderBy(x => x.Name).ToList()[i].Id" name="ColorClockFaces" value="@Model.ColorClockFaces.OrderBy(x => x.Name).ToList()[i].Id" />
+                                                            }
+                                                            <label for="ColorClockFaces-@Model.ColorClockFaces.OrderBy(x => x.Name).ToList()[i].Id">
+                                                                <span class="button"></span>
+                                                                @Model.ColorClockFaces.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.ColorClockFaces.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                            </label>
+                                                        </li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <span></span>@language.PHUONG_CACH
+                                            <ul class="check-box-list">
+                                                @for (int i = 0; i < Model.Styles.Count; i++)
+                                                {
+                                                    if (!string.IsNullOrEmpty(Model.Styles.OrderBy(x => x.Name).ToList()[i].Name))
+                                                    {
+                                                        <li class="dac-tinh-dong-ho">
+                                                            @if (Model.StyleId != null && Model.StyleId.Count > 0)
+                                                            {
+                                                                if (Model.StyleId.IndexOf(Model.Styles.OrderBy(x => x.Name).ToList()[i].Id) >= 0)
+                                                                {
+                                                                    <input type="checkbox" id="Styles-@Model.Styles.OrderBy(x => x.Name).ToList()[i].Id" name="Styles" value="@Model.Styles.OrderBy(x => x.Name).ToList()[i].Id" checked />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <input type="checkbox" id="Styles-@Model.Styles.OrderBy(x => x.Name).ToList()[i].Id" name="Styles" value="@Model.Styles.OrderBy(x => x.Name).ToList()[i].Id" />
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <input type="checkbox" id="Styles-@Model.Styles.OrderBy(x => x.Name).ToList()[i].Id" name="Styles" value="@Model.Styles.OrderBy(x => x.Name).ToList()[i].Id" />
+                                                            }
+                                                            <label for="Styles-@Model.Styles.OrderBy(x => x.Name).ToList()[i].Id">
+                                                                <span class="button"></span>
+                                                                @Model.Styles.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.Styles.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                            </label>
+                                                        </li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <span></span>@language.THONG_TIN_CHONG_THAM
+                                            <ul class="check-box-list">
+                                                @for (int i = 0; i < Model.Waterproofs.Count; i++)
+                                                {
+                                                    if (!string.IsNullOrEmpty(Model.Waterproofs.OrderBy(x => x.Name).ToList()[i].Name))
+                                                    {
+                                                        <li class="dac-tinh-dong-ho">
+                                                            @if (Model.WaterproofId != null && Model.WaterproofId.Count > 0)
+                                                            {
+                                                                if (Model.WaterproofId.IndexOf(Model.Waterproofs.OrderBy(x => x.Name).ToList()[i].Id) >= 0)
+                                                                {
+                                                                    <input type="checkbox" id="Waterproofs-@Model.Waterproofs.OrderBy(x => x.Name).ToList()[i].Id" name="Waterproofs" value="@Model.Waterproofs.OrderBy(x => x.Name).ToList()[i].Id" checked />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <input type="checkbox" id="Waterproofs-@Model.Waterproofs.OrderBy(x => x.Name).ToList()[i].Id" name="Waterproofs" value="@Model.Waterproofs.OrderBy(x => x.Name).ToList()[i].Id" />
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <input type="checkbox" id="Waterproofs-@Model.Waterproofs.OrderBy(x => x.Name).ToList()[i].Id" name="Waterproofs" value="@Model.Waterproofs.OrderBy(x => x.Name).ToList()[i].Id" />
+                                                            }
+                                                            <label for="Waterproofs-@Model.Waterproofs.OrderBy(x => x.Name).ToList()[i].Id">
+                                                                <span class="button"></span>
+                                                                @Model.Waterproofs.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.Waterproofs.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                            </label>
+                                                        </li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <span></span>@language.TRADEMARK
+                                            <ul>
+                                                @for (int i = 0; i < Model.BrandProducts.Count; i++)
+                                                {
+                                                    if (!string.IsNullOrEmpty(Model.BrandProducts.OrderBy(x => x.Name).ToList()[i].Name))
+                                                    {
+                                                        <li>
+                                                            @if (Model.BrandNameId != null && Model.BrandNameId.Count > 0)
+                                                            {
+                                                                if (Model.BrandNameId.IndexOf(Model.BrandProducts.OrderBy(x => x.Name).ToList()[i].Id) >= 0)
+                                                                {
+                                                                    <input type="checkbox" id="BrandProducts-@Model.BrandProducts.OrderBy(x => x.Name).ToList()[i].Id" name="BrandProducts" value="@Model.BrandProducts.OrderBy(x => x.Name).ToList()[i].Id" checked />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <input type="checkbox" id="BrandProducts-@Model.BrandProducts.OrderBy(x => x.Name).ToList()[i].Id" name="BrandProducts" value="@Model.BrandProducts.OrderBy(x => x.Name).ToList()[i].Id" />
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <input type="checkbox" id="BrandProducts-@Model.BrandProducts.OrderBy(x => x.Name).ToList()[i].Id" name="BrandProducts" value="@Model.BrandProducts.OrderBy(x => x.Name).ToList()[i].Id" />
+                                                            }
+                                                            <label class="dac-tinh-dong-ho" for="BrandProducts-@Model.BrandProducts.OrderBy(x => x.Name).ToList()[i].Id">
+                                                                @*<span class="button"></span>*@
+                                                                @Model.BrandProducts.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.BrandProducts.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                            </label>
+                                                        </li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <!-- filter color -->
+                            @*<div class="layered_subtitle">Màu sắc</div>
+                                <div class="layered-content filter-color">
+                                    <ul class="check-box-list">
+                                        <li>
+                                            <input type="checkbox" id="color1" name="cc" />
+                                            <label style=" background:#aab2bd;" for="color1">
+                                                <span class="button"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="color2" name="cc" />
+                                            <label style=" background:#cfc4a6;" for="color2">
+                                                <span class="button"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="color3" name="cc" />
+                                            <label style=" background:#aab2bd;" for="color3">
+                                                <span class="button"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="color4" name="cc" />
+                                            <label style=" background:#fccacd;" for="color4">
+                                                <span class="button"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="color5" name="cc" />
+                                            <label style="background:#964b00;" for="color5">
+                                                <span class="button"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="color6" name="cc" />
+                                            <label style=" background:#faebd7;" for="color6">
+                                                <span class="button"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="color7" name="cc" />
+                                            <label style=" background:#e84c3d;" for="color7">
+                                                <span class="button"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="color8" name="cc" />
+                                            <label style=" background:#c19a6b;" for="color8">
+                                                <span class="button"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="color9" name="cc" />
+                                            <label style=" background:#f39c11;" for="color9">
+                                                <span class="button"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="color10" name="cc" />
+                                            <label style=" background:#5d9cec;" for="color10">
+                                                <span class="button"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="color11" name="cc" />
+                                            <label style=" background:#a0d468;" for="color11">
+                                                <span class="button"></span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="color12" name="cc" />
+                                            <label style=" background:#f1c40f;" for="color12">
+                                                <span class="button"></span>
+                                            </label>
+                                        </li>
+
+                                    </ul>
+                                </div>*@
+                            <!-- ./filter color -->
+                            <!-- ./filter brand -->
+                            @*<div class="layered_subtitle">@language.TRADEMARK</div>
+                                <div class="layered-content filter-brand">
+                                    <ul class="check-box-list">
+                                        @for (int i = 0; i < Model.BrandProducts.Count; i++)
+                                        {
+                                            <li>
+                                                <input type="checkbox" id="brand-@Model.BrandProducts.OrderBy(x=>x.Name).ToList()[i].Id" name="cc" />
+                                                <label for="brand-@Model.BrandProducts.OrderBy(x=>x.Name).ToList()[i].Id">
+                                                    <span class="button"></span>
+                                                    @Model.BrandProducts.OrderBy(x=>x.Name).ToList()[i].Name<span class="count">(@Model.BrandProducts.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                </label>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>*@
+                            <!-- ./filter brand -->
+                            <!-- ./filter size -->
+                            @*<div class="layered_subtitle">Size</div>
+                                <div class="layered-content filter-size">
+                                    <ul class="check-box-list">
+                                        <li>
+                                            <input type="checkbox" id="size1" name="cc" />
+                                            <label for="size1">
+                                                <span class="button"></span>X
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="size2" name="cc" />
+                                            <label for="size2">
+                                                <span class="button"></span>XXL
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="size3" name="cc" />
+                                            <label for="size3">
+                                                <span class="button"></span>XL
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="size4" name="cc" />
+                                            <label for="size4">
+                                                <span class="button"></span>XXL
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="size5" name="cc" />
+                                            <label for="size5">
+                                                <span class="button"></span>M
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="size6" name="cc" />
+                                            <label for="size6">
+                                                <span class="button"></span>XXS
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="size7" name="cc" />
+                                            <label for="size7">
+                                                <span class="button"></span>S
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="size8" name="cc" />
+                                            <label for="size8">
+                                                <span class="button"></span>XS
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="size9" name="cc" />
+                                            <label for="size9">
+                                                <span class="button"></span>34
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="size10" name="cc" />
+                                            <label for="size10">
+                                                <span class="button"></span>36
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="size11" name="cc" />
+                                            <label for="size11">
+                                                <span class="button"></span>35
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" id="size12" name="cc" />
+                                            <label for="size12">
+                                                <span class="button"></span>37
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>*@
+                            <!-- ./filter size -->
+                        </div>
+                        <!-- ./layered -->
+
+                    </div>
+                </div>
+                <!-- ./block filter  -->
+                <!-- left silide -->
+                @*<div class="col-left-slide left-module">
+                    <ul class="owl-carousel owl-style2" data-loop="true" data-nav="false" data-margin="30"
+                        data-autoplayTimeout="1000" data-autoplayHoverPause="true" data-items="1"
+                        data-autoplay="true">
+                        <li><a href="#"><img src="/assets/data/slide-left.jpg" alt="slide-left"></a></li>
+                        <li><a href="#"><img src="/assets/data/slide-left2.jpg" alt="slide-left"></a></li>
+                        <li><a href="#"><img src="/assets/data/slide-left3.png" alt="slide-left"></a></li>
+                    </ul>
+
+                </div>*@
+                <!--./left silde-->
+                <!-- SPECIAL -->
+                @*<div class="block left-module">
+                    <p class="title_block">@language.SPECIAL_VERSION</p>
+                    <div class="block_content">
+                        <ul class="products-block">
+                            <li>
+                                <div class="products-block-left">
+                                    <a href="#">
+                                        <img src="/assets/data/product-100x122.jpg" alt="PHIÊN BẢN ĐẶC BIỆT">
+                                    </a>
+                                </div>
+                                <div class="products-block-right">
+                                    <p class="product-name">
+                                        <a href="#">Woman Within Plus Size Flared</a>
+                                    </p>
+                                    <p class="product-price">7,000,000 VNĐ</p>
+                                    <p class="product-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="products-block">
+                            <div class="products-block-bottom">
+                                <a class="link-all" href="#">All Products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+                <!-- ./SPECIAL -->
+                <!-- TAGS -->
+                @*<div class="block left-module">
+                        <p class="title_block">TAGS</p>
+                        <div class="block_content">
+                            <div class="tags">
+                                <a href="#"><span class="level1">actual</span></a>
+                                <a href="#"><span class="level2">adorable</span></a>
+                                <a href="#"><span class="level3">change</span></a>
+                                <a href="#"><span class="level4">consider</span></a>
+                                <a href="#"><span class="level3">phenomenon</span></a>
+                                <a href="#"><span class="level4">span</span></a>
+                                <a href="#"><span class="level1">spanegs</span></a>
+                                <a href="#"><span class="level5">spanegs</span></a>
+                                <a href="#"><span class="level1">actual</span></a>
+                                <a href="#"><span class="level2">adorable</span></a>
+                                <a href="#"><span class="level3">change</span></a>
+                                <a href="#"><span class="level4">consider</span></a>
+                                <a href="#"><span class="level2">gives</span></a>
+                                <a href="#"><span class="level3">change</span></a>
+                                <a href="#"><span class="level2">gives</span></a>
+                                <a href="#"><span class="level1">good</span></a>
+                                <a href="#"><span class="level3">phenomenon</span></a>
+                                <a href="#"><span class="level4">span</span></a>
+                                <a href="#"><span class="level1">spanegs</span></a>
+                                <a href="#"><span class="level5">spanegs</span></a>
+                            </div>
+                        </div>
+                    </div>*@
+                <!-- ./TAGS -->
+                <!-- Testimonials -->
+                <div class="block left-module">
+                    <p class="title_block">@language.REVIEW_FROM_USER</p>
+                    <div class="block_content">
+                        <ul class="testimonials owl-carousel" data-loop="true" data-nav="false" data-margin="30"
+                            data-autoplayTimeout="1000" data-autoplay="true" data-autoplayHoverPause="true"
+                            data-items="1">
+                            <li>
+                                <div class="client-mane">Nguyễn Văn Trọng</div>
+                                <div class="client-avarta">
+                                    <img src="/assets/data/testimonial.jpg" alt="client-avarta">
+                                </div>
+                                <div class="testimonial">
+                                    "Đồng hồ đỉnh vkl , nên mua ở đây."
+                                </div>
+                            </li>
+                            <li>
+                                <div class="client-mane">Nguyễn Văn Trọng</div>
+                                <div class="client-avarta">
+                                    <img src="/assets/data/testimonial.jpg" alt="client-avarta">
+                                </div>
+                                <div class="testimonial">
+                                    "Đồng hồ đỉnh vkl , nên mua ở đây."
+                                </div>
+                            </li>
+                            <li>
+                                <div class="client-mane">Nguyễn Văn Trọng</div>
+                                <div class="client-avarta">
+                                    <img src="/assets/data/testimonial.jpg" alt="client-avarta">
+                                </div>
+                                <div class="testimonial">
+                                    "Đồng hồ đỉnh vkl , nên mua ở đây."
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- ./Testimonials -->
+            </div>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <!-- category-slider -->
+                <div class="category-slider">
+                    <ul class="owl-carousel owl-style2" data-dots="false" data-loop="true" data-nav="true"
+                        data-autoplayTimeout="1000" data-autoplayHoverPause="true" data-items="1">
+                        <li>
+                            <img src="/assets/images/slider-1.png" alt="category-slider">
+                        </li>
+                        <li>
+                            <img src="/assets/images/slider-2.png" alt="category-slider">
+                        </li>
+                    </ul>
+                </div>
+                <!-- ./category-slider -->
+                <!-- subcategories -->
+                @*<div class="subcategories">
+                        <ul>
+                            <li class="current-categorie">
+                                <a href="#">Đồng hồ nam</a>
+                            </li>
+                            <li>
+                                <a href="#">Bán chạy nhất</a>
+                            </li>
+                            <li>
+                                <a href="#">Dây da</a>
+                            </li>
+                            <li>
+                                <a href="#">Chống nước</a>
+                            </li>
+                            <li>
+                                <a href="#">chịu áp lực cao</a>
+                            </li>
+                            <li>
+                                <a href="#">Chống trầy</a>
+                            </li>
+                        </ul>
+                    </div>*@
+                <!-- ./subcategories -->
+                <!-- view-product-list-->
+                <div id="view-product-list" class="view-product-list">
+                    <h2 class="page-heading">
+                        <span class="page-heading-title">Tìm kiếm</span>
+                    </h2>
+                    <ul class="display-product-option">
+                        <li class="view-as-grid selected">
+                            <span>grid</span>
+                        </li>
+                        <li class="view-as-list">
+                            <span>list</span>
+                        </li>
+                    </ul>
+                    <!-- PRODUCT LIST -->
+                    <ul class="row product-list grid">
+
+                        @for (int i = 0; i < Model.Products.Count; i++)
+                        {
+                            var data = Model.Products.ToList()[i];
+                            @await Html.PartialAsync("_SearchProductPartial", data)
+
+                        }
+
+                    </ul>
+                    <!-- ./PRODUCT LIST -->
+                </div>
+                <!-- ./view-product-list-->
+                <div class="sortPagiBar">
+                    <div class="bottom-pagination">
+                        <nav>
+                            <ul class="pagination">
+                                @if (Model.PageList.Count > 0)
+                                {
+                                    <li>
+                                        <a class="pointer" onclick="searchProduct(@(Model.Page-1 >=0 ? (Model.Page-1):0))" aria-label="@language.PREVIOUS">
+                                            <span aria-hidden="true">&laquo; @language.PREVIOUS </span>
+                                        </a>
+                                    </li>
+                                    @for (int i = 0; i < Model.PageList.Count; i++)
+                                    {
+                                        if (Model.Page == (Model.PageList[i]))
+                                        {
+                                            <li class="active"><a class="pointer" onclick="searchProduct(@Model.PageList[i])">@(Model.PageList[i]+1)</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><a class="pointer" onclick="searchProduct(@Model.PageList[i])">@(Model.PageList[i]+1)</a></li>
+                                        }
+                                    }
+                                    @*<li class="active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>*@
+                                    <li>
+                                        <a class="pointer" onclick="searchProduct(@(Model.Page+1))" aria-label="Next">
+                                            <span aria-hidden="true">@language.NEXT &raquo;</span>
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="show-product-item">
+                        <select name="limit" id="limit-search">
+                            <option value="9">@language.SHOW 9</option>
+                            <option value="18">@language.SHOW 18</option>
+                        </select>
+                    </div>
+                    <div class="sort-product">
+                        <select name="limit" id="order-search">
+                            <option value="CreateDate">@language.CreateDate</option>
+                            <option value="Name">@language.PRODUCT_NAME</option>
+                            <option value="Price">@language.PRICE</option>
+                        </select>
+                        <div class="sort-product-icon" id="order-search-desc">
+                            @if (Model.isDesc)
+                            {
+                                <i class="fa fa-sort-alpha-desc" onclick="changeSortType()"></i>
+                            }
+                            else
+                            {
+                                <i class="fa fa-sort-alpha-asc" onclick="changeSortType()"></i>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>
+@section header{
+    <style>
+        .category-slider img {
+            height: 288px;
+            width: 870px;
+        }
+    </style>
+}

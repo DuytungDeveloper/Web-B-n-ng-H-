@@ -9,30 +9,32 @@ namespace ECommerce.Model.Result
     ///  định dạng trã về khi trã về 1 Item 
     /// </summary>
     public class ResultData<T>
-        {
-        public bool Success { get; set; } = false;
+    {
+        public bool Success { get; set; } = true;
+        public string StatusCode { get; set; } = "001";
+        public string ErrorMessage { get; set; } = "";
         public string Message { get; set; } = "";
         public T Data { get; set; }
-           
+
     }
     /// <summary>
     ///  định dạng trã về khi trã về list
     /// </summary>
     public class ResultListData<T>
     {
-        public int Amount  { get; set; }
+        public int Amount { get; set; }
         public bool Success { get; set; }
         public string Message { get; set; }
         public IEnumerable<T> Data { get; set; }
     }
 
-    /// <summary>
-    ///  định dạng trã về khi update,Xóa
-    /// </summary>
-    public class ResultData
-    {
-        public int Amount { get; set; } 
-        public bool Success { get; set; }
-        public string Message { get; set; }
-    }
+    ///// <summary>
+    /////  định dạng trã về khi update,Xóa
+    ///// </summary>
+    //public class ResultData
+    //{
+    //    public int Amount { get; set; } 
+    //    public bool Success { get; set; }
+    //    public string Message { get; set; }
+    //}
 }

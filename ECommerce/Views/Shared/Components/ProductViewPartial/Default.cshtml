@@ -1,0 +1,283 @@
+﻿@using System.Globalization;
+@model ECommerce.Models.View.ProductComponentViewModel
+@{
+    var data = Model.Product;
+    switch (Model.TypeView)
+    {
+        case 1:
+            <div class="left-block">
+                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
+                    @if (data.Product_Media.Count() > 0)
+                    {
+                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                    }
+                    else
+                    {
+                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                    }
+                </a>
+                <div class="quick-view">
+                    @*<a title="Add to my wishlist" class="heart" ></a>
+                        <a title="Add to compare" class="compare" ></a>*@
+                    @* <a title="Quick view" class="search" ></a> *@
+                </div>
+                <div class="add-to-cart">
+                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
+                </div>
+                <div class="group-price">
+                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
+                    {
+                        <span class="product-new">@language.NEW</span>
+                    }
+                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
+                    {
+                        <span class="product-sale">@language.SALE</span>
+                    }
+                </div>
+            </div>
+            <div class="right-block">
+                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
+                <div class="content_price">
+                    @if (data.PriceDiscount.HasValue)
+                    {
+                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
+                        <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
+
+                    }
+                    else
+                    {
+                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
+
+                    }
+                </div>
+                <div class="product-star">
+                    @*<i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>*@
+                    @if (data.Reviews.Count > 0 && data.Point.Value > 0)
+                    {
+                        <div class="rateit" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                    }
+                    else
+                    {
+                        <div class="rateit invisible" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                    }
+                </div>
+            </div>
+            break;
+        case 2:
+            <div class="left-block">
+                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
+                    @if (data.Product_Media.Count > 0)
+                    {
+                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                    }
+                    else
+                    {
+                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                    }
+                </a>
+                @* <div class="quick-view">
+                        <a title="Add to compare" class="compare"></a>
+                        <a title="Quick view" class="search"></a>
+                    </div> *@
+                <div class="add-to-cart">
+                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
+                </div>
+            </div>
+            <div class="right-block">
+                <h5 class="product-name"><a>@data.Name</a></h5>
+                <div class="content_price">
+                    <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
+                    <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
+                    @*<span class="colreduce-percentage">(-10%)</span>*@
+                </div>
+            </div>
+            break;
+        case 3:
+            <div class="col-xs-12 col-sm-6 product-item">
+                <div class="image-product hover-zoom">
+                    <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
+                        @if (data.Product_Media.Count() > 0)
+                        {
+                            <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                        }
+                        else
+                        {
+                            <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                        }
+                    </a>
+                </div>
+                <div class="info-product">
+                    <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
+                    <span class="product-price">
+                        @if (data.PriceDiscount.HasValue)
+                        {
+                            <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
+                            @*<span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>*@
+
+                        }
+                        else
+                        {
+                            <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
+
+                        }
+                        @*@data.Price.ToString("C0", new CultureInfo("vi"))*@
+                    </span>
+                    <div class="product-star">
+                        @*<i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>*@
+                        @if (data.Reviews.Count > 0 && data.Point.Value > 0)
+                        {
+                            <div class="rateit" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                        }
+                        else
+                        {
+                            <div class="rateit invisible" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                        }
+                    </div>
+                    <a class="btn-view-more" title="@language.SEE_MORE" asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@language.SEE_MORE</a>
+                </div>
+            </div>
+            break;
+        case 4:
+            <div class="left-block">
+                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id)">
+                    @if (data.Product_Media.Count() > 0)
+                    {
+                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                    }
+                    else
+                    {
+                        <img class="img-responsive" alt="product" src="/assets/data/p40.jpg" />
+                    }
+                </a>
+                <div class="price-percent-reduction2">-@(100 - Math.Ceiling((decimal)data.PriceDiscount.Value * 100 / data.Price) < 10 ? "0"+(100 - Math.Ceiling((decimal)data.PriceDiscount.Value * 100 / data.Price)).ToString() : (100 - Math.Ceiling((decimal)data.PriceDiscount.Value * 100 / data.Price)).ToString())% OFF</div>
+                @*<div class="price-percent-reduction2">-30% OFF</div>*@
+            </div>
+            <div class="right-block">
+                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id)">@data.Name</a></h5>
+                <div class="product-star">
+                    @if (data.Reviews.Count > 0 && data.Point.Value > 0)
+                    {
+                        <div class="rateit" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                    }
+                    else
+                    {
+                        <div class="rateit invisible" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                    }
+                </div>
+                <div class="content_price">
+                    @if (data.PriceDiscount.HasValue)
+                    {
+                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
+                        <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
+
+                    }
+                    else
+                    {
+                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
+                    }
+                </div>
+            </div>
+            <div class="product-bottom">
+                <a class="btn-add-cart" title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
+            </div>
+            break;
+        case 5:
+            <div class="products-block-left">
+                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url +"."+data.Id)">
+                    <img src="@(data.Product_Media.Count() > 0 ?  data.Product_Media[0].Media.Link : "/assets/data/p35.jpg")" alt="SPECIAL PRODUCTS">
+                </a>
+            </div>
+            <div class="products-block-right">
+                <p class="product-name">
+                    <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url +"."+data.Id)">@data.Name</a>
+                </p>
+                <p class="product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</p>
+
+                <p class="product-star">
+                    @if (data.Reviews.Count > 0 && data.Point.Value > 0)
+                    {
+                        <div class="rateit" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                    }
+                    else
+                    {
+                        <div class="rateit invisible" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                    }
+                </p>
+            </div>
+            break;
+        case 6:
+            <div class="left-block">
+                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())"><img class="img-responsive" alt="product" src="@(data.Product_Media.Count() > 0 ?  data.Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                @*<div class="quick-view">
+                        <a title="Add to my wishlist" class="heart" href="#"></a>
+                        <a title="Add to compare" class="compare" href="#"></a>
+                        <a title="Quick view" class="search" href="#"></a>
+                    </div>*@
+                <div class="add-to-cart">
+                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
+                </div>
+            </div>
+            <div class="right-block">
+                <h5 class="product-name">
+                    <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a>
+                </h5>
+                @if (data.Reviews.Count > 0)
+                {
+                    <div class="rateit" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                }
+                else
+                {
+                    <div class="rateit invisible" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                }
+                @*<div class="product-star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                    </div>*@
+                <div class="group-price">
+                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
+                    {
+                        <span class="product-new">@language.NEW</span>
+                    }
+                    @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 4).FirstOrDefault() != null)
+                    {
+                        <span class="product-sale">@language.SALE</span>
+                    }
+                </div>
+                <div class="content_price">
+                    @if (data.PriceDiscount.HasValue)
+                    {
+                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
+                        <span class="price old-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
+
+                    }
+                    else
+                    {
+                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
+                        <span class="price old-price invisible ">None</span>
+                    }
+                </div>
+                <div class="info-orther">
+                    <p>SKU : @data.Sku</p>
+                    @*<p class="Tình trạng">Tình trạng: <span>Còn hàng</span></p>*@
+                    <div class="product-desc">
+                        @data.DescriptionShort
+                    </div>
+                </div>
+            </div>
+            break;
+        default:
+            break;
+    }
+
+}

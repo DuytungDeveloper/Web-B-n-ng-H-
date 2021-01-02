@@ -46,12 +46,12 @@ namespace ECommerce.Areas.Admin.Controllers
             ResultListData<Product> data = new ResultListData<Product>();
             var ListProduct = await _ProductService.Product
                 .Include(o=>o.BrandProduct)
-                .Include(o=>o.Chatelaine)
+                //.Include(o=>o.Chatelaine)
                 .Include(o=>o.ColorClockFace)
-                .Include(o => o.Hem)
-                .Include(o => o.HuntingCase)
+                //.Include(o => o.Hem)
+                //.Include(o => o.HuntingCase)
                 .Include(o => o.Machine)
-                .Include(o => o.Origin)
+                //.Include(o => o.Origin)
                 .Include(o => o.MadeIn)
                 .ToListAsync();
             if (data == null) return data;
@@ -105,21 +105,21 @@ namespace ECommerce.Areas.Admin.Controllers
              return Ok(data);
             #region
             GetItem.Characteristics = body.Characteristics;
-            GetItem.Code = body.Code;
+            //GetItem.Code = body.Code;
             GetItem.DescriptionFull = body.DescriptionFull;
             GetItem.DescriptionShort = body.DescriptionShort;
             GetItem.Diameter = body.Diameter;
-            GetItem.Function = body.Function;
+            //GetItem.Function = body.Function;
             GetItem.Price = body.Price;
             GetItem.PriceDiscount = body.PriceDiscount;
-            GetItem.Guarantee = body.Guarantee;
-            GetItem.HemId = body.HemId == 0 ? GetItem.HemId : body.HemId;
-            GetItem.HuntingCaseId = body.HuntingCaseId == 0 ? GetItem.HuntingCaseId : body.HuntingCaseId;
-            GetItem.ChatelaineId = body.ChatelaineId == 0 ? GetItem.ChatelaineId : body.ChatelaineId;
+            //GetItem.Guarantee = body.Guarantee;
+            //GetItem.HemId = body.HemId == 0 ? GetItem.HemId : body.HemId;
+            //GetItem.HuntingCaseId = body.HuntingCaseId == 0 ? GetItem.HuntingCaseId : body.HuntingCaseId;
+            //GetItem.ChatelaineId = body.ChatelaineId == 0 ? GetItem.ChatelaineId : body.ChatelaineId;
             GetItem.ColorClockFaceId = body.ColorClockFaceId == 0 ? GetItem.ColorClockFaceId : body.ColorClockFaceId;
             GetItem.MachineId = body.MachineId == 0 ? GetItem.MachineId : body.MachineId;
             GetItem.MadeInId = body.MadeInId == 0 ? GetItem.MadeInId : body.MadeInId;
-            GetItem.OriginId = body.OriginId == 0 ? GetItem.OriginId : body.OriginId;
+            //GetItem.OriginId = body.OriginId == 0 ? GetItem.OriginId : body.OriginId;
             GetItem.BrandProductId = body.BrandProductId == 0 ? GetItem.BrandProductId : body.BrandProductId; ;
             #endregion
             await _UnitOfWork.Products.Update(GetItem, true);
@@ -140,7 +140,7 @@ namespace ECommerce.Areas.Admin.Controllers
             if (GetItem == null)
                 return Ok(data);
 
-            GetItem.Status = 1;//delete
+            //GetItem.Status = 1;//delete
             await _UnitOfWork.Products.Delete(GetItem, true);
             data.Data = GetItem;
             data.Success = true;

@@ -15,6 +15,12 @@ using ECommerce.Model.EFModel.Models;
 using System.Globalization;
 using System.Threading;
 using ECommerce.Middlewares;
+using Microsoft.AspNet.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Http;
+using System;
+using ECommerce.Controllers;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace ECommerce
 {
@@ -24,12 +30,23 @@ namespace ECommerce
         {
             Configuration = configuration;
         }
-      
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Cài đặt session
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromDays(10);
+                options.Cookie.Name = OrderController.OrderSessionName;
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+            #endregion
             services.AddControllersWithViews();
             services.AddSpaStaticFiles();
             #region NghiaTV config
@@ -37,14 +54,49 @@ namespace ECommerce
                 options.UseSqlServer(
                     Configuration.GetConnectionString("ECommerceContext")));
 
-            services.AddDefaultIdentity<ApplicationUser>(options =>
+            //services.AddDefaultIdentity<ApplicationUser>(options =>
+            //{
+            //    //options.SignIn.RequireConfirmedAccount = false;
+            //    //options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+            //    //options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier;
+
+            //    options.User.RequireUniqueEmail = false;
+            //    options.Password.RequireLowercase = false;
+            //    options.Password.RequireNonAlphanumeric = false;
+            //    options.Password.RequireUppercase = false;
+            //    options.User.RequireUniqueEmail = false;
+            //    options.User.RequireUniqueEmail = false;
+            //    options.User.RequireUniqueEmail = false;
+            //})
+            //    .AddRoles<IdentityRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
-                options.SignIn.RequireConfirmedAccount = false;
-                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-                options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier;
+                options.User.RequireUniqueEmail = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.User.RequireUniqueEmail = false;
+                options.User.RequireUniqueEmail = false;
+                options.User.RequireUniqueEmail = false;
             })
+                .AddDefaultTokenProviders()
+                .AddRoleManager<RoleManager<IdentityRole>>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //services.AddDefaultIdentity<ApplicationUser>(options => {
+            //    options.User.RequireUniqueEmail = false;
+            //    options.Password.RequireLowercase = false;
+            //    options.Password.RequireNonAlphanumeric = false;
+            //    options.Password.RequireUppercase = false;
+            //    options.User.RequireUniqueEmail = false;
+            //    options.User.RequireUniqueEmail = false;
+            //    options.User.RequireUniqueEmail = false;
+            //})
+            //    .AddRoles<IdentityRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(o =>
@@ -65,8 +117,8 @@ namespace ECommerce
 
             #endregion
             services.RegisterServices();// DI
-            services.AddMvc();
             services.AddOptions();
+            services.AddMvc();
 
             #region Cài đặt đa ngữ hỗ trợ (Đa ngữ)
             var cultureLt = new CultureInfo("vi");
@@ -86,6 +138,54 @@ namespace ECommerce
             services.AddLocalization(); // DI
             #endregion
 
+            #region Viết lại URL của Account
+            services.ConfigureApplicationCookie(options =>
+            {
+
+                ECommerce.Helpers.Common utils = new ECommerce.Helpers.Common();
+                options.LoginPath = $"/tai-khoan/dang-nhap";
+                options.AccessDeniedPath = "/tai-khoan/AccessDenied";
+                //options.Events = new Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents
+                //{
+                //    OnRedirectToLogin = ctx =>
+                //    {
+                //        var requestPath = ctx.Request.Path;
+                //        if (ctx.RedirectUri.ToLower().Contains("account/accessdenied"))
+                //        {
+
+                //            ctx.Response.Redirect("/" + utils.GetCurrentLang() + "/tai-khoan/AccessDenied");
+                //        }
+                //        if (ctx.RedirectUri.ToLower().Contains("account/login"))
+                //        {
+                //            ctx.Response.Redirect($"/{utils.GetCurrentLang()}/tai-khoan/dang-nhap");
+                //        }
+                //        return Task.CompletedTask;
+                //    }
+                //};
+
+            });
+            #endregion
+
+            //services.AddIdentity();
+
+            //services.AddAuthorization();
+            services.AddAuthorizationCore();
+
+            //services.AddAuthorizationCore(options =>
+            //{
+            //    options.AddPolicy("AdminAccess", policy => policy.RequireRole("Admin"));
+            //});
+
+            //services.AddAuthorization(options =>
+            //  options.AddPolicy("RequiredAdminRole",
+            //  policy => policy.RequireRole("Admin")));
+            
+
+            //services.AddAuthorization(options =>
+            //options.AddPolicy("AdminApp",
+            //    policy => policy.RequireClaim("Manager")));
+
+
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -98,22 +198,32 @@ namespace ECommerce
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+            #region session
+            app.UseSession();
+            #endregion
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+       
 
             #region Cài đặt đa ngữ
             // Inject  Service của nó vào
             //app.UseRequestLocalization();
             app.UseMiddleware<LanguageMiddleware>();
             #endregion
-            #region
+
+            #region Authen
             app.UseAuthentication();
             app.UseAuthorization();
             #endregion
+
+
+
             #region Cài đặt đường dẫn cho hệ thống
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages(); //Routes for pages
+                endpoints.MapControllers(); //Routes for my API controllers
                 endpoints.MapControllerRoute("default", "{language:length(2)}/{controller}/{action}",
                     defaults: new
                     {

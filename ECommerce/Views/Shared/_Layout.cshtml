@@ -13,16 +13,19 @@
     <link rel="stylesheet" type="text/css" href="/assets/lib/owl.carousel/owl.carousel.css" />
     <link rel="stylesheet" type="text/css" href="/assets/lib/jquery-ui/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/toastr/toastr.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/rateit.js-master/scripts/rateit.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/reset.css" />
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css" /> -->
     <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/index.css" />
-
 
     @*<link rel="stylesheet" href="~/css/site.css" />*@
     @RenderSection("header", required: false)
-
+    @*<link rel="stylesheet" type="text/css" href="/assets/css/index.css" />*@
+    <environment include="Development">
+        <link rel="stylesheet" href="/assets/css/index.min.css" asp-append-version="true" />
+    </environment>
 </head>
 <body>
     <partial name="_HeaderPartial" />
@@ -46,9 +49,19 @@
     <script type="text/javascript" src="/assets/lib/jquery.bxslider/jquery.bxslider.min.js"></script>
     <script type="text/javascript" src="/assets/lib/owl.carousel/owl.carousel.min.js"></script>
     <script type="text/javascript" src="/assets/lib/jquery.countdown/jquery.countdown.min.js"></script>
-    <script type="text/javascript" src="/assets/js/jquery.actual.min.js"></script>
-    <script type="text/javascript" src="/assets/js/theme-script.js"></script>
 
+
+    <script type="text/javascript" src="~/assets/lib/jquery-ui/jquery-ui.min.js"></script>
+
+
+    <script type="text/javascript" src="~/lib/rateit.js-master/scripts/jquery.rateit.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.actual.min.js"></script>
+    <script type="text/javascript" src="~/lib/toastr/toastr.min.js"></script>
+    <script type="text/javascript" src="/assets/js/theme-script.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <environment include="Development">
+        <script type="text/javascript" src="/js/main.min.js"></script>
+    </environment>
 
     @*<script src="~/js/site.js" asp-append-version="true"></script>*@
     <script type="text/javascript">

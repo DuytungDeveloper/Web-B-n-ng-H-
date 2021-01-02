@@ -126,11 +126,23 @@
   <data name="ADD_TO_CART" xml:space="preserve">
     <value>Add to cart</value>
   </data>
+  <data name="BAN_BE" xml:space="preserve">
+    <value>Friend</value>
+  </data>
   <data name="BESTSELLER" xml:space="preserve">
     <value>Bestseller</value>
   </data>
+  <data name="CAM_ON_QUY_KHACH_DA_DAT_HANG" xml:space="preserve">
+    <value>Thank you for your order, we will contact you soon.</value>
+  </data>
+  <data name="CART" xml:space="preserve">
+    <value>Cart</value>
+  </data>
   <data name="CATEGORY" xml:space="preserve">
     <value>Category</value>
+  </data>
+  <data name="CHECK_OUT" xml:space="preserve">
+    <value>Check out</value>
   </data>
   <data name="CHILDREN_WATCH" xml:space="preserve">
     <value>Children's Watches</value>
@@ -153,11 +165,35 @@
   <data name="COUPLE_WATCH" xml:space="preserve">
     <value>Couple watches</value>
   </data>
+  <data name="CreateDate" xml:space="preserve">
+    <value>Create date</value>
+  </data>
   <data name="CUSTOMER_SAY_ABOUT_US" xml:space="preserve">
     <value>What do customers say about us?</value>
   </data>
+  <data name="DAC_TINH_DONG_HO" xml:space="preserve">
+    <value>Clock characteristics</value>
+  </data>
   <data name="DELIVERY" xml:space="preserve">
     <value>Delivery</value>
+  </data>
+  <data name="DEN_CUA_HANG_LAY" xml:space="preserve">
+    <value>Go to the store to get it</value>
+  </data>
+  <data name="DIA_CHI" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="DIA_CHI_GIAO_HANG" xml:space="preserve">
+    <value>Delivery address</value>
+  </data>
+  <data name="DON_GIA" xml:space="preserve">
+    <value>Unit price</value>
+  </data>
+  <data name="DUONG_KINH_MAT_DONG_HO" xml:space="preserve">
+    <value>Diameter of watch face</value>
+  </data>
+  <data name="FILTER" xml:space="preserve">
+    <value>FILTER</value>
   </data>
   <data name="FREE_DELIVERY" xml:space="preserve">
     <value>Free delivery</value>
@@ -165,8 +201,17 @@
   <data name="FREQUENTLY_QUESTION" xml:space="preserve">
     <value>Frequently asked Questions</value>
   </data>
+  <data name="GHI_CHU" xml:space="preserve">
+    <value>Note</value>
+  </data>
   <data name="GUARANTEE" xml:space="preserve">
     <value>Guarantee</value>
+  </data>
+  <data name="GUI_CHO_BAN" xml:space="preserve">
+    <value>Send it to you</value>
+  </data>
+  <data name="HOAN_THANH" xml:space="preserve">
+    <value>Finish</value>
   </data>
   <data name="HOME" xml:space="preserve">
     <value>Home</value>
@@ -201,17 +246,47 @@
   <data name="HOME_SUPPORT_247_1" xml:space="preserve">
     <value>Continuous support for customers</value>
   </data>
+  <data name="KHAC" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="KIEM_TRA_GIO_HANG" xml:space="preserve">
+    <value>Check out the shopping cart</value>
+  </data>
   <data name="LIMITED_EDITION" xml:space="preserve">
     <value>Limited edition</value>
   </data>
+  <data name="LOAI_DAY" xml:space="preserve">
+    <value>Wire type</value>
+  </data>
+  <data name="LOAI_NIENG" xml:space="preserve">
+    <value>Braces type</value>
+  </data>
   <data name="LOGIN" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="LUA_CHON" xml:space="preserve">
+    <value>Selection</value>
+  </data>
+  <data name="MACHINE_TYPE" xml:space="preserve">
+    <value>Machine type</value>
+  </data>
+  <data name="MAU" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="MAU_MAT_KINH" xml:space="preserve">
+    <value>Glass color</value>
+  </data>
+  <data name="MA_SAN_PHAM" xml:space="preserve">
+    <value>Product code</value>
   </data>
   <data name="MENS_WATCH" xml:space="preserve">
     <value>Men's watch</value>
   </data>
   <data name="MOST_VIEWED" xml:space="preserve">
     <value>Most Viewed</value>
+  </data>
+  <data name="MO_TA" xml:space="preserve">
+    <value>Description</value>
   </data>
   <data name="MY_ACCOUNT" xml:space="preserve">
     <value>My account</value>
@@ -231,6 +306,21 @@
   <data name="NEW_MODEL" xml:space="preserve">
     <value>New model</value>
   </data>
+  <data name="NEW_PRODUCT" xml:space="preserve">
+    <value>New product</value>
+  </data>
+  <data name="NEXT" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="NGUOI_DAT_HANG" xml:space="preserve">
+    <value>Orderer</value>
+  </data>
+  <data name="NGUOI_THAN" xml:space="preserve">
+    <value>Relatives</value>
+  </data>
+  <data name="NOI_SAN_XUAT" xml:space="preserve">
+    <value>Where production</value>
+  </data>
   <data name="ON_SALE" xml:space="preserve">
     <value>On Sale</value>
   </data>
@@ -240,20 +330,65 @@
   <data name="PHONE" xml:space="preserve">
     <value>Phone</value>
   </data>
+  <data name="PHUONG_CACH" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="PHUONG_THUC_THANH_TOAN" xml:space="preserve">
+    <value>Payment methods</value>
+  </data>
+  <data name="PHUONG_XA" xml:space="preserve">
+    <value>Wards</value>
+  </data>
   <data name="POLICY" xml:space="preserve">
     <value>Policy</value>
+  </data>
+  <data name="PREVIOUS" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="PRICE" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="PRODUCT" xml:space="preserve">
+    <value>product</value>
   </data>
   <data name="PRODUCTS_ARE_LOOKED_MOST" xml:space="preserve">
     <value>Most Searched Products</value>
   </data>
+  <data name="PRODUCT_NAME" xml:space="preserve">
+    <value>Product name</value>
+  </data>
+  <data name="QUAN_HE" xml:space="preserve">
+    <value>Relationship</value>
+  </data>
+  <data name="QUAN_HUYEN" xml:space="preserve">
+    <value>District</value>
+  </data>
+  <data name="QUY_KHACH_CO_THE_QUA_BUOC_TIEP_THEO" xml:space="preserve">
+    <value>You can go to the next step.</value>
+  </data>
   <data name="REFUND" xml:space="preserve">
     <value>Refund</value>
+  </data>
+  <data name="REGISTER" xml:space="preserve">
+    <value>Register</value>
   </data>
   <data name="RETURN" xml:space="preserve">
     <value>Returns</value>
   </data>
+  <data name="REVIEW" xml:space="preserve">
+    <value>Review</value>
+  </data>
+  <data name="REVIEW_FROM_USER" xml:space="preserve">
+    <value>CUSTOMER FEEDBACK</value>
+  </data>
   <data name="SALE" xml:space="preserve">
     <value>Discount</value>
+  </data>
+  <data name="SAN_PHAM" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="SEARCH" xml:space="preserve">
+    <value>Search</value>
   </data>
   <data name="SEE_MORE" xml:space="preserve">
     <value>See More</value>
@@ -264,11 +399,20 @@
   <data name="SERVICE" xml:space="preserve">
     <value>Service</value>
   </data>
+  <data name="SHOW" xml:space="preserve">
+    <value>Show</value>
+  </data>
   <data name="SOCIAL_PAGE" xml:space="preserve">
     <value>Social pages</value>
   </data>
   <data name="SOCIAL_PAGES" xml:space="preserve">
     <value>Social Networks</value>
+  </data>
+  <data name="SO_DIEN_THOAI" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="SO_LUONG" xml:space="preserve">
+    <value>Quantity</value>
   </data>
   <data name="SPECIAL_VERSION" xml:space="preserve">
     <value>Special version</value>
@@ -282,14 +426,56 @@
   <data name="SUPPORT_TYPES_OF_CARDS" xml:space="preserve">
     <value>Supported Card Types</value>
   </data>
+  <data name="TAM_TINH" xml:space="preserve">
+    <value>Provisional</value>
+  </data>
   <data name="TEMP_CONDITION" xml:space="preserve">
     <value>Terms and condition</value>
+  </data>
+  <data name="TEN_NGUOI_NHAN" xml:space="preserve">
+    <value>Recipient's name</value>
   </data>
   <data name="TERM" xml:space="preserve">
     <value>Policy</value>
   </data>
+  <data name="THANH_PHO" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="THANH_TIEN" xml:space="preserve">
+    <value>Into money</value>
+  </data>
+  <data name="THANH_TOAN_KHI_NHAN_HANG" xml:space="preserve">
+    <value>Payment on delivery</value>
+  </data>
+  <data name="THOI_GIAN_BAO_HANH_O_CUA_HANG" xml:space="preserve">
+    <value>Warranty period at the store</value>
+  </data>
+  <data name="THOI_GIAN_BAO_HANH_QUOC_TE" xml:space="preserve">
+    <value>International warranty period</value>
+  </data>
+  <data name="THONG_TIN_CHONG_THAM" xml:space="preserve">
+    <value>Waterproof information</value>
+  </data>
+  <data name="THONG_TIN_DON_HANG" xml:space="preserve">
+    <value>Information line</value>
+  </data>
+  <data name="THUE_10" xml:space="preserve">
+    <value>Tax (10%)</value>
+  </data>
+  <data name="TONG" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="TOTAL" xml:space="preserve">
+    <value>Total</value>
+  </data>
   <data name="TRADEMARK" xml:space="preserve">
     <value>Trademark</value>
+  </data>
+  <data name="TRANG_THAI" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="VAN_CHUYEN" xml:space="preserve">
+    <value>Transport fee</value>
   </data>
   <data name="WATCH_NOW" xml:space="preserve">
     <value>Watch now</value>

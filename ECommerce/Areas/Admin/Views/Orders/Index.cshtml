@@ -1,0 +1,260 @@
+﻿@section AdminScripts{
+    <script type="text/javascript" src="~/admin/js/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/admin/js/plugins/sortable/sortable.min.js"></script>
+    <script>
+        let table_donHang = null;
+        let table_orderDetail = $("#table-chi-tiet-don-hang").DataTable({
+            "columns": [
+                { "data": "ProductId", "targets": 0 },
+                {
+                    "data": "Image", "targets": 1, render: function (data, type, row) {
+                        return `<img src="${data}" class="img-responsive"  style="    width: 100px;" />`;
+                    }
+                },
+                { "data": "Quantity", "targets": 2 },
+                { "data": "CurrentPrice", "targets": 3 },
+                { "data": "Price", "targets": 4 },
+                { "data": "TotalPrice", "targets": 5 },
+                //{ "data": "Status", "targets": 5 }
+            ]
+        });
+        getOrderStatusAll().then(data => {
+            console.log(data)
+            for (var i = 0; i < data.length; i++) {
+                $("#trangThaiDon").append(new Option(data[i].Name, data[i].Id));
+            }
+        })
+        async function updateModalData(idLog) {
+            const promiseA = new Promise((resolve, reject) => {
+                $.ajax({
+                    method: "GET",
+                    url: '/api/Order',
+                    data: { id: idLog }
+                }).done((data) => {
+                    resolve(data);
+                })
+            });
+            let result = await promiseA;
+            $('#myModal').modal('toggle')
+            if (table_orderDetail != null) table_orderDetail.clear().draw();
+            if (result != null) {
+                let data = JSON.parse(result.data);
+                console.log(data)
+                var ngay = new Date(data.CreateDate);
+                var stringDate = `${ngay.getFullYear()}-${(ngay.getMonth() + 1).toString().padStart(2, '0')}-${ngay.getDate().toString().padStart(2, '0')}`;
+                console.log(stringDate)
+                $("#myModalLabel").html(data.CustomerName);
+                $("#emailKhach").val(data.Email);
+                $("#sdtKhach").val(data.Phone);
+                $("#ngayLenDon").val(stringDate);
+                $("#tongTien").val(intToPrice(data.TotalPrice));
+
+                $("#trangThaiDon").val(data.OrderStatusId);
+                $("#temp-id-orderStatus").children().off();
+                $("#trangThaiDon").on("change", (event) => {
+                    let updateData = {
+                        Id: data.Id,
+                        Email: data.Email,
+                        CustomerName: data.CustomerName,
+                        Phone: data.Phone,
+                        OrderStatusId: $("#trangThaiDon").val()
+                    };
+                    console.log(updateData);
+                    updateOrder(data.Id, updateData);
+                    table_donHang.ajax.reload();
+                })
+                for (var i = 0; i < data.OrderItems.length; i++) {
+                    let item = data.OrderItems[i];
+                    let productData = await getProductById(item.ProductId)
+                    console.log(productData);
+                    ///assets/data/p35.jpg
+                    if (productData.Product_Media.length != 0) {
+                        item.Image = productData.Product_Media[0].Media.Link;
+                    } else {
+                        item.Image = "/assets/data/p35.jpg";
+                    }
+                    item.Price = intToPrice(productData.Price);
+                    item.TotalPrice = intToPrice(item.CurrentPrice * item.Quantity);
+                    item.CurrentPrice = intToPrice(item.CurrentPrice);
+                    table_orderDetail.row.add(item).draw();
+                    //$('#default-modal').on('hidden.bs.modal', function () {
+                    //    $("#trangThaiDon").off("change", (event) => {
+                    //        let updateData = {
+                    //            Id: data.Id,
+                    //            Email: data.Email,
+                    //            CustomerName: data.CustomerName,
+                    //            Phone: data.Phone,
+                    //            OrderStatusId: $("#trangThaiDon").val()
+                    //        };
+                    //        console.log(updateData);
+                    //        updateOrder(data.Id, updateData);
+                    //    })
+                    //})
+                    $('#default-modal').modal('show')
+                }
+            } else {
+                console.log(result)
+            }
+        }
+        (function ($) {
+            table_donHang = $('#table-don-hang').DataTable({
+                "processing": true,
+                serverSide: true,
+                ajax: {
+                    url: '/api/order/search',
+                    "dataSrc": "data",
+                    "type": "POST"
+                },
+                "columns": [
+                    { "targets": 0, data: "id", className: "" },
+                    { "targets": 1, data: "customerName", className: "" },
+                    { "targets": 2, data: "phone", className: "" },
+                    { "targets": 3, data: "totalItemInOrder", className: "" },
+                    {
+                        "targets": 4, data: "totalPrice", className: "",
+                        render: function (data, type, row) {
+                            var formatter = new Intl.NumberFormat("vi", {
+                                style: "currency",
+                                currency: "VND"
+                            });
+                            return formatter.format(data);
+                        }
+                    },
+                    {
+                        "targets": 5, data: "createDate", className: "",
+                        render: function (data, type, row) {
+                            return DateToString(new Date(data));
+                        }
+                    },
+                    { "targets": 6, data: "statusName", className: "" },
+                    {
+                        "targets": 7, data: "data", className: "",
+                        render: function (data, type, row) {
+                            return '<button onclick="updateModalData(' + "'" + row.id + "'" + ')" class="btn btn-sm btn-primary">Chi tiết</button>';
+                        }
+                    },
+                ],
+                // "columns": [
+                //     { "data": "name"},
+                //     { "data": "level"},
+                //     { "data": "message"},
+                //     { "data": "dateCreated"},
+                //     { "data": "data"},
+                // ],
+                responsive: true,
+                "order": [[5, "desc"]]
+            });
+        })(jQuery);
+    </script>
+}
+
+
+<!-- page title -->
+<div class="page-title">
+    <h1>Quản lý đơn hàng</h1>
+    <p>Xét duyệt đơn hàng</p>
+
+    @*<ul class="breadcrumb">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Tables</a></li>
+            <li>Sortable tables</li>
+        </ul>*@
+</div>
+<!-- ./page title -->
+<!-- datatables plugin -->
+<div class="wrapper wrapper-white">
+    @*<div class="page-subtitle">
+            <h3>DataTables</h3>
+            <p>DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, and will add advanced interaction controls to any HTML table.</p>
+            <p>Add class <code>.table-sortable</code> to table to get zero configuration.</p>
+        </div>*@
+
+    <div class="">
+        <table class="table table-bordered table-striped" id="table-don-hang">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Tên khách</th>
+                    <th>SĐT</th>
+                    <th>Số lượng</th>
+                    <th>Tổng tiền</th>
+                    <th>Ngày đặt</th>
+                    <th>Trạng thái</th>
+                    <th>Thao Tác</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <!-- Button trigger modal -->
+    @*<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Launch demo modal
+        </button>*@
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label for="exampleFormControlInput1" class="form-label">Email Khách</label>
+                            <input type="email" readonly class="form-control" id="emailKhach" placeholder="">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">SĐT</label>
+                            <input type="text" readonly class="form-control" id="sdtKhach" placeholder="">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Ngày lên đơn</label>
+                            <input type="date" readonly class="form-control" id="ngayLenDon" placeholder="">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Tổng tiền</label>
+                            <input type="text" readonly class="form-control" id="tongTien" placeholder="">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col" id="temp-id-orderStatus">
+                            <label for="exampleFormControlTextarea1" class="form-label">Trạng thái đơn</label>
+                            <select class="form-control" id="trangThaiDon" placeholder="Chuyển trạng thái">
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <table class="table table-bordered table-striped" id="table-chi-tiet-don-hang">
+                            <thead>
+                                <tr>
+                                    <th>ProductId</th>
+                                    <th>Ảnh</th>
+                                    <th>Số lượng</th>
+                                    <th>Giá lên lúc đặt mua</th>
+                                    <th>Giá hiện tại</th>
+                                    <th>Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- ./datatables plugin -->

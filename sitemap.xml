@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+  <url>
+    <loc>https://Pwatch.vn/vi/tai-khoan/dang-nhap</loc>
+    <lastmod>2020-08-22T09:12:31+00:00</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://Pwatch.vn/vi/tai-khoan/dang-ky</loc>
+    <lastmod>2020-08-22T09:12:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://Pwatch.vn/vi/chinh-sach</loc>
+    <lastmod>2020-08-22T09:12:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://Pwatch.vn/vi/Faq</loc>
+    <lastmod>2020-08-22T09:12:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://Pwatch.vn/vi/Search-Result</loc>
+    <lastmod>2020-08-22T09:12:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://Pwatch.vn/vi/lien-he</loc>
+    <lastmod>2020-08-22T09:12:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://Pwatch.vn/vi/don-hang</loc>
+    <lastmod>2020-08-22T09:12:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://Pwatch.vn/vi/san-pham</loc>
+    <lastmod>2020-08-22T09:12:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- En -->
+  <url>
+    <loc>https://Pwatch.vn/en/tai-khoan/dang-nhap</loc>
+    <lastmod>2020-08-22T09:12:31+00:00</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://Pwatch.vn/en/tai-khoan/dang-ky</loc>
+    <lastmod>2020-08-22T09:12:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://Pwatch.vn/en/chinh-sach</loc>
+    <lastmod>2020-08-22T09:12:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://Pwatch.vn/en/Faq</loc>
+    <lastmod>2020-08-22T09:12:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://Pwatch.vn/en/Search-Result</loc>
+    <lastmod>2020-08-22T09:12:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://Pwatch.vn/en/lien-he</loc>
+    <lastmod>2020-08-22T09:12:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://Pwatch.vn/en/don-hang</loc>
+    <lastmod>2020-08-22T09:12:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://Pwatch.vn/en/san-pham</loc>
+    <lastmod>2020-08-22T09:12:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+</urlset>

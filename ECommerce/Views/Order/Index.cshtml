@@ -1,0 +1,310 @@
+﻿@model ECommerce.Models.View.OrderViewModel
+@using System.Globalization;
+<!-- page wapper-->
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" asp-controller="home" asp-action="index" title="Return to Home">@language.HOME</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">@language.KIEM_TRA_GIO_HANG</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+        <h2 class="page-heading no-line">
+            <span class="page-heading-title2">@language.THONG_TIN_DON_HANG</span>
+        </h2>
+        <!-- ../page heading-->
+        <div class="page-content page-order">
+            <div id="smartwizard">
+
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#check-order">
+                            01. @language.KIEM_TRA_GIO_HANG
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#address">
+                            02. @language.DIA_CHI_GIAO_HANG
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#payment">
+                            03. @language.PHUONG_THUC_THANH_TOAN
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#finish">
+                            04. @language.HOAN_THANH
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="check-order" class="tab-pane" role="tabpanel" aria-labelledby="check-order">
+                        <div class="table-responsive">
+                            <table class="table table-condense table-responsive cart_summary">
+                                <thead>
+                                    <tr>
+                                        <th class="cart_product">@language.SAN_PHAM</th>
+                                        <th>Mô tả</th>
+                                        <th class="text-right">@language.DON_GIA</th>
+                                        <th>@language.SO_LUONG</th>
+                                        <th class="text-right">@language.THANH_TIEN</th>
+                                        <th class="action"><i class="fa fa-trash-o"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Products != null) for (int i = 0; i < Model.Products.Count; i++)
+                                        {
+                                            var data = Model.Products[i];
+                                            <tr id="product-cart-@data.Id">
+                                                <td class="cart_product">
+                                                    <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url +"."+data.Id)">
+                                                        <img src="@(data.Product_Media.Count() > 0 ?  data.Product_Media[0].Media.Link : "/assets/data/p35.jpg")" alt="SPECIAL PRODUCTS">
+                                                    </a>
+                                                </td>
+                                                <td class="cart_description">
+                                                    <p class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url +"."+data.Id)">@data.Name </a></p>
+                                                    @*<small class="cart_ref">Mã sản phẩm : #123654999</small><br>
+                                                        <small><a href="#">Màu : Beige</a></small><br>
+                                                        <small><a href="#">Size : S</a></small>*@
+                                                </td>
+                                                @if (data.PriceDiscount.HasValue)
+                                                {
+
+                                                    <td class="price dongia">
+                                                        <span class="price product-price">@data.PriceDiscount.Value.ToString("C0", new CultureInfo("vi"))</span>
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="price dongia">
+                                                        <span class="price product-price">@data.Price.ToString("C0", new CultureInfo("vi"))</span>
+                                                    </td>
+                                                }
+                                                <td class="qty">
+                                                    <input class="form-control input-sm" id="product-qty-@data.Id" type="number" min="1" value="@data.Qty" disabled>
+                                                    <a onclick="tangSoLuongSanPham(@data.Id,@(data.PriceDiscount.HasValue ? data.PriceDiscount.Value : data.Price),true)"><i class="fa fa-caret-up"></i></a>
+                                                    <a onclick="tangSoLuongSanPham(@data.Id,@(data.PriceDiscount.HasValue ? data.PriceDiscount.Value : data.Price),false)"><i class="fa fa-caret-down"></i></a>
+                                                </td>
+                                                <td class="price">
+                                                    @if (data.DiscountDateTo.HasValue && data.DiscountDateTo > new DateTime() && data.PriceDiscount.HasValue)
+                                                    {
+
+                                                        <span class="price product-price" id="price-total-@data.Id">@(((System.Numerics.BigInteger)data.PriceDiscount.Value*data.Qty).ToString("C0", new CultureInfo("vi")))</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="price product-price" id="price-total-@data.Id">@(((System.Numerics.BigInteger)data.Price*data.Qty).ToString("C0", new CultureInfo("vi")))</span>
+                                                    }
+                                                </td>
+                                                <td class="action">
+                                                    <a class="pointer" onclick="removeProductFromCart_2(@data.Id)">Delete item</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                </tbody>
+                                <tfoot>
+                                    @*<tr>
+                                        <td colspan="3">@language.TAM_TINH</td>
+                                        <td colspan="2" id="tamTinh">@Model.TamTinh.ToString("C0", new CultureInfo("vi"))</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">@language.THUE_10</td>
+                                        <td colspan="2" id="thue10">@Model.Thue.ToString("C0", new CultureInfo("vi"))</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">@language.VAN_CHUYEN</td>
+                                        <td colspan="2" id="vanChuyen">@(0.ToString("C0", new CultureInfo("vi")))</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3"><strong>@language.TONG</strong></td>
+                                        <td colspan="2" id="tongTien"><strong>@Model.Total.ToString("C0", new CultureInfo("vi"))</strong></td>
+                                        <td></td>
+                                    </tr>*@
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="address" class="tab-pane" role="tabpanel" aria-labelledby="address">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form id="deliveryForm">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputEmail4">@language.TEN_NGUOI_NHAN *</label>
+                                            <input type="text" class="form-control" id="customerName"
+                                                   name="customerName" required>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputPassword4">@language.QUAN_HE</label>
+                                            <select class="form-control" id="customerPosition"
+                                                    name="customerPosition">
+                                                <option>@language.NGUOI_DAT_HANG</option>
+                                                <option>@language.NGUOI_THAN</option>
+                                                <option>@language.BAN_BE</option>
+                                                <option>@language.KHAC</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputCity">@language.SO_DIEN_THOAI *</label>
+                                            <input type="text" class="form-control" id="customerPhone"
+                                                   name="customerPhone" required>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputState">Email</label>
+                                            <input type="text" class="form-control" id="customerEmail"
+                                                   name="customerEmail">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <label for="inputAddress2">@language.DIA_CHI *</label>
+                                            <input type="text" class="form-control" id="deliveryAddress"
+                                                   name="deliveryAddress" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="inputAddress2">@language.THANH_PHO</label>
+                                            <select class="form-control" id="deliveryCity" name="deliveryCity" onchange="deliveryCityChange(event)">
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="inputAddress2">@language.QUAN_HUYEN</label>
+                                            <select class="form-control" id="deliveryDistrict"
+                                                    name="deliveryDistrict" onchange="deliveryDistrictChange(event)">
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="inputAddress2">@language.PHUONG_XA</label>
+                                            <select class="form-control" id="deliveryWard" name="deliveryWard">
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="inputAddress2">@language.GHI_CHU</label>
+                                            <textarea class="form-control" id="deliveryNote" name="Note"></textarea>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="payment" class="tab-pane" role="tabpanel" aria-labelledby="payment">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active">
+                                            <a href="#codPayment"
+                                               aria-controls="codPayment" role="tab" data-toggle="tab">
+                                                @language.THANH_TOAN_KHI_NHAN_HANG
+                                            </a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a href="#storePayment" aria-controls="storePayment"
+                                               role="tab" data-toggle="tab">@language.DEN_CUA_HANG_LAY</a>
+                                        </li>
+                                        @*<li role="presentation">
+                                                <a href="#viettelPayPayment"
+                                                   aria-controls="viettelPayPayment" role="tab" data-toggle="tab">
+                                                    Thanh toán bằng ViettelPay
+                                                </a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a href="#visaPayment" aria-controls="visaPayment"
+                                                   role="tab" data-toggle="tab">Thanh toán bằng Visa</a>
+                                            </li>*@
+
+                                    </ul>
+
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active" id="codPayment">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <br />
+                                                    <h3>
+                                                        @language.QUY_KHACH_CO_THE_QUA_BUOC_TIEP_THEO
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="storePayment">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <br />
+                                                    <h3>
+                                                        @language.QUY_KHACH_CO_THE_QUA_BUOC_TIEP_THEO
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*<div role="tabpanel" class="tab-pane" id="viettelPayPayment">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h3>
+                                                            viettelPayPayment
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="visaPayment">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h3>
+                                                            visaPayment
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="finish" class="tab-pane" role="tabpanel" aria-labelledby="finish">
+                        @language.CAM_ON_QUY_KHACH_DA_DAT_HANG
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ./page wapper-->
+
+@section header{
+    <link href="https://cdn.jsdelivr.net/npm/smartwizard@5.0.0/dist/css/smart_wizard_all.min.css" rel="stylesheet"
+          type="text/css" />
+}
+
+@section Scripts{
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/smartwizard@5.0.0/dist/js/jquery.smartWizard.min.js"
+            type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script type="text/javascript" src="~/js/checkout.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/index.js"></script>
+}

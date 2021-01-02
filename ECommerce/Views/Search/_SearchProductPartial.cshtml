@@ -1,0 +1,8 @@
+﻿@using ECommerce.Models.View
+@model ECommerce.Model.EFModel.Models.Product
+@using System.Globalization;
+<li class="col-sx-12 col-sm-4">
+    <div class="product-container">
+        @await Component.InvokeAsync("ProductViewPartial", new { type = 6, data = Model })
+    </div>
+</li>
