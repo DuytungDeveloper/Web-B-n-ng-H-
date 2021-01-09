@@ -68,7 +68,11 @@ namespace ECommerce.Areas.Admin.Controllers
             //    var resultRoleDeveloper = await userManager.AddToRoleAsync(adminThien, "Admin");
             //}
             //#endregion
-            return RedirectToAction("Index", "Orders");
+            //return RedirectToAction("Index", "Orders");
+            return RedirectToRoute(new { 
+                controller = "Product",
+                action = "Index"
+            });
             //return View();
         }
 

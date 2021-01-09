@@ -27,7 +27,7 @@ namespace ECommerce.Areas.Admin.Controllers
         }
         #region Pages
         [Route("/admin/san-pham")]
-        public ActionResult Create()
+        public ActionResult Index()
         {
             return View();
         }

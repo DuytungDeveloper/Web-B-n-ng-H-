@@ -281,7 +281,39 @@ namespace ECommerce.Controllers
             //    + data.OrderStatus.Name
             //    ).Contains(stringSearch)
             //).Include(x => x.Address).Include(x => x.OrderItems).Include(x => x.OrderStatus).AsEnumerable();
-            var stringSQL = $"select Orders.* from Orders join Address on Orders.AddressId = Address.Id join OrderStatus on Orders.OrderStatusId = OrderStatus.Id where (CAST(Orders.Id as varchar)+ ' '+ Orders.Code+ ' '+ Orders.CustomerName+ ' '+ Orders.Email+ ' '+ Orders.Phone+ ' '+ Orders.Note+ ' '+ Orders.ReceiverInfo+ ' '+ CONVERT(VARCHAR(10),Orders.CreateDate,1) + ' '+ Address.Street+ ' '+ OrderStatus.Name) LIKE N'%{stringSearch.Replace(" ", "%")}%'";
+            //var stringSQL = $"select Orders.* from Orders join Address on Orders.AddressId = Address.Id join OrderStatus on Orders.OrderStatusId = OrderStatus.Id where (CAST(Orders.Id as varchar)+ ' '+ Orders.Code+ ' '+ Orders.CustomerName+ ' '+ Orders.Email+ ' '+ Orders.Phone+ ' '+ Orders.Note+ ' '+ Orders.ReceiverInfo+ ' '+ CONVERT(VARCHAR(10),Orders.CreateDate,1) + ' '+ Address.Street+ ' '+ OrderStatus.Name) LIKE N'%{stringSearch.Replace(" ", "%")}%'";
+            var stringSQL = $@"
+                    select
+                        Orders.*
+                    from
+                        Orders
+                        join Address on Orders.AddressId = Address.Id
+                        join OrderStatus on Orders.OrderStatusId = OrderStatus.Id
+                    where
+                        (
+                            CAST(Orders.Id as nvarchar) + ' ' + CAST(
+                                case
+                                    when Orders.Code is not null then (Orders.Code)
+                                    else ''
+                                end as nvarchar
+                            ) + ' ' + CAST(Orders.CustomerName as nvarchar) + ' ' + CAST(
+                                case
+                                    when Orders.Email is not null then (Orders.Email)
+                                    else ''
+                                end as nvarchar
+                            ) + ' ' + CAST(Orders.Phone as nvarchar) + ' ' + CAST(
+                                case
+                                    when Orders.Note is not null then (Orders.Note)
+                                    else ''
+                                end as nvarchar
+                            ) + ' ' + CAST(
+                                case
+                                    when Orders.ReceiverInfo is not null then (Orders.ReceiverInfo)
+                                    else ''
+                                end as nvarchar
+                            ) + ' ' + CONVERT(VARCHAR(10), Orders.CreateDate, 1) + ' ' + Address.Street + ' ' + OrderStatus.Name
+                        ) LIKE N'%{stringSearch.Replace(" ", "%")}%'
+            ";
             stringSQL = stringSearch == "" ? "select Orders.* from Orders" : stringSQL;
             var mainQuery = db.Orders.FromSqlRaw(stringSQL).Include(x => x.Address).Include(x => x.OrderItems).Include(x => x.OrderStatus).AsEnumerable();
             //int count2 = mainQuery2.Count();
@@ -434,6 +466,129 @@ namespace ECommerce.Controllers
             data.Success = true;
             data.Message = "Thành công !";
             return Ok(data);
+        }
+
+        [HttpPost]
+        [Route("api/Product/search")]
+        public async Task<ActionResult<ResultData<IEnumerable<Order>>>> GetAllProduct([FromForm] FilterViewModel filter)
+        {
+            db.Database.SetCommandTimeout(99999999);
+            ResultData<IEnumerable<Order>> rs = new ResultData<IEnumerable<Order>>();
+            string stringSearch = string.IsNullOrEmpty(filter.search.value) ? "" : filter.search.value;
+            var mainQuery = db.Products.Where(x => (x.Id.ToString() + x.Name + x.Price.ToString() + (x.PriceDiscount.HasValue ? x.PriceDiscount.ToString() : "") + x.Product_ProductStatus.FirstOrDefault().ProductStatus.Status.ToString()).Contains(stringSearch != null ? stringSearch : "")).Include("Product_Media.Media").Include(x => x.Product_ProductStatus).Include("Product_ProductStatus.ProductStatus").Include(x => x.Reviews).AsQueryable();
+            //    .Select(x=> new { 
+            //    Id = x.Id,
+            //    Anh = x.Product_Media.FirstOrDefault().Media.Link,
+            //    Name = x.Name,
+            //    Price = x.Price,
+            //    PriceDiscount = x.PriceDiscount,
+            //    Point = x.Point,
+            //    Qty = x.Qty,
+            //    Status = x.Product_ProductStatus.FirstOrDefault().ProductStatus.Status
+            //}).ToList();
+            var stringSQL = $@"
+                    select
+                        Orders.*
+                    from
+                        Products pro
+                        join Product_ProductStatus status on pro.Status = status.Id
+                        left join Product_Media pro_media on pro.Id = pro_media.ProductId
+left join Medias media on pro_media.MediaId = media.Id
+                    where
+                        (
+                            CAST(Orders.Id as nvarchar) + ' ' + CAST(
+                                case
+                                    when Orders.Code is not null then (Orders.Code)
+                                    else ''
+                                end as nvarchar
+                            ) + ' ' + CAST(Orders.CustomerName as nvarchar) + ' ' + CAST(
+                                case
+                                    when Orders.Email is not null then (Orders.Email)
+                                    else ''
+                                end as nvarchar
+                            ) + ' ' + CAST(Orders.Phone as nvarchar) + ' ' + CAST(
+                                case
+                                    when Orders.Note is not null then (Orders.Note)
+                                    else ''
+                                end as nvarchar
+                            ) + ' ' + CAST(
+                                case
+                                    when Orders.ReceiverInfo is not null then (Orders.ReceiverInfo)
+                                    else ''
+                                end as nvarchar
+                            ) + ' ' + CONVERT(VARCHAR(10), Orders.CreateDate, 1) + ' ' + Address.Street + ' ' + OrderStatus.Name
+                        ) LIKE N'%{stringSearch.Replace(" ", "%")}%'
+            ";
+            //var mainQuery = db.Orders.FromSqlRaw(stringSQL).Include(x => x.Address).Include(x => x.OrderItems).Include(x => x.OrderStatus).AsEnumerable();
+            //int count2 = mainQuery2.Count();
+            int count = mainQuery.Count();
+            var Item = new List<Product>();
+            switch (filter.order[0].column)
+            {
+                case 0:
+                    Item = filter.order[0].dir == "desc" ? mainQuery.OrderByDescending(x => x.Id).Skip(filter.start).Take(filter.length).ToList()
+                                                        : mainQuery.OrderBy(x => x.Id).Skip(filter.start).Take(filter.length).ToList();
+                    break;
+                //case 1:
+                //    Item = filter.order[0].dir == "desc" ? mainQuery.OrderByDescending(x => x.CustomerName).Skip(filter.start).Take(filter.length).ToList()
+                //                                       : mainQuery.OrderBy(x => x.CustomerName).Skip(filter.start).Take(filter.length).ToList();
+                //    break;
+                case 2:
+                    Item = filter.order[0].dir == "desc" ? mainQuery.OrderByDescending(x => x.Name).Skip(filter.start).Take(filter.length).ToList()
+                                                       : mainQuery.OrderBy(x => x.Name).Skip(filter.start).Take(filter.length).ToList();
+                    break;
+                case 3:
+                    Item = filter.order[0].dir == "desc" ? mainQuery.OrderByDescending(x => x.Price).Skip(filter.start).Take(filter.length).ToList()
+                                                       : mainQuery.OrderBy(x => x.Price).Skip(filter.start).Take(filter.length).ToList();
+                    break;
+                case 4:
+                    Item = filter.order[0].dir == "desc" ? mainQuery.OrderByDescending(x => x.PriceDiscount).Skip(filter.start).Take(filter.length).ToList()
+                                                       : mainQuery.OrderBy(x => x.PriceDiscount).Skip(filter.start).Take(filter.length).ToList();
+                    break;
+                case 5:
+                    Item = filter.order[0].dir == "desc" ? mainQuery.OrderByDescending(x => x.Reviews.Count).Skip(filter.start).Take(filter.length).ToList()
+                                                       : mainQuery.OrderBy(x => x.Reviews.Count).Skip(filter.start).Take(filter.length).ToList();
+                    break;
+                case 6:
+                    Item = filter.order[0].dir == "desc" ? mainQuery.OrderByDescending(x => x.Product_ProductStatus.Count).Skip(filter.start).Take(filter.length).ToList()
+                                                       : mainQuery.OrderBy(x => x.Product_ProductStatus.Count).Skip(filter.start).Take(filter.length).ToList();
+                    break;
+                default:
+                    Item = filter.order[0].dir == "desc" ? mainQuery.OrderByDescending(x => x.CreateDate).Skip(filter.start).Take(filter.length).ToList()
+                                                      : mainQuery.OrderBy(x => x.CreateDate).Skip(filter.start).Take(filter.length).ToList();
+                    break;
+            }
+            var ItemRS = Item.Select(x =>
+            {
+                List<string> trangThai = new List<string>() { "Bình thường" };
+                if (x.Product_ProductStatus.FirstOrDefault() != null)
+                {
+                    trangThai = new List<string>();
+                    x.Product_ProductStatus.ForEach(x =>
+                    {
+                        trangThai.Add(x.ProductStatus.Name);
+                    });
+                }
+                return new
+                {
+                    Id = x.Id,
+                    Anh = x.Product_Media.FirstOrDefault() != null ? x.Product_Media.FirstOrDefault().Media.Link : "/assets/data/product-s3-850x1036.jpg",
+                    Name = x.Name,
+                    Price = x.Price,
+                    PriceDiscount = x.PriceDiscount,
+                    Point = x.Point,
+                    Qty = x.Qty,
+                    Status = string.Join(",", trangThai)
+                };
+            }).ToList();
+            var result = new FilterResultViewModel<object>
+            {
+                draw = filter.draw,
+                data = ItemRS,
+                recordsTotal = db.Products.Count(),
+                recordsFiltered = count
+            };
+            return Ok(result);
         }
         #endregion
 
