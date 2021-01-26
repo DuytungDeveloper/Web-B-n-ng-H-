@@ -23,6 +23,8 @@
     <!-- javascripts -->
     <script type="text/javascript" src="~/js/common.js"></script>
     <!-- ./javascripts -->
+    @RenderSection("AdminHeader", required: false)
+
 
     <style>
         .dev-page {
@@ -101,10 +103,10 @@
     <script type="text/javascript" src="~/admin/js/dev-settings.js"></script>
     <script type="text/javascript" src="~/admin/js/dev-loaders.js"></script>
     <script type="text/javascript" src="~/admin/js/dev-layout-default.js"></script>
-    <script type="text/javascript" src="~/admin/js/demo.js"></script>
+    @*<script type="text/javascript" src="~/admin/js/demo.js"></script>
     <script type="text/javascript" src="~/admin/js/dev-app.js"></script>
     <script type="text/javascript" src="~/admin/js/demo-dashboard.js"></script>
-    <script type="text/javascript" src="~/admin/js/admin.min.js"></script>
+    <script type="text/javascript" src="~/admin/js/admin.min.js"></script>*@
     <!-- ./javascript -->
     <script type="text/javascript" src="~/js/admin_common.js"></script>
 

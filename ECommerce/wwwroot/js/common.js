@@ -62,18 +62,34 @@ async function getProduct(link) {
 function intToPrice(priceNumber) {
     let lang = getLang();
     let rs = "";
-    switch (lang) {
-        case "vi":
-            rs = new Intl.NumberFormat('vi', { style: 'currency', currency: 'VND' }).format(priceNumber);
-            break;
-        case "en":
-            rs = new Intl.NumberFormat('en', { style: 'currency', currency: 'USD' }).format(priceNumber);
-            break;
-        default:
-            rs = new Intl.NumberFormat('vi', { style: 'currency', currency: 'VND' }).format(priceNumber);
-            break;
+    try {
+        switch (lang) {
+            case "vi":
+                rs = new Intl.NumberFormat('vi', { style: 'currency', currency: 'VND' }).format(priceNumber);
+                break;
+            case "en":
+                rs = new Intl.NumberFormat('en', { style: 'currency', currency: 'USD' }).format(priceNumber);
+                break;
+            default:
+                rs = new Intl.NumberFormat('vi', { style: 'currency', currency: 'VND' }).format(priceNumber);
+                break;
+        }
+        return rs;
+    } catch {
+        switch (lang) {
+            case "vi":
+                rs = new Intl.NumberFormat('vi', { style: 'currency', currency: 'VND' }).format(0);
+                break;
+            case "en":
+                rs = new Intl.NumberFormat('en', { style: 'currency', currency: 'USD' }).format(0);
+                break;
+            default:
+                rs = new Intl.NumberFormat('vi', { style: 'currency', currency: 'VND' }).format(0);
+                break;
+        }
+        return rs;
     }
-    return rs;
+
 }
 /**
  * Chuyển ngày thành nội dung ngày tháng dễ hiểu
