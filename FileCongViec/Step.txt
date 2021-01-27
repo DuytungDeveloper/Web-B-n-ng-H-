@@ -1,6 +1,10 @@
+Chỉnh về ECommerce.Model
 Add Migration vào Model => Quản lý thay đổi DB.
     -   Add-Migration InitialMigration -Context ECommerceContext (Add-Migration InitialMigration -Context ApplicationDbContext)
     -   Update-Database InitialMigration -Context ECommerceContext (Update-Database InitialMigration -Context ApplicationDbContext)
+
+Add-Migration Update-Model-Product-SEO -Context ApplicationDbContext
+Update-Database Update-Model-Product-SEO -Context ECommerceContext
 
 /san-pham/masanpham
 

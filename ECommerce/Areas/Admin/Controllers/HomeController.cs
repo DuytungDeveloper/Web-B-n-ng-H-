@@ -32,7 +32,7 @@ namespace ECommerce.Areas.Admin.Controllers
         //public async Task<IActionResult> Index()
         //[Authorize(Roles = "Admin,Developer")]
         //[Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Index()
+        public ActionResult Index()
         {
             //#region create default user
             //ApplicationUser developer = new ApplicationUser()

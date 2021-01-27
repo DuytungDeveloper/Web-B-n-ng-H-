@@ -83,7 +83,7 @@
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="col">
-                                                    <form class="form-horizontal">
+                                                    <form class="form-horizontal" id="form-cai-dat-thong-tin-productDetail">
                                                         <div class="form-group">
                                                             <label for="ProductId_detail" class="col-sm-2 control-label">ProductId</label>
                                                             <div class="col-sm-10">
@@ -96,6 +96,129 @@
                                                                 <input type="text" class="form-control" id="productName_detail" placeholder="Tên sản phẩm" required>
                                                             </div>
                                                         </div>
+
+                                                        <div class="form-group">
+                                                            <label for="productURL_detail" class="col-sm-2 control-label">Url sản phẩm</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="productURL_detail" placeholder="URL sản phẩm" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productSku_detail" class="col-sm-2 control-label">Sku sản phẩm</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="productSku_detail" placeholder="Sku sản phẩm">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productBrand_detail" class="col-sm-2 control-label">Thương hiệu sản phẩm</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control selectpicker" id="productBrand_detail" required data-live-search="true" data-actions-box="true">
+                                                            
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productOriginNumber_detail" class="col-sm-2 control-label">Số Seri sản phẩm</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="productOriginNumber_detail" placeholder="Số Seri sản phẩm">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productMachineId_detail" class="col-sm-2 control-label">Loại máy</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control selectpicker" id="productMachineId_detail" data-live-search="true" data-actions-box="true">
+                                                          
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productInternationalWarrantyTime_detail" class="col-sm-2 control-label">Thời gian bảo hành quốc tế</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" class="form-control" min="0" max="5" id="productInternationalWarrantyTime_detail" placeholder="Thời gian bảo hành quốc tế">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productStoreWarrantyTime_detail" class="col-sm-2 control-label">Thời gian bảo hành tại cửa hàng</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" class="form-control" min="0" max="5" id="productStoreWarrantyTime_detail" placeholder="Thời gian bảo hành quốc tế">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productDiameter_detail" class="col-sm-2 control-label">Đường kính mặt đồng hồ</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="productDiameter_detail" placeholder="Đường kính mặt đồng hồ">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productThicknessOfClass_detail" class="col-sm-2 control-label">Độ dày</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" class="form-control" min="1" id="productThicknessOfClass_detail" placeholder="Độ dày">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productBandId_detail" class="col-sm-2 control-label">Loại niềng</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control selectpicker" id="productBandId_detail" data-live-search="true" data-actions-box="true">
+                                                        
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productStrapId_detail" class="col-sm-2 control-label">Loại dây</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control selectpicker" id="productStrapId_detail" data-live-search="true" data-actions-box="true">
+                                                           
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productColorClockFaceId_detail" class="col-sm-2 control-label">Màu mặt kính</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control selectpicker" id="productColorClockFaceId_detail" data-live-search="true" data-actions-box="true">
+                                                           
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productMadeInId_detail" class="col-sm-2 control-label">Nơi sản xuất</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control selectpicker" id="productMadeInId_detail" data-live-search="true" data-actions-box="true">
+                                                           
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productStyleId_detail" class="col-sm-2 control-label">Phong cách</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control selectpicker" id="productStyleId_detail" data-live-search="true" data-actions-box="true">
+                                                       
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productWaterproofId_detail" class="col-sm-2 control-label">Chống thấm</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control selectpicker" id="productWaterproofId_detail" data-live-search="true" data-actions-box="true">
+                                                          
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productCategoryId_detail" class="col-sm-2 control-label">Danh mục</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control selectpicker" id="productCategoryId_detail" required data-live-search="true" data-actions-box="true">
+                                                             
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productTitleSEO_detail" class="col-sm-2 control-label">Số lượng trong kho</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" min="0" class="form-control" id="productQtyInWareHouse_detail" placeholder="Số lượng trong kho">
+                                                            </div>
+                                                        </div>
+
+
 
                                                         <div class="form-group">
                                                             <label for="productTitleSEO_detail" class="col-sm-2 control-label">Title sản phẩm (SEO)</label>
@@ -113,7 +236,7 @@
                                                         <div class="form-group">
                                                             <label for="productKeyWordSEO_detail" class="col-sm-2 control-label">KeyWords (SEO)</label>
                                                             <div class="col-sm-10">
-                                                                <input type="text" class="tags" id="productKeyWordSEO_detail" value="PHP,JS,jQuery,HTML,CSS" />
+                                                                <input type="text" class="tags" id="productKeyWordSEO_detail" value="" />
                                                             </div>
                                                         </div>
 
@@ -121,11 +244,7 @@
                                                             <label for="productCategory_detail" class="col-sm-2 control-label">Danh mục sản phẩm</label>
                                                             <div class="col-sm-10">
                                                                 <select class="form-control selectpicker" id="productCategory_detail" required>
-                                                                    <option value="1">Option 1</option>
-                                                                    <option value="2">Option 2</option>
-                                                                    <option value="3">Option 3</option>
-                                                                    <option value="4">Option 4</option>
-                                                                    <option value="5">Option 5</option>
+                                                            
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -197,7 +316,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                     <button type="button" class="btn btn-warning" onclick="reloadDetailProduct(event)" data-loading-text="Đang tải ...">Tải lại</button>
-                    <button type="button" class="btn btn-success">Lưu</button>
+                    <button type="button" class="btn btn-success" onclick="updateDetailProduct()">Lưu</button>
                 </div>
             </div>
         </div>

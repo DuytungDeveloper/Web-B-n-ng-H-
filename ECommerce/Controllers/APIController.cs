@@ -590,6 +590,24 @@ left join Medias media on pro_media.MediaId = media.Id
             };
             return Ok(result);
         }
+
+        [HttpPut("api/Product/{id}")]
+        public ActionResult<ResultData<object>> UpdateProduct([FromForm] Product product, [FromRoute] int Id)
+        {
+            ResultData<object> data = new ResultData<object>();
+            //Order Item = await GetById<Order>(Id);
+            //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
+            var Item = db.Products.Where(x => x.Id == Id).OrderByDescending(x => x.CreateDate).Take(10).Include(i => i.Product_ProductStatus).Include(i => i.Product_Media).Include("Product_Media.Media").Include(i => i.BrandProduct).Include(x => x.Reviews).FirstOrDefault();
+            if (Item == null) return data;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            data.Success = true;
+            data.Message = "Thành công !";
+            return Ok(data);
+        }
         #endregion
 
         #region OrderStatus
@@ -610,5 +628,184 @@ left join Medias media on pro_media.MediaId = media.Id
         }
         #endregion
 
+        #region BrandProduct
+        [HttpGet("api/BrandProduct/all")]
+        public ActionResult<ResultData<object>>  GetAllBrandProduct()
+        {
+            ResultData<object> data = new ResultData<object>();
+            //Order Item = await GetById<Order>(Id);
+            //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
+            var Item = db.BrandProducts.ToList();
+            if (Item == null) return data;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            data.Success = true;
+            data.Message = "Thành công !";
+            return Ok(data);
+        }
+        #endregion
+
+        #region Machine
+        [HttpGet("api/Machine/all")]
+        public ActionResult<ResultData<object>> GetAllMachine()
+        {
+            ResultData<object> data = new ResultData<object>();
+            //Order Item = await GetById<Order>(Id);
+            //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
+            var Item = db.Machines.ToList();
+            if (Item == null) return data;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            data.Success = true;
+            data.Message = "Thành công !";
+            return Ok(data);
+        }
+        #endregion
+
+        #region Band
+        [HttpGet("api/Band/all")]
+        public ActionResult<ResultData<object>> GetAllBand()
+        {
+            ResultData<object> data = new ResultData<object>();
+            //Order Item = await GetById<Order>(Id);
+            //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
+            var Item = db.Bands.ToList();
+            if (Item == null) return data;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            data.Success = true;
+            data.Message = "Thành công !";
+            return Ok(data);
+        }
+        #endregion
+
+        #region Strap
+        [HttpGet("api/Strap/all")]
+        public ActionResult<ResultData<object>> GetAllStrap()
+        {
+            ResultData<object> data = new ResultData<object>();
+            //Order Item = await GetById<Order>(Id);
+            //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
+            var Item = db.Straps.ToList();
+            if (Item == null) return data;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            data.Success = true;
+            data.Message = "Thành công !";
+            return Ok(data);
+        }
+        #endregion
+
+        #region ColorClockFace
+        [HttpGet("api/ColorClockFace/all")]
+        public ActionResult<ResultData<object>> GetAllColorClockFace()
+        {
+            ResultData<object> data = new ResultData<object>();
+            //Order Item = await GetById<Order>(Id);
+            //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
+            var Item = db.ColorClockFaces.ToList();
+            if (Item == null) return data;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            data.Success = true;
+            data.Message = "Thành công !";
+            return Ok(data);
+        }
+        #endregion
+
+        #region MadeIn
+        [HttpGet("api/MadeIn/all")]
+        public ActionResult<ResultData<object>> GetAllMadeIn()
+        {
+            ResultData<object> data = new ResultData<object>();
+            //Order Item = await GetById<Order>(Id);
+            //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
+            var Item = db.MadeIns.ToList();
+            if (Item == null) return data;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            data.Success = true;
+            data.Message = "Thành công !";
+            return Ok(data);
+        }
+        #endregion
+
+        #region Style
+        [HttpGet("api/Style/all")]
+        public ActionResult<ResultData<object>> GetAllStyle()
+        {
+            ResultData<object> data = new ResultData<object>();
+            //Order Item = await GetById<Order>(Id);
+            //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
+            var Item = db.Styles.ToList();
+            if (Item == null) return data;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            data.Success = true;
+            data.Message = "Thành công !";
+            return Ok(data);
+        }
+        #endregion
+
+        #region Waterproof
+        [HttpGet("api/Waterproof/all")]
+        public ActionResult<ResultData<object>> GetAllWaterproof()
+        {
+            ResultData<object> data = new ResultData<object>();
+            //Order Item = await GetById<Order>(Id);
+            //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
+            var Item = db.Waterproofs.ToList();
+            if (Item == null) return data;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            data.Success = true;
+            data.Message = "Thành công !";
+            return Ok(data);
+        }
+        #endregion
+
+        #region Category
+        [HttpGet("api/Category/all")]
+        public ActionResult<ResultData<object>> GetAllCategory()
+        {
+            ResultData<object> data = new ResultData<object>();
+            //Order Item = await GetById<Order>(Id);
+            //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
+            var Item = db.Category.ToList();
+            if (Item == null) return data;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            data.Success = true;
+            data.Message = "Thành công !";
+            return Ok(data);
+        }
+        #endregion
     }
 }

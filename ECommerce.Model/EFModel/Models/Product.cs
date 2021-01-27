@@ -130,7 +130,7 @@ namespace ECommerce.Model.EFModel.Models
         [Column(Order = 17)]
         public string Diameter { get; set; }
         /// <summary>
-        /// đường kính mặt đồng hồ
+        /// Độ dày
         /// </summary>
         [Column(Order = 18)]
         public float? ThicknessOfClass { get; set; }
@@ -202,6 +202,18 @@ namespace ECommerce.Model.EFModel.Models
             } }
         [NotMapped]
         public int Qty { get; set; }
+        [Column(Order = 26)]
         public int ViewsCount { get; set; }
+        /// <summary>
+        /// Số lượng sản phẩm trong kho
+        /// </summary>
+        [Column(Order = 27)]
+        public int QtyInWareHouse { get; set; }
+        [Column(Order = 28)]
+        public string TitleSEO { get; set; }
+        [Column(Order = 29)]
+        public string KeyWordSEO { get; set; }
+        [Column(Order = 30)]
+        public string DescriptionShortSEO { get; set; }
     }
 }
