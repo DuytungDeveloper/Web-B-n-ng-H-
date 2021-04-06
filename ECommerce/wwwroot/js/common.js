@@ -75,88 +75,95 @@ function intToPrice(priceNumber) {
                 break;
         }
         return rs;
-    } catch {
+    } catch (e) {
         switch (lang) {
             case "vi":
-                rs = new Intl.NumberFormat('vi', { style: 'currency', currency: 'VND' }).format(0);
-                break;
+                {
+                    rs = new Intl.NumberFormat('vi', { style: 'currency', currency: 'VND' }).format(0);
+                    break;
+                }
             case "en":
-                rs = new Intl.NumberFormat('en', { style: 'currency', currency: 'USD' }).format(0);
-                break;
+                {
+                    rs = new Intl.NumberFormat('en', { style: 'currency', currency: 'USD' }).format(0);
+                    break;
+                }
             default:
-                rs = new Intl.NumberFormat('vi', { style: 'currency', currency: 'VND' }).format(0);
-                break;
+                {
+                    rs = new Intl.NumberFormat('vi', { style: 'currency', currency: 'VND' }).format(0);
+                    break;
+                }
         }
         return rs;
     }
 
 }
+
 /**
- * Chuyển ngày thành nội dung ngày tháng dễ hiểu
+ * Format date thành chuỗi
  * @param {any} date
+ * @param {any} options
  */
-function DateToString(date) {
-    // var d = new Date(date)
-    // var ye = new Intl.DateTimeFormat('vi-VN', { year: 'numeric' }).format(d)
-    // var mo = new Intl.DateTimeFormat('vi-VN', { month: '2-digit' }).format(d)
-    // var da = new Intl.DateTimeFormat('vi-VN', { day: '2-digit' }).format(d)
-    // var hh = new Intl.DateTimeFormat('vi-VN', { hour: '2-digit' }).format(d)
-    // var mm = new Intl.DateTimeFormat('vi-VN', { minute: '2-digit' }).format(d)
-    // var ss = new Intl.DateTimeFormat('vi-VN', { second: '2-digit' }).format(d)
-    // // console.log(`${da}/${mo}/${ye} ${hh}:${mm}:${ss < 10 ? '0' + ss : ss}`)
-    // return `${da}/${mo}/${ye} ${hh}:${mm}:${ss < 10 ? '0' + ss : ss}`;
+function DateToString(date, options = {}) {
+    let defaultOption = {
+        type: "vn",
+        commas: "-",
+        full: true
+    };
+    options.type = options.type ? options.type : defaultOption.type;
+    options.commas = options.commas ? options.commas : defaultOption.commas;
+    options.full = options.full ? options.full : defaultOption.full;
+    //options = { ...defaultOption, ...options };
+
+    date = new Date(date);
     var hour = date.getHours();
-    hour = (hour < 10 ? "0" : "") + hour;
+    // hour = (hour < 10 ? "0" : "") + hour;
+    hour = hour.toString().padStart(2, "0");
 
     var min = date.getMinutes();
-    min = (min < 10 ? "0" : "") + min;
+    // min = (min < 10 ? "0" : "") + min;
+    min = min.toString().padStart(2, "0");
 
     var sec = date.getSeconds();
-    sec = (sec < 10 ? "0" : "") + sec;
+    // sec = (sec < 10 ? "0" : "") + sec;
+    sec = sec.toString().padStart(2, "0");
 
     var year = date.getFullYear();
 
     var month = date.getMonth() + 1;
-    month = (month < 10 ? "0" : "") + month;
+    // month = (month < 10 ? "0" : "") + month;
+    month = month.toString().padStart(2, "0");
 
     var day = date.getDate();
-    day = (day < 10 ? "0" : "") + day;
+    // day = (day < 10 ? "0" : "") + day;
+    day = day.toString().padStart(2, "0");
 
-    return day + "/" + month + "/" + year + " " + hour + ":" + min + ":" + sec;
-}
+    let final = "";
 
-/**
- * Chuyển ngày thành nội dung ngày tháng dễ hiểu
- * @param {any} date
- */
-function DateToString(date) {
-    // var d = new Date(date)
-    // var ye = new Intl.DateTimeFormat('vi-VN', { year: 'numeric' }).format(d)
-    // var mo = new Intl.DateTimeFormat('vi-VN', { month: '2-digit' }).format(d)
-    // var da = new Intl.DateTimeFormat('vi-VN', { day: '2-digit' }).format(d)
-    // var hh = new Intl.DateTimeFormat('vi-VN', { hour: '2-digit' }).format(d)
-    // var mm = new Intl.DateTimeFormat('vi-VN', { minute: '2-digit' }).format(d)
-    // var ss = new Intl.DateTimeFormat('vi-VN', { second: '2-digit' }).format(d)
-    // // console.log(`${da}/${mo}/${ye} ${hh}:${mm}:${ss < 10 ? '0' + ss : ss}`)
-    // return `${da}/${mo}/${ye} ${hh}:${mm}:${ss < 10 ? '0' + ss : ss}`;
-    var hour = date.getHours();
-    hour = (hour < 10 ? "0" : "") + hour;
+    // return day + "/" + month + "/" + year + " " + hour + ":" + min + ":" + sec;
+    switch (options.type) {
+        case "us": {
+            {
+                if (options.full) {
+                    final = `${year}${options.commas}${month}${options.commas}${day} ${hour}:${min}:${sec}`;
+                } else {
+                    final = `${year}${options.commas}${month}${options.commas}${day}`;
+                }
+                break;
+            }
+        }
+        default: {
+            {
+                if (options.full) {
+                    final = `${day}${options.commas}${month}${options.commas}${year} ${hour}:${min}:${sec}`;
+                } else {
+                    final = `${day}${options.commas}${month}${options.commas}${year}`;
+                }
+                break;
+            }
+        }
+    }
 
-    var min = date.getMinutes();
-    min = (min < 10 ? "0" : "") + min;
-
-    var sec = date.getSeconds();
-    sec = (sec < 10 ? "0" : "") + sec;
-
-    var year = date.getFullYear();
-
-    var month = date.getMonth() + 1;
-    month = (month < 10 ? "0" : "") + month;
-
-    var day = date.getDate();
-    day = (day < 10 ? "0" : "") + day;
-
-    return day + "/" + month + "/" + year + " " + hour + ":" + min + ":" + sec;
+    return final;
 }
 
 /**
@@ -215,4 +222,22 @@ async function getOrderStatusAll() {
     //let rs = await promiseA;
     //console.log(rs);
     //return rs;
+}
+
+/**
+ * Hiển thị  màn hình Loading (Cả web)*/
+const showLoadingScreen = () => {
+    //var elem = document.querySelector('body');
+    ////document.body.innerHTML += '<div id="loadingScreen"></div>';
+    //var child = document.createElement('<div id="loadingScreen"></div>');
+    var elem = document.createElement('div');
+    elem.id = "loadingScreen";
+    document.body.appendChild(elem);
+}
+
+/**
+ * Ẩn  màn hình Loading (Cả web)*/
+const hideLoadingScreen = () => {
+    var elem = document.querySelector('#loadingScreen');
+    elem.parentNode.removeChild(elem);
 }

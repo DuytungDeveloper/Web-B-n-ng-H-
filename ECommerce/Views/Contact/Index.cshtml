@@ -53,17 +53,17 @@
                     <h3 class="page-subheading">Thông tin</h3>
                     <p>Các yêu cầu sẽ được phản hồi trong vòng 24h kể từ khi khách hàng liên hệ.</p>
                     <br />
-                    <ul>
+                    @*<ul>
                         <li>Praesent nec tincidunt turpis.</li>
                         <li>Aliquam et nisi risus.&nbsp;Cras ut varius ante.</li>
                         <li>Ut congue gravida dolor, vitae viverra dolor.</li>
-                    </ul>
+                    </ul>*@
                     <br />
                     <ul class="store_info">
-                        <li><i class="fa fa-home"></i>Our business address is 1063 Freelon Street San Francisco, CA 95108</li>
-                        <li><i class="fa fa-phone"></i><span>+ 021.343.7575</span></li>
-                        <li><i class="fa fa-phone"></i><span>+ 020.566.6666</span></li>
-                        <li><i class="fa fa-envelope"></i>Email: <span><a href="">support@kutetheme.com</a></span></li>
+                        <li><i class="fa fa-home"></i>@ECommerce.Models.View.StaticData.SystemInfos.Where(x=>x.Type == "Address").FirstOrDefault().Value</li>
+                        <li><i class="fa fa-phone"></i><a class="first-item" href="tel:@ECommerce.Models.View.StaticData.SystemInfos.Where(x => x.Type == "PhoneMainContact").FirstOrDefault().Value">@ECommerce.Models.View.StaticData.SystemInfos.Where(x => x.Type == "PhoneMainContact").FirstOrDefault().Value</a></li>
+                        @*<li><i class="fa fa-phone"></i><span>+ 020.566.6666</span></li>*@
+                        <li><i class="fa fa-envelope"></i>Email: <span><a href="mailto:@ECommerce.Models.View.StaticData.SystemInfos.Where(x => x.Type == "Email").FirstOrDefault().Value">@ECommerce.Models.View.StaticData.SystemInfos.Where(x => x.Type == "Email").FirstOrDefault().Value</a></span></li>
                     </ul>
                 </div>
             </div>

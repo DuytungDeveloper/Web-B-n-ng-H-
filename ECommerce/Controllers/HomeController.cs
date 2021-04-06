@@ -23,6 +23,7 @@ namespace ECommerce.Controllers
         {
             db = _db;
             _logger = logger;
+            StaticData.SystemInfos = db.SystemInfomation.Where(x => x.Status == 1).ToList();
         }
 
         public IActionResult Index()
@@ -46,7 +47,6 @@ namespace ECommerce.Controllers
             List<Product> donghoPhienBanGioiHan = db.Products.Where(x => x.Product_ProductStatus.Where(v => v.ProductStatusId == 7).Count() >= 1 && x.Status == 1).OrderByDescending(x => x.CreateDate).Take(10).Include(i => i.Product_ProductStatus).Include(i => i.Product_Media).Include("Product_Media.Media").Include(i => i.BrandProduct).Include(x => x.Reviews).ToList();
 
             //List<BrandProduct> allBrand = db.BrandProducts.ToList();
-
             HomeDataView data = new HomeDataView()
             {
                 HomeSliderProductPartial = sliderData,
@@ -76,5 +76,12 @@ namespace ECommerce.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult FooterPartial()
+        {
+            List<SystemInfomation> data = db.SystemInfomation.ToList();
+            return View("_FooterPartial",data);
+        }
+
     }
 }

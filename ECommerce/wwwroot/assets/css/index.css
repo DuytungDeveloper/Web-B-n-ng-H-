@@ -233,3 +233,22 @@ li.dac-tinh-dong-ho {
 .pointer {
     cursor: pointer;
 }
+
+#loadingScreen {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999999999999999999999999999999999999999999999999999999999999999999;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(192, 192, 192, 0.5);
+    /*background-image: url(https://i.stack.imgur.com/MnyxU.gif);*/
+    /*background-image: url(https://meatmarket.in/wp-content/uploads/2020/01/loading-bar-animated-gif-transparent-background-3.gif);*/
+    /*background-image: url(https://uploads-ssl.webflow.com/5a4248408192d400018d7be3/5a427f938192d400018d9834_loader.gif);*/
+    background-image: url(/assets/images/search-loading.gif);
+    /*background-image: url(https://cutewallpaper.org/21/loading-gif-transparent-background/HopeWell.gif);*/
+    /*background-image: url(http://cdn.lowgif.com/small/0f632e0f931c9782-.gif);*/
+    background-repeat: no-repeat;
+    background-position: center;
+}

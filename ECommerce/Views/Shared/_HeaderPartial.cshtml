@@ -5,7 +5,7 @@
     <div class="top-header">
         <div class="container">
             <div class="nav-top-links">
-                <a class="first-item" href="#"><img alt="phone" src="/assets/images/phone.png" />00-62-658-658</a>
+                <a class="first-item" href="tel:@ECommerce.Models.View.StaticData.SystemInfos.Where(x => x.Type == "PhoneMainContact").FirstOrDefault().Value"><img alt="phone" src="/assets/images/phone.png" />@ECommerce.Models.View.StaticData.SystemInfos.Where(x => x.Type == "PhoneMainContact").FirstOrDefault().Value</a>
                 <a asp-controller="lien-he"><img alt="email" src="/assets/images/email.png" />@language.CONTACT_US</a>
             </div>
             @*<div class="currency ">
@@ -79,9 +79,9 @@
                             </select>*@
                     </div>
                     <div class="form-group input-serach">
-                        <input type="text" placeholder="Keyword here..." name="SearchString">
+                        <input type="text" placeholder="Tìm ở đây..." name="SearchString">
                     </div>
-                    <button type="submit" class="pull-right btn-search"></button>
+                    <button type="submit" class="pull-right btn-search" onclick="showLoadingScreen()"></button>
                 </form>
             </div>
             <div id="cart-block" class="col-xs-5 col-sm-2 shopping-cart-box">

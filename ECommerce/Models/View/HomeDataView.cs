@@ -16,5 +16,6 @@ namespace ECommerce.Models.View
         public List<Product> DongHoPhienBanDacBiet { get; set; }
         public List<Product> DongHoPhienBanGioiHan { get; set; }
         public List<BrandProduct> AllBrandProduct { get; set; }
+        public List<SystemInfomation> AllSystemInfo { get; set; }
     }
 }

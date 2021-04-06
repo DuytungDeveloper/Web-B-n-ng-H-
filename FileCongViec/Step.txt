@@ -3,8 +3,8 @@ Add Migration vào Model => Quản lý thay đổi DB.
     -   Add-Migration InitialMigration -Context ECommerceContext (Add-Migration InitialMigration -Context ApplicationDbContext)
     -   Update-Database InitialMigration -Context ECommerceContext (Update-Database InitialMigration -Context ApplicationDbContext)
 
-Add-Migration Update-Model-Product-SEO -Context ApplicationDbContext
-Update-Database Update-Model-Product-SEO -Context ECommerceContext
+Add-Migration Update-Model-Product-SEO 
+Update-Database Update-Model-Product-SEO
 
 /san-pham/masanpham
 
@@ -41,4 +41,27 @@ Step 2 : Insert dữ liệu mẫu. Mở thư mục Database.
 
 
             -   Tất cả các File trên trừ File InsertProduct.sql là không đủ vì k random đủ hết các dữ liệu, nếu cần thêm dữ liệu thì vào file index.js để Random thêm. Trong đó là file tạo mẫu các câu insert mẫu. Ví dụ : let productMedia = []; là dùng để tạo mẫu hình ảnh cho sản phẩm
-Step 3 : Build lại Project và chạy. Đôi khi Source build bị lỗi Runtime nhưng cứ Build vài lần là nó sẽ chạy.
+Step 3 : Build lại Project và chạy. Đôi khi Source build bị lỗi Runtime nhưng cứ Build vài lần là nó sẽ chạy.\
+
+ylxhlfgthosting
+1?k1Hj2o
+
+
+
+root
+xZ80y!k7
+
+
+202.92.4.161\MSSQLSERVER2019,1437
+Web_Dong_Ho
+duytungdeveloper
+kg0!D14q
+
+Inet
+Tronghoang0803@gmail.com
+khongnho123456
+
+
+GoDaddy
+trandai.rvs@gmail.com
+khongnho123456

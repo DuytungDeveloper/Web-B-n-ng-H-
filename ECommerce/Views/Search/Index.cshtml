@@ -50,7 +50,7 @@
                                             @*<input type="checkbox" id="check-category-@Model.Category.OrderBy(x=>x.Name).ToList()[i].Id" value="@Model.Category.OrderBy(x=>x.Name).ToList()[i].Id" name="Category" />*@
                                             <label for="check-category-@Model.Category.OrderBy(x=>x.Name).ToList()[i].Id">
                                                 <span class="button"></span>
-                                                @Model.Category.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.Category.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                @Model.Category.OrderBy(x => x.Name).ToList()[i].Name<span class="count"></span>
                                             </label>
                                         </li>
                                     }
@@ -125,7 +125,7 @@
 
                                                             <label for="MadeIns-@Model.MadeIns.OrderBy(x => x.Name).ToList()[i].Id">
                                                                 <span class="button"></span>
-                                                                @Model.MadeIns.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.MadeIns.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                                @Model.MadeIns.OrderBy(x => x.Name).ToList()[i].Name<span class="count"></span>
                                                             </label>
                                                         </li>
                                                     }
@@ -157,7 +157,7 @@
                                                             }
                                                             <label for="Straps-@Model.Straps.OrderBy(x => x.Name).ToList()[i].Id">
                                                                 <span class="button"></span>
-                                                                @Model.Straps.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.Straps.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                                @Model.Straps.OrderBy(x => x.Name).ToList()[i].Name<span class="count"></span>
                                                             </label>
                                                         </li>
                                                     }
@@ -189,7 +189,7 @@
                                                             }
                                                             <label for="Machines-@Model.Machines.OrderBy(x => x.Name).ToList()[i].Id">
                                                                 <span class="button"></span>
-                                                                @Model.Machines.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.Machines.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                                @Model.Machines.OrderBy(x => x.Name).ToList()[i].Name<span class="count"></span>
                                                             </label>
                                                         </li>
                                                     }
@@ -221,7 +221,7 @@
                                                             }
                                                             <label for="Bands-@Model.Bands.OrderBy(x => x.Name).ToList()[i].Id">
                                                                 <span class="button"></span>
-                                                                @Model.Bands.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.Bands.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                                @Model.Bands.OrderBy(x => x.Name).ToList()[i].Name<span class="count"></span>
                                                             </label>
                                                         </li>
                                                     }
@@ -253,7 +253,7 @@
                                                             }
                                                             <label for="ColorClockFaces-@Model.ColorClockFaces.OrderBy(x => x.Name).ToList()[i].Id">
                                                                 <span class="button"></span>
-                                                                @Model.ColorClockFaces.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.ColorClockFaces.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                                @Model.ColorClockFaces.OrderBy(x => x.Name).ToList()[i].Name<span class="count"></span>
                                                             </label>
                                                         </li>
                                                     }
@@ -285,7 +285,7 @@
                                                             }
                                                             <label for="Styles-@Model.Styles.OrderBy(x => x.Name).ToList()[i].Id">
                                                                 <span class="button"></span>
-                                                                @Model.Styles.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.Styles.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                                @Model.Styles.OrderBy(x => x.Name).ToList()[i].Name<span class="count"></span>
                                                             </label>
                                                         </li>
                                                     }
@@ -317,7 +317,7 @@
                                                             }
                                                             <label for="Waterproofs-@Model.Waterproofs.OrderBy(x => x.Name).ToList()[i].Id">
                                                                 <span class="button"></span>
-                                                                @Model.Waterproofs.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.Waterproofs.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                                @Model.Waterproofs.OrderBy(x => x.Name).ToList()[i].Name<span class="count"></span>
                                                             </label>
                                                         </li>
                                                     }
@@ -349,7 +349,7 @@
                                                             }
                                                             <label class="dac-tinh-dong-ho" for="BrandProducts-@Model.BrandProducts.OrderBy(x => x.Name).ToList()[i].Id">
                                                                 @*<span class="button"></span>*@
-                                                                @Model.BrandProducts.OrderBy(x => x.Name).ToList()[i].Name<span class="count">(@Model.BrandProducts.OrderBy(x => x.Name).ToList()[i].Products.Count)</span>
+                                                                @Model.BrandProducts.OrderBy(x => x.Name).ToList()[i].Name<span class="count"></span>
                                                             </label>
                                                         </li>
                                                     }
@@ -800,6 +800,13 @@
         .category-slider img {
             height: 288px;
             width: 870px;
+        }
+        .dac-tinh-dong-ho label{
+            display: inline-block;
+            /* width: 180px; */
+            white-space: nowrap;
+            overflow: hidden !important;
+            text-overflow: ellipsis;
         }
     </style>
 }

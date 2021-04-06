@@ -453,6 +453,44 @@ namespace ECommerce.Controllers
         [HttpGet("api/Product/{id}")]
         public async Task<ActionResult<ResultData<string>>> GetProductById(int id)
         {
+
+            //#region create default user
+            //ApplicationUser developer = new ApplicationUser()
+            //{
+            //    Email = "duytung.developer@gmail.com",
+            //    UserName = "duytung"
+            //};
+            //var resultDeveloper = await userManager.CreateAsync(developer, "123456");
+            //if (resultDeveloper.Succeeded)
+            //{
+            //    var resultRoleDeveloper = await userManager.AddToRoleAsync(developer, "Devleloper");
+            //}
+
+            //ApplicationUser adminTrong = new ApplicationUser()
+            //{
+            //    Email = "vantrong@gmail.com",
+            //    UserName = "vantrong"
+            //};
+            //var resultadminTrong = await userManager.CreateAsync(adminTrong, "123456");
+            //if (resultadminTrong.Succeeded)
+            //{
+            //    var resultRoleDeveloper = await userManager.AddToRoleAsync(adminTrong, "Admin");
+            //}
+
+            //ApplicationUser adminThien = new ApplicationUser()
+            //{
+            //    Email = "thien@gmail.com",
+            //    UserName = "thien"
+            //};
+            //var resultadminThien = await userManager.CreateAsync(adminThien, "123456");
+            //if (resultadminThien.Succeeded)
+            //{
+            //    var resultRoleDeveloper = await userManager.AddToRoleAsync(adminThien, "Admin");
+            //}
+            //#endregion
+
+
+
             ResultData<string> data = new ResultData<string>();
             //Order Item = await GetById<Order>(Id);
             //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
@@ -591,21 +629,58 @@ left join Medias media on pro_media.MediaId = media.Id
             return Ok(result);
         }
 
-        [HttpPut("api/Product/{id}")]
-        public ActionResult<ResultData<object>> UpdateProduct([FromForm] Product product, [FromRoute] int Id)
+        [HttpPut("api/Product")]
+        public ActionResult<ResultData<object>> UpdateProduct([FromForm] Product product)
         {
             ResultData<object> data = new ResultData<object>();
             //Order Item = await GetById<Order>(Id);
             //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
-            var Item = db.Products.Where(x => x.Id == Id).OrderByDescending(x => x.CreateDate).Take(10).Include(i => i.Product_ProductStatus).Include(i => i.Product_Media).Include("Product_Media.Media").Include(i => i.BrandProduct).Include(x => x.Reviews).FirstOrDefault();
-            if (Item == null) return data;
+            var Item = db.Products.Where(x => x.Id == product.Id).FirstOrDefault();
+            if (Item == null)
+            {
+                data.Success = false;
+                data.Message = "Không tìm thấy sản phẩm!";
+                return data;
+            }
+            Item.BandId = product.BandId;
+            Item.BrandProductId = product.BrandProductId;
+            Item.CategoryId = product.CategoryId;
+            Item.Characteristics = product.Characteristics;
+            Item.ColorClockFaceId = product.ColorClockFaceId;
+            Item.DescriptionFull = product.DescriptionFull;
+            Item.DescriptionShort = product.DescriptionShort;
+            Item.DescriptionShortSEO = product.DescriptionShortSEO;
+            Item.Diameter = product.Diameter;
+            Item.DiscountDateFrom = product.DiscountDateFrom;
+            Item.DiscountDateTo = product.DiscountDateTo;
+            Item.InternationalWarrantyTime = product.InternationalWarrantyTime;
+            Item.KeyWordSEO = product.KeyWordSEO;
+            Item.MachineId = product.MachineId;
+            Item.MadeInId = product.MadeInId;
+            Item.Name = product.Name;
+            Item.OriginNumber = product.OriginNumber;
+            Item.Price = product.Price;
+            Item.PriceDiscount = product.PriceDiscount;
+            Item.QtyInWareHouse = product.QtyInWareHouse;
+            Item.Sku = product.Sku;
+            //Item.Status = product.BandId;
+            Item.StoreWarrantyTime = product.StoreWarrantyTime;
+            Item.StrapId = product.StrapId;
+            Item.StyleId = product.StyleId;
+            Item.ThicknessOfClass = product.ThicknessOfClass;
+            Item.TitleSEO = product.TitleSEO;
+            Item.UpdateDate = DateTime.Now;
+            Item.Url = product.Url;
+            //Item.Video = product.BandId;
+            Item.WaterproofId = product.WaterproofId;
+            int rs = db.SaveChanges();
             JavaScriptSerializer js = new JavaScriptSerializer();
             data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
-            data.Success = true;
-            data.Message = "Thành công !";
+            data.Success = rs > 0 ? true : false;
+            data.Message = rs > 0 ?  "Thành công !" : "Thất bại!";
             return Ok(data);
         }
         #endregion

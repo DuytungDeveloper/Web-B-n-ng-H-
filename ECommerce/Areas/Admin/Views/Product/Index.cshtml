@@ -46,6 +46,9 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title" id="largeModalHead">Thông tin sản phẩm</h4>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-warning" onclick="reloadDetailProduct(event)" data-loading-text="Đang tải ...">Tải lại</button>
+                    <button type="button" class="btn btn-success" onclick="updateDetailProduct()">Lưu</button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -112,8 +115,7 @@
                                                         <div class="form-group">
                                                             <label for="productBrand_detail" class="col-sm-2 control-label">Thương hiệu sản phẩm</label>
                                                             <div class="col-sm-10">
-                                                                <select class="form-control selectpicker" id="productBrand_detail" required data-live-search="true" data-actions-box="true">
-                                                            
+                                                                <select class="form-control" id="productBrand_detail" required>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -126,8 +128,7 @@
                                                         <div class="form-group">
                                                             <label for="productMachineId_detail" class="col-sm-2 control-label">Loại máy</label>
                                                             <div class="col-sm-10">
-                                                                <select class="form-control selectpicker" id="productMachineId_detail" data-live-search="true" data-actions-box="true">
-                                                          
+                                                                <select class="form-control" id="productMachineId_detail">
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -158,56 +159,49 @@
                                                         <div class="form-group">
                                                             <label for="productBandId_detail" class="col-sm-2 control-label">Loại niềng</label>
                                                             <div class="col-sm-10">
-                                                                <select class="form-control selectpicker" id="productBandId_detail" data-live-search="true" data-actions-box="true">
-                                                        
+                                                                <select class="form-control" id="productBandId_detail">
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="productStrapId_detail" class="col-sm-2 control-label">Loại dây</label>
                                                             <div class="col-sm-10">
-                                                                <select class="form-control selectpicker" id="productStrapId_detail" data-live-search="true" data-actions-box="true">
-                                                           
+                                                                <select class="form-control" id="productStrapId_detail">
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="productColorClockFaceId_detail" class="col-sm-2 control-label">Màu mặt kính</label>
                                                             <div class="col-sm-10">
-                                                                <select class="form-control selectpicker" id="productColorClockFaceId_detail" data-live-search="true" data-actions-box="true">
-                                                           
+                                                                <select class="form-control" id="productColorClockFaceId_detail">
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="productMadeInId_detail" class="col-sm-2 control-label">Nơi sản xuất</label>
                                                             <div class="col-sm-10">
-                                                                <select class="form-control selectpicker" id="productMadeInId_detail" data-live-search="true" data-actions-box="true">
-                                                           
+                                                                <select class="form-control" id="productMadeInId_detail">
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="productStyleId_detail" class="col-sm-2 control-label">Phong cách</label>
                                                             <div class="col-sm-10">
-                                                                <select class="form-control selectpicker" id="productStyleId_detail" data-live-search="true" data-actions-box="true">
-                                                       
+                                                                <select class="form-control" id="productStyleId_detail">
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="productWaterproofId_detail" class="col-sm-2 control-label">Chống thấm</label>
                                                             <div class="col-sm-10">
-                                                                <select class="form-control selectpicker" id="productWaterproofId_detail" data-live-search="true" data-actions-box="true">
-                                                          
+                                                                <select class="form-control" id="productWaterproofId_detail">
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="productCategoryId_detail" class="col-sm-2 control-label">Danh mục</label>
+                                                            <label for="productCategory_detail" class="col-sm-2 control-label">Danh mục sản phẩm</label>
                                                             <div class="col-sm-10">
-                                                                <select class="form-control selectpicker" id="productCategoryId_detail" required data-live-search="true" data-actions-box="true">
-                                                             
+                                                                <select class="form-control" id="productCategory_detail" required>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -240,14 +234,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="form-group">
-                                                            <label for="productCategory_detail" class="col-sm-2 control-label">Danh mục sản phẩm</label>
-                                                            <div class="col-sm-10">
-                                                                <select class="form-control selectpicker" id="productCategory_detail" required>
-                                                            
-                                                                </select>
-                                                            </div>
-                                                        </div>
+
                                                         <div class="form-group">
                                                             <label for="productPrice_detail" class="col-sm-2 control-label">Giá sản phẩm</label>
                                                             <div class="col-sm-10">
@@ -333,25 +320,6 @@
     </ul>
 </div>
 <div class="wrapper wrapper-white">
-    @*<div class="table-responsive">
-            <table class="table table-bordered table-striped table-sortable" id="table-san-pham">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Ảnh</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Giá</th>
-                        <th>Giá giảm</th>
-                        <th>Điểm sản phẩm</th>
-                        <th>Trạng thái</th>
-                        <th>Thao Tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>*@
-
     <div class="table-responsive">
         <table class="table" id="table-san-pham">
             <thead>

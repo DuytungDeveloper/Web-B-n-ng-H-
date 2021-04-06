@@ -136,6 +136,11 @@ namespace ECommerce.Model.EFModel
         /// </summary>
         public virtual DbSet<Review> Reviews { get; set; }
 
+        /// <summary>
+        /// Thông tin cấu hình hệ thống
+        /// </summary>
+        public virtual DbSet<SystemInfomation> SystemInfomation { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

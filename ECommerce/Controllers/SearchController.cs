@@ -35,22 +35,23 @@ namespace ECommerce.Controllers
         //public IActionResult Index([FromQuery(Name = "page")] string page ="")
         public IActionResult Index(SearchViewModel searchData)
         {
-            var lsBrandName = db.BrandProducts.Where(x => x != null).Include(x => x.Products).ToList();
-            var lsMachine = db.Machines.Where(x => x != null).Include(x => x.Products).ToList();
-            var lsBand = db.Bands.Where(x => x != null).Include(x => x.Products).ToList();
-            var lsColorClockFace = db.ColorClockFaces.Where(x => x != null).Include(x => x.Products).ToList();
-            var lsMadeIns = db.MadeIns.Where(x => x != null).Include(x => x.Products).ToList();
-            var lsStyles = db.Styles.Where(x => x != null).Include(x => x.Products).ToList();
-            var lsWaterproofs = db.Waterproofs.Where(x => x != null).Include(x => x.Products).ToList();
+            var start = DateTime.Now;
+            var lsBrandName = db.BrandProducts.Where(x => x != null).ToList();
+            var lsMachine = db.Machines.Where(x => x != null).ToList();
+            var lsBand = db.Bands.Where(x => x != null).ToList();
+            var lsColorClockFace = db.ColorClockFaces.Where(x => x != null).ToList();
+            var lsMadeIns = db.MadeIns.Where(x => x != null).ToList();
+            var lsStyles = db.Styles.Where(x => x != null).ToList();
+            var lsWaterproofs = db.Waterproofs.Where(x => x != null).ToList();
             searchData.BrandProducts = lsBrandName;
             searchData.Machines = lsMachine;
             searchData.Bands = lsBand;
             searchData.ColorClockFaces = lsColorClockFace;
             searchData.MadeIns = lsMadeIns;
             searchData.Styles = lsStyles;
-            searchData.Straps = db.Straps.Where(x => x != null).Include(x => x.Products).ToList();
+            searchData.Straps = db.Straps.Where(x => x != null).ToList();
             searchData.Waterproofs = lsWaterproofs;
-            searchData.Category = db.Category.Where(x => x != null).Include(x => x.Products).ToList();
+            searchData.Category = db.Category.Where(x => x != null).ToList();
 
             string sequenceMaxQuery = "select * from Products "
                                     + "where 1 = 1 ";
@@ -124,6 +125,7 @@ namespace ECommerce.Controllers
             var total = db.Products.FromSqlRaw(sequenceCount).Count();
             searchData.Products = sequenceQueryResult;
             searchData.Total = total;
+            var temp = (DateTime.Now - start).TotalSeconds;
             return View(searchData);
         }
     }

@@ -103,7 +103,7 @@ namespace ECommerce.Model.EFModel.Models
         /// Số hiệu sản phẩm gốc (Số seri)
         /// </summary>
         [Column(Order = 13)]
-        public int? OriginNumber { get; set; }
+        public string OriginNumber { get; set; }
         ///// <summary>
         ///// Giới tính
         ///// </summary>
