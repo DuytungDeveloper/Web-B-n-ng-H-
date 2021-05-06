@@ -137,6 +137,11 @@ namespace ECommerce.Model.EFModel
         public virtual DbSet<Review> Reviews { get; set; }
 
         /// <summary>
+        /// Những sản phẩm được hiển thị trên trang chính
+        /// </summary>
+        public virtual DbSet<ProductsOnFirstPage> ProductsOnFirstPages { get; set; }
+
+        /// <summary>
         /// Thông tin cấu hình hệ thống
         /// </summary>
         public virtual DbSet<SystemInfomation> SystemInfomation { get; set; }
@@ -435,6 +440,15 @@ namespace ECommerce.Model.EFModel
                 .WithMany(s => s.Product_Media)
                 .HasForeignKey(sc => sc.MediaId);
             #endregion
+
+            #region product On first page
+            modelBuilder.Entity<ProductsOnFirstPage>().HasKey(sc => new { sc.ProductId, sc.ViewTypeId });
+            modelBuilder.Entity<ProductsOnFirstPage>()
+                .HasOne<Product>(sc => sc.Product)
+                .WithMany(x => x.ProductsOnFirstPages)
+                .HasForeignKey(x => x.ProductId);
+            #endregion
+
 
             #endregion
         }

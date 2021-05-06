@@ -215,5 +215,10 @@ namespace ECommerce.Model.EFModel.Models
         public string KeyWordSEO { get; set; }
         [Column(Order = 30)]
         public string DescriptionShortSEO { get; set; }
+
+        /// <summary>
+        /// Loại máy
+        /// </summary>
+        public virtual List<ProductsOnFirstPage> ProductsOnFirstPages { get; set; }
     }
 }
