@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerce.Model.EFModel.Models
 {
-    public partial class MadeIn: BaseModel, IBaseModel
+    public partial class MadeIn: BaseModel
     {
+        [Key]
+        [Column(Order = 0)]
         public int Id { get; set; }
+        [Column(Order = 1)]
         public string Name { get; set; }
-        public int Status { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

@@ -1,4 +1,7 @@
-﻿<script type="text/javascript" src="https://unpkg.com/v-data-table/dist/v-data-table.js"></script>
+﻿
+@{ 
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml"; 
+}
 <style>
     #Table {
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -26,6 +29,7 @@
             background-color: #4CAF50;
             color: white;
         }
+
     #Table {
         border-collapse: collapse;
         width: 100%;
@@ -41,7 +45,7 @@
         background-color: #f5f5f5;
     }
 </style>
-<!-- demo root element -->
+
 <div id="demo">
 
     <form id="search">
@@ -49,11 +53,11 @@
         <input name="query" v-model="searchQuery">
 
     </form>
-    <data-table id="Table" :data="gridData" :columns-to-display="gridColumns" 
-                :filter-key="searchQuery" 
-                :display-names="displayNames" 
-                :child-hideable="true" 
-                :child-init-hide="true" 
+    <data-table id="Table" :data="gridData" :columns-to-display="gridColumns"
+                :filter-key="searchQuery"
+                :display-names="displayNames"
+                :child-hideable="true"
+                :child-init-hide="true"
                 :columns-to-not-sort="['action']">
 
         <template slot="name" scope="props">
@@ -71,123 +75,61 @@
     </data-table>
 
 </div>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
-<script>
 
 
-    Vue.use(DataTable)// bootstrap DataTable
+@section AdminScripts
+{
+    <script>
 
-    var demo = new Vue({
-        el: '#demo',
-        data: {
-            searchQuery: '',
-            gridColumns: ['id', 'name','action'],
-            displayNames: {
-                'id': "ma",
-                'name': 'Ten'
-                ,"action":"Chuc Nang"
-                
+
+        Vue.use(DataTable)// bootstrap DataTable
+
+        var demo = new Vue({
+            el: '#demo',
+            data: {
+                searchQuery: '',
+                gridColumns: ['id', 'name', 'action'],
+                displayNames: {
+                    'id': "ma",
+                    'name': 'Ten'
+                    , "action": "Chuc Nang"
+
+                },
+                gridData: []
             },
-            gridData: []
-        },
-        watch: {
-            searchQuery: _.debounce(function (query) {
-                this.searchUser(query);
-            }, 1000)
-        },
-        methods: {
-            showName: function(Name){
-                alert(Name);
+            watch: {
+                searchQuery: _.debounce(function (query) {
+                    this.searchUser(query);
+                }, 1000)
             },
-            showId: function (id) {
-                alert(id);
-            },
-            searchUser: function (searchQuery) {
-                axios.get('/admin/Product/GetAll')
-                    .then(function (response) {
-                        this.gridData = response.data.data;
-                    }.bind(this))
-                    .catch(function (error) {
-                        console.log(error);
-                    })
-                    .then(function () {
-                        
-                    });
+            methods: {
+                showName: function (Name) {
+                    alert(Name);
+                },
+                showId: function (id) {
+                    alert(id);
+                },
+                searchUser: function (searchQuery) {
+                    axios.get('/admin/Product/GetAll')
+                        .then(function (response) {
+                            this.gridData = response.data.data;
+                        }.bind(this))
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        .then(function () {
 
+                        });
+
+                }
+            }, created: function () {
+                this.searchUser();
             }
-        }, created: function () {
-            this.searchUser();
-        }
-    })
+        })
 
 
 
 
-</script>
-<script>
+    </script>
+}
 
-
-    //function debounce(func, wait) {
-    //    var timeout;
-    //    return function () {
-    //        var context = this,
-    //            args = arguments;
-    //        var executeFunction = function () {
-    //            func.apply(context, args);
-    //        };
-    //        clearTimeout(timeout);
-    //        timeout = setTimeout(executeFunction, wait);
-    //    };
-    //};
-    //Vue.use(DataTable)// bootstrap DataTable
-
-    //var demo = new Vue({
-    //    el: '#demo',
-    //    data: {
-    //        searchQuery: '',
-    //        gridColumns: ['name', 'power', 'action'],
-    //        displayNames: {
-    //            'power': 'Super Powers'
-    //        },
-    //        gridData: [{
-    //            name: 'Chuck Norris',
-    //            power: Infinity
-    //        }, {
-    //            name: 'Bruce Lee',
-    //            power: 9000
-    //        }, {
-    //            name: 'Jackie Chan',
-    //            power: 7000
-    //        }, {
-    //            name: 'Jet Li',
-    //            power: 8000
-    //        }]
-    //    },
-    //    watch: {
-    //        searchQuery: debounce(function () {
-    //            this.isTyping = false;
-    //        }, 1000),
-    //        isTyping: function (value) {
-    //            if (!value) {
-    //                this.searchUser(this.searchQuery);
-    //            }
-    //        }
-    //    },
-    //    methods: {
-    //        showPower(power) {
-    //            alert(power);
-    //        },
-    //        searchUser: function (searchQuery) {
-    //            this.isLoading = true;
-    //            alert(+ searchQuery);
-    //            axios.get('admin/Product/GetAll')
-    //                .then(response => {
-    //                    this.isLoading = false;
-    //                    this.searchResult = response.data.items;
-    //                });
-    //        }
-    //    }
-    //})
-
-</script>

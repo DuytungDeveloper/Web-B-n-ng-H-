@@ -1,0 +1,343 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@section AdminHeader{
+    @*<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">*@
+    <style>
+        .modal-dialog {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            margin-top: 0 !important;
+        }
+
+        .modal-content {
+            height: auto;
+            min-height: 100%;
+            border-radius: 0;
+        }
+
+        .modal-footer .btn {
+            margin-left: 5px;
+            margin-bottom: 0;
+        }
+
+            .modal-footer .btn + .btn + .btn {
+                margin-left: 5px;
+                margin-bottom: 0;
+            }
+    </style>
+}
+
+@section AdminScripts{
+    <script type="text/javascript" src="~/admin/js/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/admin/js/plugins/sortable/sortable.min.js"></script>
+    <script type="text/javascript" src="~/admin/js/plugins/summernote/summernote.min.js"></script>
+    <script type="text/javascript" src="~/admin/js/plugins/tags-input/jquery.tagsinput.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>*@
+    <script type="text/javascript" src="~/js/admin/product.js"></script>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_large" tabindex="-1" role="dialog" aria-labelledby="largeModalHead" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="largeModalHead">Thông tin sản phẩm</h4>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-warning" onclick="reloadDetailProduct(event)" data-loading-text="Đang tải ...">Tải lại</button>
+                    <button type="button" class="btn btn-success" onclick="updateDetailProduct()">Lưu</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <h1>Mã sản phẩm : <span id="maSanPham_detail">423423746</span></h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div>
+
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active"><a href="#tongQuanSanPham" aria-controls="tongQuanSanPham" role="tab" data-toggle="tab">Tổng Quan</a></li>
+                                    <li role="presentation"><a href="#caiDatThongTin" aria-controls="caiDatThongTin" role="tab" data-toggle="tab">Cài đặt thông tin</a></li>
+                                    <li role="presentation"><a href="#quanLyAnh" aria-controls="quanLyAnh" role="tab" data-toggle="tab">Quản lý ảnh</a></li>
+                                    <li role="presentation"><a href="#danhGiaSanPham" aria-controls="danhGiaSanPham" role="tab" data-toggle="tab">Lượt đánh giá</a></li>
+                                    <li role="presentation"><a href="#lichSuThayDoi" aria-controls="lichSuThayDoi" role="tab" data-toggle="tab">Lịch sử thay đổi thông tin</a></li>
+                                </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade in active" id="tongQuanSanPham">
+                                        <br />
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p>Tổng quan</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="caiDatThongTin">
+                                        <br />
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <form class="form-horizontal" id="form-cai-dat-thong-tin-productDetail">
+                                                        <div class="form-group">
+                                                            <label for="ProductId_detail" class="col-sm-2 control-label">ProductId</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="ProductId_detail" disabled required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productName_detail" class="col-sm-2 control-label">Tên sản phẩm</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="productName_detail" placeholder="Tên sản phẩm" required>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="productURL_detail" class="col-sm-2 control-label">Url sản phẩm</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="productURL_detail" placeholder="URL sản phẩm" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productSku_detail" class="col-sm-2 control-label">Sku sản phẩm</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="productSku_detail" placeholder="Sku sản phẩm">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productBrand_detail" class="col-sm-2 control-label">Thương hiệu sản phẩm</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control" id="productBrand_detail" required>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productOriginNumber_detail" class="col-sm-2 control-label">Số Seri sản phẩm</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="productOriginNumber_detail" placeholder="Số Seri sản phẩm">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productMachineId_detail" class="col-sm-2 control-label">Loại máy</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control" id="productMachineId_detail">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productInternationalWarrantyTime_detail" class="col-sm-2 control-label">Thời gian bảo hành quốc tế</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" class="form-control" min="0" max="5" id="productInternationalWarrantyTime_detail" placeholder="Thời gian bảo hành quốc tế">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productStoreWarrantyTime_detail" class="col-sm-2 control-label">Thời gian bảo hành tại cửa hàng</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" class="form-control" min="0" max="5" id="productStoreWarrantyTime_detail" placeholder="Thời gian bảo hành quốc tế">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productDiameter_detail" class="col-sm-2 control-label">Đường kính mặt đồng hồ</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="productDiameter_detail" placeholder="Đường kính mặt đồng hồ">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productThicknessOfClass_detail" class="col-sm-2 control-label">Độ dày</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" class="form-control" min="1" id="productThicknessOfClass_detail" placeholder="Độ dày">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productBandId_detail" class="col-sm-2 control-label">Loại niềng</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control" id="productBandId_detail">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productStrapId_detail" class="col-sm-2 control-label">Loại dây</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control" id="productStrapId_detail">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productColorClockFaceId_detail" class="col-sm-2 control-label">Màu mặt kính</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control" id="productColorClockFaceId_detail">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productMadeInId_detail" class="col-sm-2 control-label">Nơi sản xuất</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control" id="productMadeInId_detail">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productStyleId_detail" class="col-sm-2 control-label">Phong cách</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control" id="productStyleId_detail">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productWaterproofId_detail" class="col-sm-2 control-label">Chống thấm</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control" id="productWaterproofId_detail">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productCategory_detail" class="col-sm-2 control-label">Danh mục sản phẩm</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control" id="productCategory_detail" required>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productTitleSEO_detail" class="col-sm-2 control-label">Số lượng trong kho</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" min="0" class="form-control" id="productQtyInWareHouse_detail" placeholder="Số lượng trong kho">
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="form-group">
+                                                            <label for="productTitleSEO_detail" class="col-sm-2 control-label">Title sản phẩm (SEO)</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="productTitleSEO_detail" placeholder="Title sản phẩm (SEO)" required>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="productDescriptionShortSEO_detail" class="col-sm-2 control-label">Mô tả ngắn (SEO)</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" id="productDescriptionShortSEO_detail" maxlength="255" required></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productKeyWordSEO_detail" class="col-sm-2 control-label">KeyWords (SEO)</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="tags" id="productKeyWordSEO_detail" value="" />
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="form-group">
+                                                            <label for="productPrice_detail" class="col-sm-2 control-label">Giá sản phẩm</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" class="form-control" id="productPrice_detail" min="1000" max="999999999" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productPriceDiscount_detail" class="col-sm-2 control-label">Giá Saleoff</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="number" class="form-control" id="productPriceDiscount_detail" min="0" max="999999999">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productDescriptionShort_detail" class="col-sm-2 control-label">Mô tả ngắn</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea class="form-control" id="productDescriptionShort_detail" maxlength="500" required></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productDescriptionFull_detail" class="col-sm-2 control-label">Mô tả chi tiết</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea id="productDescriptionFull_detail" name="editordata" required></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="quanLyAnh">
+                                        <br />
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p>Quản lý ảnh</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="danhGiaSanPham">
+                                        <br />
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p>Danh sách khách đánh giá</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="lichSuThayDoi">
+                                        <br />
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p>Lịch sử thay đổi</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-warning" onclick="reloadDetailProduct(event)" data-loading-text="Đang tải ...">Tải lại</button>
+                    <button type="button" class="btn btn-success" onclick="updateDetailProduct()">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="page-title">
+    <h1>Quản lý sản phẩm</h1>
+    <p>Thêm, xoá, sửa thông tin sản phẩm</p>
+
+    <ul class="breadcrumb">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Ui Kits</a></li>
+        <li>Breadcrumb làm sau</li>
+    </ul>
+</div>
+<div class="wrapper wrapper-white">
+    <div class="table-responsive">
+        <table class="table" id="table-san-pham">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Giá giảm</th>
+                    <th>Điểm sản phẩm</th>
+                    <th>Trạng thái</th>
+                    <th>Thao Tác</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -20,7 +21,14 @@ namespace ECommerce
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                    // Log entity
+                    .ConfigureLogging(logger =>
+                    {
+                        logger.AddDebug()
+                              .AddFilter(DbLoggerCategory.Database.Command.Name, LogLevel.Information);
+                        //logger.AddConsole(); //UnComment out this line if you did not use CreateDefaultBuilder
+                    });
                 });
     }
 }

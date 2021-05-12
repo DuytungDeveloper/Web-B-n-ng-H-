@@ -1,10 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var Title = ECommerce.Models.View.StaticData.SystemInfos.Where(x => x.Type == "MainTittle").FirstOrDefault().Value;
+    var viewTitle = "";
+    try { viewTitle = ViewData["Title"].ToString().Contains("ECommerce") ? "" : ViewData["Title"].ToString(); } catch { }
+    var finalTitle = Title + (string.IsNullOrEmpty(viewTitle) ? "" : " - " + viewTitle);
+}
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PWATCH - Đỉnh cao trang sức - @ViewData["Title"]</title>
-
+    <title>@finalTitle</title>
+    <link rel="icon" type="image/x-icon" href="~/assets/images/main-logo.ico" />
 
     <link rel="stylesheet" type="text/css" href="/assets/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/lib/font-awesome/css/font-awesome.min.css" />
@@ -13,16 +19,20 @@
     <link rel="stylesheet" type="text/css" href="/assets/lib/owl.carousel/owl.carousel.css" />
     <link rel="stylesheet" type="text/css" href="/assets/lib/jquery-ui/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/toastr/toastr.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/rateit.js-master/scripts/rateit.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/reset.css" />
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css" /> -->
     <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/index.css" />
 
-
-    @*<link rel="stylesheet" href="~/css/site.css" />*@
+    <environment include="Development">
+        <link rel="stylesheet" href="/assets/css/index.min.css" asp-append-version="true" />
+    </environment>
+    <environment include="Staging,Production">
+        <link rel="stylesheet" href="/assets/css/index.min.css" asp-append-version="true" />
+    </environment>
     @RenderSection("header", required: false)
-
 </head>
 <body>
     <partial name="_HeaderPartial" />
@@ -33,9 +43,9 @@
 
 
 
-    <partial name="_FooterPartial" />
-
-
+    @*@Html.Action()*@
+    @*<partial name="_FooterPartial" data="ECommerce.Models.View.StaticData.SystemInfos" />*@
+    @await Html.PartialAsync("_FooterPartial", ECommerce.Models.View.StaticData.SystemInfos)
 
 
     <a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a>
@@ -46,9 +56,25 @@
     <script type="text/javascript" src="/assets/lib/jquery.bxslider/jquery.bxslider.min.js"></script>
     <script type="text/javascript" src="/assets/lib/owl.carousel/owl.carousel.min.js"></script>
     <script type="text/javascript" src="/assets/lib/jquery.countdown/jquery.countdown.min.js"></script>
+
+
+    <script type="text/javascript" src="~/assets/lib/jquery-ui/jquery-ui.min.js"></script>
+
+
+    <script type="text/javascript" src="~/lib/rateit.js-master/scripts/jquery.rateit.min.js"></script>
     <script type="text/javascript" src="/assets/js/jquery.actual.min.js"></script>
+    <script type="text/javascript" src="~/lib/toastr/toastr.min.js"></script>
     <script type="text/javascript" src="/assets/js/theme-script.js"></script>
 
+    <environment include="Development">
+        <script type="text/javascript" src="/js/common.js"></script>
+        <script type="text/javascript" src="/js/main.js"></script>
+    </environment>
+
+    <environment include="Staging,Production">
+        <script type="text/javascript" src="/js/common.min.js"></script>
+        <script type="text/javascript" src="/js/main.min.js"></script>
+    </environment>
 
     @*<script src="~/js/site.js" asp-append-version="true"></script>*@
     <script type="text/javascript">

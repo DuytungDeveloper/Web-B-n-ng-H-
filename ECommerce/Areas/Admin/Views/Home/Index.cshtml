@@ -1,3 +1,258 @@
-﻿
-@{ Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml"; }
-<h1>Admin Home Index</h1>
+﻿<div class="col-lg-9 col-md-6">
+
+    <div class="wrapper">
+        <div class="page-subtitle">
+            <h2>Summary profit</h2>
+            <div class="pull-right">
+                <div class="btn-group">
+                    <button class="btn btn-default btn-rounded btn-icon"><i class="fa fa-calendar pull-left"></i> 01/07/2015</button>
+                    <button class="btn btn-default btn-rounded btn-icon"><i class="fa fa-calendar pull-left"></i> 01/08/2015</button>
+                </div>
+            </div>
+        </div>
+        <div id="dashboard-chart" class="chart-holder"><svg></svg></div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover text-center">
+                <tr>
+                    <th width="200" class="text-left">Details</th>
+                    <th width="150" class="text-left">Products</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Delivery</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="list-contacts list-contacts-inline" style="width: 160px;">
+                            <a href="#" class="list-contacts-item contact-online">
+                                <img src="~/admin/assets/images/users/user_2.jpg"> Devin Stephens
+                            </a>
+                        </div>
+                    </td>
+                    <td class="text-left table-products">
+                        <a href="#">Awesome T-shirt</a>
+                    </td>
+                    <td>1</td>
+                    <td><strong>$15.99</strong></td>
+                    <td class="text-left">
+                        <span class="label label-danger" style="margin-right: 10px;">Courier</span> UK,London. Street st. 159
+                    </td>
+                    <td><span class="label label-success">New</span></td>
+                    <td>
+                        <button class="btn btn-primary btn-rounded btn-clean">view</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="list-contacts list-contacts-inline" style="width: 160px;">
+                            <a href="#" class="list-contacts-item contact-away">
+                                <img src="~/admin/assets/images/users/user_3.jpg"> Marissa George
+                            </a>
+                        </div>
+                    </td>
+                    <td class="text-left table-products">
+                        <a href="#">Oldor GG pants</a><br><a href="#">Socks (white)</a>
+                    </td>
+                    <td>1 / 1</td>
+                    <td><strong>$57.45</strong></td>
+                    <td class="text-left">
+                        <span class="label label-info" style="margin-right: 10px;">Pickup</span> USA,New York. Highway st. 5
+                    </td>
+                    <td><span class="label label-warning">In queue</span></td>
+                    <td>
+                        <button class="btn btn-primary btn-rounded btn-clean">view</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="list-contacts list-contacts-inline" style="width: 160px;">
+                            <a href="#" class="list-contacts-item contact-offline">
+                                <img src="~/admin/assets/images/users/user_1.jpg"> John Doe
+                            </a>
+                        </div>
+                    </td>
+                    <td class="text-left table-products">
+                        <a href="#">pPhone 64Gb</a><br><a href="#">Accessories</a>
+                    </td>
+                    <td>1 / 2</td>
+                    <td><strong>$348.00</strong></td>
+                    <td class="text-left">
+                        <span class="label label-danger" style="margin-right: 10px;">Courier</span> UA, Kiev. Revuts st. 42
+                    </td>
+                    <td><span class="label label-danger">Delivering</span></td>
+                    <td>
+                        <button class="btn btn-primary btn-rounded btn-clean">view</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="list-contacts list-contacts-inline" style="width: 160px;">
+                            <a href="#" class="list-contacts-item contact-offline">
+                                <img src="~/admin/assets/images/users/user_4.jpg"> Karen Spencer
+                            </a>
+                        </div>
+                    </td>
+                    <td class="text-left table-products">
+                        <a href="#">Teddy Bear</a><br><a href="#">Flowers (Roses)</a>
+                    </td>
+                    <td>1 / 21</td>
+                    <td><strong>$121.32</strong></td>
+                    <td class="text-left">
+                        <span class="label label-success" style="margin-right: 10px;">Post</span> RU, Moscow. Lenina st. 11
+                    </td>
+                    <td><span class="label label-success">Delivered</span></td>
+                    <td>
+                        <button class="btn btn-primary btn-rounded btn-clean">view</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+<div class="col-lg-3 col-md-6">
+    <div class="widget-tabbed">
+        <ul class="widget-tabs widget-tabs-three">
+            <li class="active"><a href="#tasks">Tasks</a></li>
+            <li><a href="#activity">Activity</a></li>
+        </ul>
+        <div class="widget-tab list-tasks active" id="tasks">
+
+            <div class="list-tasks-item primary">
+                <div class="checkbox">
+                    <input type="checkbox" id="task_1">
+                    <label for="task_1"></label>
+                </div>
+                <div class="task">
+                    <a href="#">The term is commonly used as a synonym for computers and computer networks</a>
+                    <div class="user"><i class="fa fa-user"></i> <a href="#">John Doe</a></div>
+                    <div class="date">13:30</div>
+                </div>
+            </div>
+
+            <div class="list-tasks-item danger">
+                <div class="checkbox">
+                    <input type="checkbox" id="task_2">
+                    <label for="task_2"></label>
+                </div>
+                <div class="task">
+                    <a href="#">Humans have been storing, retrieving, manipulating and communicating information</a>
+                    <div class="user"><i class="fa fa-user"></i> <a href="#">Devin Stephens</a></div>
+                    <div class="date">11:22</div>
+                </div>
+            </div>
+
+            <div class="list-tasks-item danger">
+                <div class="checkbox">
+                    <input type="checkbox" id="task_3">
+                    <label for="task_3"></label>
+                </div>
+                <div class="task">
+                    <a href="#">Based on the storage and processing technologies employed</a>
+                    <div class="user"><i class="fa fa-user"></i> <a href="#">Kaitlynn Bowen</a></div>
+                    <div class="date">10:59</div>
+                </div>
+            </div>
+
+            <div class="list-tasks-item info">
+                <div class="checkbox">
+                    <input type="checkbox" id="task_4">
+                    <label for="task_4"></label>
+                </div>
+                <div class="task">
+                    <a href="#">Devices have been used to aid computation for thousands of years</a>
+                    <div class="user"><i class="fa fa-user"></i> <a href="#">Marissa George</a></div>
+                    <div class="date">10:48</div>
+                </div>
+            </div>
+
+            <div class="list-tasks-item warning active">
+                <div class="checkbox">
+                    <input type="checkbox" id="task_1" checked="checked">
+                    <label for="task_1"></label>
+                </div>
+                <div class="task">
+                    <a href="#">The behaviour of troops in warfare varies considerably, both individually and as units or armies</a>
+                    <div class="user"><i class="fa fa-user"></i> <a href="#">Philip Orlowsky</a></div>
+                    <div class="date">1 day ago</div>
+                </div>
+            </div>
+
+            <div class="list-tasks-item danger active">
+                <div class="checkbox">
+                    <input type="checkbox" id="task_5" checked="checked">
+                    <label for="task_5"></label>
+                </div>
+                <div class="task">
+                    <a href="#">In a business context, the Information Technology Association of America has defined information technology</a>
+                    <div class="user"><i class="fa fa-user"></i> <a href="#">Darrell Wolfe</a></div>
+                    <div class="date">1 day ago</div>
+                </div>
+            </div>
+
+            <div class="list-tasks-item primary active">
+                <div class="checkbox">
+                    <input type="checkbox" id="task_6" checked="checked">
+                    <label for="task_6"></label>
+                </div>
+                <div class="task">
+                    <a href="#">The relational database model introduced a programming-language independent Structured Query Language</a>
+                    <div class="user"><i class="fa fa-user"></i> <a href="#">Karen Spencer</a></div>
+                    <div class="date">1 day ago</div>
+                </div>
+            </div>
+
+            <div class="list-tasks-item warning active">
+                <div class="checkbox">
+                    <input type="checkbox" id="task_7" checked="checked">
+                    <label for="task_7"></label>
+                </div>
+                <div class="task">
+                    <a href="#">The field of information ethics was established by mathematician Norbert Wiener in the 1940s</a>
+                    <div class="user"><i class="fa fa-user"></i> <a href="#">Marissa George</a></div>
+                    <div class="date">2 days ago</div>
+                </div>
+            </div>
+        </div>
+        <div class="widget-tab" id="activity">
+
+            <ul class="timeline-simple">
+                <li class="success">
+                    <span class="timeline-simple-date">12 min ago</span>
+                    The standard Lorem Ipsum passage, used since the 1500s
+                </li>
+                <li class="success">
+                    <span class="timeline-simple-date">2h ago</span>
+                    Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
+                </li>
+                <li class="info">
+                    <span class="timeline-simple-date">15h ago</span>
+                    1914 translation by H. Rackham
+                </li>
+                <li class="info">
+                    <span class="timeline-simple-date">19h ago</span>
+                    Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
+                </li>
+                <li class="primary">
+                    <span class="timeline-simple-date">20h ago</span>
+                    Phasellus finibus ut libero sit amet gravida. Vivamus sed placerat sapien.
+                </li>
+                <li class="primary">
+                    <span class="timeline-simple-date">20h ago</span>
+                    Phasellus finibus ut libero sit amet gravida. Vivamus sed placerat sapien.
+                </li>
+                <li class="warning">
+                    <span class="timeline-simple-date">1 day ago</span>
+                    Curabitur vel ultrices arcu, ut vestibulum nulla. Vivamus tempor eros dolor.
+                </li>
+                <li class="warning">
+                    <span class="timeline-simple-date">2 day ago</span>
+                    Vivamus finibus diam in feugiat gravida. Sed dapibus malesuada condimentum.
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

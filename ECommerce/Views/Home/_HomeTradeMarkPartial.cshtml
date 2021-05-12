@@ -1,4 +1,50 @@
-﻿<div class="container">
+﻿@using ECommerce.Models.View;
+@using System.Globalization;
+@model HomeDataView
+@{
+    var allBrand = new List<ECommerce.Model.EFModel.Models.BrandProduct>();
+    for (int i = 0; i < Model.DongHoNam.Count(); i++)
+    {
+        var pro = Model.DongHoNam[i];
+        if (!allBrand.Contains(pro.BrandProduct))
+        {
+            allBrand.Add(pro.BrandProduct);
+        }
+    }
+    for (int i = 0; i < Model.DongHoNu.Count(); i++)
+    {
+        var pro = Model.DongHoNu[i];
+        if (!allBrand.Contains(pro.BrandProduct))
+        {
+            allBrand.Add(pro.BrandProduct);
+        }
+    }
+    for (int i = 0; i < Model.DongHoCap.Count(); i++)
+    {
+        var pro = Model.DongHoCap[i];
+        if (!allBrand.Contains(pro.BrandProduct))
+        {
+            allBrand.Add(pro.BrandProduct);
+        }
+    }
+    for (int i = 0; i < Model.DongHoPhienBanDacBiet.Count(); i++)
+    {
+        var pro = Model.DongHoPhienBanDacBiet[i];
+        if (!allBrand.Contains(pro.BrandProduct))
+        {
+            allBrand.Add(pro.BrandProduct);
+        }
+    }
+    for (int i = 0; i < Model.DongHoPhienBanGioiHan.Count(); i++)
+    {
+        var pro = Model.DongHoPhienBanGioiHan[i];
+        if (!allBrand.Contains(pro.BrandProduct))
+        {
+            allBrand.Add(pro.BrandProduct);
+        }
+    }
+}
+<div class="container">
     <div class="brand-showcase">
         <h2 class="brand-showcase-title">
             @language.TRADEMARK
@@ -7,990 +53,70 @@
             <ul class="brand-showcase-logo owl-carousel" data-loop="true" data-nav="true" data-dots="false"
                 data-margin="1" data-autoplayTimeout="1000" data-autoplayHoverPause="true"
                 data-responsive='{"0":{"items":2},"600":{"items":5},"1000":{"items":8}}'>
-                <li data-tab="showcase-1" class="item active">
-                    <img src="/assets/data/gucci.png" alt="logo"
-                         class="item-img" />
-                </li>
-                <li data-tab="showcase-2" class="item">
-                    <img src="/assets/data/gucci.png" alt="logo"
-                         class="item-img" />
-                </li>
-                <li data-tab="showcase-3" class="item">
-                    <img src="/assets/data/gucci.png" alt="logo"
-                         class="item-img" />
-                </li>
-                <li data-tab="showcase-4" class="item">
-                    <img src="/assets/data/gucci.png" alt="logo"
-                         class="item-img" />
-                </li>
-                <li data-tab="showcase-5" class="item">
-                    <img src="/assets/data/gucci.png" alt="logo"
-                         class="item-img" />
-                </li>
-                <li data-tab="showcase-6" class="item">
-                    <img src="/assets/data/gucci.png" alt="logo"
-                         class="item-img" />
-                </li>
-                <li data-tab="showcase-7" class="item">
-                    <img src="/assets/data/gucci.png" alt="logo"
-                         class="item-img" />
-                </li>
-                <li data-tab="showcase-8" class="item">
-                    <img src="/assets/data/gucci.png" alt="logo"
-                         class="item-img" />
-                </li>
-                <li data-tab="showcase-9" class="item">
-                    <img src="/assets/data/gucci.png" alt="logo"
-                         class="item-img" />
-                </li>
+                @for (int i = 0; i < allBrand.Count(); i++)
+                {
+                    <li data-tab="showcase-@i" class="item @(i==0?"active":"")" style="height: 40px;vertical-align: middle;text-align: center;">
+                        @*<img src="/assets/data/gucci.png" alt="logo"
+                            class="item-img" />*@
+                        @allBrand[i].Name
+                    </li>
+                }
             </ul>
             <div class="brand-showcase-content">
-                <div class="brand-showcase-content-tab active" id="showcase-1">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 trademark-info">
-                            <div class="trademark-logo">
-                                <a href="#"><img src="/assets/data/trademark.jpg" alt="trademark"></a>
+                @for (int i = 0; i < allBrand.Count(); i++)
+                {
+                    <div class="brand-showcase-content-tab @(i==0?"active":"")" id="showcase-@i">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 trademark-info">
+                                <div class="trademark-logo">
+                                    @*<a href="#"><img src="/assets/data/trademark.jpg" alt="trademark"></a>*@
+                                    @Html.ActionLink(
+                                           linkText: allBrand[i].Name,
+                                           actionName: "Index",
+                                           controllerName: "Search-Result",
+                                           routeValues: new SearchViewModel
+                                           {
+                                               BrandNameId = new List<int>() { allBrand[i].Id }
+                                           },
+                                           htmlAttributes: null
+                                       )
+                                </div>
+                                <div class="trademark-desc">
+                                    @if (!string.IsNullOrEmpty(allBrand[i].Description))
+                                    {
+                                        @allBrand[i].Description
+                                    }
+                                    else
+                                    {
+                                        @ECommerce.Resources.Languages.Home.home.TRADE_1
+                                    }
+                                </div>
+                                @Html.ActionLink(
+                                    linkText: language.SEE_MORE,
+                                    actionName: "Index",
+                                    controllerName: "Search-Result",
+                                    routeValues: new SearchViewModel
+                                    {
+                                        BrandNameId = new List<int>() { allBrand[i].Id }
+                                    },
+                                    htmlAttributes: new
+                                    {
+                                        @class = "trademark-link"
+                                    }
+                                )
                             </div>
-                            <div class="trademark-desc">
-                                @ECommerce.Resources.Languages.Home.home.TRADE_1
-                            </div>
-                            <a href="#" class="trademark-link">shop this brand</a>
-                        </div>
-                        <div class="col-xs-12 col-sm-8 trademark-product">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-repon" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
+                            <div class="col-xs-12 col-sm-8 trademark-product">
+                                <div class="row">
+                                    @for (int j = 0; j < allBrand[i].Products.Take(4).Count(); j++)
+                                    {
+                                        var data = allBrand[i].Products[j];
+                                        @await Component.InvokeAsync("ProductViewPartial", new { type = 3, data = data })
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="brand-showcase-content-tab" id="showcase-2">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 trademark-info">
-                            <div class="trademark-logo">
-                                <a href="#"><img src="/assets/data/trademark.jpg" alt="trademark"></a>
-                            </div>
-                            <div class="trademark-desc">
-                                @ECommerce.Resources.Languages.Home.home.TRADE_1
-                            </div>
-                            <a href="#" class="trademark-link">shop this brand</a>
-                        </div>
-                        <div class="col-xs-12 col-sm-8 trademark-product">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-repon" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="brand-showcase-content-tab" id="showcase-3">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 trademark-info">
-                            <div class="trademark-logo">
-                                <a href="#"><img src="/assets/data/trademark.jpg" alt="trademark"></a>
-                            </div>
-                            <div class="trademark-desc">
-                                @ECommerce.Resources.Languages.Home.home.TRADE_1
-                            </div>
-                            <a href="#" class="trademark-link">shop this brand</a>
-                        </div>
-                        <div class="col-xs-12 col-sm-8 trademark-product">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-repon" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="brand-showcase-content-tab" id="showcase-4">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 trademark-info">
-                            <div class="trademark-logo">
-                                <a href="#"><img src="/assets/data/trademark.jpg" alt="trademark"></a>
-                            </div>
-                            <div class="trademark-desc">
-                                @ECommerce.Resources.Languages.Home.home.TRADE_1
-                            </div>
-                            <a href="#" class="trademark-link">shop this brand</a>
-                        </div>
-                        <div class="col-xs-12 col-sm-8 trademark-product">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-repon" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="brand-showcase-content-tab" id="showcase-5">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 trademark-info">
-                            <div class="trademark-logo">
-                                <a href="#"><img src="/assets/data/trademark.jpg" alt="trademark"></a>
-                            </div>
-                            <div class="trademark-desc">
-                                @ECommerce.Resources.Languages.Home.home.TRADE_1
-                            </div>
-                            <a href="#" class="trademark-link">shop this brand</a>
-                        </div>
-                        <div class="col-xs-12 col-sm-8 trademark-product">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-repon" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="brand-showcase-content-tab" id="showcase-6">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 trademark-info">
-                            <div class="trademark-logo">
-                                <a href="#"><img src="/assets/data/trademark.jpg" alt="trademark"></a>
-                            </div>
-                            <div class="trademark-desc">
-                                @ECommerce.Resources.Languages.Home.home.TRADE_1
-                            </div>
-                            <a href="#" class="trademark-link">shop this brand</a>
-                        </div>
-                        <div class="col-xs-12 col-sm-8 trademark-product">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-repon" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="brand-showcase-content-tab" id="showcase-7">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 trademark-info">
-                            <div class="trademark-logo">
-                                <a href="#"><img src="/assets/data/trademark.jpg" alt="trademark"></a>
-                            </div>
-                            <div class="trademark-desc">
-                                @ECommerce.Resources.Languages.Home.home.TRADE_1
-                            </div>
-                            <a href="#" class="trademark-link">shop this brand</a>
-                        </div>
-                        <div class="col-xs-12 col-sm-8 trademark-product">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-repon" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="brand-showcase-content-tab" id="showcase-8">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 trademark-info">
-                            <div class="trademark-logo">
-                                <a href="#"><img src="/assets/data/trademark.jpg" alt="trademark"></a>
-                            </div>
-                            <div class="trademark-desc">
-                                @ECommerce.Resources.Languages.Home.home.TRADE_1
-                            </div>
-                            <a href="#" class="trademark-link">shop this brand</a>
-                        </div>
-                        <div class="col-xs-12 col-sm-8 trademark-product">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-repon" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="brand-showcase-content-tab" id="showcase-9">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 trademark-info">
-                            <div class="trademark-logo">
-                                <a href="#"><img src="/assets/data/trademark.jpg" alt="trademark"></a>
-                            </div>
-                            <div class="trademark-desc">
-                                @ECommerce.Resources.Languages.Home.home.TRADE_1
-                            </div>
-                            <a href="#" class="trademark-link">shop this brand</a>
-                        </div>
-                        <div class="col-xs-12 col-sm-8 trademark-product">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-repon" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 product-item">
-                                    <div class="image-product hover-zoom">
-                                        <a href="#">
-                                            <img class="img-responsive" src="/assets/images/product-1.jpg"
-                                                 alt="">
-                                        </a>
-                                    </div>
-                                    <div class="info-product">
-                                        <a href="#">
-                                            <h5>Maecenas consequat mauris</h5>
-                                        </a>
-                                        <span class="product-price">4,500,000 VNĐ</span>
-                                        <div class="product-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="btn-view-more" title="@language.SEE_MORE" href="#">@language.SEE_MORE</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
 
