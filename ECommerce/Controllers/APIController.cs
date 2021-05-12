@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ECommerce.Areas.Admin.Models;
 using ECommerce.Common.FormatData;
 using ECommerce.Model.EFModel;
 using ECommerce.Model.EFModel.Models;
+using ECommerce.Models.View;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -878,6 +881,115 @@ left join Medias media on pro_media.MediaId = media.Id
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
             data.Success = true;
+            data.Message = "Thành công !";
+            return Ok(data);
+        }
+        #endregion
+
+        #region Media
+        [HttpGet("api/Media/{id}")]
+        public async Task<ActionResult<ResultData<string>>> GetMediaById(int id)
+        {
+            ResultData<string> data = new ResultData<string>();
+            var Item = db.Medias.Where(x => x.Id == id).FirstOrDefault();
+            if (Item == null) return data;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            data.Success = true;
+            data.Message = "Thành công !";
+            return Ok(data);
+        }
+
+        [HttpPost]
+        [Route("api/Media/search")]
+        public async Task<ActionResult<ResultData<IEnumerable<Order>>>> GetAllMedia([FromForm] FilterViewModel filter)
+        {
+            db.Database.SetCommandTimeout(99999999);
+            ResultData<IEnumerable<Order>> rs = new ResultData<IEnumerable<Order>>();
+            string stringSearch = string.IsNullOrEmpty(filter.search.value) ? "" : filter.search.value;
+            var mainQuery = db.Medias.Where(x => (x.Id.ToString() + x.Name + x.Link +x.Path).Contains(stringSearch != null ? stringSearch : "")).Include(x=>x.MediaType).AsQueryable();
+            int count = mainQuery.Count();
+            var Item = new List<Media>();
+            switch (filter.order[0].column)
+            {
+                case 0:
+                    Item = filter.order[0].dir == "desc" ? mainQuery.OrderByDescending(x => x.Id).Skip(filter.start).Take(filter.length).ToList()
+                                                        : mainQuery.OrderBy(x => x.Id).Skip(filter.start).Take(filter.length).ToList();
+                    break;
+                case 1:
+                    Item = filter.order[0].dir == "desc" ? mainQuery.OrderByDescending(x => x.Name).Skip(filter.start).Take(filter.length).ToList()
+                                                       : mainQuery.OrderBy(x => x.Name).Skip(filter.start).Take(filter.length).ToList();
+                    break;
+                case 2:
+                    Item = filter.order[0].dir == "desc" ? mainQuery.OrderByDescending(x => x.MediaType.Id).Skip(filter.start).Take(filter.length).ToList()
+                                                       : mainQuery.OrderBy(x => x.MediaType.Id).Skip(filter.start).Take(filter.length).ToList();
+                    break;
+                case 3:
+                    Item = filter.order[0].dir == "desc" ? mainQuery.OrderByDescending(x => x.Link).Skip(filter.start).Take(filter.length).ToList()
+                                                       : mainQuery.OrderBy(x => x.Link).Skip(filter.start).Take(filter.length).ToList();
+                    break;
+                case 4:
+                    Item = filter.order[0].dir == "desc" ? mainQuery.OrderByDescending(x => x.Path).Skip(filter.start).Take(filter.length).ToList()
+                                                       : mainQuery.OrderBy(x => x.Path).Skip(filter.start).Take(filter.length).ToList();
+                    break;
+                default:
+                    Item = filter.order[0].dir == "desc" ? mainQuery.OrderByDescending(x => x.CreateDate).Skip(filter.start).Take(filter.length).ToList()
+                                                      : mainQuery.OrderBy(x => x.CreateDate).Skip(filter.start).Take(filter.length).ToList();
+                    break;
+            }
+            var ItemRS = Item.Select(x =>
+            {
+                return new
+                {
+                    Id = x.Id,
+                    Link = x.Link != null ? x.Link : "/assets/data/product-s3-850x1036.jpg",
+                    Name = x.Name,
+                    DinhDang = x.MediaType.Name,
+                    LinkServer = x.Path,
+                    NgayTao = x.CreateDate
+                };
+            }).ToList();
+            //var  ItemRS = Item;
+            var result = new FilterResultViewModel<object>
+            {
+                draw = filter.draw,
+                data = ItemRS,
+                recordsTotal = db.Medias.Count(),
+                recordsFiltered = count
+            };
+            return Ok(result);
+        }
+        [HttpPost("api/Media/upload")]
+        //public async Task<ActionResult<ResultData<string>>> UploadMedia(List<IFormFile> files)
+        public async Task<ActionResult<ResultData<string>>> UploadMedia([FromForm] MediaUploadFile formData)
+        {
+            ResultData<string> data = new ResultData<string>();
+            string filePath = "";
+            if (formData.FileUpload != null&& formData.FileUpload.Length > 0)
+            {
+                //var filePath = Path.GetTempFileName();
+                filePath = Environment.CurrentDirectory + "\\wwwroot\\assets\\images\\products\\" + formData.FileUpload.FileName;
+
+                using (var stream = System.IO.File.Create(filePath))
+                {
+                    await formData.FileUpload.CopyToAsync(stream);
+                }
+            }
+            data.Success = true;
+            Media media = new Media();
+            media.Name = formData.Name;
+            media.Path = filePath;
+            switch (formData.FileUpload.ContentType)
+            {
+                case "":
+                    break;
+                default:
+                    break;
+            }
+
             data.Message = "Thành công !";
             return Ok(data);
         }

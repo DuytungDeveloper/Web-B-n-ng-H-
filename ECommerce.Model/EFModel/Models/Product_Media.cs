@@ -9,6 +9,7 @@ namespace ECommerce.Model.EFModel.Models
     {
         public int ProductId { get; set; }
         public int MediaId { get; set; }
+        //public int OrderId { get; set; }
         /// <summary>
         /// Dùng để sắp xếp hiển thị
         /// </summary>
