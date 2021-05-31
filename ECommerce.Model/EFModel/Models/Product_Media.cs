@@ -14,6 +14,8 @@ namespace ECommerce.Model.EFModel.Models
         /// Dùng để sắp xếp hiển thị
         /// </summary>
         //public int? ShowIndex { get; set; }
+        //[Column(Order = 5)]
+        public int OrderIndex { get; set; }
         public virtual Media Media { get; set; }
         public virtual Product Product { get; set; }
     }

@@ -38,7 +38,7 @@
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoNam.ToList()[rnd.Next(0,Model.DongHoNam.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoNam.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoNam.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoNam_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoNam_BanChayNhat.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoNam_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoNam_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -50,9 +50,9 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoNam.Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoNam_BanChayNhat.Count(); i++)
                                     {
-                                        var data = Model.DongHoNam.ToList()[i];
+                                        var data = Model.DongHoNam_BanChayNhat.ToList()[i];
                                         <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
@@ -65,9 +65,9 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoNam.OrderByDescending(v => v.ViewsCount).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoNam_NhieuNguoiXem.Count(); i++)
                                     {
-                                        var data = Model.DongHoNam.OrderByDescending(v => v.ViewsCount).ToList()[i];
+                                        var data = Model.DongHoNam_NhieuNguoiXem.OrderByDescending(v => v.ViewsCount).ToList()[i];
                                         <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
@@ -112,7 +112,7 @@
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoCap.ToList()[rnd.Next(0,Model.DongHoCap.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoCap.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoCap.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoCap_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoCap_BanChayNhat.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoCap_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoCap_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -124,9 +124,9 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoCap.Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoCap_BanChayNhat.Count(); i++)
                                     {
-                                        var data = Model.DongHoCap.ToList()[i];
+                                        var data = Model.DongHoCap_BanChayNhat.ToList()[i];
                                         <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
@@ -140,9 +140,9 @@
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
 
-                                    @for (int i = 0; i < Model.DongHoCap.OrderByDescending(v => v.ViewsCount).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoCap_NhieuNguoiXem.Count(); i++)
                                     {
-                                        var data = Model.DongHoCap.OrderByDescending(v => v.ViewsCount).ToList()[i];
+                                        var data = Model.DongHoCap_NhieuNguoiXem.OrderByDescending(v => v.ViewsCount).ToList()[i];
                                         <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
@@ -187,7 +187,7 @@
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoNu.ToList()[rnd.Next(0,Model.DongHoNu.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoNu.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoNu.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoNu_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoNu_BanChayNhat.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoNu_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoNu_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -199,9 +199,9 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoNu.Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoNu_BanChayNhat.Count(); i++)
                                     {
-                                        var data = Model.DongHoNu.ToList()[i];
+                                        var data = Model.DongHoNu_BanChayNhat.ToList()[i];
                                         <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
@@ -214,9 +214,9 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoNu.OrderByDescending(v => v.ViewsCount).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoNu_NhieuNguoiXem.Count(); i++)
                                     {
-                                        var data = Model.DongHoNu.OrderByDescending(v => v.ViewsCount).ToList()[i];
+                                        var data = Model.DongHoNu_NhieuNguoiXem.OrderByDescending(v => v.ViewsCount).ToList()[i];
                                         <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
@@ -262,7 +262,7 @@
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoTreEm.ToList()[rnd.Next(0,Model.DongHoTreEm.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoTreEm.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoTreEm.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoTreEm_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoTreEm_BanChayNhat.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoTreEm_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoTreEm_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -274,9 +274,9 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoTreEm.Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoTreEm_BanChayNhat.Count(); i++)
                                     {
-                                        var data = Model.DongHoTreEm.ToList()[i];
+                                        var data = Model.DongHoTreEm_BanChayNhat.ToList()[i];
                                         <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
@@ -289,9 +289,9 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoTreEm.OrderByDescending(v => v.ViewsCount).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoTreEm_NhieuNguoiXem.Count(); i++)
                                     {
-                                        var data = Model.DongHoTreEm.OrderByDescending(v => v.ViewsCount).ToList()[i];
+                                        var data = Model.DongHoTreEm_NhieuNguoiXem.OrderByDescending(v => v.ViewsCount).ToList()[i];
                                         <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
@@ -337,7 +337,7 @@
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoPhienBanDacBiet.ToList()[rnd.Next(0,Model.DongHoPhienBanDacBiet.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoPhienBanDacBiet.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoPhienBanDacBiet.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoPhienBanDacBiet_BanChayNhat.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -349,9 +349,9 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoPhienBanDacBiet.Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoPhienBanDacBiet_BanChayNhat.Count(); i++)
                                     {
-                                        var data = Model.DongHoPhienBanDacBiet.ToList()[i];
+                                        var data = Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[i];
                                         <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
@@ -364,9 +364,9 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoPhienBanDacBiet.OrderByDescending(v => v.ViewsCount).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoPhienBanDacBiet_NhieuNguoiXem.Count(); i++)
                                     {
-                                        var data = Model.DongHoPhienBanDacBiet.OrderByDescending(v => v.ViewsCount).ToList()[i];
+                                        var data = Model.DongHoPhienBanDacBiet_NhieuNguoiXem.OrderByDescending(v => v.ViewsCount).ToList()[i];
                                         <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
@@ -414,7 +414,7 @@
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoPhienBanGioiHan.ToList()[rnd.Next(0,Model.DongHoPhienBanGioiHan.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoPhienBanGioiHan.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoPhienBanGioiHan.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoPhienBanGioiHan_BanChayNhat.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -426,9 +426,9 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoPhienBanGioiHan.Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoPhienBanGioiHan_BanChayNhat.Count(); i++)
                                     {
-                                        var data = Model.DongHoPhienBanGioiHan.ToList()[i];
+                                        var data = Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[i];
                                         <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>
@@ -441,9 +441,9 @@
                                     data-nav="true" data-margin="0" data-autoplayTimeout="1000"
                                     data-autoplayHoverPause="true"
                                     data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
-                                    @for (int i = 0; i < Model.DongHoPhienBanGioiHan.OrderByDescending(v => v.ViewsCount).Count(); i++)
+                                    @for (int i = 0; i < Model.DongHoPhienBanGioiHan_NhieuNguoiXem.Count(); i++)
                                     {
-                                        var data = Model.DongHoPhienBanGioiHan.OrderByDescending(v => v.ViewsCount).ToList()[i];
+                                        var data = Model.DongHoPhienBanGioiHan_NhieuNguoiXem.OrderByDescending(v => v.ViewsCount).ToList()[i];
                                         <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
                                         </li>

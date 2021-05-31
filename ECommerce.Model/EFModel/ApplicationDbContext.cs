@@ -145,6 +145,7 @@ namespace ECommerce.Model.EFModel
         /// Thông tin cấu hình hệ thống
         /// </summary>
         public virtual DbSet<SystemInfomation> SystemInfomation { get; set; }
+        public virtual DbSet<Product_ProductStatus> Product_ProductStatus { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -444,9 +445,7 @@ namespace ECommerce.Model.EFModel
             #region product On first page
             modelBuilder.Entity<ProductsOnFirstPage>().HasKey(sc => new { sc.ProductId, sc.ViewTypeId });
             modelBuilder.Entity<ProductsOnFirstPage>()
-                .HasOne<Product>(sc => sc.Product)
-                .WithMany(x => x.ProductsOnFirstPages)
-                .HasForeignKey(x => x.ProductId);
+                .HasOne<Product>(sc => sc.Product);
             #endregion
 
 

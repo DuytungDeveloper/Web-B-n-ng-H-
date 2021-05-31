@@ -35,6 +35,13 @@
         .dev-page {
             visibility: hidden;
         }
+        .cut-text {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            /*width: 160px;*/
+            height: 1.2em;
+            /* white-space: nowrap;*/
+        }
     </style>
 
 </head>
@@ -97,7 +104,7 @@
     <script type="text/javascript" src="~/admin/js/plugins/sparkline/jquery.sparkline.min.js"></script>
 
     @*<script type="text/javascript" src="~/admin/js/plugins/bootstrap-select/bootstrap-select.js"></script>*@
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
     <script type="text/javascript" src="~/admin/js/plugins/nvd3/d3.min.js"></script>
     <script type="text/javascript" src="~/admin/js/plugins/nvd3/nv.d3.min.js"></script>
@@ -117,8 +124,10 @@
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@10.13.3/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js" integrity="sha512-RtZU3AyMVArmHLiW0suEZ9McadTdegwbgtiQl5Qqo9kunkVg1ofwueXD8/8wv3Af8jkME3DDe3yLfR8HSJfT2g==" crossorigin="anonymous"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.13.0/Sortable.min.js"></script>*@
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script>
     <script type="text/javascript" src="~/js/admin_common.js"></script>
-
     @RenderSection("AdminScripts", required: false)
 
 </body>

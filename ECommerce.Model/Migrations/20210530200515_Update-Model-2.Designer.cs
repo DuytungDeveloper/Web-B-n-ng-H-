@@ -4,14 +4,16 @@ using ECommerce.Model.EFModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ECommerce.Model.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210530200515_Update-Model-2")]
+    partial class UpdateModel2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1050,8 +1052,25 @@ namespace ECommerce.Model.Migrations
                     b.Property<int>("ViewTypeId")
                         .HasColumnType("int");
 
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("ProductId", "ViewTypeId");
 
@@ -1750,17 +1769,6 @@ namespace ECommerce.Model.Migrations
                     b.Navigation("ProductStatus");
                 });
 
-            modelBuilder.Entity("ECommerce.Model.EFModel.Models.ProductsOnFirstPage", b =>
-                {
-                    b.HasOne("ECommerce.Model.EFModel.Models.Product", "Product")
-                        .WithMany("ProductsOnFirstPages")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("ECommerce.Model.EFModel.Models.Review", b =>
                 {
                     b.HasOne("ECommerce.Model.EFModel.Models.ApplicationUser", "ApplicationUser")
@@ -1923,8 +1931,6 @@ namespace ECommerce.Model.Migrations
                     b.Navigation("Product_Media");
 
                     b.Navigation("Product_ProductStatus");
-
-                    b.Navigation("ProductsOnFirstPages");
 
                     b.Navigation("Reviews");
                 });

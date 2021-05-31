@@ -1,5 +1,32 @@
-﻿<div class="col-12">
+﻿
+@section AdminScripts{
+    <script type="text/javascript" src="~/admin/js/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/admin/js/plugins/sortable/sortable.min.js"></script>
+    <script type="text/javascript" src="~/admin/js/plugins/summernote/summernote.min.js"></script>
+    <script type="text/javascript" src="~/admin/js/plugins/tags-input/jquery.tagsinput.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>*@
+    <script type="text/javascript" src="~/js/admin/productFirstPage.js"></script>
 
+}
+@section AdminHeader{
+    <style>
+        .grid-square {
+            width: fit-content();
+            height: fit-content();
+            display: inline-block;
+            background-color: #fff;
+            border: solid 1px rgb(0,0,0,0.2);
+            padding: 10px;
+            margin: 12px;
+        }
+        #listViewShow li{
+            list-style: none;
+        }
+    </style>
+}
+
+
+<div class="col-12">
     <div class="wrapper">
         <div class="page-subtitle">
             <h2>Summary profit</h2>
@@ -10,103 +37,78 @@
                 </div>
             </div>
         </div>
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover text-center">
-                <tr>
-                    <th width="200" class="text-left">Details</th>
-                    <th width="150" class="text-left">Products</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Delivery</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="list-contacts list-contacts-inline" style="width: 160px;">
-                            <a href="#" class="list-contacts-item contact-online">
-                                <img src="~/admin/assets/images/users/user_2.jpg"> Devin Stephens
-                            </a>
-                        </div>
-                    </td>
-                    <td class="text-left table-products">
-                        <a href="#">Awesome T-shirt</a>
-                    </td>
-                    <td>1</td>
-                    <td><strong>$15.99</strong></td>
-                    <td class="text-left">
-                        <span class="label label-danger" style="margin-right: 10px;">Courier</span> UK,London. Street st. 159
-                    </td>
-                    <td><span class="label label-success">New</span></td>
-                    <td>
-                        <button class="btn btn-primary btn-rounded btn-clean">view</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="list-contacts list-contacts-inline" style="width: 160px;">
-                            <a href="#" class="list-contacts-item contact-away">
-                                <img src="~/admin/assets/images/users/user_3.jpg"> Marissa George
-                            </a>
-                        </div>
-                    </td>
-                    <td class="text-left table-products">
-                        <a href="#">Oldor GG pants</a><br><a href="#">Socks (white)</a>
-                    </td>
-                    <td>1 / 1</td>
-                    <td><strong>$57.45</strong></td>
-                    <td class="text-left">
-                        <span class="label label-info" style="margin-right: 10px;">Pickup</span> USA,New York. Highway st. 5
-                    </td>
-                    <td><span class="label label-warning">In queue</span></td>
-                    <td>
-                        <button class="btn btn-primary btn-rounded btn-clean">view</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="list-contacts list-contacts-inline" style="width: 160px;">
-                            <a href="#" class="list-contacts-item contact-offline">
-                                <img src="~/admin/assets/images/users/user_1.jpg"> John Doe
-                            </a>
-                        </div>
-                    </td>
-                    <td class="text-left table-products">
-                        <a href="#">pPhone 64Gb</a><br><a href="#">Accessories</a>
-                    </td>
-                    <td>1 / 2</td>
-                    <td><strong>$348.00</strong></td>
-                    <td class="text-left">
-                        <span class="label label-danger" style="margin-right: 10px;">Courier</span> UA, Kiev. Revuts st. 42
-                    </td>
-                    <td><span class="label label-danger">Delivering</span></td>
-                    <td>
-                        <button class="btn btn-primary btn-rounded btn-clean">view</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="list-contacts list-contacts-inline" style="width: 160px;">
-                            <a href="#" class="list-contacts-item contact-offline">
-                                <img src="~/admin/assets/images/users/user_4.jpg"> Karen Spencer
-                            </a>
-                        </div>
-                    </td>
-                    <td class="text-left table-products">
-                        <a href="#">Teddy Bear</a><br><a href="#">Flowers (Roses)</a>
-                    </td>
-                    <td>1 / 21</td>
-                    <td><strong>$121.32</strong></td>
-                    <td class="text-left">
-                        <span class="label label-success" style="margin-right: 10px;">Post</span> RU, Moscow. Lenina st. 11
-                    </td>
-                    <td><span class="label label-success">Delivered</span></td>
-                    <td>
-                        <button class="btn btn-primary btn-rounded btn-clean">view</button>
-                    </td>
-                </tr>
-            </table>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="productStatus_detail" class="col-sm-12 control-label">Khung sản phẩm</label>
+                    <div class="col-sm-12">
+                        <select class="form-control" id="productViewid">
+                            <option value="@((int)ECommerce.Helpers.Common.SanPhamTrangDauViewType.BanChayNhat)">Bán chạy nhất</option>
+                            <option value="@((int)ECommerce.Helpers.Common.SanPhamTrangDauViewType.DangGiamGia)">Đang giảm giá</option>
+                            <option value="@((int)ECommerce.Helpers.Common.SanPhamTrangDauViewType.MauMoi)">Mẫu mới</option>
+                            <option value="@((int)ECommerce.Helpers.Common.SanPhamTrangDauViewType.DealHoi)">Deal hời</option>
+
+                            <option value="@((int)ECommerce.Helpers.Common.SanPhamTrangDauViewType.DongHoNam_BanChayNhat)">Đồng hồ nam - Bán chạy nhất</option>
+                            <option value="@((int)ECommerce.Helpers.Common.SanPhamTrangDauViewType.DongHoNam_NhieuNguoiXem)">Đồng hồ nam - Nhiều người xem</option>
+
+                            <option value="@((int)ECommerce.Helpers.Common.SanPhamTrangDauViewType.DongHoNu_BanChayNhat)">Đồng hồ nữ - Bán chạy nhất</option>
+                            <option value="@((int)ECommerce.Helpers.Common.SanPhamTrangDauViewType.DongHoNu_NhieuNguoiXem)">Đồng hồ nữ - Nhiều người xem</option>
+
+                            <option value="@((int)ECommerce.Helpers.Common.SanPhamTrangDauViewType.DongHoTreEm_BanChayNhat)">Đồng hồ trẻ em - Bán chạy nhất</option>
+                            <option value="@((int)ECommerce.Helpers.Common.SanPhamTrangDauViewType.DongHoTreEm_NhieuNguoiXem)">Đồng hồ trẻ em - Nhiều người xem</option>
+
+                            <option value="@((int)ECommerce.Helpers.Common.SanPhamTrangDauViewType.DongHoPhienBanDacBiet_BanChayNhat)">Đồng hồ phiên bản đặc biệt - Bán chạy nhất</option>
+                            <option value="@((int)ECommerce.Helpers.Common.SanPhamTrangDauViewType.DongHoPhienBanDacBiet_NhieuNguoiXem)">Đồng hồ phiên bản đặc biệt - Nhiều người xem</option>
+
+                            <option value="@((int)ECommerce.Helpers.Common.SanPhamTrangDauViewType.DongHoPhienBanGioiHan_BanChayNhat)">Đồng hồ phiên bản giới hạn - Bán chạy nhất</option>
+                            <option value="@((int)ECommerce.Helpers.Common.SanPhamTrangDauViewType.DongHoPhienBanGioiHan_NhieuNguoiXem)">Đồng hồ phiên bản giới hạn - Nhiều người xem</option>
+
+                            <option value="@((int)ECommerce.Helpers.Common.SanPhamTrangDauViewType.DongHoCap_BanChayNhat)">Đồng hồ cặp - Bán chạy nhất</option>
+                            <option value="@((int)ECommerce.Helpers.Common.SanPhamTrangDauViewType.DongHoCap_NhieuNguoiXem)">Đồng hồ cặp - Nhiều người xem</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div id="listViewShow" class="col">
+                        @for (int i = 0; i < 0; i++)
+                        {
+                            <div class="grid-square" style="">
+                                <div class="col">
+                                    <h4>Tên sản phẩm</h4>
+                                    <img src="/admin/assets/images/users/user_2.jpg" class="img-responsive" style="width:100px;height:100px;" />
+                                    <p>10,000,000</p>
+                                    <button class="btn-danger">Xóa</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="table-responsive">
+                    <table class="table" id="table-san-pham">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Giá giảm</th>
+                                <th>Điểm sản phẩm</th>
+                                <th>Trạng thái</th>
+                                <th>Thao Tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
         </div>
+
 
     </div>
 

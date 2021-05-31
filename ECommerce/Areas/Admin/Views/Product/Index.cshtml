@@ -49,6 +49,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                     <button type="button" class="btn btn-warning" onclick="reloadDetailProduct(event)" data-loading-text="Đang tải ...">Tải lại</button>
                     <button type="button" class="btn btn-success" onclick="updateDetailProduct()">Lưu</button>
+                    <button type="button" class="btn btn-default" onclick="emptyDetailViewCreate()">Tạo sản phẩm mới</button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -101,7 +102,7 @@
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <label for="productURL_detail" class="col-sm-2 control-label">Url sản phẩm</label>
+                                                            <label for="productURL_detail"  class="col-sm-2 control-label">Url sản phẩm</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" class="form-control" id="productURL_detail" placeholder="URL sản phẩm" required>
                                                             </div>
@@ -110,6 +111,13 @@
                                                             <label for="productSku_detail" class="col-sm-2 control-label">Sku sản phẩm</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" class="form-control" id="productSku_detail" placeholder="Sku sản phẩm">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="productStatus_detail" class="col-sm-2 control-label">Trạng thái</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control"  multiple id="productStatus_detail">
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -128,7 +136,7 @@
                                                         <div class="form-group">
                                                             <label for="productMachineId_detail" class="col-sm-2 control-label">Loại máy</label>
                                                             <div class="col-sm-10">
-                                                                <select class="form-control" id="productMachineId_detail">
+                                                                <select class="form-control"  id="productMachineId_detail">
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -270,6 +278,34 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <p>Quản lý ảnh</p>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <ul id="listAnh">
+                                                                <li><img /></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="table-responsive">
+                                                                <table class="table" id="table-tim-anh">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Id</th>
+                                                                            <th>Ảnh</th>
+                                                                            <th>Tên tệp</th>
+                                                                            <th>Thao Tác</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+
                                                 </div>
                                             </div>
                                         </div>

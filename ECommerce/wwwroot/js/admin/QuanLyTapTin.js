@@ -41,8 +41,8 @@
                 return `<div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">Thao tác <span class="caret"></span></button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Xóa</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sửa</a></li>
+                               <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Xóa</a></li> -->
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="downloadFile('${row.link}')">Tải</a></li>
                             </ul>
                         </div>`;
             },
@@ -51,6 +51,7 @@
 });
 
 let modalView = $("#modal_large");
+let formUpload = $("#formUpload");
 
 function addFile() {
 
@@ -60,7 +61,6 @@ function addFile() {
 
 async function uploadFile(oFormElement) {
     console.log(oFormElement);
-    var resultElement = oFormElement.elements.namedItem("result");
     const formData = new FormData(oFormElement);
 
     try {
@@ -68,14 +68,45 @@ async function uploadFile(oFormElement) {
             method: 'POST',
             body: formData
         });
-
-        //if (response.ok) {
-        //    window.location.href = '/';
-        //}
-
-        resultElement.value = 'Result: ' + response.status + ' ' +
-            response.statusText;
+        console.log(response)
+        console.log(response.body)
+        if (response.ok) {
+            //window.location.href = '/';
+            Swal.fire(
+                "Thông báo",
+                "Upload file thành công!",
+                'success'
+            );
+            table.ajax.reload();
+    $("#modal_large").modal('toggle');
+        }
     } catch (error) {
         console.error('Error:', error);
     }
+}
+
+function uploadFileNow() {
+    showLoadingScreen();
+    $("#btnSubmit").click();
+}
+
+function downloadFile(link) {
+    fetch(link)
+        .then(resp => resp.blob())
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            let temp = link.toString().split("/");
+            console.log(temp)
+            let name = temp[temp.length-1];
+            // the filename you want
+            a.download = name;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            //alert('your file has downloaded!'); // or you know, something with better UX...
+        })
+        .catch(() => alert('oh no!'));
 }

@@ -9,7 +9,8 @@ namespace ECommerce.Models.View
     public class HomeSliderProductPartial
     {
         public List<Product> sanPhamChayNhat { get; set; }
-        public List<Product> sanPhamMoiNhat { get; set; }
         public List<Product> sanPhamGiamGia { get; set; }
+        public List<Product> sanPhamMoiNhat { get; set; }
+        public List<Product> dealHoi { get; set; }
     }
 }

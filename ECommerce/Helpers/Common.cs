@@ -12,6 +12,35 @@ namespace ECommerce.Helpers
 {
     public class Common
     {
+
+        public enum SanPhamTrangDauViewType
+        {
+            Limit = 10,
+
+            BanChayNhat = 1,
+            DangGiamGia = 2,
+            MauMoi = 3,
+            DealHoi = 4,
+
+            DongHoNam_BanChayNhat = 5,
+            DongHoNam_NhieuNguoiXem = 6,
+
+            DongHoNu_BanChayNhat = 7,
+            DongHoNu_NhieuNguoiXem = 8,
+
+            DongHoTreEm_BanChayNhat = 9,
+            DongHoTreEm_NhieuNguoiXem = 10,
+
+            DongHoPhienBanDacBiet_BanChayNhat = 11,
+            DongHoPhienBanDacBiet_NhieuNguoiXem = 12,
+
+            DongHoPhienBanGioiHan_BanChayNhat = 13,
+            DongHoPhienBanGioiHan_NhieuNguoiXem = 14,
+
+            DongHoCap_BanChayNhat = 15,
+            DongHoCap_NhieuNguoiXem = 16,
+
+        }
         public string GetCurrentLang()
         {
             return string.IsNullOrEmpty(Thread.CurrentThread.CurrentCulture.ToString().ToLower()) ? "vi" : Thread.CurrentThread.CurrentCulture.ToString().ToLower();

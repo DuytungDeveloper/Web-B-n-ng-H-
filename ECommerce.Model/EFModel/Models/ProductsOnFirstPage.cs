@@ -6,16 +6,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerce.Model.EFModel.Models
 {
-    public partial class ProductsOnFirstPage : BaseModel
+    public partial class ProductsOnFirstPage
     {
-        [Key]
-        [Column(Order = 0)]
-        public int Id { get; set; }
-        [Column(Order = 0)]
-        public int ProductId { get; set; }
+
+        [Column(Order = 1)]
         public int ViewTypeId { get; set; }
-        public Product Product { get; set; }
-
-
+        [Column(Order = 2)]
+        public int ProductId { get; set; }
+        public virtual Product Product { get; set; }
+        [Column(Order = 3)]
+        public int OrderId { get; set; }
     }
 }

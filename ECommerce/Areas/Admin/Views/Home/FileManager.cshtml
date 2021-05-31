@@ -47,7 +47,7 @@
                         <div class="col-12">
                             <form action="/api/Media/upload"
                                   enctype="multipart/form-data" onsubmit="uploadFile(this);return false;"
-                                  method="post">
+                                  method="post" id="formUpload">
                                 <div class="form-group">
                                     <label>Tên tập tin</label>
                                     <input type="text" class="form-control" value="" id="fileName" name="Name">
@@ -56,7 +56,7 @@
                                     <label>Chọn file</label>
                                     <a href="#" class="file-input btn btn-primary"><input type="file" class="file btn-primary" id="FileUpload_FormFile" name="FileUpload"><span>Browse</span></a>
                                 </div>
-                                <input class="btn" type="submit" value="Upload" />
+                                <input class="btn hidden" type="submit" value="Upload" id="btnSubmit"/>
 
                                 <div style="margin-top:15px">
                                     <output name="result"></output>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-success" onclick="uploadFile()">Lưu</button>
+                    <button type="button" class="btn btn-success" onclick="uploadFileNow()">Lưu</button>
                 </div>
             </div>
         </div>

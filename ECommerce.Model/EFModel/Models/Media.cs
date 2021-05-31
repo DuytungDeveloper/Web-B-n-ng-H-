@@ -23,8 +23,8 @@ namespace ECommerce.Model.EFModel.Models
         public string Path { get; set; }
         [Column(Order = 4)]
         public int MediaTypeId { get; set; }
-        [Column(Order = 5)]
-        public int OrderIndex { get; set; }
+        //[Column(Order = 5)]
+        //public int OrderIndex { get; set; }
         public MediaType MediaType { get; set; }
         public List<Product_Media> Product_Media { get; set; }
     }

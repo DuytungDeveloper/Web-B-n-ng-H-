@@ -613,7 +613,7 @@ left join Medias media on pro_media.MediaId = media.Id
                 return new
                 {
                     Id = x.Id,
-                    Anh = x.Product_Media.FirstOrDefault() != null ? x.Product_Media.FirstOrDefault().Media.Link : "/assets/data/product-s3-850x1036.jpg",
+                    Anh = x.Product_Media.FirstOrDefault() != null ? x.Product_Media.OrderBy(x => x.OrderIndex).FirstOrDefault().Media.Link : "/assets/data/product-s3-850x1036.jpg",
                     Name = x.Name,
                     Price = x.Price,
                     PriceDiscount = x.PriceDiscount,
@@ -639,11 +639,14 @@ left join Medias media on pro_media.MediaId = media.Id
             //Order Item = await GetById<Order>(Id);
             //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
             var Item = db.Products.Where(x => x.Id == product.Id).FirstOrDefault();
+            bool isNew = false;
             if (Item == null)
             {
-                data.Success = false;
-                data.Message = "Không tìm thấy sản phẩm!";
-                return data;
+                //data.Success = false;
+                //data.Message = "Không tìm thấy sản phẩm!";
+                //return data;
+                Item = new Product();
+                isNew = true;
             }
             Item.BandId = product.BandId;
             Item.BrandProductId = product.BrandProductId;
@@ -676,14 +679,129 @@ left join Medias media on pro_media.MediaId = media.Id
             Item.Url = product.Url;
             //Item.Video = product.BandId;
             Item.WaterproofId = product.WaterproofId;
-            int rs = db.SaveChanges();
+            //Item.Product_Media = product.Product_Media;
+            if (!isNew)
+            {
+                var allAnh = db.Product_Media.Where(x => x.ProductId == Item.Id).ToList();
+                db.Product_Media.RemoveRange(allAnh);
+            }
+
+            //db.SaveChanges();
+            int rs = 0;
+            if (!isNew)
+            {
+                rs = db.SaveChanges();
+            }
+            else
+            {
+                db.Products.Add(Item);
+                rs = db.SaveChanges();
+            }
+            if (product.Product_Media != null)
+                for (int i = 0; i < product.Product_Media.Count; i++)
+                {
+                    var temp = product.Product_Media[i];
+                    db.Product_Media.Add(new Product_Media()
+                    {
+                        MediaId = temp.MediaId,
+                        ProductId = Item.Id,
+                        OrderIndex = temp.OrderIndex
+                    });
+                }
+            if (!isNew) db.Product_ProductStatus.RemoveRange(db.Product_ProductStatus.Where(x => x.ProductId == Item.Id).ToList());
+            for (int i = 0; i < product.Product_ProductStatus.Count; i++)
+            {
+                var temp = product.Product_ProductStatus[i];
+                db.Product_ProductStatus.Add(new Product_ProductStatus()
+                {
+                    ProductId = Item.Id,
+                    ProductStatusId = temp.ProductStatusId
+                });
+            }
+
+
+            db.SaveChanges();
+
             JavaScriptSerializer js = new JavaScriptSerializer();
             data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
             data.Success = rs > 0 ? true : false;
-            data.Message = rs > 0 ?  "Thành công !" : "Thất bại!";
+            data.Message = rs > 0 ? "Thành công !" : "Thất bại!";
+            return Ok(data);
+        }
+
+        [HttpGet("api/Product/status/all")]
+        public async Task<ActionResult<ResultData<string>>> GetProductStatus()
+        {
+
+            ResultData<string> data = new ResultData<string>();
+            //Order Item = await GetById<Order>(Id);
+            //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
+            var Item = db.ProductStatus.ToList();
+            if (Item == null) return data;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            data.Success = true;
+            data.Message = "Thành công !";
+            return Ok(data);
+        }
+
+        [HttpGet("api/product/productViewType/{id}")]
+        public async Task<ActionResult<ResultData<string>>> GetProductInViewTypeByTypeId(int id)
+        {
+
+            ResultData<string> data = new ResultData<string>();
+            //Order Item = await GetById<Order>(Id);
+            //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
+            var Item = db.ProductsOnFirstPages.Where(x => x.ViewTypeId == id).OrderBy(x=>x.OrderId).ToList();
+            if (Item == null) return data;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            data.Success = true;
+            data.Message = "Thành công !";
+            return Ok(data);
+        }
+
+        [HttpPost("api/Product/updateProductInView")]
+        public ActionResult<ResultData<object>> UpdateProductInView([FromForm]int viewTypeId, [FromForm] List<ProductsOnFirstPage> products)
+        {
+            ResultData<object> data = new ResultData<object>();
+            if (products.Count <= 0)
+            {
+                data.Success = false;
+                return data;
+            }
+            var rm = db.ProductsOnFirstPages.Where(x => x.ViewTypeId == viewTypeId).ToList();
+            db.ProductsOnFirstPages.RemoveRange(rm);
+           var t=  db.SaveChanges();
+            for (int i = 0; i < products.Count; i++)
+            {
+                var dataTmp = new ProductsOnFirstPage()
+                {
+                    ProductId = products[i].ProductId,
+                    ViewTypeId = viewTypeId,
+                    OrderId = products[i].OrderId,
+                    //Status = 1,
+                    //CreateBy = "Admin",
+                    //CreateDate = DateTime.Now,
+                    //UpdateBy = "Admin",
+                    //UpdateDate = DateTime.Now,
+                };
+                db.ProductsOnFirstPages.Add(dataTmp);
+                db.SaveChanges();
+            }
+            var rs = 1;
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            data.Success = rs > 0 ? true : false;
+            data.Message = rs > 0 ? "Thành công !" : "Thất bại!";
             return Ok(data);
         }
         #endregion
@@ -708,7 +826,7 @@ left join Medias media on pro_media.MediaId = media.Id
 
         #region BrandProduct
         [HttpGet("api/BrandProduct/all")]
-        public ActionResult<ResultData<object>>  GetAllBrandProduct()
+        public ActionResult<ResultData<object>> GetAllBrandProduct()
         {
             ResultData<object> data = new ResultData<object>();
             //Order Item = await GetById<Order>(Id);
@@ -910,7 +1028,7 @@ left join Medias media on pro_media.MediaId = media.Id
             db.Database.SetCommandTimeout(99999999);
             ResultData<IEnumerable<Order>> rs = new ResultData<IEnumerable<Order>>();
             string stringSearch = string.IsNullOrEmpty(filter.search.value) ? "" : filter.search.value;
-            var mainQuery = db.Medias.Where(x => (x.Id.ToString() + x.Name + x.Link +x.Path).Contains(stringSearch != null ? stringSearch : "")).Include(x=>x.MediaType).AsQueryable();
+            var mainQuery = db.Medias.Where(x => (x.Id.ToString() + x.Name + x.Link + x.Path).Contains(stringSearch != null ? stringSearch : "")).Include(x => x.MediaType).AsQueryable();
             int count = mainQuery.Count();
             var Item = new List<Media>();
             switch (filter.order[0].column)
@@ -967,31 +1085,62 @@ left join Medias media on pro_media.MediaId = media.Id
         public async Task<ActionResult<ResultData<string>>> UploadMedia([FromForm] MediaUploadFile formData)
         {
             ResultData<string> data = new ResultData<string>();
-            string filePath = "";
-            if (formData.FileUpload != null&& formData.FileUpload.Length > 0)
+            try
             {
-                //var filePath = Path.GetTempFileName();
-                filePath = Environment.CurrentDirectory + "\\wwwroot\\assets\\images\\products\\" + formData.FileUpload.FileName;
-
-                using (var stream = System.IO.File.Create(filePath))
+                string filePath = "";
+                Media media = new Media();
+                media.Name = formData.Name;
+                bool isImage = true;
+                if (formData.FileUpload != null && formData.FileUpload.Length > 0)
                 {
-                    await formData.FileUpload.CopyToAsync(stream);
-                }
-            }
-            data.Success = true;
-            Media media = new Media();
-            media.Name = formData.Name;
-            media.Path = filePath;
-            switch (formData.FileUpload.ContentType)
-            {
-                case "":
-                    break;
-                default:
-                    break;
-            }
+                    if (!string.Equals(formData.FileUpload.ContentType, "image/jpg", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(formData.FileUpload.ContentType, "image/jpeg", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(formData.FileUpload.ContentType, "image/pjpeg", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(formData.FileUpload.ContentType, "image/gif", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(formData.FileUpload.ContentType, "image/x-png", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(formData.FileUpload.ContentType, "image/png", StringComparison.OrdinalIgnoreCase))
+                    {
+                        isImage = false;
+                    }
+                    var postedFileExtension = Path.GetExtension(formData.FileUpload.FileName);
+                    if (!string.Equals(postedFileExtension, ".jpg", StringComparison.OrdinalIgnoreCase)
+                        && !string.Equals(postedFileExtension, ".png", StringComparison.OrdinalIgnoreCase)
+                        && !string.Equals(postedFileExtension, ".gif", StringComparison.OrdinalIgnoreCase)
+                        && !string.Equals(postedFileExtension, ".jpeg", StringComparison.OrdinalIgnoreCase))
+                    {
+                        isImage = false;
+                    }
+                    //var filePath = Path.GetTempFileName();
+                    if (isImage)
+                    {
+                        media.Path = Environment.CurrentDirectory + "\\wwwroot\\assets\\images\\products\\" + formData.FileUpload.FileName;
+                        media.Link = "/assets/images/products/" + formData.FileUpload.FileName;
+                        media.MediaTypeId = 1;
+                    }
+                    else
+                    {
+                        media.Path = Environment.CurrentDirectory + "\\wwwroot\\assets\\files\\" + formData.FileUpload.FileName;
+                        media.Link = "/assets/files/" + formData.FileUpload.FileName;
+                        media.MediaTypeId = 2;
+                    }
 
-            data.Message = "Thành công !";
-            return Ok(data);
+
+                    using (var stream = System.IO.File.Create(media.Path))
+                    {
+                        await formData.FileUpload.CopyToAsync(stream);
+                    }
+                }
+                db.Medias.Add(media);
+                db.SaveChanges();
+                data.Success = true;
+                data.Message = "Thành công !";
+                return Ok(data);
+            }
+            catch (Exception e)
+            {
+                data.Message = e.Message;
+                return BadRequest(data);
+            }
         }
         #endregion
     }

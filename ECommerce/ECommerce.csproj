@@ -57,6 +57,7 @@
     <Folder Include="Helpers\View\" />
     <Folder Include="wwwroot\admin\pages\" />
     <Folder Include="wwwroot\assets\lib\toastr\" />
+    <Folder Include="wwwroot\assets\files\" />
     <Folder Include="wwwroot\images\product\" />
   </ItemGroup>
 
