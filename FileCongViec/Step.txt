@@ -65,3 +65,33 @@ khongnho123456
 GoDaddy
 trandai.rvs@gmail.com
 khongnho123456
+
+select * from Bands
+select * from BrandProducts
+select * from Category
+select * from ColorClockFaces
+select * from DeviceCodes
+select * from Functions
+select * from Machines
+select * from MadeIns
+select * from MediaTypes
+select * from OrderStatus
+select * from PersistedGrants 
+select * from ProductStatus
+select * from Straps
+select * from Styles
+select * from Waterproofs
+
+select * from Products
+select * from Medias
+select * from Product_Media
+select * from Citys
+select * from Districts
+select * from Address
+select * from Orders
+select * from OrderItems
+select * from Product_ProductStatus
+
+select * from AspNetRoles
+select * from AspNetUsers
+select * from AspNetUserRoles

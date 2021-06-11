@@ -28,8 +28,43 @@ namespace ECommerce.Controllers
         }
         [Route("/tai-khoan/dang-nhap")]
         [Route("{language}/tai-khoan/dang-nhap")]
-        public IActionResult SignIn()
+        public async Task<IActionResult> SignInAsync()
         {
+            //#region create default user
+            ApplicationUser developer = new ApplicationUser()
+            {
+                Email = "duytung.developer@gmail.com",
+                UserName = "duytung"
+            };
+            var resultDeveloper = await userManager.CreateAsync(developer, "123456");
+            if (resultDeveloper.Succeeded)
+            {
+                var resultRoleDeveloper = await userManager.AddToRoleAsync(developer, "Devleloper");
+            }
+
+            ApplicationUser adminTrong = new ApplicationUser()
+            {
+                Email = "vantrong@gmail.com",
+                UserName = "vantrong"
+            };
+            var resultadminTrong = await userManager.CreateAsync(adminTrong, "123456");
+            if (resultadminTrong.Succeeded)
+            {
+                var resultRoleDeveloper = await userManager.AddToRoleAsync(adminTrong, "Admin");
+            }
+
+            ApplicationUser adminThien = new ApplicationUser()
+            {
+                Email = "thien@gmail.com",
+                UserName = "thien"
+            };
+            var resultadminThien = await userManager.CreateAsync(adminThien, "123456");
+            if (resultadminThien.Succeeded)
+            {
+                var resultRoleDeveloper = await userManager.AddToRoleAsync(adminThien, "Admin");
+            }
+            //#endregion
+
             return View("SignIn");
         }
 

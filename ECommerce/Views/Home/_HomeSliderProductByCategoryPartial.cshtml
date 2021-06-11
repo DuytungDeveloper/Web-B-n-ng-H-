@@ -38,7 +38,7 @@
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoNam_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoNam_BanChayNhat.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoNam_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoNam_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoNam_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoNam_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy" alt="@Model.DongHoNam_BanChayNhat.ToList()[0].TitleSEO" src="@(Model.DongHoNam_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoNam_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -112,7 +112,7 @@
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoCap_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoCap_BanChayNhat.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoCap_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoCap_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoCap_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoCap_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy"  alt="@Model.DongHoCap_BanChayNhat.ToList()[0].TitleSEO" src="@(Model.DongHoCap_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoCap_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -187,7 +187,7 @@
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoNu_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoNu_BanChayNhat.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoNu_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoNu_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoNu_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoNu_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy"  alt="@Model.DongHoNu_BanChayNhat.ToList()[0].TitleSEO" src="@(Model.DongHoNu_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoNu_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -262,7 +262,7 @@
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoTreEm_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoTreEm_BanChayNhat.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoTreEm_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoTreEm_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoTreEm_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoTreEm_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy"  alt="@Model.DongHoTreEm_BanChayNhat.ToList()[0].TitleSEO" src="@(Model.DongHoTreEm_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoTreEm_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -337,7 +337,7 @@
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoPhienBanDacBiet_BanChayNhat.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoPhienBanDacBiet_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy"  alt="@Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[0].TitleSEO" src="@(Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -414,7 +414,7 @@
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoPhienBanGioiHan_BanChayNhat.Count())].Url"><img class="img-responsive" alt="product" src="@(Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoPhienBanGioiHan_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy" alt="@Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[0].TitleSEO" src="@(Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">

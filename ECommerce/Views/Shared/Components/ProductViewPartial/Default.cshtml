@@ -9,11 +9,11 @@
                 <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
                     @if (data.Product_Media.Count() > 0)
                     {
-                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                        <img class="img-responsive" loading="lazy" alt="@data.TitleSEO" src="@data.Product_Media[0].Media.Link" />
                     }
                     else
                     {
-                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                        <img class="img-responsive" loading="lazy" alt="@data.TitleSEO" src="/assets/data/p35.jpg" />
                     }
                 </a>
                 <div class="quick-view">
@@ -72,11 +72,11 @@
                 <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
                     @if (data.Product_Media.Count > 0)
                     {
-                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                        <img class="img-responsive" loading="lazy" alt="@data.TitleSEO" src="@data.Product_Media[0].Media.Link" />
                     }
                     else
                     {
-                        <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                        <img class="img-responsive" loading="lazy" alt="@data.TitleSEO" src="/assets/data/p35.jpg" />
                     }
                 </a>
                 @* <div class="quick-view">
@@ -105,11 +105,11 @@
                     <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">
                         @if (data.Product_Media.Count() > 0)
                         {
-                            <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                            <img class="img-responsive" loading="lazy" alt="@data.TitleSEO" src="@data.Product_Media[0].Media.Link" />
                         }
                         else
                         {
-                            <img class="img-responsive" alt="product" src="/assets/data/p35.jpg" />
+                            <img class="img-responsive" loading="lazy" alt="@data.TitleSEO" src="/assets/data/p35.jpg" />
                         }
                     </a>
                 </div>
@@ -153,11 +153,11 @@
                 <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id)">
                     @if (data.Product_Media.Count() > 0)
                     {
-                        <img class="img-responsive" alt="product" src="@data.Product_Media[0].Media.Link" />
+                        <img class="img-responsive" loading="lazy" alt="@data.TitleSEO" src="@data.Product_Media[0].Media.Link" />
                     }
                     else
                     {
-                        <img class="img-responsive" alt="product" src="/assets/data/p40.jpg" />
+                        <img class="img-responsive" loading="lazy" alt="@data.TitleSEO" src="/assets/data/p40.jpg" />
                     }
                 </a>
                 <div class="price-percent-reduction2">-@(100 - Math.Ceiling((decimal)data.PriceDiscount.Value * 100 / data.Price) < 10 ? "0"+(100 - Math.Ceiling((decimal)data.PriceDiscount.Value * 100 / data.Price)).ToString() : (100 - Math.Ceiling((decimal)data.PriceDiscount.Value * 100 / data.Price)).ToString())% OFF</div>
@@ -195,7 +195,7 @@
         case 5:
             <div class="products-block-left">
                 <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url +"."+data.Id)">
-                    <img src="@(data.Product_Media.Count() > 0 ?  data.Product_Media[0].Media.Link : "/assets/data/p35.jpg")" alt="SPECIAL PRODUCTS">
+                    <img src="@(data.Product_Media.Count() > 0 ?  data.Product_Media[0].Media.Link : "/assets/data/p35.jpg")" loading="lazy" alt="@data.TitleSEO">
                 </a>
             </div>
             <div class="products-block-right">
@@ -218,7 +218,7 @@
             break;
         case 6:
             <div class="left-block">
-                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())"><img class="img-responsive" alt="product" src="@(data.Product_Media.Count() > 0 ?  data.Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())"><img class="img-responsive" loading="lazy" alt="@data.TitleSEO" src="@(data.Product_Media.Count() > 0 ?  data.Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                 @*<div class="quick-view">
                         <a title="Add to my wishlist" class="heart" href="#"></a>
                         <a title="Add to compare" class="compare" href="#"></a>

@@ -83,7 +83,16 @@ namespace ECommerce.Controllers
             {
                 SaveOrderViewModel allProduct = HttpContext.Session.Get<SaveOrderViewModel>(OrderSessionName);
                 orderData.Address.CreateDate = DateTime.Now;
-                db.Address.Add(orderData.Address);
+                var tempAddress = new Address() { 
+                CityId = orderData.Address.CityId,
+                DistrictId = orderData.Address.DistrictId,
+                Status = 1,
+                Street = orderData.Address.Street,
+                WardId = orderData.Address.WardId,
+                CreateDate = DateTime.Now
+                
+                };
+                db.Address.Add(tempAddress);
                 db.SaveChanges();
                 orderData.OrderStatusId = 1;
                 orderData.Email = string.IsNullOrEmpty(orderData.Email) ? "" : orderData.Email;
