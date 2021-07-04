@@ -65,7 +65,7 @@
     <!--/.top-header -->
     <!-- MAIN HEADER -->
     <div class="container main-header">
-        <div class="row">
+        <div class="container">
             <div class="col-xs-12 col-sm-3 logo">
                 <a asp-controller="home" asp-action="index"><img alt="Kute shop - themelock.com" src="/assets/images/main-logo.png" /></a>
             </div>
@@ -141,7 +141,7 @@
     <!-- END MANIN HEADER -->
     <div id="nav-top-menu" class="nav-top-menu">
         <div class="container">
-            <div class="row">
+            <div class="container">
                 <div class="col-sm-3" id="box-vertical-megamenus">
                     <div class="box-vertical-megamenus">
                         <h4 class="title">
@@ -356,7 +356,7 @@
                                         </a>
                                     </li>*@
                             </ul>
-                            <div class="all-category"><span class="open-cate">@language.SEE_MORE</span></div>
+                            @*<div class="all-category"><span class="open-cate">@language.SEE_MORE</span></div>*@
                         </div>
                     </div>
                 </div>
@@ -637,8 +637,11 @@
             </div>
             <!-- CART ICON ON MMENU -->
             <div id="shopping-cart-box-ontop">
-                <i class="fa fa-shopping-cart"></i>
-                <div class="shopping-cart-box-ontop-content"></div>
+                <i class="fa fa-shopping-cart">
+                    <span class='badge badge-warning' id='lblCartCount'></span>
+                </i>
+                <div class="shopping-cart-box-ontop-content">
+                </div>
             </div>
         </div>
     </div>

@@ -261,6 +261,9 @@
   <data name="LOAI_NIENG" xml:space="preserve">
     <value>Braces type</value>
   </data>
+  <data name="LOAI_VO" xml:space="preserve">
+    <value>Shell Type</value>
+  </data>
   <data name="LOGIN" xml:space="preserve">
     <value>Login</value>
   </data>

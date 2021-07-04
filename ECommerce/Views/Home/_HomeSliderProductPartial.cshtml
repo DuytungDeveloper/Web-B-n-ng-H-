@@ -3,7 +3,7 @@
 @model HomeSliderProductPartial
 <div class="page-top">
     <div class="container">
-        <div class="row">
+        <div class="container">
             <div class="col-xs-12 col-sm-9 page-top-left">
                 <div class="popular-tabs">
                     <ul class="nav-tab">
@@ -66,10 +66,10 @@
                             {
                                 var data = Model.sanPhamGiamGia[i];
                                 <li>
-                                    @if (data.DiscountDateTo.HasValue)
+                                    @*@if (data.DiscountDateTo.HasValue)
                                     {
                                         <div class="count-down-time" data-countdown="@data.DiscountDateTo.Value.ToString("yyyy-MM-dd HH:mm")"></div>
-                                    }
+                                    }*@
                                     @await Component.InvokeAsync("ProductViewPartial", new { type = 2, data = data })
                                 </li>
                             }

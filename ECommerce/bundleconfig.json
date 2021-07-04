@@ -2,12 +2,43 @@
   {
     "outputFileName": "wwwroot/assets/css/index.min.css",
     "inputFiles": [
+      "wwwroot/assets/lib/bootstrap/css/bootstrap.min.css",
+      "wwwroot/assets/lib/font-awesome/css/font-awesome.min.css",
+      "wwwroot/assets/lib/select2/css/select2.min.css",
+      "wwwroot/assets/lib/jquery.bxslider/jquery.bxslider.css",
+      "wwwroot/assets/lib/owl.carousel/owl.carousel.css",
+      "wwwroot/assets/lib/jquery-ui/jquery-ui.css",
+      //"wwwroot/assets/css/animate.css",
+      "wwwroot/lib/toastr/toastr.min.css",
+      "wwwroot/lib/rateit.js-master/scripts/rateit.css",
+      "wwwroot/assets/css/reset.css",
+      "wwwroot/assets/css/main.css",
+      //"wwwroot/assets/css/responsive.css",
       "wwwroot/assets/css/index.css"
-    ]
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": false
+    },
+    "sourceMap": false
   },
   {
     "outputFileName": "wwwroot/js/main.min.js",
     "inputFiles": [
+      "wwwroot/assets/lib/jquery/jquery-1.11.2.min.js",
+      "wwwroot/assets/lib/bootstrap/js/bootstrap.min.js",
+      "wwwroot/assets/lib/select2/js/select2.min.js",
+      "wwwroot/assets/lib/jquery.bxslider/jquery.bxslider.min.js",
+      "wwwroot/assets/lib/owl.carousel/owl.carousel.min.js",
+      "wwwroot/assets/lib/jquery.countdown/jquery.countdown.min.js",
+
+      "wwwroot/assets/lib/jquery-ui/jquery-ui.min.js",
+
+      "wwwroot/lib/rateit.js-master/scripts/jquery.rateit.min.js",
+      "wwwroot/js/jquery.actual.min.js",
+      "wwwroot/lib/toastr/toastr.min.js",
+
+      "wwwroot/assets/js/theme-script.js",
       "wwwroot/js/main.js"
     ],
     "minify": {

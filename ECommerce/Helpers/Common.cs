@@ -13,6 +13,16 @@ namespace ECommerce.Helpers
     public class Common
     {
 
+        public enum SystemTypeId
+        {
+            SEO_TRANGCHU = 1,
+            SEO_FAQ = 2,
+            SEO_CHINHSACH = 3,
+            SEO_LIENHE = 4,
+            SEO_GIO_HANG = 5,
+
+        }
+
         public enum SanPhamTrangDauViewType
         {
             Limit = 10,

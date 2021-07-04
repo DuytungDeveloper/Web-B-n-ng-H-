@@ -18,7 +18,7 @@ namespace ECommerce.ViewComponentControllers
         }
         public IViewComponentResult Invoke()
         {
-            List<Category> lsCate = db.Category.ToList();
+            List<Category> lsCate = db.Category.Where(x=>!String.IsNullOrEmpty(x.Name) && x.Status == 1).ToList();
             return View(lsCate);
         }
     }

@@ -120,6 +120,7 @@ function refreshCart() {
     $("#number-product-cart").text(cart.length);
     $("#total-price").text(intToPrice(totalPrice));
     $("#title-cart").text(`${cart.length} ` + translateFunction("sản phẩm"))
+    $("#lblCartCount").html(` ${cart.length} `)
 
     $.ajax({
         url: `/${getLang()}/don-hang/saveorder`,

@@ -493,6 +493,15 @@ namespace ECommerce.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loại vỏ.
+        /// </summary>
+        public static string LOAI_VO {
+            get {
+                return ResourceManager.GetString("LOAI_VO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Đăng Nhập.
         /// </summary>
         public static string LOGIN {

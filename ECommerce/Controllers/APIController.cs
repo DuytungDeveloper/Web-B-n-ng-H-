@@ -90,7 +90,7 @@ namespace ECommerce.Controllers
         {
             try
             {
-                List<Ward> rs = db.Wards.ToList();
+                List<Ward> rs = db.Wards.Where(x => x.Status == 1 && !String.IsNullOrEmpty(x.Name)).ToList();
                 return Json(new ResultData<object>()
                 {
                     Success = true,
@@ -140,7 +140,7 @@ namespace ECommerce.Controllers
         {
             try
             {
-                List<District> rs = db.Districts.ToList();
+                List<District> rs = db.Districts.Where(x => x.Status == 1 && !String.IsNullOrEmpty(x.Name)).ToList();
                 return Json(new ResultData<object>()
                 {
                     Success = true,
@@ -213,7 +213,7 @@ namespace ECommerce.Controllers
         {
             try
             {
-                List<City> rs = db.Citys.ToList();
+                List<City> rs = db.Citys.Where(x => x.Status == 1 && !String.IsNullOrEmpty(x.Name)).ToList();
                 return Json(new ResultData<object>()
                 {
                     Success = true,
@@ -235,7 +235,7 @@ namespace ECommerce.Controllers
         {
             try
             {
-                List<District> rs = db.Districts.Where(x => x.City.Id == id).ToList();
+                List<District> rs = db.Districts.Where(x => x.Status == 1 && !String.IsNullOrEmpty(x.Name)).Where(x => x.City.Id == id).ToList();
                 return Json(new ResultData<object>()
                 {
                     Success = true,
@@ -406,7 +406,7 @@ namespace ECommerce.Controllers
             data.Message = rs > 0 ? "Thành công !" : "Thất bại !";
             return Ok(data);
         }
-        [HttpPut("api/Order")]
+        [HttpPost("api/Order/update")]
         public async Task<ActionResult<ResultData<Order>>> Update([FromBody] Order body)
         {
             //if (!ModelState.IsValid || Id < 1)
@@ -632,7 +632,7 @@ left join Medias media on pro_media.MediaId = media.Id
             return Ok(result);
         }
 
-        [HttpPut("api/Product")]
+        [HttpPost("api/Product")]
         public ActionResult<ResultData<object>> UpdateProduct([FromForm] Product product)
         {
             ResultData<object> data = new ResultData<object>();
@@ -739,7 +739,7 @@ left join Medias media on pro_media.MediaId = media.Id
             ResultData<string> data = new ResultData<string>();
             //Order Item = await GetById<Order>(Id);
             //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
-            var Item = db.ProductStatus.ToList();
+            var Item = db.ProductStatus.Where(x => x.Status == 1 && !String.IsNullOrEmpty(x.Name)).ToList();
             if (Item == null) return data;
             JavaScriptSerializer js = new JavaScriptSerializer();
             data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
@@ -831,7 +831,7 @@ left join Medias media on pro_media.MediaId = media.Id
             ResultData<object> data = new ResultData<object>();
             //Order Item = await GetById<Order>(Id);
             //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
-            var Item = db.BrandProducts.ToList();
+            var Item = db.BrandProducts.Where(x=>x.Status == 1 && !String.IsNullOrEmpty(x.Name)).ToList();
             if (Item == null) return data;
             JavaScriptSerializer js = new JavaScriptSerializer();
             data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
@@ -851,7 +851,7 @@ left join Medias media on pro_media.MediaId = media.Id
             ResultData<object> data = new ResultData<object>();
             //Order Item = await GetById<Order>(Id);
             //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
-            var Item = db.Machines.ToList();
+            var Item = db.Machines.Where(x => x.Status == 1 && !String.IsNullOrEmpty(x.Name)).ToList();
             if (Item == null) return data;
             JavaScriptSerializer js = new JavaScriptSerializer();
             data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
@@ -871,7 +871,7 @@ left join Medias media on pro_media.MediaId = media.Id
             ResultData<object> data = new ResultData<object>();
             //Order Item = await GetById<Order>(Id);
             //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
-            var Item = db.Bands.ToList();
+            var Item = db.Bands.Where(x => x.Status == 1 && !String.IsNullOrEmpty(x.Name)).ToList();
             if (Item == null) return data;
             JavaScriptSerializer js = new JavaScriptSerializer();
             data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
@@ -891,7 +891,7 @@ left join Medias media on pro_media.MediaId = media.Id
             ResultData<object> data = new ResultData<object>();
             //Order Item = await GetById<Order>(Id);
             //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
-            var Item = db.Straps.ToList();
+            var Item = db.Straps.Where(x => x.Status == 1 && !String.IsNullOrEmpty(x.Name)).ToList();
             if (Item == null) return data;
             JavaScriptSerializer js = new JavaScriptSerializer();
             data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
@@ -911,7 +911,7 @@ left join Medias media on pro_media.MediaId = media.Id
             ResultData<object> data = new ResultData<object>();
             //Order Item = await GetById<Order>(Id);
             //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
-            var Item = db.ColorClockFaces.ToList();
+            var Item = db.ColorClockFaces.Where(x => x.Status == 1 && !String.IsNullOrEmpty(x.Name)).ToList();
             if (Item == null) return data;
             JavaScriptSerializer js = new JavaScriptSerializer();
             data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
@@ -931,7 +931,7 @@ left join Medias media on pro_media.MediaId = media.Id
             ResultData<object> data = new ResultData<object>();
             //Order Item = await GetById<Order>(Id);
             //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
-            var Item = db.MadeIns.ToList();
+            var Item = db.MadeIns.Where(x => x.Status == 1 && !String.IsNullOrEmpty(x.Name)).ToList();
             if (Item == null) return data;
             JavaScriptSerializer js = new JavaScriptSerializer();
             data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
@@ -951,7 +951,7 @@ left join Medias media on pro_media.MediaId = media.Id
             ResultData<object> data = new ResultData<object>();
             //Order Item = await GetById<Order>(Id);
             //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
-            var Item = db.Styles.ToList();
+            var Item = db.Styles.Where(x => x.Status == 1 && !String.IsNullOrEmpty(x.Name)).ToList();
             if (Item == null) return data;
             JavaScriptSerializer js = new JavaScriptSerializer();
             data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
@@ -971,7 +971,7 @@ left join Medias media on pro_media.MediaId = media.Id
             ResultData<object> data = new ResultData<object>();
             //Order Item = await GetById<Order>(Id);
             //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
-            var Item = db.Waterproofs.ToList();
+            var Item = db.Waterproofs.Where(x => x.Status == 1 && !String.IsNullOrEmpty(x.Name)).ToList();
             if (Item == null) return data;
             JavaScriptSerializer js = new JavaScriptSerializer();
             data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()
@@ -991,7 +991,7 @@ left join Medias media on pro_media.MediaId = media.Id
             ResultData<object> data = new ResultData<object>();
             //Order Item = await GetById<Order>(Id);
             //Product Item = db.Products.Where(x => x.Id == id).Include(x=>x.Product_Media).FirstOrDefault();
-            var Item = db.Category.ToList();
+            var Item = db.Category.Where(x => x.Status == 1 && !String.IsNullOrEmpty(x.Name)).ToList();
             if (Item == null) return data;
             JavaScriptSerializer js = new JavaScriptSerializer();
             data.Data = JsonConvert.SerializeObject(Item, Formatting.None, new JsonSerializerSettings()

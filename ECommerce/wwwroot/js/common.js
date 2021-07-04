@@ -259,7 +259,9 @@ const removeVNCharacter = (alias) => {
     return str;
 }
 const nameToURL = (name) => {
-    let removeVN = removeVNCharacter(name).replace(/[^a-zA-Z ]/g, "");
+    //let removeVN = removeVNCharacter(name).replace(/[^a-zA-Z]/g, "");
+    //let removeVN = removeVNCharacter(name).replace(/\s/g, "");
+    let removeVN = removeVNCharacter(name);
     removeVN = removeVN.replace(/\s+/gi, "-");
     return removeVN;
 }

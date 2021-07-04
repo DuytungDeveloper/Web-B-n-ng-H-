@@ -261,6 +261,9 @@
   <data name="LOAI_NIENG" xml:space="preserve">
     <value>Loại niềng</value>
   </data>
+  <data name="LOAI_VO" xml:space="preserve">
+    <value>Loại vỏ</value>
+  </data>
   <data name="LOGIN" xml:space="preserve">
     <value>Đăng Nhập</value>
   </data>

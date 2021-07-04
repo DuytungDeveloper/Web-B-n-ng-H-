@@ -81,7 +81,7 @@ let table_orderDetail = $("#table-san-pham").DataTable({
         "type": "POST"
     },
     "columns": [
-        { "data": "id", "targets": 0 },
+        { "data": "id", "targets": 0},
         {
             "data": "anh", "targets": 1,
             render: function (data, type, row) {
@@ -110,7 +110,9 @@ let table_orderDetail = $("#table-san-pham").DataTable({
                 return `<button class="btn btn-info" onclick="showDetailProductData(event,${data})" data-loading-text="Đang tải ...">Xem chi tiết</button>`;
             },
         },
-    ]
+    ],
+    "order": [[0, "desc"]]
+
 });
 
 let tableSearchAnh = null;
@@ -129,6 +131,11 @@ function showDetailProductData(e, productId) {
         $btn.button('reset');
         updateDataToProductDetailView(productData);
     })
+}
+
+function createNewProduct() {
+    $('#modal_large').modal('toggle')
+    emptyDetailViewCreate();
 }
 
 /**
@@ -502,8 +509,16 @@ function emptyDetailViewCreate() {
     $("#maSanPham_detail").html('');
     formProductDetail.trigger("reset");
     productKeyWordSEOInput.importTags('');
-    productStatusInput.val('');
     editorProductFullDetail.code('');
+    productStatusInput.selectpicker('render'); productStatusInput.selectpicker('deselectAll');
+    productMachineIdInput.selectpicker('render'); productMachineIdInput.selectpicker('deselectAll');
+    productBandIdInput.selectpicker('render'); productBandIdInput.selectpicker('deselectAll');
+    productStrapIdInput.selectpicker('render'); productStrapIdInput.selectpicker('deselectAll');
+    productMadeInIdInput.selectpicker('render'); productMadeInIdInput.selectpicker('deselectAll');
+    productStyleIdInput.selectpicker('render'); productStyleIdInput.selectpicker('deselectAll');
+    productWaterproofIdInput.selectpicker('render'); productWaterproofIdInput.selectpicker('deselectAll');
+    productCategoryInput.selectpicker('render'); productCategoryInput.selectpicker('deselectAll');
+
     lsAnh.html('');
 }
 
@@ -689,7 +704,7 @@ function updateDetailProduct() {
                     //let url = `/api/Product/${productIdInput.val()}`;
                     let url = `/api/Product`;
                     $.ajax({
-                        type: "PUT",
+                        type: "POST",
                         url: url,
                         data: productDataUpdate,
                     }).done((data) => {

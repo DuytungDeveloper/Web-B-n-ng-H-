@@ -27,8 +27,8 @@ async function updateOrder(id, data) {
             ...data
         };
         $.ajax({
-            url: '/api/Order',
-            type: 'PUT',
+            url: '/api/Order/update',
+            type: 'POST',
             data: JSON.stringify(bodySend),
             contentType: 'application/json',
             success: function (data) {

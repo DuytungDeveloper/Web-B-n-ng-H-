@@ -64,6 +64,8 @@ namespace ECommerce.Controllers
                         SanPhamGiamGia = lsGiamGia,
                         DanhMucKhac = cat
                     };
+                    ViewData["Title"] = pro.Name;
+                    ViewData["Description"] = pro.TitleSEO;
                     return View(dataView);
                 }
                 else
