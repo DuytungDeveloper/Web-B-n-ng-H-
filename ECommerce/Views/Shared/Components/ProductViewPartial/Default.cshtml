@@ -22,7 +22,7 @@
                     @* <a title="Quick view" class="search" ></a> *@
                 </div>
                 <div class="add-to-cart">
-                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
+                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')" alt="@(String.IsNullOrEmpty(data.TitleSEO) ? data.Name : data.TitleSEO)">@language.ADD_TO_CART</a>
                 </div>
                 <div class="group-price">
                     @if (data.Product_ProductStatus.Where(x => x.ProductStatusId == 2).FirstOrDefault() != null)
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="right-block">
-                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
+                <p class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></p>
                 <div class="content_price">
                     @if (data.PriceDiscount.HasValue)
                     {
@@ -62,7 +62,7 @@
                     }
                     else
                     {
-                        <div class="rateit invisible" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                        @* <div class="rateit invisible" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div> *@
                     }
                 </div>
             </div>
@@ -84,11 +84,11 @@
                         <a title="Quick view" class="search"></a>
                     </div> *@
                 <div class="add-to-cart">
-                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
+                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')" alt="@(String.IsNullOrEmpty(data.TitleSEO) ? data.Name : data.TitleSEO)">@language.ADD_TO_CART</a>
                 </div>
             </div>
             <div class="right-block">
-                <h5 class="product-name"><a>@data.Name</a></h5>
+                <p class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></p>
                 <div class="content_price">
                     @if (data.PriceDiscount.HasValue)
                     {
@@ -114,7 +114,7 @@
                     </a>
                 </div>
                 <div class="info-product">
-                    <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></h5>
+                    <p class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a></p>
                     <span class="product-price">
                         @if (data.PriceDiscount.HasValue)
                         {
@@ -141,7 +141,7 @@
                         }
                         else
                         {
-                            <div class="rateit invisible" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                            @* <div class="rateit invisible" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div> *@
                         }
                     </div>
                     <a class="btn-view-more" title="@language.SEE_MORE" asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@language.SEE_MORE</a>
@@ -164,7 +164,7 @@
                 @*<div class="price-percent-reduction2">-30% OFF</div>*@
             </div>
             <div class="right-block">
-                <h5 class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id)">@data.Name</a></h5>
+                <p class="product-name"><a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id)">@data.Name</a></p>
                 <div class="product-star">
                     @if (data.Reviews.Count > 0 && data.Point.Value > 0)
                     {
@@ -172,7 +172,7 @@
                     }
                     else
                     {
-                        <div class="rateit invisible" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                        @* <div class="rateit invisible" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div> *@
                     }
                 </div>
                 <div class="content_price">
@@ -189,7 +189,7 @@
                 </div>
             </div>
             <div class="product-bottom">
-                <a class="btn-add-cart" title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
+                <a class="btn-add-cart" title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')" alt="@(String.IsNullOrEmpty(data.TitleSEO) ? data.Name : data.TitleSEO)">@language.ADD_TO_CART</a>
             </div>
             break;
         case 5:
@@ -211,7 +211,7 @@
                     }
                     else
                     {
-                        <div class="rateit invisible" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                        @* <div class="rateit invisible" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div> *@
                     }
                 </p>
             </div>
@@ -225,13 +225,13 @@
                         <a title="Quick view" class="search" href="#"></a>
                     </div>*@
                 <div class="add-to-cart">
-                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')">@language.ADD_TO_CART</a>
+                    <a title="@language.ADD_TO_CART" onclick="addProductToCart('@(data.Url+"."+data.Id.ToString())')" alt="@(String.IsNullOrEmpty(data.TitleSEO) ? data.Name : data.TitleSEO)">@language.ADD_TO_CART</a>
                 </div>
             </div>
             <div class="right-block">
-                <h5 class="product-name">
+                <p class="product-name">
                     <a asp-controller="san-pham" asp-action="index" asp-route-link="@(data.Url+"."+data.Id.ToString())">@data.Name</a>
-                </h5>
+                </p>
                 @if (data.Reviews.Count > 0)
                 {
                     <div class="rateit" data-rateit-value="@data.Point.Value.ToString().Replace(",",".")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>

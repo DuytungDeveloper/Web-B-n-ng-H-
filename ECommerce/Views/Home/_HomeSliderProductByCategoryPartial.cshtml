@@ -11,34 +11,34 @@
             <nav class="navbar nav-menu nav-menu-red show-brand">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-brand"><a><i class="fa fa-mars"></i>@language.MENS_WATCH</a></div>
+                    <div class="navbar-brand"><span rel="nofollow noreferrer" tabindex="-1"><i class="fa fa-mars"></i>@language.MENS_WATCH</span></div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a data-toggle="tab" href="#tab-6">@language.BESTSELLER</a></li>
-                            <li><a data-toggle="tab" href="#tab-7">@language.MOST_VIEWED</a></li>
+                            <li class="active"><a  rel="nofollow noreferrer" tabindex="-1" data-toggle="tab" href="#tab-6">@language.BESTSELLER</a></li>
+                            <li><a  rel="nofollow noreferrer" tabindex="-1" data-toggle="tab" href="#tab-7">@language.MOST_VIEWED</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
                 <div id="elevator-2" class="floor-elevator">
-                    <a href="#elevator-1" class="btn-elevator up fa fa-angle-up"></a>
-                    <a href="#elevator-3" class="btn-elevator down fa fa-angle-down"></a>
+                    <a href="#elevator-1" class="btn-elevator up fa fa-angle-up" rel="nofollow noreferrer" tabindex="-1" name="elevator_btn"></a>
+                    <a href="#elevator-3" class="btn-elevator down fa fa-angle-down"  rel="nofollow noreferrer" tabindex="-1" name="elevator_btn"></a>
                 </div>
             </nav>
             @*<div class="category-banner">
                 <div class="col-sm-6 banner">
-                    <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads6.jpg" /></a>
+                <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads6.jpg" /></a>
                 </div>
                 <div class="col-sm-6 banner">
-                    <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads7.jpg" /></a>
+                <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads7.jpg" /></a>
                 </div>
-            </div>*@
+                </div>*@
             <div class="product-featured clearfix">
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoNam_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoNam_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy" alt="@Model.DongHoNam_BanChayNhat.ToList()[0].TitleSEO" src="@(Model.DongHoNam_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoNam_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a  alt="@(String.IsNullOrEmpty(Model.DongHoNam_BanChayNhat.ToList()[0].TitleSEO) ? Model.DongHoNam_BanChayNhat.ToList()[0].Name : Model.DongHoNam_BanChayNhat.ToList()[0].TitleSEO)" asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoNam_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoNam_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy" alt="@(String.IsNullOrEmpty(Model.DongHoNam_BanChayNhat.ToList()[0].TitleSEO) ? Model.DongHoNam_BanChayNhat.ToList()[0].Name : Model.DongHoNam_BanChayNhat.ToList()[0].TitleSEO)" src="@(Model.DongHoNam_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoNam_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -53,9 +53,9 @@
                                     @for (int i = 0; i < Model.DongHoNam_BanChayNhat.Count(); i++)
                                     {
                                         var data = Model.DongHoNam_BanChayNhat.ToList()[i];
-                                        <li>
+                                                <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
-                                        </li>
+                                                </li>
                                     }
                                 </ul>
                             </div>
@@ -68,9 +68,9 @@
                                     @for (int i = 0; i < Model.DongHoNam_NhieuNguoiXem.Count(); i++)
                                     {
                                         var data = Model.DongHoNam_NhieuNguoiXem.OrderByDescending(v => v.ViewsCount).ToList()[i];
-                                        <li>
+                                                <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
-                                        </li>
+                                                </li>
                                     }
                                 </ul>
                             </div>
@@ -85,7 +85,7 @@
             <nav class="navbar nav-menu nav-menu-green show-brand">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-brand"><a><i class="fa fa-venus-mars"></i>@language.COUPLE_WATCH</a></div>
+                    <div class="navbar-brand"><span rel="nofollow noreferrer" tabindex="-1"><i class="fa fa-venus-mars"></i>@language.COUPLE_WATCH</span></div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
@@ -96,23 +96,23 @@
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
                 <div id="elevator-2" class="floor-elevator">
-                    <a href="#elevator-1" class="btn-elevator up fa fa-angle-up"></a>
-                    <a href="#elevator-3" class="btn-elevator down fa fa-angle-down"></a>
+                    <a href="#elevator-1" class="btn-elevator up fa fa-angle-up" ref="nofollow" tabindex="-1" name="elevator_btn"></a>
+                    <a href="#elevator-3" class="btn-elevator down fa fa-angle-down" ref="nofollow" tabindex="-1" name="elevator_btn"></a>
                 </div>
             </nav>
             @*<div class="category-banner">
                 <div class="col-sm-6 banner">
-                    <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads6.jpg" /></a>
+                <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads6.jpg" /></a>
                 </div>
                 <div class="col-sm-6 banner">
-                    <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads7.jpg" /></a>
+                <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads7.jpg" /></a>
                 </div>
-            </div>*@
+                </div>*@
             <div class="product-featured clearfix">
-                <div class="banner-featured">
+                <div class="banner-featured hidden-xs">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoCap_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoCap_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy"  alt="@Model.DongHoCap_BanChayNhat.ToList()[0].TitleSEO" src="@(Model.DongHoCap_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoCap_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a alt="@(String.IsNullOrEmpty(Model.DongHoCap_BanChayNhat.ToList()[0].TitleSEO) ? Model.DongHoCap_BanChayNhat.ToList()[0].Name : Model.DongHoCap_BanChayNhat.ToList()[0].TitleSEO)" asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoCap_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoCap_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy"  alt="@(String.IsNullOrEmpty(Model.DongHoCap_BanChayNhat.ToList()[0].TitleSEO) ? Model.DongHoCap_BanChayNhat.ToList()[0].Name : Model.DongHoCap_BanChayNhat.ToList()[0].TitleSEO)" src="@(Model.DongHoCap_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoCap_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -127,9 +127,9 @@
                                     @for (int i = 0; i < Model.DongHoCap_BanChayNhat.Count(); i++)
                                     {
                                         var data = Model.DongHoCap_BanChayNhat.ToList()[i];
-                                        <li>
+                                                <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
-                                        </li>
+                                                </li>
                                     }
                                 </ul>
                             </div>
@@ -143,9 +143,9 @@
                                     @for (int i = 0; i < Model.DongHoCap_NhieuNguoiXem.Count(); i++)
                                     {
                                         var data = Model.DongHoCap_NhieuNguoiXem.OrderByDescending(v => v.ViewsCount).ToList()[i];
-                                        <li>
+                                                <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
-                                        </li>
+                                                </li>
                                     }
                                 </ul>
                             </div>
@@ -160,7 +160,7 @@
             <nav class="navbar nav-menu nav-menu-orange show-brand">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-brand"><a><i class="fa fa-venus"></i>@language.WOMENS_WATCH</a></div>
+                    <div class="navbar-brand"><span rel="nofollow noreferrer" tabindex="-1"><i class="fa fa-venus"></i>@language.WOMENS_WATCH</span></div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
@@ -171,23 +171,23 @@
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
                 <div id="elevator-3" class="floor-elevator">
-                    <a href="#elevator-2" class="btn-elevator up fa fa-angle-up"></a>
-                    <a href="#elevator-4" class="btn-elevator down fa fa-angle-down"></a>
+                    <a href="#elevator-2" class="btn-elevator up fa fa-angle-up" ref="nofollow" tabindex="-1" name="elevator_btn"></a>
+                    <a href="#elevator-4" class="btn-elevator down fa fa-angle-down" ref="nofollow" tabindex="-1" name="elevator_btn"></a>
                 </div>
             </nav>
             @*<div class="category-banner">
                 <div class="col-sm-6 banner">
-                    <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads8.jpg" /></a>
+                <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads8.jpg" /></a>
                 </div>
                 <div class="col-sm-6 banner">
-                    <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads9.jpg" /></a>
+                <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads9.jpg" /></a>
                 </div>
-            </div>*@
+                </div>*@
             <div class="product-featured clearfix">
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoNu_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoNu_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy"  alt="@Model.DongHoNu_BanChayNhat.ToList()[0].TitleSEO" src="@(Model.DongHoNu_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoNu_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoNu_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoNu_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy"  alt="@(String.IsNullOrEmpty(Model.DongHoNu_BanChayNhat.ToList()[0].TitleSEO) ? Model.DongHoNu_BanChayNhat.ToList()[0].Name : Model.DongHoNu_BanChayNhat.ToList()[0].TitleSEO)" src="@(Model.DongHoNu_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoNu_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -202,9 +202,9 @@
                                     @for (int i = 0; i < Model.DongHoNu_BanChayNhat.Count(); i++)
                                     {
                                         var data = Model.DongHoNu_BanChayNhat.ToList()[i];
-                                        <li>
+                                                <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
-                                        </li>
+                                                </li>
                                     }
                                 </ul>
                             </div>
@@ -217,9 +217,9 @@
                                     @for (int i = 0; i < Model.DongHoNu_NhieuNguoiXem.Count(); i++)
                                     {
                                         var data = Model.DongHoNu_NhieuNguoiXem.OrderByDescending(v => v.ViewsCount).ToList()[i];
-                                        <li>
+                                                <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
-                                        </li>
+                                                </li>
                                     }
                                 </ul>
                             </div>
@@ -235,7 +235,7 @@
             <nav class="navbar nav-menu nav-menu-blue show-brand">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-brand"><a><i class="fa fa-child"></i>@language.CHILDREN_WATCH</a></div>
+                    <div class="navbar-brand"><span rel="nofollow noreferrer" tabindex="-1"><i class="fa fa-child"></i>@language.CHILDREN_WATCH</span></div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
@@ -246,23 +246,23 @@
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
                 <div id="elevator-4" class="floor-elevator">
-                    <a href="#elevator-3" class="btn-elevator up fa fa-angle-up"></a>
-                    <a href="#elevator-5" class="btn-elevator down fa fa-angle-down"></a>
+                    <a href="#elevator-3" class="btn-elevator up fa fa-angle-up" rel="nofollow noreferrer" tabindex="-1" name="elevator_btn"></a>
+                    <a href="#elevator-5" class="btn-elevator down fa fa-angle-down" rel="nofollow noreferrer" tabindex="-1" name="elevator_btn"></a>
                 </div>
             </nav>
             @*<div class="category-banner">
                 <div class="col-sm-6 banner">
-                    <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads10.jpg" /></a>
+                <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads10.jpg" /></a>
                 </div>
                 <div class="col-sm-6 banner">
-                    <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads11.jpg" /></a>
+                <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads11.jpg" /></a>
                 </div>
-            </div>*@
+                </div>*@
             <div class="product-featured clearfix">
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoTreEm_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoTreEm_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy"  alt="@Model.DongHoTreEm_BanChayNhat.ToList()[0].TitleSEO" src="@(Model.DongHoTreEm_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoTreEm_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoTreEm_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoTreEm_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy"  alt="@(String.IsNullOrEmpty(Model.DongHoTreEm_BanChayNhat.ToList()[0].TitleSEO) ? Model.DongHoTreEm_BanChayNhat.ToList()[0].Name : Model.DongHoTreEm_BanChayNhat.ToList()[0].TitleSEO)" src="@(Model.DongHoTreEm_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoTreEm_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -277,9 +277,9 @@
                                     @for (int i = 0; i < Model.DongHoTreEm_BanChayNhat.Count(); i++)
                                     {
                                         var data = Model.DongHoTreEm_BanChayNhat.ToList()[i];
-                                        <li>
+                                                <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
-                                        </li>
+                                                </li>
                                     }
                                 </ul>
                             </div>
@@ -292,9 +292,9 @@
                                     @for (int i = 0; i < Model.DongHoTreEm_NhieuNguoiXem.Count(); i++)
                                     {
                                         var data = Model.DongHoTreEm_NhieuNguoiXem.OrderByDescending(v => v.ViewsCount).ToList()[i];
-                                        <li>
+                                                <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
-                                        </li>
+                                                </li>
                                     }
                                 </ul>
                             </div>
@@ -310,7 +310,7 @@
             <nav class="navbar nav-menu nav-menu-blue2 show-brand">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-brand"><a><i class="fa fa-user-tag"></i>@language.SPECIAL_VERSION</a></div>
+                    <div class="navbar-brand"><span rel="nofollow noreferrer" tabindex="-1"><i class="fa fa-user-tag"></i>@language.SPECIAL_VERSION</span></div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
@@ -321,23 +321,23 @@
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
                 <div id="elevator-5" class="floor-elevator">
-                    <a href="#elevator-4" class="btn-elevator up fa fa-angle-up"></a>
-                    <a href="#elevator-6" class="btn-elevator down fa fa-angle-down"></a>
+                    <a href="#elevator-4" class="btn-elevator up fa fa-angle-up" rel="nofollow noreferrer" tabindex="-1" name="elevator_btn"></a>
+                    <a href="#elevator-6" class="btn-elevator down fa fa-angle-down" rel="nofollow noreferrer" tabindex="-1" name="elevator_btn"></a>
                 </div>
             </nav>
             @*<div class="category-banner">
                 <div class="col-sm-6 banner">
-                    <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads12.jpg" /></a>
+                <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads12.jpg" /></a>
                 </div>
                 <div class="col-sm-6 banner">
-                    <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads13.jpg" /></a>
+                <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads13.jpg" /></a>
                 </div>
-            </div>*@
+                </div>*@
             <div class="product-featured clearfix">
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoPhienBanDacBiet_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy"  alt="@Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[0].TitleSEO" src="@(Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoPhienBanDacBiet_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy"  alt="@(String.IsNullOrEmpty(Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[0].TitleSEO) ? Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[0].Name : Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[0].TitleSEO)" src="@(Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -352,9 +352,9 @@
                                     @for (int i = 0; i < Model.DongHoPhienBanDacBiet_BanChayNhat.Count(); i++)
                                     {
                                         var data = Model.DongHoPhienBanDacBiet_BanChayNhat.ToList()[i];
-                                        <li>
+                                                <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
-                                        </li>
+                                                </li>
                                     }
                                 </ul>
                             </div>
@@ -367,9 +367,9 @@
                                     @for (int i = 0; i < Model.DongHoPhienBanDacBiet_NhieuNguoiXem.Count(); i++)
                                     {
                                         var data = Model.DongHoPhienBanDacBiet_NhieuNguoiXem.OrderByDescending(v => v.ViewsCount).ToList()[i];
-                                        <li>
+                                                <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
-                                        </li>
+                                                </li>
                                     }
                                 </ul>
                             </div>
@@ -386,35 +386,35 @@
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-brand">
-                        <a><i class="fa fa-hourglass"></i>@language.LIMITED_EDITION</a>
+                        <span rel="nofollow noreferrer" tabindex="-1"><i class="fa fa-hourglass"></i>@language.LIMITED_EDITION</span>
                     </div>
                     <span class="toggle-menu"></span>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a data-toggle="tab" href="#tab-14">@language.BESTSELLER</a></li>
-                            <li><a data-toggle="tab" href="#tab-15">@language.MOST_VIEWED</a></li>
+                            <li class="active"><a data-toggle="tab" href="#tab-14" rel="nofollow noreferrer" tabindex="-1">@language.BESTSELLER</a></li>
+                            <li><a data-toggle="tab" href="#tab-15" rel="nofollow noreferrer" tabindex="-1">@language.MOST_VIEWED</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
                 <div id="elevator-6" class="floor-elevator">
-                    <a href="#elevator-5" class="btn-elevator up fa fa-angle-up"></a>
-                    <a class="btn-elevator disabled down fa fa-angle-down"></a>
+                    <a href="#elevator-5" class="btn-elevator up fa fa-angle-up" rel="nofollow noreferrer" tabindex="-1" name="elevator_btn"></a>
+                    <a href="#" class="btn-elevator disabled down fa fa-angle-down" rel="nofollow noreferrer" tabindex="-1" name="elevator_btn"></a>
                 </div>
             </nav>
             @*<div class="category-banner">
                 <div class="col-sm-6 banner">
-                    <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads14.jpg" /></a>
+                <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads14.jpg" /></a>
                 </div>
                 <div class="col-sm-6 banner">
-                    <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads15.jpg" /></a>
+                <a asp-controller="san-pham"><img alt="ads2" class="img-responsive" src="/assets/data/ads15.jpg" /></a>
                 </div>
-            </div>*@
+                </div>*@
             <div class="product-featured clearfix">
                 <div class="banner-featured">
                     @*<div class="featured-text"><span>@language.NEW_PRODUCT</span></div>*@
                     <div class="banner-img">
-                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoPhienBanGioiHan_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy" alt="@Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[0].TitleSEO" src="@(Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
+                        <a asp-controller="san-pham" asp-action="index" asp-route-link="@Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[rnd.Next(0,Model.DongHoPhienBanGioiHan_BanChayNhat.Count())].Url"><img class="img-responsive" loading="lazy" alt="@(String.IsNullOrEmpty(Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[0].TitleSEO) ? Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[0].Name : Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[0].TitleSEO)" src="@(Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[0].Product_Media.Count() > 0 ?  Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[0].Product_Media[0].Media.Link : "/assets/data/p35.jpg")" /></a>
                     </div>
                 </div>
                 <div class="product-featured-content">
@@ -429,9 +429,9 @@
                                     @for (int i = 0; i < Model.DongHoPhienBanGioiHan_BanChayNhat.Count(); i++)
                                     {
                                         var data = Model.DongHoPhienBanGioiHan_BanChayNhat.ToList()[i];
-                                        <li>
+                                                <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
-                                        </li>
+                                                </li>
                                     }
                                 </ul>
                             </div>
@@ -444,9 +444,9 @@
                                     @for (int i = 0; i < Model.DongHoPhienBanGioiHan_NhieuNguoiXem.Count(); i++)
                                     {
                                         var data = Model.DongHoPhienBanGioiHan_NhieuNguoiXem.OrderByDescending(v => v.ViewsCount).ToList()[i];
-                                        <li>
+                                                <li>
                                             @await Component.InvokeAsync("ProductViewPartial", new { type = 1, data = data })
-                                        </li>
+                                                </li>
                                     }
                                 </ul>
                             </div>
@@ -460,16 +460,16 @@
         <!-- Baner bottom -->
         @*<div class="row banner-bottom">
             <div class="col-sm-6">
-                <div class="banner-boder-zoom">
-                    <a><img alt="ads" class="img-responsive" src="/assets/data/ads17.jpg" /></a>
-                </div>
+            <div class="banner-boder-zoom">
+            <a><img alt="ads" class="img-responsive" src="/assets/data/ads17.jpg" /></a>
+            </div>
             </div>
             <div class="col-sm-6">
-                <div class="banner-boder-zoom">
-                    <a><img alt="ads" class="img-responsive" src="/assets/data/ads18.jpg" /></a>
-                </div>
+            <div class="banner-boder-zoom">
+            <a><img alt="ads" class="img-responsive" src="/assets/data/ads18.jpg" /></a>
             </div>
-        </div>*@
+            </div>
+            </div>*@
         <!-- end banner bottom -->
     </div>
 </div>

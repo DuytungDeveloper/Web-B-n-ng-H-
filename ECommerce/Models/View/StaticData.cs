@@ -20,7 +20,7 @@ namespace ECommerce.Models.View
                     _SystemInfos = new List<SystemInfomation>() {
                         new SystemInfomation() { Type = "Email", Value = "Tronghoang0803@gmail.com" ,Status = 1},
                         new SystemInfomation() { Type = "Address", Value = "Khu nhà ở cao cấp Phú Mỹ Hưng", Status = 1 },
-                        new SystemInfomation() { Type = "PhoneMainContact", Value = "0586571621", Status = 1 },
+                        new SystemInfomation() { Type = "PhoneMainContact", Value = "0774232359", Status = 1 },
                         new SystemInfomation() { Type = "MainTittle", Value = "Pwatch - Đỉnh Cao Trang Sức", Status = 1 },
                         new SystemInfomation() { Type = "WarrantyPolicy", Value = "Cho bạn luôn", Status = 1 },
                         new SystemInfomation() { Type = "WebIcon", Value = "aldk;sfgja;lkdjg;áldjkf", Status = 1 },

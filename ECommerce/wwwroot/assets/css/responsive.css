@@ -419,8 +419,6 @@
 	.popular-tabs .nav-tab li{
 		width: 100%;
 		float: left;
-	}{
-		min-height: 480px;
 	}
 	.container{
 		padding-left: 15px;

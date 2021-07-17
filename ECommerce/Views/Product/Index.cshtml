@@ -63,7 +63,7 @@
                             <div class="product-full">
                                 @if (Model.ProductDetail.Product_Media.Count() > 0)
                                 {
-                                        <img id="product-zoom" src="@Model.ProductDetail.Product_Media[0].Media.Link" data-zoom-image="@Model.ProductDetail.Product_Media[0].Media.Link" />
+                                        <img id="product-zoom" src="@Model.ProductDetail.Product_Media[0].Media.Link" data-zoom-image="@Model.ProductDetail.Product_Media[0].Media.Link" alt="@(String.IsNullOrEmpty(Model.ProductDetail.TitleSEO) ? Model.ProductDetail.Name : Model.ProductDetail.TitleSEO)"/>
                                 }
                                 else
                                 {
@@ -77,7 +77,7 @@
                                         for (int i = 0; i < Model.ProductDetail.Product_Media.Count(); i++)
                                         {
                                                     <li>
-                                                        <a class="" href="#" data-image="@Model.ProductDetail.Product_Media[i].Media.Link" data-zoom-image="@Model.ProductDetail.Product_Media[i].Media.Link">
+                                                        <a class="" href="#" data-image="@Model.ProductDetail.Product_Media[i].Media.Link" data-zoom-image="@Model.ProductDetail.Product_Media[i].Media.Link" rel="nofollow noreferrer" tabindex="-1">
                                                     @*<img id="product-zoom" src="@Model.ProductDetail.Product_Media[i].Media.Link" />*@
                                                             <img src="@Model.ProductDetail.Product_Media[i].Media.Link" alt="@(String.IsNullOrEmpty(Model.ProductDetail.TitleSEO) ? Model.ProductDetail.Name : Model.ProductDetail.TitleSEO)"/>
                                                         </a>
@@ -182,10 +182,10 @@
                                         <input id="option-product-qty" type="text" value="1">
                                     </div>
                                     <div class="btn-plus">
-                                        <a href="#" class="btn-plus-up">
+                                        <a href="#" class="btn-plus-up" rel="nofollow noreferrer">
                                             <i class="fa fa-caret-up"></i>
                                         </a>
-                                        <a href="#" class="btn-plus-down">
+                                        <a href="#" class="btn-plus-down" rel="nofollow noreferrer">
                                             <i class="fa fa-caret-down"></i>
                                         </a>
                                     </div>
@@ -212,7 +212,7 @@
                         <div class="form-share">
                             <div class="sendtofriend-print">
                                 @*<a href="javascript:print();"><i class="fa fa-print"></i> In</a>*@
-                                <a href="#"><i class="fa fa-envelope-o fa-fw"></i>@language.GUI_CHO_BAN</a>
+                                <a href="#" rel="nofollow noreferrer"><i class="fa fa-envelope-o fa-fw"></i>@language.GUI_CHO_BAN</a>
                             </div>
                             <div class="network-share">
                             </div>
@@ -355,7 +355,7 @@
                             @if (User.Identity.IsAuthenticated)
                             {
                                     <p>
-                                        <a class="btn-comment" href="#">@language.WRITE_A_REVIEW</a>
+                                        <a class="btn-comment" href="#" rel="nofollow noreferrer">@language.WRITE_A_REVIEW</a>
                                     </p>
                                     <form id="form-danh-gia" asp-controller="tai-khoan" asp-action="danh-gia-san-pham" method="post" onsubmit="addReviewForProduct(event)">
                                         <input type="hidden" value="5" step="0.1" id="review-point">

@@ -8,12 +8,12 @@
       "wwwroot/assets/lib/jquery.bxslider/jquery.bxslider.css",
       "wwwroot/assets/lib/owl.carousel/owl.carousel.css",
       "wwwroot/assets/lib/jquery-ui/jquery-ui.css",
-      //"wwwroot/assets/css/animate.css",
+      
       "wwwroot/lib/toastr/toastr.min.css",
       "wwwroot/lib/rateit.js-master/scripts/rateit.css",
       "wwwroot/assets/css/reset.css",
       "wwwroot/assets/css/main.css",
-      //"wwwroot/assets/css/responsive.css",
+      "wwwroot/assets/css/responsive.css",
       "wwwroot/assets/css/index.css"
     ],
     "minify": {
@@ -35,7 +35,7 @@
       "wwwroot/assets/lib/jquery-ui/jquery-ui.min.js",
 
       "wwwroot/lib/rateit.js-master/scripts/jquery.rateit.min.js",
-      "wwwroot/js/jquery.actual.min.js",
+      "wwwroot/assets/js/jquery.actual.min.js",
       "wwwroot/lib/toastr/toastr.min.js",
 
       "wwwroot/assets/js/theme-script.js",

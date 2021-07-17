@@ -1,14 +1,20 @@
 ﻿@{
     var Title = ECommerce.Models.View.StaticData.SystemInfos.Where(x => x.Type == "MainTittle").FirstOrDefault().Value;
-    var defaultTitle = "Đỉnh cao trang sức - Thế giới đồng hồ";
+    var defaultTitle = "";
     var viewTitle = "";
-    var viewDescription = "Đỉnh cao trang sức - Thế giới đồng hồ";
-    var robotsMeta = "index, follow";
     try { viewTitle = String.IsNullOrEmpty(ViewData["Title"].ToString()) ? defaultTitle : ViewData["Title"].ToString(); } catch { }
-    try { viewDescription = String.IsNullOrEmpty(ViewData["Description"].ToString()) ? defaultTitle : ViewData["Description"].ToString(); } catch { }
-    try { robotsMeta = String.IsNullOrEmpty(ViewData["Robots"].ToString()) ? robotsMeta : ViewData["Robots"].ToString(); } catch { }
     var finalTitle = Title + (string.IsNullOrEmpty(viewTitle) ? "" : " - " + viewTitle);
+    
+    var viewDescription = "Pwatch Đỉnh cao trang sức - Thế giới đồng hồ. Nơi bạn có thể lựa chọn đồng đồ phù hợp với phong cách của bạn!";
+    try { viewDescription = String.IsNullOrEmpty(ViewData["Description"].ToString()) ? defaultTitle : ViewData["Description"].ToString(); } catch { }
     var finalDescription = Title + (string.IsNullOrEmpty(viewDescription) ? "" : " - " + viewDescription);
+    
+    var robotsMeta = "index, follow";
+    try { robotsMeta = String.IsNullOrEmpty(ViewData["Robots"].ToString()) ? robotsMeta : ViewData["Robots"].ToString(); } catch { }
+    
+    var author = "Pwatch Company";
+    
+    var keywords = "pwatch, Pwatch,Đồng hồ, Đồng hồ nam, Đồng hồ nữ, Đồng hồ trẻ em, Đồng hồ cặp, Đồng hồ rẻ đẹp, Đồng hồ bền, rẻ, bền";
 }
 <!DOCTYPE html>
 <html lang="vi">
@@ -18,6 +24,22 @@
     <title>@finalTitle</title>
     <meta name="description" content="@viewDescription">
     <meta name="robots" content="@robotsMeta">
+    
+    <meta name="keywords" content="@keywords">
+    
+    <meta property="og:titel" content="@finalTitle">
+    <meta property="og:description" content="@viewDescription">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/assets/images/main-logo.ico">
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <link rel="icon" type="image/x-icon" href="~/assets/images/main-logo.ico" />
 
     @*<link rel="stylesheet" type="text/css" href="/assets/lib/bootstrap/css/bootstrap.min.css" />
@@ -33,8 +55,10 @@
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
         <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
         <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css" />*@
-    <link rel="stylesheet" type="text/css" href="/assets/css/animate.css" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css" />
+    @* <link rel="stylesheet" type="text/css" href="/assets/css/animate.css" />
+        <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css" /> *@
+
+    <link rel="canonical" href="https://pwatch.vn/"/>
     <environment include="Development">
         <link rel="stylesheet" href="/assets/css/index.min.css" asp-append-version="true" />
     </environment>
@@ -98,17 +122,17 @@
 
     <div class="float-contact">
         <button class="chat-zalo">
-            <a target="_blank" href="http://zalo.me/0774232359" rel="noreferrer"><img width="20" alt="Pwatch Zalo Chat" src="//gowatch.vn/zalo.svg"> Chat Zalo</a>
+            <a target="_blank" href="http://zalo.me/0774232359" rel="nofollow noreferrer"><img width="20" alt="Pwatch Zalo Chat" src="//gowatch.vn/zalo.svg"> Chat Zalo</a>
         </button>
         <button class="chat-face">
-            <a target="_blank" href="http://m.me/PWatches79" rel="noreferrer"><img width="20" alt="Pwatch Facebook Chat" src="//gowatch.vn/fb.svg"> Chat Facebook</a>
+            <a target="_blank" href="http://m.me/PWatches79" rel="nofollow noreferrer"><img width="20" alt="Pwatch Facebook Chat" src="//gowatch.vn/fb.svg"> Chat Facebook</a>
         </button>
         <button class="hotline">
-            <a target="_blank" href="tel:+84774232359" rel="noreferrer"><img width="20" alt="Pwatch Phone Number" src="//gowatch.vn/call-icon.svg"> Hotline: 0935 793 939</a>
+            <a target="_blank" href="tel:+84774232359" rel="nofollow noreferrer"><img width="20" alt="Pwatch Phone Number" src="//gowatch.vn/call-icon.svg"> Hotline: 0935 793 939</a>
         </button>
     </div>
 
-    <a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a>
+    <a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;" ref="nofollow noreferrer" tabindex="-1">Scroll</a>
     <!-- Script-->
     @*<script type="text/javascript" src="/assets/lib/jquery/jquery-1.11.2.min.js"></script>
         <script type="text/javascript" src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>

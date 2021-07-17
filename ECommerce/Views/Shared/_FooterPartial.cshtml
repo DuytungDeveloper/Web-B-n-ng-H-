@@ -20,7 +20,7 @@
         <div id="introduce-box" class="container">
             <div class="col-md-3">
                 <div id="address-box">
-                    <a href="#">
+                    <a href="/">
                         <img src="/assets/images/main-logo.png" alt="logo"
                              style="height: 150px;width: 100%;" />
                     </a>
@@ -76,11 +76,11 @@
                     </div><!-- /input-group -->
                     <div class="introduce-title">@language.SOCIAL_PAGES</div>
                     <div class="social-link">
-                        <a href="@Facebook"><i class="fa fa-facebook"></i></a>
+                        <a href="@Facebook" name="socialMedia_link"><i class="fa fa-facebook"></i></a>
                         @*<a href="#"><i class="fa fa-pinterest-p"></i></a>
                             <a href="#"><i class="fa fa-vk"></i></a>*@
-                        <a href="@Twitter"><i class="fa fa-twitter"></i></a>
-                        <a href="@GooglePlus"><i class="fa fa-google-plus"></i></a>
+                        <a href="@Twitter" name="socialMedia_link"><i class="fa fa-twitter"></i></a>
+                        <a href="@GooglePlus" name="socialMedia_link"><i class="fa fa-google-plus"></i></a>
                     </div>
                 </div>
 
@@ -222,7 +222,7 @@
         <div id="footer-menu-box">
             <div class="col-sm-12">
                 <ul class="footer-menu-list">
-                    <li><a href="#">@language.COMPANY_INFO - @language.COLLABORATORS</a></li>
+                    <li><a href="#" rel="nofollow noreferrer" tabindex="-1">@language.COMPANY_INFO - @language.COLLABORATORS</a></li>
                 </ul>
             </div>
             <!-- <div class="col-sm-12">
@@ -261,7 +261,7 @@
                         <li><a href="#">@language.RETURN</a></li>
                         <li><a href="#">@language.REFUND</a></li>
                         <li><a href="#">@language.GUARANTEE</a></li>*@
-                    <li><a href="#">@language.FREQUENTLY_QUESTION</a></li>
+                    <li><a href="#" rel="nofollow noreferrer" tabindex="-1">@language.FREQUENTLY_QUESTION</a></li>
                     <li><a asp-controller="lien-he">@language.CONTACT</a></li>
                 </ul>
             </div>

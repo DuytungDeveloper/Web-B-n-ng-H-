@@ -21,7 +21,7 @@
             <div class="language ">
                 <div class="dropdown">
                     <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                       href="#">
+                       href="#" rel="nofollow noreferrer">
                         <img alt="email" src="/assets/images/vietnam-flag-icon-16.png" />Việt Nam
 
                     </a>
@@ -42,7 +42,7 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                           href="#"><span>Xin chào, @User.Identity.Name</span></a>
+                           href="#" rel="nofollow noreferrer"><span>Xin chào, @User.Identity.Name</span></a>
                         <ul class="dropdown-menu mega_dropdown" role="menu">
                             <li><a asp-controller="tai-khoan" asp-action="dang-xuat">Đăng xuất</a></li>
                         </ul>
@@ -50,7 +50,7 @@
                     else
                     {
                         <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                           href="#"><span>@language.MY_ACCOUNT</span></a>
+                           href="#" rel="nofollow noreferrer"><span>@language.MY_ACCOUNT</span></a>
                         <ul class="dropdown-menu mega_dropdown" role="menu">
                             <li><a asp-controller="tai-khoan" asp-action="dang-nhap">@language.LOGIN</a></li>
                             <li><a asp-controller="tai-khoan" asp-action="dang-ky">@language.REGISTER</a></li>
@@ -67,7 +67,7 @@
     <div class="container main-header">
         <div class="container">
             <div class="col-xs-12 col-sm-3 logo">
-                <a asp-controller="home" asp-action="index"><img alt="Kute shop - themelock.com" src="/assets/images/main-logo.png" /></a>
+                <a asp-controller="home" asp-action="index"><img alt="Pwatch - pwatch.vn" src="/assets/images/main-logo.png" /></a>
             </div>
             <div class="col-xs-7 col-sm-7 header-search-box">
                 <form class="form-inline" asp-controller="search-result" asp-action="index" method="get">
@@ -81,7 +81,7 @@
                     <div class="form-group input-serach">
                         <input type="text" placeholder="Tìm ở đây..." name="SearchString">
                     </div>
-                    <button type="submit" class="pull-right btn-search" onclick="showLoadingScreen()"></button>
+                    <button type="submit" class="pull-right btn-search" onclick="showLoadingScreen()" aria-label="searchProduct_btn"></button>
                 </form>
             </div>
             <div id="cart-block" class="col-xs-5 col-sm-2 shopping-cart-box">
@@ -97,8 +97,8 @@
                             <ul id="ul-ls-cart-product">
                                 <li class="product-info">
                                     <div class="p-left">
-                                        <a href="#" class="remove_link"></a>
-                                        <a href="#">
+                                        <a href="#" class="remove_link" rel="nofollow noreferrer"></a>
+                                        <a href="#" rel="nofollow noreferrer">
                                             <img class="img-responsive" src="/assets/data/product-100x122.jpg"
                                                  alt="p10">
                                         </a>
@@ -111,8 +111,8 @@
                                 </li>
                                 <li class="product-info">
                                     <div class="p-left">
-                                        <a href="#" class="remove_link"></a>
-                                        <a href="#">
+                                        <a href="#" class="remove_link" rel="nofollow noreferrer"></a>
+                                        <a href="#" rel="nofollow noreferrer">
                                             <img class="img-responsive" src="/assets/data/product-s5-100x122.jpg"
                                                  alt="p10">
                                         </a>
@@ -368,11 +368,11 @@
                                         data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                                     <i class="fa fa-bars"></i>
                                 </button>
-                                <a class="navbar-brand" href="#">MENU</a>
+                                <a class="navbar-brand" href="#" rel="nofollow noreferrer">MENU</a>
                             </div>
                             <div id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
-                                    <li class="active"><a asp-controller="home" asp-action="index">@language.HOME</a></li>
+                                    <li class="active"><a asp-controller="home" asp-action="index" name="menu-home">@language.HOME</a></li>
                                     <li class="">
                                         @Html.ActionLink(
                                                                linkText: language.MENS_WATCH,

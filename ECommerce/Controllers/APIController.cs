@@ -23,6 +23,7 @@ namespace ECommerce.Controllers
     [ApiController]
     public class APIController : Controller
     {
+    //
         UserManager<ApplicationUser> userManager;
         SignInManager<ApplicationUser> signInManager;
         private readonly ILogger<ProductController> _logger;
